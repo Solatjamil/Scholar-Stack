@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Global helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // User document validation
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'name', 'email', 'classLevel', 'board'])
+        && data.uid is string
+        && data.name is string && data.name.size() <= 128
+        && data.email is string && data.email.size() <= 128
+        && data.classLevel is string && data.classLevel.size() <= 32
+        && data.board is string && data.board.size() <= 128;
+    }
+
+    // Prediction document validation
+    function isValidPrediction(data) {
+      return data.keys().hasAll(['id', 'userId', 'classLevel', 'board', 'subject', 'predictedTopics', 'confidence'])
+        && data.id is string
+        && data.userId is string
+        && data.classLevel is string && data.classLevel.size() <= 32
+        && data.board is string && data.board.size() <= 128
+        && data.subject is string && data.subject.size() <= 128
+        && data.predictedTopics is list
+        && data.confidence is number;
+    }
+
+    // Users Collection rules
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUser(request.resource.data);
+      allow update: if isOwner(userId) && isValidUser(request.resource.data)
+        && request.resource.data.email == resource.data.email; // Email is immutable
+      allow delete: if isOwner(userId);
+
+      // Predictions Sub-Collection
+      match /predictions/{predId} {
+        allow list, get: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(predId) && isValidPrediction(request.resource.data);
+        allow update, delete: if isOwner(userId);
+      }
+    }
+  }
+}

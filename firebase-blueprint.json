@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "Student user profile collecting demographic, class, board, and subjects details",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique identifier matching Firebase Authentication user ID" },
+        "name": { "type": "string", "description": "Student full name" },
+        "email": { "type": "string", "description": "Student email address" },
+        "classLevel": { "type": "string", "description": "Selected class (9th, 10th, 11th, 12th)" },
+        "board": { "type": "string", "description": "Selected Pakistani BISE Board (City-wise)" },
+        "academicGroup": { "type": "string", "description": "Target group (Pre-Engineering, Pre-Medical, Computer Science / ICS, Arts, Commerce)" },
+        "compulsorySubjects": { "type": "array", "description": "List of active compulsory subjects" },
+        "optionalSubjects": { "type": "array", "description": "List of selected optional subjects" },
+        "createdAt": { "type": "string", "description": "Profile generation ISO timestamp" }
+      },
+      "required": ["uid", "name", "email", "classLevel", "board"]
+    },
+    "predictions": {
+      "title": "ExamPrediction",
+      "description": "Generated exam predictions for 2026",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique prediction record ID" },
+        "userId": { "type": "string", "description": "UID of the referencing student" },
+        "classLevel": { "type": "string", "description": "Predicted class" },
+        "board": { "type": "string", "description": "Predicted Board" },
+        "subject": { "type": "string", "description": "Subject Name" },
+        "predictedTopics": { "type": "array", "description": "Predicted high weightage areas" },
+        "confidence": { "type": "number", "description": "Prediction accuracy/probability claim" },
+        "sources": { "type": "array", "description": "Search grounding sources cited" },
+        "createdAt": { "type": "string", "description": "Time of prediction execution" }
+      },
+      "required": ["id", "userId", "classLevel", "board", "subject", "predictedTopics", "confidence"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "users",
+      "description": "Private student registration profile"
+    },
+    "/users/{uid}/predictions/{predId}": {
+      "schema": "predictions",
+      "description": "Historical 2026 predictions generated for the user"
+    }
+  }
+}
