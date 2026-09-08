@@ -127,6 +127,18 @@ interface SyllabusItem {
   chapters: Chapter[];
 }
 
+/**
+ * Sample agenda dates are generated relative to today. They were previously
+ * hardcoded to June 2026 and had all passed, so a fresh install showed
+ * "COMPLETED / DONE" and an "in -85 days" countdown on the dashboard.
+ */
+function daysFromToday(n: number): string {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
 interface Task {
   id: string;
   title: string;
@@ -1649,7 +1661,7 @@ export default function App() {
       subjectId: "math",
       priority: "High",
       status: "Pending",
-      dueDate: "2026-06-15"
+      dueDate: daysFromToday(14)
     },
     {
       id: "task-2",
@@ -1657,7 +1669,7 @@ export default function App() {
       subjectId: "cs",
       priority: "Medium",
       status: "In Review",
-      dueDate: "2026-06-12"
+      dueDate: daysFromToday(11)
     },
     {
       id: "task-3",
@@ -1665,7 +1677,7 @@ export default function App() {
       subjectId: "physics",
       priority: "High",
       status: "Pending",
-      dueDate: "2026-06-18"
+      dueDate: daysFromToday(17)
     },
     {
       id: "task-4",
@@ -1673,16 +1685,16 @@ export default function App() {
       subjectId: "english",
       priority: "Low",
       status: "Completed",
-      dueDate: "2026-06-05"
+      dueDate: daysFromToday(4)
     }
   ];
 
 
   const initialEvents: CalendarEvent[] = [
-    { id: "ev-1", date: "2026-06-15", title: "Board Exams Start", type: "exam" },
-    { id: "ev-2", date: "2026-06-12", title: "Weather App Review", type: "deadline" },
-    { id: "ev-3", date: "2026-06-20", title: "Physics Mock Evaluation", type: "exam" },
-    { id: "ev-4", date: "2026-06-08", title: "Study Group: Calculus Ch. 5", type: "study" }
+    { id: "ev-1", date: daysFromToday(14), title: "Board Exams Start", type: "exam" },
+    { id: "ev-2", date: daysFromToday(11), title: "Weather App Review", type: "deadline" },
+    { id: "ev-3", date: daysFromToday(19), title: "Physics Mock Evaluation", type: "exam" },
+    { id: "ev-4", date: daysFromToday(7), title: "Study Group: Calculus Ch. 5", type: "study" }
   ];
 
   // --- STATE VARIABLES ---
@@ -1965,7 +1977,7 @@ export default function App() {
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskSubjectId, setNewTaskSubjectId] = useState("math");
   const [newTaskPriority, setNewTaskPriority] = useState<"High" | "Medium" | "Low">("High");
-  const [newTaskDueDate, setNewTaskDueDate] = useState("2026-06-15");
+  const [newTaskDueDate, setNewTaskDueDate] = useState(daysFromToday(14));
 
   // New Project form state
 
@@ -3235,8 +3247,8 @@ export default function App() {
         </div>
 
         {/* Board Picker and Profile Segment */}
-        <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 justify-end">
-          <div className="relative flex items-center text-xs bg-slate-100 border border-slate-200 rounded-full px-3 py-1 min-h-[40px] text-slate-700 hover:bg-slate-200/80 transition-colors cursor-pointer min-w-0 flex-1 sm:flex-none sm:max-w-none">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 justify-end overflow-hidden">
+          <div className="relative flex items-center text-xs bg-slate-100 border border-slate-200 rounded-full px-3 py-1 min-h-[40px] text-slate-700 hover:bg-slate-200/80 transition-colors cursor-pointer min-w-0 shrink sm:max-w-none">
             <span className="font-semibold text-slate-700 mr-1.5 hidden sm:inline">Board:</span>
             <select
               value={boardSelection}
@@ -3389,7 +3401,7 @@ export default function App() {
                       const nextExam = events
                         .filter(ev => ev.type === "exam")
                         .map(ev => ({ ...ev, timeValue: new Date(ev.date).getTime() }))
-                        .filter(ev => ev.timeValue >= new Date("2026-06-07").getTime() || ev.timeValue >= new Date().setHours(0,0,0,0))
+                        .filter(ev => ev.timeValue >= new Date().setHours(0, 0, 0, 0))
                         .sort((a, b) => a.timeValue - b.timeValue)[0];
 
                       if (!nextExam) {
@@ -3481,7 +3493,7 @@ export default function App() {
                             <div className="space-y-2 lg:max-h-[180px] lg:overflow-y-auto lg:scrollbar-thin lg:pr-1">
                               {biseDatesheet.schedule.map((paper: any, idx: number) => {
                                 const paperDateObj = new Date(paper.date);
-                                const isPassed = paperDateObj.getTime() < new Date("2026-06-07").getTime(); // Reference current local time
+                                const isPassed = paperDateObj.getTime() < new Date().setHours(0, 0, 0, 0);
                                 return (
                                   <div key={idx} className={`flex items-center justify-between p-2 rounded-lg border text-xs transition-colors ${
                                     isPassed 
@@ -4190,7 +4202,7 @@ export default function App() {
                                 subjectId: item.subjectId,
                                 priority: "Medium",
                                 status: "Pending",
-                                dueDate: "2026-06-12"
+                                dueDate: daysFromToday(11)
                               };
                               setTasks((prev) => [newTask, ...prev]);
                               alert(`Added active study task for "${uncompleted.name}" to your board!`);
