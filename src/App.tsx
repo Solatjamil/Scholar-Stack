@@ -1319,8 +1319,7 @@ function getSyllabusForClassRaw(classLevel: string, group: string, board: string
 const ExamCountdownTicker: React.FC<{
   targetDateStr: string;
   eventName: string;
-  isOfficial?: boolean;
-}> = ({ targetDateStr, eventName, isOfficial }) => {
+}> = ({ targetDateStr, eventName }) => {
   const [timeLeft, setTimeLeft] = React.useState({ days: 0, hours: 0, minutes: 0, seconds: 0, totalSeconds: 0 });
 
   React.useEffect(() => {
@@ -2148,7 +2147,7 @@ export default function App() {
     }
   }, [studentClass, studentGroup]);
 
-  // Fetch official BISE datesheet on board or class change
+  // Load the indicative exam schedule when board or class changes
   const fetchBiseDatesheet = async (selectedBoard: string, selectedClass: string) => {
     setIsFetchingBise(true);
     setBiseFetchError(null);
@@ -2158,7 +2157,7 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ board: selectedBoard, classLevel: selectedClass })
       });
-      if (!res.ok) throw new Error("Failed to retrieve the official datesheet.");
+      if (!res.ok) throw new Error("Could not load the estimated exam schedule.");
       const data = await res.json();
       setBiseDatesheet(data);
     } catch (err: any) {
@@ -3376,7 +3375,7 @@ export default function App() {
                     }`}
                   >
                     <Globe size={13} />
-                    <span>Official BISE Datesheet ({studentClass} Class)</span>
+                    <span>Exam Schedule ({studentClass} Class)</span>
                   </button>
                 </div>
               </div>
@@ -3455,7 +3454,7 @@ export default function App() {
                       </div>
                     ) : biseFetchError ? (
                       <div className="p-5 bg-rose-50 border border-rose-100 rounded-xl text-center">
-                        <p className="text-xs text-rose-700 font-medium mb-2">Failed to sync live BISE Datesheet</p>
+                        <p className="text-xs text-rose-700 font-medium mb-2">Could not load the estimated exam schedule</p>
                         <p className="text-[10px] text-rose-500 mb-3">{biseFetchError}</p>
                         <button
                           type="button"
@@ -3467,7 +3466,7 @@ export default function App() {
                       </div>
                     ) : biseDatesheet ? (
                       <div className="space-y-3">
-                        <ExamCountdownTicker targetDateStr={biseDatesheet.startDate} eventName={`Board Exam Start: ${biseDatesheet.examinationName}`} isOfficial />
+                        <ExamCountdownTicker targetDateStr={biseDatesheet.startDate} eventName={`Projected start: ${biseDatesheet.examinationName}`} />
                         
                         <div className="flex flex-col md:flex-row gap-4 items-stretch">
                           {/* Left: Detailed Datesheet Subject List */}
@@ -3510,7 +3509,9 @@ export default function App() {
                             <div>
                               <h4 className="text-xs font-bold text-slate-700 mb-2">Portal Grounding Sources</h4>
                               <p className="text-[11px] text-slate-500 leading-relaxed mb-3">
-                                Datesheets are verified and updated by checking thisyear's listings directly on Pakistani BISE and Federal boards portals.
+                                These dates are an estimate based on the usual annual exam window, not an official
+                                notification. Boards publish the real date sheet roughly 4-6 weeks before the first
+                                paper - open the portal below to check it.
                               </p>
                               <div className="space-y-1 bg-white border border-slate-100 p-2.5 rounded-lg text-[10px] font-mono text-slate-600 mb-4 break-all">
                                 <div><strong className="text-slate-800">Board:</strong> {biseDatesheet.board}</div>
@@ -4880,7 +4881,7 @@ export default function App() {
                           <p className="text-[11px] text-slate-500">Downloadable academic manuals and course splits outlining topics for Quetta board secondary exam clusters.</p>
                         </div>
                         <a
-                          href="http://bbisequetta.edu.pk/"
+                          href="https://bbiseqta.edu.pk/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-2 hover:bg-slate-50 text-indigo-600 rounded-lg border border-slate-100 shrink-0 cursor-pointer"

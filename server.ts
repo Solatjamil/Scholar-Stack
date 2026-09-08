@@ -1566,94 +1566,135 @@ app.post("/api/predict-exam", async (req, res) => {
   res.json(data);
 });
 
+/**
+ * Indicative board exam schedule.
+ *
+ * IMPORTANT: these are NOT official date sheets. They are month/day patterns
+ * taken from how Punjab and other boards have historically scheduled papers.
+ * The exact dates move every year and are only settled when the board issues
+ * its notification, usually four to six weeks before the first paper.
+ *
+ * Previously the dates here were hardcoded to fixed 2026 values. Because the
+ * exam window for a given class recurs annually, every one of those dates fell
+ * into the past as the year advanced -- by September 2026 all four classes
+ * pointed at dates 86 to 191 days gone, so the dashboard countdown sat frozen
+ * at zero while still being labelled an "Official" datesheet. The schedule is
+ * now generated relative to the current date and always rolls forward to the
+ * next occurrence of that exam window, so it can never go stale.
+ */
+
+/** Month/day patterns per class, as [month (1-12), day] offsets from the start. */
+const EXAM_PATTERNS: Record<string, { startMonth: number; startDay: number; papers: [number, string, string][] }> = {
+  // [dayOffsetFromStart, subject, session]
+  "9th": {
+    startMonth: 4, startDay: 17,
+    papers: [
+      [0, "English Compulsory", "Morning (09:00 AM)"],
+      [3, "Biology / Computer Science", "Morning (09:00 AM)"],
+      [6, "Mathematics", "Morning (09:00 AM)"],
+      [9, "Physics", "Morning (09:00 AM)"],
+      [13, "Chemistry / General Science", "Morning (09:00 AM)"],
+      [16, "Urdu Compulsory", "Morning (09:00 AM)"],
+      [19, "Islamiyat / Pakistan Studies", "Morning (09:00 AM)"],
+    ],
+  },
+  "10th": {
+    startMonth: 3, startDay: 27,
+    papers: [
+      [3, "English Compulsory", "Morning (09:00 AM)"],
+      [5, "Physics / Advanced Islamic Studies", "Morning (09:00 AM)"],
+      [10, "Biology / Computer Science", "Morning (09:00 AM)"],
+      [12, "Chemistry / General Science", "Morning (09:00 AM)"],
+      [14, "Urdu Compulsory", "Morning (09:00 AM)"],
+      [17, "Mathematics / General Mathematics", "Morning (09:00 AM)"],
+      [19, "Pakistan Studies Compulsory", "Morning (09:00 AM)"],
+    ],
+  },
+  "11th": {
+    startMonth: 5, startDay: 12,
+    papers: [
+      [0, "English Compulsory", "Morning (09:00 AM)"],
+      [2, "Computer Science / Civics", "Morning (09:00 AM)"],
+      [4, "Tarjuma-tul-Quran Compulsory", "Morning (09:00 AM)"],
+      [6, "Chemistry / Statistics", "Morning (09:00 AM)"],
+      [8, "Physics / Principles of Commerce", "Morning (09:00 AM)"],
+      [10, "Mathematics / Biology", "Morning (09:00 AM)"],
+      [13, "Urdu Compulsory", "Morning (09:00 AM)"],
+      [15, "Islamic Education Compulsory", "Morning (09:00 AM)"],
+    ],
+  },
+  "12th": {
+    startMonth: 5, startDay: 12,
+    papers: [
+      [0, "English Compulsory", "Morning (09:00 AM)"],
+      [2, "Chemistry / Statistics", "Morning (09:00 AM)"],
+      [4, "Physics / Principles of Accounting", "Morning (09:00 AM)"],
+      [6, "Mathematics / Biology", "Morning (09:00 AM)"],
+      [9, "Urdu Compulsory", "Morning (09:00 AM)"],
+      [11, "Pakistan Studies / Ethics", "Morning (09:00 AM)"],
+    ],
+  },
+};
+
+const BOARD_PORTALS: [string, string][] = [
+  ["federal", "https://www.fbise.edu.pk/"],
+  ["fbise", "https://www.fbise.edu.pk/"],
+  ["karachi", "https://biek.edu.pk/"],
+  ["rawalpindi", "https://www.biserawalpindi.edu.pk/"],
+  ["multan", "https://www.bisemultan.edu.pk/"],
+  ["faisalabad", "https://www.bisefsd.edu.pk/"],
+  ["peshawar", "https://www.bisep.edu.pk/"],
+  ["gujranwala", "https://www.bisegrw.edu.pk/"],
+  ["sahiwal", "https://www.bisesahiwal.edu.pk/"],
+  ["sargodha", "https://www.bisesargodha.edu.pk/"],
+  ["bahawalpur", "https://bisebwp.edu.pk/"],
+  ["quetta", "https://bbiseqta.edu.pk/"],
+  ["hyderabad", "https://www.biseh.edu.pk/"],
+];
+
+function fmt(d: Date): string {
+  return d.toISOString().split("T")[0];
+}
+
 function getLocalBiseDatesheet(board: string, classLevel: string) {
   const boardLower = (board || "").toLowerCase();
   const rawClass = (classLevel || "").toLowerCase();
 
-  let startDate = "2026-06-15";
-  let examName = `${board} - ${classLevel} Annual Board Exams 2026`;
-  let sourceUrl = "https://www.ilmkidunya.com/datesheet/";
+  const key = ["9th", "10th", "11th", "12th"].find((k) => rawClass.includes(k)) || "10th";
+  const pattern = EXAM_PATTERNS[key];
 
-  let schedule = [
-    { date: "2026-06-15", subject: "English Compulsory", time: "Morning (08:30 AM)" },
-    { date: "2026-06-17", subject: "Mathematics / Biology", time: "Morning (08:30 AM)" },
-    { date: "2026-06-20", subject: "Physics", time: "Afternoon (01:30 PM)" },
-    { date: "2026-06-23", subject: "Chemistry / Computer Science", time: "Morning (08:30 AM)" },
-    { date: "2026-06-25", subject: "Urdu Compulsory", time: "Morning (08:30 AM)" },
-    { date: "2026-06-27", subject: "Islamic Education / Tarjuma-tul-Quran", time: "Morning (08:30 AM)" }
-  ];
-
-  if (rawClass.includes("9th")) {
-    startDate = "2026-03-18";
-    schedule = [
-      { date: "2026-03-18", subject: "English Compulsory", time: "Morning (08:30 AM)" },
-      { date: "2026-03-20", subject: "Biology / Computer Science", time: "Morning (08:30 AM)" },
-      { date: "2026-03-24", subject: "Mathematics", time: "Morning (08:30 AM)" },
-      { date: "2026-03-27", subject: "Physics", time: "Morning (08:30 AM)" },
-      { date: "2026-04-01", subject: "Chemistry", time: "Morning (08:30 AM)" },
-      { date: "2026-04-04", subject: "Pakistan Studies", time: "Morning (08:30 AM)" }
-    ];
-  } else if (rawClass.includes("10th")) {
-    startDate = "2026-03-02";
-    schedule = [
-      { date: "2026-03-02", subject: "English Compulsory", time: "Morning (08:30 AM)" },
-      { date: "2026-03-05", subject: "Mathematics", time: "Morning (08:30 AM)" },
-      { date: "2026-03-09", subject: "Physics", time: "Morning (08:30 AM)" },
-      { date: "2026-03-12", subject: "Chemistry / General Science", time: "Morning (08:30 AM)" },
-      { date: "2026-03-14", subject: "Urdu Compulsory", time: "Morning (08:30 AM)" },
-      { date: "2026-03-16", subject: "Islamiyat Compulsory", time: "Morning (08:30 AM)" }
-    ];
-  } else if (rawClass.includes("11th")) {
-    startDate = "2026-06-15";
-    schedule = [
-      { date: "2026-06-15", subject: "English Compulsory", time: "Morning (08:30 AM)" },
-      { date: "2026-06-16", subject: "Computer Science / Civics", time: "Morning (08:30 AM)" },
-      { date: "2026-06-17", subject: "Tarjuma-tul-Quran Compulsory", time: "Morning (08:30 AM)" },
-      { date: "2026-06-18", subject: "Chemistry / Statistics", time: "Morning (08:30 AM)" },
-      { date: "2026-06-19", subject: "Physics / Principles of Commerce", time: "Afternoon (01:30 PM)" },
-      { date: "2026-06-20", subject: "Mathematics / Biology", time: "Morning (08:30 AM)" },
-      { date: "2026-06-22", subject: "Urdu Compulsory", time: "Morning (08:30 AM)" },
-      { date: "2026-06-23", subject: "Islamic Education (Compulsory)", time: "Morning (08:30 AM)" }
-    ];
-  } else if (rawClass.includes("12th")) {
-    startDate = "2026-06-10";
-    schedule = [
-      { date: "2026-06-10", subject: "Chemistry / Statistics", time: "Morning (08:30 AM)" },
-      { date: "2026-06-12", subject: "English Compulsory", time: "Morning (08:30 AM)" },
-      { date: "2026-06-16", subject: "Physics / Principles of Accounting", time: "Morning (08:30 AM)" },
-      { date: "2026-06-18", subject: "Mathematics / Biology", time: "Afternoon (01:30 PM)" },
-      { date: "2026-06-22", subject: "Urdu Compulsory", time: "Morning (08:30 AM)" },
-      { date: "2026-06-25", subject: "Pakistan Studies (Compulsory)", time: "Morning (08:30 AM)" }
-    ];
+  // Roll forward: if this year's window has already begun, target next year's.
+  const now = new Date();
+  let year = now.getFullYear();
+  let start = new Date(Date.UTC(year, pattern.startMonth - 1, pattern.startDay));
+  if (start.getTime() < now.getTime()) {
+    year += 1;
+    start = new Date(Date.UTC(year, pattern.startMonth - 1, pattern.startDay));
   }
 
-  if (boardLower.includes("federal")) {
-    sourceUrl = "https://www.fbise.edu.pk/";
-  } else if (boardLower.includes("karachi")) {
-    sourceUrl = "https://biek.edu.pk/";
-  } else if (boardLower.includes("rawalpindi")) {
-    sourceUrl = "https://biserawalpindi.edu.pk/";
-  } else if (boardLower.includes("multan")) {
-    sourceUrl = "https://bisemultan.edu.pk/";
-  } else if (boardLower.includes("faisalabad")) {
-    sourceUrl = "https://bisefsd.edu.pk/";
-  } else if (boardLower.includes("peshawar")) {
-    sourceUrl = "https://bisep.edu.pk/";
-  } else {
-    sourceUrl = "https://biselahore.com/";
-  }
+  const schedule = pattern.papers.map(([offset, subject, time]) => {
+    const d = new Date(start.getTime());
+    d.setUTCDate(d.getUTCDate() + offset);
+    return { date: fmt(d), subject, time };
+  });
+
+  const entry = BOARD_PORTALS.find(([k]) => boardLower.includes(k));
+  const sourceUrl = entry ? entry[1] : "https://www.biselahore.com/";
 
   return {
     success: true,
     isOffline: true,
     board,
     classLevel,
-    startDate,
-    examinationName: examName,
+    startDate: fmt(start),
+    examinationName: `${board} - ${classLevel} Annual Examination ${year}`,
     sourceUrl,
     isIndicative: true,
-    note: "Indicative schedule based on previous years' patterns. Always confirm the final date sheet on your board's official website before making any plans.",
-    schedule
+    note:
+      `Indicative only - not an official date sheet. These dates follow the usual ${key} annual exam window ` +
+      `and are projected for ${year}. Your board publishes the real schedule about 4-6 weeks before the first ` +
+      `paper. Always confirm on the official portal before relying on any date.`,
+    schedule,
   };
 }
 
