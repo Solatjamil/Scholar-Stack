@@ -35,7 +35,7 @@ export default function MobileTabBar({ activeTab, setActiveTab, onMore }: Props)
     { id: "dashboard", label: "Home", icon: <LayoutDashboard size={19} /> },
     { id: "chapterstudy", label: "Study", icon: <BookOpen size={19} /> },
     { id: "boardexams", label: "Papers", icon: <FileText size={19} /> },
-    { id: "mockups", label: "Mock", icon: <ClipboardList size={19} /> },
+    { id: "mockups", label: "Tests", icon: <ClipboardList size={19} /> },
   ];
 
   const moreActive = ["syllabus", "resources", "evaluation"].includes(activeTab);
@@ -54,10 +54,13 @@ export default function MobileTabBar({ activeTab, setActiveTab, onMore }: Props)
               key={it.id}
               onClick={() => setActiveTab(it.id)}
               aria-current={active ? "page" : undefined}
-              className={`flex-1 flex flex-col items-center justify-center gap-0.5 py-2 min-h-[56px] transition-colors active:bg-slate-100 ${
+              className={`relative flex-1 flex flex-col items-center justify-center gap-0.5 py-2 min-h-[56px] transition-colors active:bg-slate-100 ${
                 active ? "text-indigo-600" : "text-slate-400"
               }`}
             >
+              {active && (
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 h-0.5 w-8 bg-indigo-600 rounded-full" />
+              )}
               <span className={active ? "scale-110 transition-transform" : "transition-transform"}>
                 {it.icon}
               </span>
@@ -70,10 +73,14 @@ export default function MobileTabBar({ activeTab, setActiveTab, onMore }: Props)
 
         <button
           onClick={onMore}
-          className={`flex-1 flex flex-col items-center justify-center gap-0.5 py-2 min-h-[56px] transition-colors active:bg-slate-100 ${
+          className={`relative flex-1 flex flex-col items-center justify-center gap-0.5 py-2 min-h-[56px] transition-colors active:bg-slate-100 ${
             moreActive ? "text-indigo-600" : "text-slate-400"
           }`}
+          aria-haspopup="dialog"
         >
+          {moreActive && (
+            <span className="absolute top-0 left-1/2 -translate-x-1/2 h-0.5 w-8 bg-indigo-600 rounded-full" />
+          )}
           <MoreHorizontal size={19} />
           <span className={`text-[10px] leading-none ${moreActive ? "font-bold" : "font-medium"}`}>
             More
