@@ -135,15 +135,6 @@ interface Task {
   dueDate: string; // YYYY-MM-DD
 }
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  tech: string;
-  category: string;
-  link: string;
-  date: string;
-}
 
 interface CalendarEvent {
   id: string;
@@ -1363,154 +1354,6 @@ function getSyllabusForClassRaw(classLevel: string, group: string, board: string
   return [];
 }
 
-function getProjectsForClass(classLevel: string, group: string): Project[] {
-  const normGroup = (group || "").toLowerCase();
-  let results: Project[] = [];
-  
-  if (classLevel === "9th") {
-    results = [
-      {
-        id: "proj-9-1",
-        title: "Matrices Cramer's Rule Solver Notebook",
-        description: "Drafting complete manual solutions for resolving simultaneous equations with 2x2 determinants according to PCTB grade 9 syllabus guidelines.",
-        tech: "Handwritten PDF Guide",
-        category: "Mathematics",
-        link: "https://www.taleem360.com/notes-and-guides/9th-class",
-        date: "2026-05-18"
-      },
-      {
-        id: "proj-9-2",
-        title: "Vernier Calipers & Micrometer Screw Gauge Zero Error Calculations",
-        description: "Hands-on physics notebook logging precise internal and external diameter readings, calculating pitch and zero-errors of standard lab metrics.",
-        tech: "Practical Lab Notebook",
-        category: "Physics",
-        link: "https://www.taleem360.com/past-papers/punjab/9th-class",
-        date: "2026-05-24"
-      },
-      {
-        id: "proj-9-3",
-        title: normGroup.includes("computer") ? "Basic HTML Sandbox Portfolio Draft" : "Plant Cell structure Diagram & Organelle Index",
-        description: normGroup.includes("computer")
-          ? "Static website using core HTML tags compiling system networks summaries, bus configurations, and cybersecurity practices."
-          : "Figma vector definitions highlighting chloroplast, cell wall, and cellular respiration processes for grade 9 board requirements.",
-        tech: normGroup.includes("computer") ? "HTML5 + Inline CSS" : "Vector Drawings + Notes",
-        category: normGroup.includes("computer") ? "Computer Science" : "Biology",
-        link: normGroup.includes("computer") ? "https://github.com/scholar/htmldemo" : "https://www.taleem360.com/practical-books",
-        date: "2026-06-01"
-      }
-    ];
-  } else if (classLevel === "10th") {
-    results = [
-      {
-        id: "proj-10-1",
-        title: "Quadratic Equation Nature of Roots Calculator",
-        description: "Interactive program determining if roots are rational, real, or imaginary using discriminant formulation with complete graph plots.",
-        tech: "Vite + Tailwind",
-        category: "Mathematics",
-        link: "https://www.taleem360.com/notes-and-guides",
-        date: "2026-05-20"
-      },
-      {
-        id: "proj-10-2",
-        title: "Lenses & Spherical Mirrors Ray Diagrams Compendium",
-        description: "Ray-tracer simulation and manual drafts explaining focal lengths, magnifying factors, and real vs virtual images from textbook optics.",
-        tech: "Lab Log Sheets",
-        category: "Physics",
-        link: "https://www.taleem360.com/textbooks",
-        date: "2026-05-29"
-      },
-      {
-        id: "proj-10-3",
-        title: normGroup.includes("computer") ? "Textbook C Language Loop Mechanics Journal" : "Nephron Filtration & Osmoregulation Schematics",
-        description: normGroup.includes("computer")
-          ? "Compilation of GCC compatible source code templates executing fibonacci series recursion and prompt inputs on console."
-          : "Handcrafted anatomical drawings detailing bowman capillary loop processes and kidney water reabsorption equations.",
-        tech: normGroup.includes("computer") ? "C Language GCC" : "Scientific Notebook Pages",
-        category: normGroup.includes("computer") ? "Computer Science" : "Biology",
-        link: normGroup.includes("computer") ? "https://github.com/scholar/c-logic-lab" : "https://www.taleem360.com/drawings",
-        date: "2026-06-03"
-      }
-    ];
-  } else if (classLevel === "11th") {
-    results = [
-      {
-        id: "proj-11-1",
-        title: "Matrices Identity & Cramer Proofs Spreadsheet",
-        description: "Spreadsheet tool that solves 3x3 matrices using row transformations and evaluates adjoints for standard F.Sc matric level evaluations.",
-        tech: "Microsoft Excel Tool",
-        category: "Mathematics",
-        link: "https://www.taleem360.com",
-        date: "2026-05-15"
-      },
-      {
-        id: "proj-11-2",
-        title: "Projectile Trajectory & Angle Range Resolutions Plotter",
-        description: "A fast canvas solver calculating range, peak heights, and optimal flight durations of projectiles based on 11th grade physics formulas.",
-        tech: "React + D3.js",
-        category: "Physics",
-        link: "https://github.com/scholar/projectile-plotter",
-        date: "2026-05-28"
-      },
-      {
-        id: "proj-11-3",
-        title: normGroup.includes("computer") ? "OSI Model Network Topology Packet-Loss Analyser" : "Enzyme Velocity and Activation Energy Curve charts",
-        description: normGroup.includes("computer")
-          ? "Analytical diagrams describing packet headers, MAC frames, and physical Star, Bus, and Ring router arrangements."
-          : "Interactive plot explaining Michaelis-Menten relations and denaturation factors at volatile temperatures.",
-        tech: normGroup.includes("computer") ? "Network Diagrams doc" : "Recharts Visualizer",
-        category: normGroup.includes("computer") ? "Computer Science" : "Biology",
-        link: normGroup.includes("computer") ? "https://www.pcb.com.pk" : "https://www.taleem360.com",
-        date: "2026-06-04"
-      }
-    ];
-  } else if (classLevel === "12th") {
-    results = [
-      {
-        id: "proj-12-1",
-        title: "Implicit Derivatives & Limits Cheat Sheet Builder",
-        description: "Curated collection of differentiation shortcuts, Taylor series expansion logs, and analytical area integrations for quick board revision.",
-        tech: "React Markdown Pages",
-        category: "Mathematics",
-        link: "https://www.taleem360.com/notes-and-guides",
-        date: "2026-05-22"
-      },
-      {
-        id: "proj-12-2",
-        title: "RLC Transient Circuit Phase Reactance Solver",
-        description: "Interactive chart modeling AC circuit resonance frequency, phase shifts, and impedance vectors based on student textbook equations.",
-        tech: "Vite + Recharts",
-        category: "Physics",
-        link: "https://github.com/scholar/rlc-reactance-charts",
-        date: "2026-05-30"
-      },
-      {
-        id: "proj-12-3",
-        title: normGroup.includes("computer") ? "Database Relational Form Schema Designer (MS Access + C)" : "Mitosis vs Meiosis Chromosomal Alignment comparisons",
-        description: normGroup.includes("computer")
-          ? "Schema compilation implementing primary keys, structural constraints, and ERD normalization for student grading database models."
-          : "Detailed drawings and microscopic photograph annotations of cellular division phases, mapping BISE genetics chapters.",
-        tech: normGroup.includes("computer") ? "SQL Drafts + MS Access" : "Biology Slides Guide",
-        category: normGroup.includes("computer") ? "Computer Science" : "Biology",
-        link: normGroup.includes("computer") ? "https://github.com/scholar/ms-access-model" : "https://www.taleem360.com",
-        date: "2026-06-05"
-      }
-    ];
-  }
-
-  // Determine active subjects for accurate filtering
-  const hasMath = normGroup.includes("engineering") || normGroup.includes("ics") || normGroup.includes("computer") || normGroup.includes("commerce") || classLevel === "9th" || classLevel === "10th";
-  const hasBiology = normGroup.includes("medical") || normGroup.includes("biology");
-  const hasPhysics = !normGroup.includes("commerce") && !normGroup.includes("arts");
-  const hasCs = normGroup.includes("computer") || normGroup.includes("ics");
-
-  return results.filter((p) => {
-    if (p.category === "Mathematics" && !hasMath) return false;
-    if (p.category === "Biology" && !hasBiology) return false;
-    if (p.category === "Computer Science" && !hasCs) return false;
-    if (p.category === "Physics" && !hasPhysics) return false;
-    return true;
-  });
-}
 
 // Interactive Countdown Ticker Component with <7 days Highlight Support
 const ExamCountdownTicker: React.FC<{
@@ -1879,26 +1722,6 @@ export default function App() {
     }
   ];
 
-  const initialProjects: Project[] = [
-    {
-      id: "proj-1",
-      title: "Machine Learning Notes",
-      description: "Visual study guide & notebooks describing core Python ML algorithms with charts.",
-      tech: "Next.js + Tailwind",
-      category: "Computer Science",
-      link: "https://github.com/scholar/ml-study-guide",
-      date: "2026-05-18"
-    },
-    {
-      id: "proj-2",
-      title: "Physics Calculator API",
-      description: "Fast REST API written in Node.js to solve high-school kinematics problems step by step.",
-      tech: "Node.js + Express",
-      category: "Physics",
-      link: "https://github.com/scholar/kinematic-solver-api",
-      date: "2026-05-29"
-    }
-  ];
 
   const initialEvents: CalendarEvent[] = [
     { id: "ev-1", date: "2026-06-15", title: "Board Exams Start", type: "exam" },
@@ -1915,7 +1738,6 @@ export default function App() {
   const [syllabusSearchQuery, setSyllabusSearchQuery] = useState("");
   const [sortChaptersIncompleteFirst, setSortChaptersIncompleteFirst] = useState(true);
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
-  const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [events, setEvents] = useState<CalendarEvent[]>(initialEvents);
 
   // --- MOCK EXAM EVALUATION & REFLECTION LOGS ---
@@ -2183,9 +2005,7 @@ export default function App() {
 
   // Modals & Modals States
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false);
-  const [showProjectModal, setShowProjectModal] = useState<boolean>(false);
   const [showSyllabusDetails, setShowSyllabusDetails] = useState<SyllabusItem | null>(null);
-  const [showConsoleModal, setShowConsoleModal] = useState<boolean>(false);
   const [showEventModal, setShowEventModal] = useState<boolean>(false);
 
   // New Task form state
@@ -2195,11 +2015,6 @@ export default function App() {
   const [newTaskDueDate, setNewTaskDueDate] = useState("2026-06-15");
 
   // New Project form state
-  const [newProjTitle, setNewProjTitle] = useState("");
-  const [newProjDesc, setNewProjDesc] = useState("");
-  const [newProjTech, setNewProjTech] = useState("");
-  const [newProjCategory, setNewProjCategory] = useState("Computer Science");
-  const [newProjLink, setNewProjLink] = useState("");
 
   // Syllabus details creation state
   const [showAddSubjectSyllabusModal, setShowAddSubjectSyllabusModal] = useState(false);
@@ -2218,7 +2033,6 @@ export default function App() {
   const [consoleMessages, setConsoleMessages] = useState<string[]>([]);
   const [isConsoleBuilding, setIsConsoleBuilding] = useState<boolean>(false);
   const [buildPercent, setBuildPercent] = useState<number>(0);
-  const [projectLiveUrl, setProjectLiveUrl] = useState<string>("https://ahmad-edu.vercel.app");
 
   // Active resource planner times
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
@@ -2275,10 +2089,6 @@ export default function App() {
       const freshSyllabus = getSyllabusForClass(studentClass, studentGroup, boardSelection);
       if (freshSyllabus && freshSyllabus.length > 0) {
         setSyllabusList(freshSyllabus);
-      }
-      const freshProjects = getProjectsForClass(studentClass, studentGroup);
-      if (freshProjects && freshProjects.length > 0) {
-        setProjects(freshProjects);
       }
     }
   }, [studentClass, studentGroup, boardSelection]);
@@ -3220,39 +3030,6 @@ export default function App() {
   };
 
   // --- TRIGGER CONSOLE LIVE BUILD ANIMATION ---
-  const triggerProductionPush = () => {
-    if (isConsoleBuilding) return;
-    setConsoleMessages([]);
-    setBuildPercent(0);
-    setIsConsoleBuilding(true);
-    setShowConsoleModal(true);
-
-    const logs = [
-      "⚡ Initializing secure web connection over secure tunneling protocol...",
-      "🔍 Deep scanning local directories for uncommitted files...",
-      "✓ Located 3 recent study logs and 2 portfolio project updates.",
-      "📦 Generating optimized Next.js + React build chunks...",
-      "⚙ Pre-rendering fully static HTML structures with Tailwind v4 engine...",
-      "✓ CSS files compressed and post-processed (24.2kb saved).",
-      "🚀 Transporting fully audited package headers to edge proxy nodes...",
-      "✓ Secure deployment handshake accepted by target live host.",
-      "📡 Syncing active curriculum progress markers with cloud database...",
-      "🎉 Deployment successfully validated! Web application is now active at: " + projectLiveUrl
-    ];
-
-    let currentLogIndex = 0;
-    const interval = setInterval(() => {
-      if (currentLogIndex < logs.length) {
-        setConsoleMessages((prev) => [...prev, logs[currentLogIndex]]);
-        setBuildPercent((prev) => Math.min(prev + Math.floor(100 / logs.length), 100));
-        currentLogIndex++;
-      } else {
-        setBuildPercent(100);
-        setIsConsoleBuilding(false);
-        clearInterval(interval);
-      }
-    }, 900);
-  };
 
   // --- HANDLERS ---
   const handleAddNewTask = (e: React.FormEvent) => {
@@ -3273,27 +3050,6 @@ export default function App() {
     setShowTaskModal(false);
   };
 
-  const handleAddNewProject = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newProjTitle.trim()) return;
-
-    const newProject: Project = {
-      id: "proj-" + Date.now(),
-      title: newProjTitle.trim(),
-      description: newProjDesc.trim() || "No description provided.",
-      tech: newProjTech.trim() || "React + Tailwind",
-      category: newProjCategory,
-      link: newProjLink.trim() || "https://github.com",
-      date: new Date().toISOString().split("T")[0]
-    };
-
-    setProjects((prev) => [...prev, newProject]);
-    setNewProjTitle("");
-    setNewProjDesc("");
-    setNewProjTech("");
-    setNewProjLink("");
-    setShowProjectModal(false);
-  };
 
   const handleAddNewSyllabus = (e: React.FormEvent) => {
     e.preventDefault();
@@ -3358,9 +3114,6 @@ export default function App() {
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
   };
 
-  const deleteProject = (projId: string) => {
-    setProjects((prev) => prev.filter((p) => p.id !== projId));
-  };
 
   const toggleChapterCompletion = (syllabusId: string, chapterId: string) => {
     setSyllabusList((prev) =>
@@ -5391,99 +5144,6 @@ export default function App() {
       )}
 
       {/* --- POPUP MODAL B: NEW PROJECT --- */}
-      {showProjectModal && (
-        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-sm w-full border border-slate-200 shadow-md p-6 relative">
-            <button
-              onClick={() => setShowProjectModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors p-1"
-            >
-              <X size={16} />
-            </button>
-
-            <h3 className="text-base font-bold text-slate-800 mb-3 font-display">Add Portfolio Project Artifact</h3>
-            
-            <form onSubmit={handleAddNewProject} className="space-y-4">
-              <div>
-                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Project Code Title</label>
-                <input
-                  type="text"
-                  required
-                  value={newProjTitle}
-                  onChange={(e) => setNewProjTitle(e.target.value)}
-                  placeholder="e.g., Physics Kinematic Solver CLI"
-                  className="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none font-medium text-slate-800"
-                />
-              </div>
-
-              <div>
-                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Brief Description</label>
-                <textarea
-                  value={newProjDesc}
-                  onChange={(e) => setNewProjDesc(e.target.value)}
-                  placeholder="Explain what academic principle this project visualizes or solves."
-                  className="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none h-20 resize-none font-medium text-slate-800"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <label className="text-[11px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Tech Framework</label>
-                  <input
-                    type="text"
-                    required
-                    value={newProjTech}
-                    onChange={(e) => setNewProjTech(e.target.value)}
-                    placeholder="Python + Jupyter"
-                    className="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none font-medium text-slate-800"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-[11px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Showcase Field</label>
-                  <select
-                    value={newProjCategory}
-                    onChange={(e) => setNewProjCategory(e.target.value)}
-                    className="w-full text-xs px-2 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none font-medium text-slate-700"
-                  >
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Physics">Physics</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="English">English Literature</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Repository Link</label>
-                <input
-                  type="url"
-                  value={newProjLink}
-                  onChange={(e) => setNewProjLink(e.target.value)}
-                  placeholder="e.g., https://github.com/myusername/proj"
-                  className="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none font-medium text-slate-800"
-                />
-              </div>
-
-              <div className="flex space-x-2 pt-3">
-                <button
-                  type="submit"
-                  className="flex-1 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg shadow-xs transition-colors cursor-pointer"
-                >
-                  Publish to Dashboard
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowProjectModal(false)}
-                  className="px-4 py-2 bg-slate-50 border border-slate-200 text-slate-500 hover:bg-slate-100 text-xs font-bold rounded-lg transition-colors cursor-pointer"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* --- POPUP MODAL C: DETAILED EXPANDED SYLLABUS INSPECTOR --- */}
       {showSyllabusDetails && (
@@ -5656,74 +5316,6 @@ export default function App() {
       )}
 
       {/* --- POPUP MODAL E: INTERACTIVE TERMINAL LIVE SYNC PROMPT --- */}
-      {showConsoleModal && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-          <div className="bg-neutral-950 rounded-2xl max-w-lg w-full border border-neutral-800 shadow-xl p-5 relative overflow-hidden">
-            {/* Header decor */}
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-4">
-              <div className="flex items-center space-x-2">
-                <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-                <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                <span className="text-xs font-mono font-bold text-neutral-400 ml-2">Push Sync Console</span>
-              </div>
-              <button
-                disabled={isConsoleBuilding}
-                onClick={() => setShowConsoleModal(false)}
-                className={`text-neutral-500 hover:text-white transition-colors cursor-pointer disabled:opacity-30`}
-              >
-                <X size={16} />
-              </button>
-            </div>
-
-            {/* Progress bar visual */}
-            <div className="mb-4">
-              <div className="flex justify-between text-[11px] font-mono text-indigo-400 mb-1.5">
-                <span>Deploy Engine Progress</span>
-                <span>{buildPercent}%</span>
-              </div>
-              <div className="w-full bg-neutral-800 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-indigo-500 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${buildPercent}%` }}
-                ></div>
-              </div>
-            </div>
-
-            {/* Console logs container */}
-            <div className="bg-neutral-900 border border-neutral-800/80 rounded-lg p-4 h-64 overflow-y-auto font-mono text-[11px] space-y-2 text-neutral-300 antialiased leading-relaxed">
-              {consoleMessages.length === 0 && (
-                <p className="text-neutral-500 italic">Initiating secure cloud container deployment steps...</p>
-              )}
-              {consoleMessages.map((msg, i) => (
-                <p key={i} className={msg.includes("✓") || msg.includes("🎉") ? "text-emerald-400 font-semibold" : ""}>
-                  {msg}
-                </p>
-              ))}
-              
-              {isConsoleBuilding && (
-                <div className="flex items-center space-x-2 text-neutral-500 pt-1">
-                  <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce"></div>
-                  <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
-                  <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce [animation-delay:0.4s]"></div>
-                </div>
-              )}
-            </div>
-
-            {/* Action controls footer */}
-            <div className="mt-4 pt-4 border-t border-neutral-800 flex justify-between items-center text-xs">
-              <span className="text-neutral-500 font-mono">Status: {isConsoleBuilding ? "DEPLOYING" : "LIVE READY"}</span>
-              <button
-                disabled={isConsoleBuilding}
-                onClick={() => setShowConsoleModal(false)}
-                className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-30 hover:text-white text-neutral-300 font-bold rounded-lg transition-colors cursor-pointer"
-              >
-                Close Session
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* --- POPUP MODAL F: ADD NEW CUSTOM SYLLABUS RECORD --- */}
       {showAddSubjectSyllabusModal && (
