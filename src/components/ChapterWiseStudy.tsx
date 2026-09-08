@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { lookupTopics, youtubeSearchUrl, SABAQ_SITE } from "../topicData";
 import { EXAM_BANK } from "../examBank";
 import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_NUMERICALS } from "../bankSupplement";
 import { QUESTION_BANK } from "../questionBank";
@@ -311,236 +312,73 @@ export function getTopicsForChapter(subjectId: string, chapterName: string): Imp
   const normSub = subjectId.toLowerCase();
   const nameClean = chapterName.replace(/Unit \d+:\s*|Chapter \d+:\s*|Book \d+:\s*/gi, "").trim();
 
-  if (normSub === "physics") {
-    if (nameClean.includes("Coulomb") || nameClean.includes("Electric")) {
-      return [
-        {
-          name: "Coulomb's Law of Electrostatics",
-          romanUrdu: "Dosto, Coulomb's Law batata hai ke do point charges ke darmiyan attraction ya repulsion ki force unke charges ke product ke directly proportional hoti hai, aur unke darmiyan distance ke square ke inversely proportional hoti hai. Mathematically: F = k * (q1 * q2) / r^2. Kismat se, agar medium badle to force bhi badal jati hai kyun ke dielectric constant (epsilon) introduces physical resistance.",
-          videoTitle: "Sabaq Foundation: Coulomb's Law Explanation",
-          videoUrl: "https://www.youtube.com/embed/gIK_5e5vHhI",
-          diagramType: "physics-coulomb",
-          content: "Formula Key: F = k · q₁ · q₂ / r²\nWhere k ≈ 9 × 10⁹ N·m²/C² inside vacuum. Medium decrease constant to F_med = F_vac / ε_r."
-        },
-        {
-          name: "Electric Field Intensity & Lines of Force",
-          romanUrdu: "Electric Field Intensity (E) kisi point par wo electric force hoti hai jo ek unit positive test charge par act krti hai (E = F/q). Positive charge se force lines hamesha bahar ki taraf nikalti hain (outward) aur negative charge me andar ki taraf aati hain (inward). Field lines kabhi bhi ek dusre ko cross nahi kartin kyun ke ek point par E ki sirf ek direction ho sakti hai.",
-          videoTitle: "Khan Academy Urdu: Electric Fields & Force Lines",
-          videoUrl: "https://www.youtube.com/embed/oL7C1_QonSg",
-          diagramType: "physics-coulomb",
-          content: "Electric Flux Φ = E · A cos(θ). Gauss's Law states total flux through any closed surface is 1/ε₀ times total charge enclosed."
-        }
-      ];
-    } else if (nameClean.includes("Ohm") || nameClean.includes("Kirchoff") || nameClean.includes("Current")) {
-      return [
-        {
-          name: "Ohm's Law & Electrical Resistivity",
-          romanUrdu: "Ohm's Law ke mutabiq, kisi conductor me se guzarne wala electric current directly proportional hota hai uske ends ke darmiyan potential difference ke, jab tak physical state (jaise temperature) constant rahe. V = I * R. Resistance R depend karti hai wire ki length (L), area (A) aur material ki resistivity (rho) par: R = ρ * L / A.",
-          videoTitle: "ilmkidunya: Ohm's Law and Resistivity",
-          videoUrl: "https://www.youtube.com/embed/A6E6v4FfGqY",
-          diagramType: "physics-ohms",
-          content: "Key Expression: V = I·R, Resistivity ρ = R·A / L. Temperature coefficient α = (R_t - R_o) / (R_o · Δt)."
-        },
-        {
-          name: "Kirchhoff's Rules (KCL & KVL)",
-          romanUrdu: "Kirchhoff k do rules hain complex circuits ko solve krne k liye. Pehla rule (KCL - Law of Conservation of Charge) kehta hai k kisi junction par aane wala total current barabar hota hai wahan se jane wale current k. Dusra rule (KVL - Law of Conservation of Energy) kehta hai k kisi bhi closed loop me total change in potential zero hota hai: ΣΔV = 0.",
-          videoTitle: "Taleem360: Kirchhoff's Rules in Complex Networks",
-          videoUrl: "https://www.youtube.com/embed/QyP85fN3Pec",
-          diagramType: "physics-ohms",
-          content: "KCL: Σ I_in = Σ I_out (Junction Rule)\nKVL: Σ E + Σ I·R = 0 (Loop Rule)"
-        }
-      ];
-    } else {
-      return [
-        {
-          name: `Fundamental Theory of ${nameClean || "Electromagnetism"}`,
-          romanUrdu: `Is topic me hum standard Physics concepts ko seekhenge. Board exams k liye ye zaroori hai k aap iske formulas, units aur conceptual questions ko samajh kar yaad karein. Ratay (memorization) ki bajaye core principles ko apply karna seekhein taake numeric questions me asani ho.`,
-          videoTitle: "Sabaq Foundation: High School Physics series",
-          videoUrl: "https://www.youtube.com/embed/YIBy5-6vTsg",
-          diagramType: "physics-coulomb",
-          content: `Core parameters represent physical properties of standard mechanics, thermodynamics, or electricity. Practice deriving formulas step-by-step with clean SI Units.`
-        }
-      ];
-    }
+  const seeds = lookupTopics(normSub, nameClean);
+
+  if (seeds && seeds.length) {
+    return seeds.map((seed) => ({
+      name: seed.name,
+      romanUrdu: seed.romanUrdu,
+      content: seed.content,
+      diagramType: seed.diagramType,
+      videoTitle: `Sabaq Foundation search: ${seed.search}`,
+      videoUrl: youtubeSearchUrl(seed.search),
+    }));
   }
 
-  if (normSub === "chemistry") {
-    if (nameClean.includes("Nomenclature") || nameClean.includes("Alkane") || nameClean.includes("Alkene") || nameClean.includes("Organic")) {
-      return [
-        {
-          name: "IUPAC Rules for Naming Alkanes & Alkenes",
-          romanUrdu: "Organic Chemistry me compounds ko name dene k liye IUPAC rules follow kiye jate hain. Sab se pehle sab se lambi continuous carbon chain (longest chain) select karni hai. Agar double bond ho, to numbering wahan se start hogi jahan se double bond kareeb parta ho. Branches (substituents) ke names alphabetical order me likhe jate hain aur unki position ko numbers se represent kia jata hai, jaise 2-Methylbutane.",
-          videoTitle: "Khan Academy Urdu: IUPAC Nomenclature of Alkanes",
-          videoUrl: "https://www.youtube.com/embed/S_8qM1m9m6A",
-          diagramType: "chemistry-structure",
-          content: "Standard IUPAC Prefixes: Meth (1C), Eth (2C), Prop (3C), But (4C), Pent (5C), Hex (6C).\nSuffix: -ane for single bonds, -ene for double bonds, -yne for triple bonds."
-        },
-        {
-          name: "Functional Groups Classification",
-          romanUrdu: "Functional group kisi bhi organic molecule ka wo atom ya group of atoms hota hai jo compound ko uski khas chemical properties deta hai. Jaise Hydroxyl group (-OH) alcohols banata hai, aur Carboxyl group (-COOH) carboxylic acids banata hai. Puray compound ki reactivity isi group par depend krti hai.",
-          videoTitle: "Sabaq Foundation: Functional Groups Introduction",
-          videoUrl: "https://www.youtube.com/embed/9G0zqyK72t4",
-          diagramType: "chemistry-structure",
-          content: "Common Functional Groups:\n- Halides: -X\n- Alcohols: -OH\n- Ethers: -O-\n- Aldehydes: -CHO\n- Ketones: -CO-\n- Carboxylic Acids: -COOH"
-        }
-      ];
-    } else {
-      return [
-        {
-          name: `Core Concept of ${nameClean || "Saturated Compounds"}`,
-          romanUrdu: `Chemistry ka ye chapter bohot important hai. Isme reaction mechanisms aur chemical formulations ko likh kar practice karein. Board paper me equations ke names aur colors of products zaroor likha karein taake pore number mil skein.`,
-          videoTitle: "ilmkidunya: Chemistry Board Preparation Lectures",
-          videoUrl: "https://www.youtube.com/embed/C3U1lXg9n_s",
-          diagramType: "chemistry-structure",
-          content: `Structured molecular outlines, reactive states and orbital alignments are central to standard intermediate chemistry syllabus. Write accurate chemical equations.`
-        }
-      ];
-    }
-  }
+  // No curated entry for this chapter yet. Build subject-aware guidance from
+  // the actual chapter name rather than falling back to unrelated
+  // Pakistan-studies text (which is what this function used to do).
+  const subjectLabel: Record<string, string> = {
+    physics: "Physics",
+    chemistry: "Chemistry",
+    math: "Mathematics",
+    mathematics: "Mathematics",
+    biology: "Biology",
+    cs: "Computer Science",
+    english: "English",
+    urdu: "Urdu",
+    islam: "Islamiyat",
+  };
+  const label = subjectLabel[normSub] || "this subject";
 
-  if (normSub === "math" || normSub === "mathematics") {
-    if (nameClean.includes("Limit") || nameClean.includes("Continuity")) {
-      return [
-        {
-          name: "Concept of Limits & One-Sided Limit Rules",
-          romanUrdu: "Limit ka matlab hota hai k jab variable 'x' kisi value 'a' k kareeb jata hai (but exact equal nahi hota), to function f(x) kis value ki taraf approach krta hai. Agar left side se approach karein to use left-hand limit bolte hain, aur right side se approach karein to right-hand limit. Limit tab hi exist krti hai jab dono limits barabar hon: LHL = RHL.",
-          videoTitle: "Sabaq Foundation: Limits and Continuity",
-          videoUrl: "https://www.youtube.com/embed/Z0oY_4Wca85",
-          diagramType: "math-graph",
-          content: "Standard Definition: lim (x → a) f(x) = L. Squeeze Theorem can verify complex trigonometric limits like lim (x → 0) (sin x / x) = 1."
-        },
-        {
-          name: "Continuity of Functions at a Point",
-          romanUrdu: "Koi bhi function f(x) kisi point x = c par continuously defined tab kehlata hai jab teen shrait puri hon: (1) f(c) defined ho, (2) limit f(x) as x approaches c exist krta ho, aur (3) limit ki value f(c) ke exact barabar ho. Agar inme se koi ek shart bhi tutay to function discontinuous ho jata hai.",
-          videoTitle: "Taleem360: Continuity of Algebraic Functions",
-          videoUrl: "https://www.youtube.com/embed/A6E6v4FfGqY",
-          diagramType: "math-graph",
-          content: "Continuous Conditions: f(c) = lim (x → c) f(x). Geometrically, means the curve has no break, hole, or vertical asymptote at that specific point."
-        }
-      ];
-    } else if (nameClean.includes("Differentiation") || nameClean.includes("Chain") || nameClean.includes("Derivative")) {
-      return [
-        {
-          name: "First Principles of Differentiation (Ab-Initio Method)",
-          romanUrdu: "Differentiation from First Principles (ya Ab-initio method) kisi bhi continuous curve ka derivative nikalne ka core rules-based tareeqa hai. Isme hum step-by-step formula apply krte hain: f'(x) = limit (deltax -> 0) [f(x + deltax) - f(x)] / deltax. Isse hum algebra, trigonometry aur exponent powers ke derivatives derive krte hain.",
-          videoTitle: "ilmkidunya: Derivative from First Principle (Ab-initio)",
-          videoUrl: "https://www.youtube.com/embed/oK7C1_QonSg",
-          diagramType: "math-graph",
-          content: "Step 1: y = f(x)\nStep 2: y + Δy = f(x + Δx)\nStep 3: Δy = f(x + Δx) - f(x)\nStep 4: dy/dx = lim (Δx → 0) Δy/Δx"
-        },
-        {
-          name: "The Chain Rule of Composite Variables",
-          romanUrdu: "Jab ek function dusre function k andar nested ho f(g(x)), tab derivative nikalne k liye hum Chain Rule use krte hain. Agar y depend kre u par, aur u depend kre x par, to y ka derivative with respect to x hoga: dy/dx = (dy/du) * (du/dx). Ye derivative ko link karne ka sab se asan tareeqa hai.",
-          videoTitle: "Khan Academy Urdu: Chain Rule in Calculus",
-          videoUrl: "https://www.youtube.com/embed/FfeN9Y2_sM0",
-          diagramType: "math-graph",
-          content: "Chain Expression: dy/dx = dy/du · du/dx\nUseful for power functions like y = (ax + b)ⁿ -> dy/dx = n(ax+b)ⁿ⁻¹ · (a)."
-        }
-      ];
-    } else {
-      return [
-        {
-          name: `Mathematics Rule of ${nameClean || "Differentiation Principles"}`,
-          romanUrdu: `Maths practice ka naam hai. Is topic ke theorems aur exercises ko rozana apne hath se solve karein. Board paper me formulas aur step values ko box me highlight karein taake maximum credit mil ske.`,
-          videoTitle: "ilmkidunya: Intermediate Mathematics Syllabus Study",
-          videoUrl: "https://www.youtube.com/embed/1kH3_G0tW1k",
-          diagramType: "math-graph",
-          content: `Solve matrices system, calculus curves, coordinate geometry and trigonometry values step-by-step. Keep formulas memorized.`
-        }
-      ];
-    }
-  }
+  const diagramBySubject: Record<string, ImportantTopic["diagramType"]> = {
+    physics: "physics-ohms",
+    chemistry: "chemistry-structure",
+    math: "math-graph",
+    mathematics: "math-graph",
+    biology: "biology-cell",
+    cs: "cs-spa",
+    english: "english-tree",
+    urdu: "urdu-calligraphy",
+  };
 
-  if (normSub === "biology") {
-    if (nameClean.includes("Inheritance") || nameClean.includes("Chromosome") || nameClean.includes("Genetic")) {
-      return [
-        {
-          name: "Mendel's Laws of Inheritance & Trait Segregation",
-          romanUrdu: "Gregor Mendel ne pea plants (matar ke poday) par experiments kr k genetics ke do bunyadi laws diye. (1) Law of Segregation kehta hai k har individual me do alleles hote hain jo gamete formation k dauran alag jo jate hain. (2) Law of Independent Assortment kehta hai k different traits k alleles productively independently assort krte hain bina ek dusre ko affect kiye.",
-          videoTitle: "Sabaq Foundation: Mendel's Laws of genetics",
-          videoUrl: "https://www.youtube.com/embed/oK7C1_QonSg",
-          diagramType: "biology-cell",
-          content: "Monobybrid Cross ratio: 3:1 (Phenotype), 1:2:1 (Genotype).\nDihybrid Cross ratio matches: 9:3:3:1 Phenotype distributions."
-        },
-        {
-          name: "Chromosomal Theory of Inheritance",
-          romanUrdu: "Sutton aur Boveri ne ye theory pesh ki jo kehti hai k chromosomes hi genetics units (genes) ke real structures hain jo meiosis k dauran move krte hain. Gene loci chromosomes par line-wise arranged hote hain. Ye theory biology me classical genetics aur cellular analysis ko aapas me jor deti hai.",
-          videoTitle: "Khan Academy Urdu: Chromosomal inheritance basics",
-          videoUrl: "https://www.youtube.com/embed/YIBy5-6vTsg",
-          diagramType: "biology-cell",
-          content: "Meiosis division separation ensures haploid chromosome allocation to gametes, matching Mendel's law patterns."
-        }
-      ];
-    } else {
-      return [
-        {
-          name: `Biological Analysis of ${nameClean || "Inheritance Principles"}`,
-          romanUrdu: `Biology me full marks lene ka sab se behtareen tareeqa hai k aap diagrams banaein! Paper me hamesha clear pencil se diagrams banakaer labels karein. Terminology key points ki short details bar-bar repeat karein.`,
-          videoTitle: "Sabaq Foundation: BISE Biology Lectures Series",
-          videoUrl: "https://www.youtube.com/embed/C3U1lXg9n_s",
-          diagramType: "biology-cell",
-          content: `Draw labeled cell organs, genetics grids or vascular tissues. Emphasize standard biology definitions and biochemical reactions.`
-        }
-      ];
-    }
-  }
-
-  if (normSub === "cs") {
-    return [
-      {
-        name: `Single Page Application (SPA) Architectural Patterns in ${nameClean || "State Hooks"}`,
-        romanUrdu: "Computer Science me SPA (Single Page Application) un apps ko kehter hain jo dynamic rendering ke zariye single web document reload kiye bina complete screen contents update krti hain. React iska behtareen example hai. Isme components build kiye jate hain aur browser request-rebuild cycles se complete state flow chalta hai bina page flash ke.",
-        videoTitle: "Taleem360: React SPA routing and state web guides",
-        videoUrl: "https://www.youtube.com/embed/9G0zqyK72t4",
-        diagramType: "cs-spa",
-        content: "Browser triggers virtual tree diff -> reconciles real DOM -> changes target sections smoothly. Port 3000 serves all dev bundles."
-      },
-      {
-        name: "React States, Hooks and Component Lifecycles",
-        romanUrdu: "React architecture me state kisi component ka physical variables container hota hai jo badalne pr automatic component re-render trigger krta hai. 'useState' hook simple state management k liye use hota hai aur 'useEffect' asynchronous functions, operations ya data fetches handle krne k liye use krte hain jo component mounting or modifications par execute hote hain.",
-        videoTitle: "Taleem360: React state hooks (useState & useEffect) course",
-        videoUrl: "https://www.youtube.com/embed/oL7C1_QonSg",
-        diagramType: "cs-spa",
-        content: "useState returns state value and transition dispatcher. Avoid heavy loops inside useEffect variables dependencies."
-      }
-    ];
-  }
-
-  if (normSub === "english") {
-    return [
-      {
-        name: `Linguistic Structures & Syntax Rules in ${nameClean || "Tenses"}`,
-        romanUrdu: "English language k paper me maximum marks secure krne k liye functional grammar structures par absolute command hona zaroori hai. Sentence patterns, subject-verb agreement aur parts of speech ki positions clear honi chaiye. Tenses ko proper time frame markers k sath use kijiye.",
-        videoTitle: "ilmkidunya: English Compulsory Grammar Lectures",
-        videoUrl: "https://www.youtube.com/embed/YIBy5-6vTsg",
-        diagramType: "english-tree",
-        content: "Direct vs Indirect rules: Shift tenses backward from absolute present to immediate past when main reporting clause is past."
-      }
-    ];
-  }
-
-  if (normSub === "urdu") {
-    return [
-      {
-        name: `اردو ادب اور ادبی معانی: ${nameClean || "ادبی خدمات"}`,
-        romanUrdu: "Urdu compulsory me sub se zada importance 'Shaer e Mashriq Allama Iqbal' ki poetry ko aur classical prose ko di jati hai. Tashreeh likhte waqt alfaz k mushkil ma'ni aur muasir tehzeebi pas-manzar ko samjhna lazmi hai. Har tashreeh me aqwal or quranic references bhi add karein.",
-        videoTitle: "Taleem360: Study guides and lessons summaries",
-        videoUrl: "https://www.youtube.com/embed/1kH3_G0tW1k",
-        diagramType: "urdu-calligraphy",
-        content: "تشریحات لکھتے وقت صنف کا نام، مصنف کا نام اور پس منظر مع سیاق و سباق یا خلاصہ متن لازمی شامل کیا کریں۔ اردو ب کے خلاصہ جات کا ایک جامع تسلسل قائم رکھیے۔"
-      }
-    ];
-  }
+  const numerical = ["physics", "chemistry", "math", "mathematics"].includes(normSub);
+  const topicName = nameClean || label;
+  const search = `sabaq foundation ${topicName} ${label}`;
 
   return [
     {
-      name: `Core Syllabus Outline in ${nameClean || "Genesis of Pakistan"}`,
-      romanUrdu: "Islamabad and provincial boards check detailed notes closely. Is chapter k important historical details, dates, and Quranic verses ko box me highlighter se mark karein, aur points me elaborate kijiye taake pore marks secure hon.",
-      videoTitle: "Sabaq Foundation: Pakistan studies core lessons",
-      videoUrl: "https://www.youtube.com/embed/oL7C1_QonSg",
-      diagramType: "generic-mindmap",
-      content: "Ensure references are visually separated from local text and written respectfully in elegant containers."
-    }
+      name: `How to Prepare: ${topicName}`,
+      romanUrdu: numerical
+        ? `${topicName} ki tayyari ke liye pehle chapter ke tamam formulas ek alag sheet par likhein. Phir textbook ke solved examples khud se dobara hal karein bina dekhe. Numerical me hamesha Given, Formula, Working aur Answer with unit alag alag likhein — board me steps ke marks milte hain.`
+        : `${topicName} ke liye pehle sabaq ka khulasa apne alfaz me likhein, phir exercise ke tamam short questions ke jawab tayyar karein. Past papers me is chapter se aane wale sawalat ko highlight karke unki dobara mashq karein.`,
+      content: numerical
+        ? `Preparation plan for ${topicName} (${label}):
+1. List every formula and define each symbol with its SI unit.
+2. Re-solve all textbook examples unaided.
+3. Practise the exercise numericals; always write Given → Formula → Working → Answer with units.
+4. Attempt this chapter's questions from the last 5 years of past papers.
+5. Prepare short definitions and any required derivation or diagram.`
+        : `Preparation plan for ${topicName} (${label}):
+1. Read the chapter and write a summary in your own words.
+2. Prepare all textbook exercise short questions.
+3. Note key terms, definitions and important lines for long questions.
+4. Attempt this chapter's questions from the last 5 years of past papers.
+5. Revise once a week so recall stays fresh before the board exam.`,
+      diagramType: diagramBySubject[normSub] || "generic-mindmap",
+      videoTitle: `Sabaq Foundation search: ${topicName}`,
+      videoUrl: youtubeSearchUrl(search),
+    },
   ];
 }
 
@@ -1458,36 +1296,42 @@ export default function ChapterWiseStudy({
                         </pre>
                       </div>
 
-                      {/* Video Grounding Player */}
+                      {/* Lecture finder.
+                          Previously this iframed hardcoded YouTube IDs, but every one
+                          of those IDs was dead (404 via the oEmbed API). We now link to
+                          a real search on Sabaq Foundation's channel instead. */}
                       {topic.videoUrl && (
-                        <div className="rounded-xl overflow-hidden shadow-xs border border-slate-200 mt-2 bg-slate-100">
+                        <div className="rounded-xl overflow-hidden shadow-xs border border-slate-200 mt-2 bg-white">
                           <div className="bg-slate-50 px-4 py-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-200">
-                            <span className="flex items-center gap-1">📺 Free Board Lecture Video Grounding</span>
-                            <span className="text-indigo-600 font-mono">Official Feed</span>
+                            <span className="flex items-center gap-1">📺 Free Video Lecture</span>
+                            <span className="text-indigo-600 font-mono">Sabaq Foundation</span>
                           </div>
-                          <div className="aspect-video w-full h-[300px]">
-                            <iframe
-                              src={topic.videoUrl}
-                              className="w-full h-full"
-                              title={topic.videoTitle}
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                              referrerPolicy="no-referrer"
-                            ></iframe>
-                          </div>
-                          <div className="p-3 bg-white border-t border-slate-100 flex items-center justify-between gap-3">
-                            <div>
-                              <h5 className="text-xs font-bold text-slate-805 leading-tight">{topic.videoTitle}</h5>
-                              <p className="text-[10px] text-slate-400 leading-normal mt-0.5">High-quality targeted, web-search indexed educational guide for the {activeSubjectInfo?.name} syllabus.</p>
+                          <div className="p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+                            <div className="flex-1">
+                              <h5 className="text-xs font-bold text-slate-800 leading-tight">Watch a free lecture on “{topic.name}”</h5>
+                              <p className="text-[10px] text-slate-500 leading-normal mt-1">
+                                Opens a YouTube search for this topic on Sabaq Foundation, a free Pakistani
+                                curriculum channel covering all boards in Urdu.
+                              </p>
                             </div>
-                            <a 
-                              href={topic.videoUrl.replace("/embed/", "/watch?v=")} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="px-3 py-1.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-600 rounded-lg text-xs font-bold font-sans transition-all flex items-center gap-1 shrink-0"
-                            >
-                              Open YT
-                            </a>
+                            <div className="flex gap-2 shrink-0">
+                              <a
+                                href={topic.videoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="min-h-[44px] px-4 py-2.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 active:bg-rose-200 text-rose-600 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1"
+                              >
+                                Find lecture
+                              </a>
+                              <a
+                                href={SABAQ_SITE}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="min-h-[44px] px-4 py-2.5 bg-slate-50 border border-slate-200 hover:bg-slate-100 active:bg-slate-200 text-slate-600 rounded-lg text-xs font-bold transition-all flex items-center justify-center"
+                              >
+                                sabaq.pk
+                              </a>
+                            </div>
                           </div>
                         </div>
                       )}
