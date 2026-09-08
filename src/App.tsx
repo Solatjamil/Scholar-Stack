@@ -151,7 +151,6 @@ interface DirectBook {
   stream: "science" | "arts";
   province: string; // "Punjab" | "Sindh" | "KPK" | "Balochistan" | "AJK" | "Gilgit Baltistan" | "Federal"
   downloadUrl: string;
-  size: string;
 }
 
 const DIRECT_BOOKS_DATA: DirectBook[] = [
@@ -163,8 +162,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-9th-class-maths-english-medium-textbook-pdf-pbp",
-    size: "18.5 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-punjab"
   },
   {
     id: "pb-p9s",
@@ -173,8 +171,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-9th-class-physics-english-medium-textbook-pdf-pbp",
-    size: "14.2 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-punjab"
   },
   {
     id: "pb-c9s",
@@ -183,8 +180,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-9th-class-chemistry-english-medium-textbook-pdf-pbp",
-    size: "16.1 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-punjab"
   },
   {
     id: "pb-m9a",
@@ -193,8 +189,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "arts",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-9th-class-general-mathematics-textbook-pbp",
-    size: "11.8 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-punjab"
   },
   {
     id: "pb-gs9a",
@@ -203,8 +198,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "arts",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-9th-class-general-science-textbook-pbp",
-    size: "13.4 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-punjab"
   },
   // --- Sindh ---
   {
@@ -214,8 +208,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Sindh",
-    downloadUrl: "https://www.taleem360.com/sindh-board-9th-class-mathematics-textbook-pdf-bst",
-    size: "22.1 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-sindh"
   },
   {
     id: "sd-p9s",
@@ -224,8 +217,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Sindh",
-    downloadUrl: "https://www.taleem360.com/sindh-board-9th-class-physics-textbook-pdf-bst",
-    size: "19.3 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-sindh"
   },
   // --- KPK ---
   {
@@ -235,8 +227,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "KPK",
-    downloadUrl: "https://www.taleem360.com/kpk-board-9th-class-maths-english-medium-textbook-pdf-bkp",
-    size: "17.4 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-kpk"
   },
   {
     id: "kp-p9s",
@@ -245,8 +236,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "KPK",
-    downloadUrl: "https://www.taleem360.com/kpk-board-9th-class-physics-english-medium-textbook-pdf-bkp",
-    size: "15.8 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-kpk"
   },
   // --- Balochistan ---
   {
@@ -256,8 +246,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Balochistan",
-    downloadUrl: "https://www.taleem360.com/balochistan-board-9th-class-mathematics-textbook-pdf-bbt",
-    size: "20.4 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-books-balochistan"
   },
   {
     id: "bl-p9s",
@@ -266,8 +255,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Balochistan",
-    downloadUrl: "https://www.taleem360.com/balochistan-board-9th-class-physics-textbook-pdf-bbt",
-    size: "18.2 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-books-balochistan"
   },
   // --- AJK ---
   {
@@ -277,8 +265,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "AJK",
-    downloadUrl: "https://www.taleem360.com/ajk-textbook-board-ajktb-maths-9-class-pdf",
-    size: "16.8 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=AJK+9th+class+Mathematics+textbook"
   },
   {
     id: "aj-p9s",
@@ -287,8 +274,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "AJK",
-    downloadUrl: "https://www.taleem360.com/ajk-textbook-board-ajktb-physics-9-class-pdf",
-    size: "15.1 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=AJK+9th+class+Physics+textbook"
   },
   // --- Gilgit Baltistan ---
   {
@@ -298,8 +284,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Gilgit Baltistan",
-    downloadUrl: "https://www.taleem360.com/single-national-curriculum-snc-mathematics-9th-class-pdf",
-    size: "14.5 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=Gilgit+Baltistan+9th+class+Mathematics+textbook"
   },
   {
     id: "gb-p9s",
@@ -308,8 +293,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Gilgit Baltistan",
-    downloadUrl: "https://www.taleem360.com/single-national-curriculum-snc-physics-9th-class-pdf",
-    size: "13.9 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=Gilgit+Baltistan+9th+class+Physics+textbook"
   },
   // --- Federal ---
   {
@@ -319,8 +303,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "9th",
     stream: "science",
     province: "Federal",
-    downloadUrl: "https://www.taleem360.com/federal-board-fbise-9th-class-mathematics-textbook-nbf-pdf",
-    size: "19.8 MB"
+    downloadUrl: "https://www.taleem360.com/categories/9th-text-books-federal"
   },
 
   // === 10th Class ===
@@ -331,8 +314,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "10th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-10th-class-maths-english-medium-textbook-pdf",
-    size: "19.2 MB"
+    downloadUrl: "https://www.taleem360.com/categories/10th-text-books-punjab"
   },
   {
     id: "pb-p10s",
@@ -341,8 +323,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "10th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-10th-class-physics-english-medium-textbook-pdf",
-    size: "16.0 MB"
+    downloadUrl: "https://www.taleem360.com/categories/10th-text-books-punjab"
   },
   {
     id: "pb-c10s",
@@ -351,8 +332,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "10th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-10th-class-chemistry-english-medium-textbook-pdf",
-    size: "15.4 MB"
+    downloadUrl: "https://www.taleem360.com/categories/10th-text-books-punjab"
   },
   {
     id: "sd-m10s",
@@ -361,8 +341,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "10th",
     stream: "science",
     province: "Sindh",
-    downloadUrl: "https://www.taleem360.com/sindh-board-10th-class-mathematics-textbook-pdf",
-    size: "21.6 MB"
+    downloadUrl: "https://www.taleem360.com/categories/10th-text-books-sindh"
   },
   {
     id: "kp-m10s",
@@ -371,8 +350,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "10th",
     stream: "science",
     province: "KPK",
-    downloadUrl: "https://www.taleem360.com/kpk-board-10th-class-maths-english-medium-textbook-pdf",
-    size: "18.1 MB"
+    downloadUrl: "https://www.taleem360.com/categories/10th-text-books-kpk"
   },
   {
     id: "bl-m10s",
@@ -381,8 +359,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "10th",
     stream: "science",
     province: "Balochistan",
-    downloadUrl: "https://www.taleem360.com/balochistan-board-10th-class-mathematics-textbook-pdf",
-    size: "19.9 MB"
+    downloadUrl: "https://www.taleem360.com/categories/10th-books-balochistan"
   },
   {
     id: "aj-m10s",
@@ -391,8 +368,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "10th",
     stream: "science",
     province: "AJK",
-    downloadUrl: "https://www.taleem360.com/ajk-board-10th-class-maths-textbook-pdf",
-    size: "17.2 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=AJK+10th+class+Mathematics+textbook"
   },
   {
     id: "gb-m10s",
@@ -401,8 +377,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "10th",
     stream: "science",
     province: "Gilgit Baltistan",
-    downloadUrl: "https://www.taleem360.com/single-national-curriculum-snc-mathematics-10th-class-pdf",
-    size: "15.3 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=Gilgit+Baltistan+10th+class+Mathematics+textbook"
   },
 
   // === 11th Class ===
@@ -413,8 +388,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "11th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-11th-class-maths-fsc-textbook-pdf",
-    size: "26.4 MB"
+    downloadUrl: "https://www.taleem360.com/categories/11th-text-books-punjab"
   },
   {
     id: "pb-p11s",
@@ -423,8 +397,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "11th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-11th-class-physics-fsc-textbook-pdf",
-    size: "24.1 MB"
+    downloadUrl: "https://www.taleem360.com/categories/11th-text-books-punjab"
   },
   {
     id: "swl-p11s",
@@ -433,8 +406,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "11th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/past-papers/sahiwal-board/11th-class/physics",
-    size: "18.3 MB"
+    downloadUrl: "https://www.taleem360.com/categories/11th-text-books-punjab"
   },
   {
     id: "sd-m11s",
@@ -443,8 +415,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "11th",
     stream: "science",
     province: "Sindh",
-    downloadUrl: "https://www.taleem360.com/sindh-board-11th-class-mathematics-fsc-textbook-pdf",
-    size: "28.3 MB"
+    downloadUrl: "https://www.taleem360.com/categories/11th-textbooks-sindh"
   },
   {
     id: "kp-m11s",
@@ -453,8 +424,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "11th",
     stream: "science",
     province: "KPK",
-    downloadUrl: "https://www.taleem360.com/kpk-board-11th-class-maths-fsc-textbook-pdf",
-    size: "23.9 MB"
+    downloadUrl: "https://www.taleem360.com/categories/11th-text-books-kpk"
   },
   {
     id: "bl-m11s",
@@ -463,8 +433,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "11th",
     stream: "science",
     province: "Balochistan",
-    downloadUrl: "https://www.taleem360.com/balochistan-board-11th-class-mathematics-textbook-pdf",
-    size: "24.5 MB"
+    downloadUrl: "https://www.taleem360.com/categories/11th-books-balochistan"
   },
   {
     id: "aj-m11s",
@@ -473,8 +442,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "11th",
     stream: "science",
     province: "AJK",
-    downloadUrl: "https://www.taleem360.com/ajk-board-11th-class-maths-textbook-pdf",
-    size: "22.8 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=AJK+11th+class+Mathematics+textbook"
   },
   {
     id: "gb-m11s",
@@ -483,8 +451,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "11th",
     stream: "science",
     province: "Gilgit Baltistan",
-    downloadUrl: "https://www.taleem360.com/gb-board-11th-class-mathematics-textbook-pdf",
-    size: "21.0 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=Gilgit+Baltistan+11th+class+Mathematics+textbook"
   },
 
   // === 12th Class ===
@@ -495,8 +462,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "12th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-12th-class-maths-fsc-textbook-pdf-pb2",
-    size: "28.1 MB"
+    downloadUrl: "https://www.taleem360.com/categories/12th-text-books-punjab"
   },
   {
     id: "pb-p12s",
@@ -505,8 +471,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "12th",
     stream: "science",
     province: "Punjab",
-    downloadUrl: "https://www.taleem360.com/punjab-board-12th-class-physics-fsc-textbook-pdf-pb2",
-    size: "25.7 MB"
+    downloadUrl: "https://www.taleem360.com/categories/12th-text-books-punjab"
   },
   {
     id: "sd-m12s",
@@ -515,8 +480,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "12th",
     stream: "science",
     province: "Sindh",
-    downloadUrl: "https://www.taleem360.com/sindh-board-12th-class-mathematics-fsc-textbook-pdf-sd2",
-    size: "30.4 MB"
+    downloadUrl: "https://www.taleem360.com/categories/12th-textbooks-sindh"
   },
   {
     id: "kp-m12s",
@@ -525,8 +489,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "12th",
     stream: "science",
     province: "KPK",
-    downloadUrl: "https://www.taleem360.com/kpk-board-12th-class-maths-fsc-textbook-pdf-kp2",
-    size: "25.2 MB"
+    downloadUrl: "https://www.taleem360.com/categories/12th-text-books-kpk"
   },
   {
     id: "bl-m12s",
@@ -535,8 +498,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "12th",
     stream: "science",
     province: "Balochistan",
-    downloadUrl: "https://www.taleem360.com/balochistan-board-12th-class-mathematics-textbook-pdf-bl2",
-    size: "26.3 MB"
+    downloadUrl: "https://www.taleem360.com/categories/12th-books-balochistan"
   },
   {
     id: "aj-m12s",
@@ -545,8 +507,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "12th",
     stream: "science",
     province: "AJK",
-    downloadUrl: "https://www.taleem360.com/ajk-board-12th-class-maths-textbook-pdf-aj2",
-    size: "24.9 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=AJK+12th+class+Mathematics+textbook"
   },
   {
     id: "gb-m12s",
@@ -555,8 +516,7 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
     classLevel: "12th",
     stream: "science",
     province: "Gilgit Baltistan",
-    downloadUrl: "https://www.taleem360.com/gb-board-12th-class-mathematics-textbook-pdf-gb2",
-    size: "23.1 MB"
+    downloadUrl: "https://www.taleem360.com/search?q=Gilgit+Baltistan+12th+class+Mathematics+textbook"
   }
 ];
 
@@ -2000,8 +1960,6 @@ export default function App() {
   const [bookGrade, setBookGrade] = useState<string>("All"); // or "9th", "10th", "11th", "12th"
   const [bookStream, setBookStream] = useState<string>("All"); // or "science", "arts"
   const [bookRegion, setBookRegion] = useState<string>("All"); // or "Punjab", "Sindh", "KPK", etc.
-  const [downloadingBookId, setDownloadingBookId] = useState<string | null>(null);
-  const [downloadedBooks, setDownloadedBooks] = useState<string[]>([]);
 
   // Modals & Modals States
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false);
@@ -4369,17 +4327,6 @@ export default function App() {
                         const matchRegion = bookRegion === "All" || bk.province === bookRegion;
                         return matchGrade && matchStream && matchRegion;
                       }).map((bk) => {
-                        const isDownloaded = downloadedBooks.includes(bk.id);
-                        const isDownloading = downloadingBookId === bk.id;
-
-                        const triggerDownloadSim = (id: string) => {
-                          if (isDownloaded || isDownloading) return;
-                          setDownloadingBookId(id);
-                          setTimeout(() => {
-                            setDownloadedBooks((prev) => [...prev, id]);
-                            setDownloadingBookId(null);
-                          }, 2500);
-                        };
 
                         return (
                           <div key={bk.id} className="p-4 bg-white border border-slate-200 hover:border-indigo-200 rounded-xl flex flex-col justify-between transition-all space-y-3 shadow-sm hover:shadow-md">
@@ -4394,7 +4341,7 @@ export default function App() {
                                 }`}>
                                   {bk.province} Board
                                 </span>
-                                <span className="text-[10px] text-slate-400 font-mono">{bk.size}</span>
+                                <span className="text-[10px] text-slate-400 font-mono uppercase">{bk.stream}</span>
                               </div>
 
                               <h4 className="text-[12px] font-bold text-slate-800 leading-snug line-clamp-1">
@@ -4407,44 +4354,21 @@ export default function App() {
 
                             {/* Download Action State */}
                             <div className="flex items-center gap-2 pt-1 border-t border-slate-50">
+                              {/* Single honest action. This previously showed a
+                                  "Download PDF" button that ran a 2.5s timer and then
+                                  claimed "Offline Ready" without fetching anything, and
+                                  every per-book PDF URL 404'd. These now point at the
+                                  publisher's verified category page for the class and
+                                  province, where the student picks the actual book. */}
                               <a
                                 href={bk.downloadUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex-1 py-1.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 hover:text-indigo-700 font-semibold rounded-lg text-[10px] transition-all flex items-center justify-center space-x-1 border border-slate-200 cursor-pointer"
+                                className="w-full min-h-[44px] py-2.5 px-3 bg-indigo-600 border border-indigo-700 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold rounded-lg text-[11px] transition-all flex items-center justify-center gap-1.5"
                               >
-                                <BookOpen size={12} />
-                                <span>Read Online Mirror</span>
+                                <BookOpen size={13} />
+                                <span>Open on Taleem360</span>
                               </a>
-
-                              <button
-                                onClick={() => triggerDownloadSim(bk.id)}
-                                disabled={isDownloading}
-                                className={`flex-1 py-1.5 px-3 font-semibold rounded-lg text-[10px] transition-all flex items-center justify-center space-x-1 cursor-pointer border ${
-                                  isDownloaded
-                                    ? "bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
-                                    : isDownloading
-                                    ? "bg-indigo-50 border-indigo-200 text-indigo-600 animate-pulse"
-                                    : "bg-indigo-600 border-indigo-700 text-white hover:bg-indigo-700"
-                                }`}
-                              >
-                                {isDownloading ? (
-                                  <>
-                                    <span className="w-3 h-3 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin shrink-0"></span>
-                                    <span>Caching File [65%]...</span>
-                                  </>
-                                ) : isDownloaded ? (
-                                  <>
-                                    <CheckCircle size={12} className="text-green-600 shrink-0" />
-                                    <span>Offline Ready ✓</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Download size={12} />
-                                    <span>Download PDF</span>
-                                  </>
-                                )}
-                              </button>
                             </div>
                           </div>
                         );
