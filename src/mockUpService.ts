@@ -2,6 +2,8 @@
 // exact patterns of MCQs, Short Questions, Long Questions, and Numerical questions.
 // Fully randomized, chapter-wise support.
 
+import { QUESTION_BANK } from "./questionBank";
+
 export interface MCQ {
   id: string;
   question: string;
@@ -579,6 +581,54 @@ export function generateBoardPaper(
     }
   }
 
+  // --- AUTHENTIC QUESTION BANK OVERRIDE ---
+  // The legacy branches above build their pools with `for (i = 1..25)` loops that cycle
+  // through only 1-3 hardcoded strings, so a 15-MCQ English paper repeated the SAME
+  // question 15 times. Where a curated bank exists we replace the pool outright with
+  // genuinely distinct, board-standard questions.
+  const bankKey =
+    normSubject === "biology" ? "biology" :
+    normSubject === "cs" && !isCommerce ? "cs" :
+    normSubject === "english" ? "english" :
+    normSubject === "urdu" ? "urdu" :
+    normSubject === "islam" ? "islam" : null;
+
+  if (bankKey && QUESTION_BANK[bankKey]) {
+    const bank = QUESTION_BANK[bankKey];
+    mcqsPool.length = 0;
+    shortsPool.length = 0;
+    longsPool.length = 0;
+
+    bank.mcqs.forEach((q, i) => {
+      mcqsPool.push({
+        id: `${bankKey}-m-${i}`,
+        question: q.question,
+        options: q.options,
+        correctIndex: q.correctIndex,
+        explanation: q.explanation,
+      });
+    });
+    bank.shorts.forEach((q, i) => {
+      shortsPool.push({
+        id: `${bankKey}-s-${i}`,
+        label: "Q.2",
+        question: q.question,
+        marks: 2,
+        modelAnswer: q.modelAnswer,
+      });
+    });
+    bank.longs.forEach((g, i) => {
+      longsPool.push({
+        id: `${bankKey}-lg-${i}`,
+        label: `Question No. ${3 + i}`,
+        parts: [
+          { id: `${bankKey}-lg-a-${i}`, label: "Part A", question: g.a.question, marks: 6, modelAnswer: g.a.modelAnswer },
+          { id: `${bankKey}-lg-b-${i}`, label: "Part B", question: g.b.question, marks: 4, modelAnswer: g.b.modelAnswer },
+        ],
+      });
+    });
+  }
+
   // --- CHAPTER-WISE FILTERING & INJECTION ---
   let isChapterMock = false;
   let chLabel = "";
@@ -610,10 +660,33 @@ export function generateBoardPaper(
     });
   }
 
-  // Choose from the RICH expanded pools!
-  const finalMCQs = getRandomItems(mcqsPool, mcqCount);
-  const finalShorts = getRandomItems(shortsPool, shortTotal);
-  const finalLongGroups = getRandomItems(longsPool, longTotalGroups);
+  // De-duplicate by question text so a paper never repeats the same question,
+  // then clamp the requested counts to what is genuinely available.
+  const dedupe = <T extends { question: string }>(arr: T[]): T[] => {
+    const seen = new Set<string>();
+    return arr.filter((x) => {
+      const k = x.question.trim();
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+  };
+
+  const uniqueMcqs = dedupe(mcqsPool);
+  const uniqueShorts = dedupe(shortsPool);
+  const uniqueLongs = longsPool.filter(
+    (g, i, self) => self.findIndex((o) => o.parts[0]?.question === g.parts[0]?.question) === i
+  );
+
+  mcqCount = Math.min(mcqCount, uniqueMcqs.length);
+  shortTotal = Math.min(shortTotal, uniqueShorts.length);
+  shortToAnswer = Math.min(shortToAnswer, shortTotal);
+  longTotalGroups = Math.min(longTotalGroups, uniqueLongs.length);
+  longToAnswerGroups = Math.min(longToAnswerGroups, longTotalGroups);
+
+  const finalMCQs = getRandomItems(uniqueMcqs, mcqCount);
+  const finalShorts = getRandomItems(uniqueShorts, shortTotal);
+  const finalLongGroups = getRandomItems(uniqueLongs, longTotalGroups);
 
   finalMCQs.forEach((m, idx) => {
     m.id = `${paperId}-m-${idx}`;
