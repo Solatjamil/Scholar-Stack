@@ -1024,22 +1024,17 @@ function getSyllabusForClassRaw(classLevel: string, group: string, board: string
         board,
         updatedAt: "Refreshed based on selection",
         chapters: [
-          { id: "c11-1", name: "Chapter 1: Periodic Table and Periodic Properties", completed: true },
-          { id: "c11-2", name: "Chapter 2: Atomic Structure", completed: false },
-          { id: "c11-3", name: "Chapter 3: Chemical Bonding", completed: false },
-          { id: "c11-4", name: "Chapter 4: Stoichiometry", completed: false },
-          { id: "c11-5", name: "Chapter 5: States and Phases of Matter", completed: false },
-          { id: "c11-6", name: "Chapter 6: Chemical Energetics", completed: false },
-          { id: "c11-7", name: "Chapter 7: Reaction Kinetics", completed: false },
-          { id: "c11-8", name: "Chapter 8: Chemical Equilibrium", completed: false },
-          { id: "c11-9", name: "Chapter 9: Acid-Base Chemistry", completed: false },
-          { id: "c11-10", name: "Chapter 10: Electrochemistry", completed: false },
-          { id: "c11-11", name: "Chapter 11: Hydrocarbons", completed: false },
-          { id: "c11-12", name: "Chapter 12: Nitrogen and Sulfur", completed: false },
-          { id: "c11-13", name: "Chapter 13: Halogens", completed: false },
-          { id: "c11-14", name: "Chapter 14: Atmosphere", completed: false },
-          { id: "c11-15", name: "Chapter 15: Basic Separation Techniques", completed: false },
-          { id: "c11-16", name: "Chapter 16: Lab Safety and Practical Skills", completed: false }
+          { id: "c11-1", name: "Unit 1: Basic Concepts", completed: false },
+          { id: "c11-2", name: "Unit 2: Experimental Techniques in Chemistry", completed: false },
+          { id: "c11-3", name: "Unit 3: Gases", completed: false },
+          { id: "c11-4", name: "Unit 4: Liquids and Solids", completed: false },
+          { id: "c11-5", name: "Unit 5: Atomic Structure", completed: false },
+          { id: "c11-6", name: "Unit 6: Chemical Bonding", completed: false },
+          { id: "c11-7", name: "Unit 7: Thermochemistry", completed: false },
+          { id: "c11-8", name: "Unit 8: Chemical Equilibrium", completed: false },
+          { id: "c11-9", name: "Unit 9: Solutions", completed: false },
+          { id: "c11-10", name: "Unit 10: Electrochemistry", completed: false },
+          { id: "c11-11", name: "Unit 11: Reaction Kinetics", completed: false }
         ]
       });
     }

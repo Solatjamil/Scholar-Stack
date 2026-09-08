@@ -221,6 +221,51 @@ const physics: SubjectTopics = {
 
 /* ============================== CHEMISTRY ============================== */
 const chemistry: SubjectTopics = {
+  'basic concepts': [
+    {
+      name: 'Basic Concepts: Mole, Empirical Formula and Stoichiometry',
+      romanUrdu: 'Mole 6.02 x 10^23 particles ke barabar hai. Empirical formula simplest ratio deta hai, molecular formula asal tadaad. Limiting reactant wo hai jo pehle khatam ho jaye aur yield ko control karta hai.',
+      content: "Relative atomic mass, molecular mass and formula mass.\nMole = 6.02 x 10^23 particles; molar volume of a gas at STP = 22.414 dm^3.\nEmpirical formula from percentage composition; molecular formula = n x empirical formula.\nLimiting reactant controls the yield; % yield = (actual / theoretical) x 100.\nAvogadro's number NA = 6.02 x 10^23 mol^-1.",
+      search: 'sabaq foundation basic concepts chemistry class 11 mole concept',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'experimental techniques': [
+    {
+      name: 'Experimental Techniques: Filtration, Crystallisation and Chromatography',
+      romanUrdu: 'Filtration se solid ko liquid se alag karte hain, crystallisation se pure crystals milte hain. Solvent extraction distribution law par chalti hai aur chromatography Rf value se components alag karti hai.',
+      content: "Filtration: gravity and vacuum; fluted filter paper speeds up filtration.\nCrystallisation: choice of solvent, saturation, cooling, drying in a desiccator.\nSublimation separates solids that vaporise directly (iodine, NH4Cl).\nSolvent extraction obeys the distribution law; repeated small volumes extract more than one large volume.\nChromatography: Rf = distance moved by solute / distance moved by solvent front.",
+      search: 'sabaq foundation experimental techniques in chemistry class 11',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'gases': [
+    {
+      name: 'Gases: Gas Laws, Ideal Equation and Kinetic Theory',
+      romanUrdu: "Boyle's law me PV constant, Charles' law me V/T constant. General gas equation PV = nRT hai jahan R = 8.314 J/mol/K. Real gases high pressure aur low temperature par ideal behaviour se hat jati hain.",
+      content: "Boyle's law: PV = constant at constant T. Charles' law: V/T = constant at constant P.\nGeneral gas equation: PV = nRT, R = 8.314 J mol^-1 K^-1 = 0.0821 dm^3 atm mol^-1 K^-1.\nDalton's law of partial pressures: Ptotal = P1 + P2 + ...\nGraham's law of diffusion: rate is proportional to 1/sqrt(molar mass).\nvan der Waals equation corrects for real gas volume and attraction; liquefaction, critical temperature and pressure.",
+      search: 'sabaq foundation gases gas laws class 11 chemistry',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'liquids and solids': [
+    {
+      name: 'Liquids and Solids: Intermolecular Forces and Crystal Types',
+      romanUrdu: 'Hydrogen bonding ki wajah se water ka boiling point zyada hai. Evaporation cooling paida karti hai. Crystalline solids ka sharp melting point hota hai jabke amorphous solids ka nahi.',
+      content: "Intermolecular forces: dipole-dipole, London dispersion, hydrogen bonding.\nHydrogen bonding explains the high boiling point, high surface tension and anomalous density of water.\nEvaporation is a cooling process; vapour pressure rises with temperature; boiling point is where vapour pressure equals external pressure.\nCrystalline solids have sharp melting points and a definite geometry; amorphous solids do not.\nTypes of crystals: ionic, covalent, molecular and metallic. Isomorphism, polymorphism and allotropy.",
+      search: 'sabaq foundation liquids and solids class 11 chemistry',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'thermochemistry': [
+    {
+      name: 'Thermochemistry: Enthalpy, Hess Law and Calorimetry',
+      romanUrdu: 'Exothermic reaction me heat nikalti hai to delta H negative hota hai, endothermic me positive. Hess ka law kehta hai enthalpy change raste par depend nahi karta, sirf initial aur final state par.',
+      content: "System and surroundings; state functions; internal energy E and enthalpy H = E + PV.\nExothermic: delta H is negative (heat released). Endothermic: delta H is positive.\nStandard enthalpy of formation, combustion, neutralisation and atomisation.\nHess's law of constant heat summation: delta H is independent of the path taken.\nCalorimetry: q = m x c x delta T, using a glass or bomb calorimeter.",
+      search: 'sabaq foundation thermochemistry hess law class 11 chemistry',
+      diagramType: 'chemistry-structure',
+    },
+  ],
   'structure of atom': [
     {
       name: 'Structure of Atoms: Particles and Isotopes',
@@ -2221,9 +2266,173 @@ islam["economic and social"] = islam["social and economic"];
 math["financial mathematics"] = math["business"];
 math["consumer mathematics"] = math["business"];
 
+
+/**
+ * General Science (Arts group, classes 9-10).
+ * These syllabi ride on the "chemistry" subject slot in App.tsx but are a
+ * general-science course, so none of their chapters matched the chemistry
+ * bank and every unit fell back to generic advice. Keys are chosen to be
+ * distinctive substrings of the authoritative unit names.
+ */
+const generalScience: SubjectTopics = {
+  'nature of science': [
+    {
+      name: 'The Nature of Science and Scientific Method',
+      romanUrdu: 'Science observation se shuru hoti hai, phir hypothesis banti hai jise experiment se test karte hain. Theory wo hypothesis hai jo baar baar sahi sabit ho. SI units measurement ka standard hain.',
+      content: 'Steps of the scientific method: observation, hypothesis, experiment, theory, law.\nA hypothesis is a testable statement; a theory is a well-tested explanation.\nBranches of science: physical, biological and earth sciences.\nSI base units: metre, kilogram, second, ampere, kelvin, mole, candela.\nAccuracy vs precision; the role of controlled variables in a fair test.',
+      search: 'sabaq foundation nature of science scientific method class 9 general science',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'life and living things': [
+    {
+      name: 'Cells, Tissues and the Organisation of Life',
+      romanUrdu: 'Cell zindagi ki sab se choti unit hai. Plant cell me cell wall aur chloroplast hote hain jo animal cell me nahi. Cell se tissue, tissue se organ aur organ se system banta hai.',
+      content: 'The cell is the structural and functional unit of life (cell theory).\nPlant cell: cell wall, chloroplasts, large vacuole. Animal cell: no wall or chloroplast.\nKey organelles: nucleus (control), mitochondria (respiration), ribosomes (protein synthesis).\nLevels of organisation: cell to tissue to organ to organ system to organism.\nCharacteristics of living things: nutrition, respiration, growth, irritability, reproduction, excretion, movement.',
+      search: 'sabaq foundation cell structure living things class 9 general science',
+      diagramType: 'biology-cell',
+    },
+  ],
+  'human body systems': [
+    {
+      name: 'Human Body Systems and Health',
+      romanUrdu: 'Digestive system khana torta hai, respiratory system oxygen leta hai aur circulatory system usay poore jism tak pohanchata hai. Balanced diet aur safai bimariyon se bachati hai.',
+      content: 'Digestive system: mouth, oesophagus, stomach, small and large intestine; enzymes break food into absorbable units.\nRespiratory system: nasal cavity, trachea, bronchi, lungs, alveoli for gaseous exchange.\nCirculatory system: heart, arteries, veins, capillaries; blood carries oxygen, nutrients and wastes.\nNervous and skeletal systems: control, coordination, support and movement.\nHealth: balanced diet, hygiene, exercise, vaccination and avoiding tobacco.',
+      search: 'sabaq foundation human body systems class 9 general science',
+      diagramType: 'biology-cell',
+    },
+  ],
+  'diversity among living': [
+    {
+      name: 'Diversity and Classification of Living Things',
+      romanUrdu: 'Classification me organisms ko unki mushtarka khasoosiyat ke hisab se groups me rakhte hain. Binomial nomenclature me har organism ke do naam hote hain: genus aur species.',
+      content: 'Classification groups organisms by shared characteristics.\nThe five kingdoms: Monera, Protista, Fungi, Plantae, Animalia.\nTaxonomic hierarchy: kingdom, phylum, class, order, family, genus, species.\nBinomial nomenclature (Linnaeus): genus + species, written in italics, e.g. Homo sapiens.\nVertebrates and invertebrates; flowering and non-flowering plants.',
+      search: 'sabaq foundation classification diversity living organisms class 9',
+      diagramType: 'biology-cell',
+    },
+  ],
+  'matter and its structure': [
+    {
+      name: 'Matter, Atoms and the Structure of Substances',
+      romanUrdu: 'Matter atoms se bana hai. Element ek hi qism ke atoms ka hota hai, compound do ya zyada elements ka chemical jor aur mixture ko physical tareeqe se alag kiya ja sakta hai.',
+      content: 'States of matter: solid, liquid, gas; changes of state and the kinetic molecular model.\nAtom: protons and neutrons in the nucleus, electrons in shells.\nAtomic number = protons; mass number = protons + neutrons.\nElement, compound and mixture; compounds need chemical means to separate, mixtures only physical means.\nSeparation techniques: filtration, evaporation, distillation, chromatography.',
+      search: 'sabaq foundation matter atoms elements compounds mixtures class 9',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'chemical reactions in daily': [
+    {
+      name: 'Chemical Reactions in Daily Life',
+      romanUrdu: 'Rusting, combustion aur respiration sab chemical reactions hain. Acid ka pH 7 se kam aur base ka 7 se zyada hota hai. Acid aur base mil kar salt aur pani banate hain.',
+      content: 'Signs of a chemical change: gas evolved, colour change, precipitate, heat or light.\nCommon reaction types: combination, decomposition, displacement, neutralisation, combustion.\nRusting needs both oxygen and water; prevented by painting, greasing or galvanising.\nAcids have pH < 7, bases pH > 7, neutral = 7. Acid + base gives salt + water.\nEveryday examples: baking, digestion, photosynthesis, souring of milk.',
+      search: 'sabaq foundation chemical reactions daily life acids bases class 9',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'energy, force and motion': [
+    {
+      name: 'Energy, Force and Motion',
+      romanUrdu: 'Force wo hai jo motion badalti hai. Speed = distance / time. Energy na banti hai na khatam hoti, sirf shakal badalti hai. Kinetic energy harkat ki aur potential energy position ki energy hai.',
+      content: 'Speed = distance / time; velocity is speed with direction; acceleration = change in velocity / time.\nNewton\'s laws: inertia; F = ma; action and reaction are equal and opposite.\nWork = force x distance (joule). Power = work / time (watt).\nKinetic energy = 1/2 mv^2; potential energy = mgh.\nLaw of conservation of energy: energy is transformed, never created or destroyed.',
+      search: 'sabaq foundation energy force and motion class 9 general science',
+      diagramType: 'physics-ohms',
+    },
+  ],
+  'electricity and magnetism in daily': [
+    {
+      name: 'Electricity and Magnetism in Daily Life',
+      romanUrdu: 'Current charge ka behaav hai. Ohm ka law V = IR hai. Series circuit me current same rehti hai aur parallel me voltage. Electromagnet current se magnet banta hai.',
+      content: 'Electric current I = Q / t, measured in amperes; potential difference in volts.\nOhm\'s law: V = IR. Resistance depends on length, area and material.\nSeries circuit: same current throughout. Parallel circuit: same voltage across each branch.\nHousehold safety: fuses, circuit breakers and earthing.\nMagnetic field of a bar magnet; an electromagnet is made by passing current through a coil around soft iron.',
+      search: 'sabaq foundation electricity and magnetism daily life class 9',
+      diagramType: 'physics-ohms',
+    },
+  ],
+  'space and the solar system': [
+    {
+      name: 'Space and the Solar System',
+      romanUrdu: 'Solar system me sooraj ke gird 8 planets ghoomte hain. Zameen ki rotation din raat banati hai aur revolution mausam. Chand ki position se grahan lagte hain.',
+      content: 'The solar system: the Sun and eight planets (Mercury to Neptune), plus moons, asteroids and comets.\nRotation of the Earth (24 hours) causes day and night; revolution (365.25 days) with axial tilt causes seasons.\nPhases of the Moon; solar and lunar eclipses.\nSatellites: natural (the Moon) and artificial (communication, weather, GPS).\nGravity holds planets in orbit; stars, galaxies and the Milky Way.',
+      search: 'sabaq foundation solar system space class 9 general science',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'environment and pollution': [
+    {
+      name: 'Environment and Pollution Control',
+      romanUrdu: 'Pollution hawa, pani aur zameen ko kharab karti hai. Greenhouse gases global warming barhati hain aur CFCs ozone layer ko nuqsan pohanchate hain. 3Rs: reduce, reuse, recycle.',
+      content: 'Types of pollution: air, water, land and noise, with their main sources.\nAir pollutants: CO, SO2, NOx, particulates; effects include smog and acid rain.\nGreenhouse effect and global warming from CO2 and methane; ozone depletion from CFCs.\nWater pollution from sewage, industrial effluent and pesticides; waterborne diseases.\nControl: the 3Rs (reduce, reuse, recycle), treatment plants, afforestation and clean fuels.',
+      search: 'sabaq foundation environment pollution control class 10 general science',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'natural resources': [
+    {
+      name: 'Natural Resources and Their Conservation',
+      romanUrdu: 'Renewable resources dobara ban jate hain jaise sunlight aur wind, non-renewable khatam ho jate hain jaise coal aur petroleum. Conservation aane wali naslon ke liye zaroori hai.',
+      content: 'Renewable resources: solar, wind, hydro, biomass, forests. Non-renewable: coal, oil, natural gas, minerals.\nPakistan\'s resources: the Indus river system, coal at Thar, natural gas at Sui, salt at Khewra.\nSoil erosion, deforestation and overgrazing degrade land; remedies include terracing and afforestation.\nWater conservation: dams, canal lining, drip irrigation.\nSustainable development meets present needs without compromising future generations.',
+      search: 'sabaq foundation natural resources conservation Pakistan class 10',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'human health, disease': [
+    {
+      name: 'Human Health, Disease and Nutrition',
+      romanUrdu: 'Balanced diet me carbohydrates, proteins, fats, vitamins, minerals aur pani hone chahiye. Infectious diseases germs se failti hain, vaccination un se bachati hai.',
+      content: 'Balanced diet: carbohydrates, proteins, fats, vitamins, minerals, water and roughage.\nDeficiency diseases: scurvy (vitamin C), rickets (vitamin D), anaemia (iron), goitre (iodine).\nInfectious diseases spread by air, water, food, contact or vectors: tuberculosis, hepatitis, malaria, dengue.\nNon-infectious: diabetes, hypertension, cancer.\nPrevention: vaccination, clean drinking water, sanitation, mosquito control and personal hygiene.',
+      search: 'sabaq foundation health disease nutrition balanced diet class 10',
+      diagramType: 'biology-cell',
+    },
+  ],
+  'heredity and reproduction': [
+    {
+      name: 'Heredity and Reproduction in Living Things',
+      romanUrdu: 'Heredity me khasoosiyat walidain se aulad me DNA ke zariye jati hain. Chromosomes me genes hote hain. Asexual reproduction me ek parent aur sexual me do parents hote hain.',
+      content: 'Heredity is the transmission of characters from parents to offspring through genes.\nDNA carries genetic information; genes are segments of DNA on chromosomes.\nHumans have 46 chromosomes (23 pairs); XX female, XY male.\nAsexual reproduction: one parent, identical offspring (binary fission, budding, vegetative propagation).\nSexual reproduction: fusion of male and female gametes gives variation; dominant and recessive traits.',
+      search: 'sabaq foundation heredity genetics reproduction class 10 general science',
+      diagramType: 'biology-cell',
+    },
+  ],
+  'sound, light and optical': [
+    {
+      name: 'Sound, Light and Optical Instruments',
+      romanUrdu: 'Sound ek mechanical wave hai jo vacuum me travel nahi karti. Light seedhi line me chalti hai. Concave mirror image bana sakta hai aur convex lens magnify karta hai.',
+      content: 'Sound is a longitudinal mechanical wave; needs a medium; speed in air is about 340 m/s.\nPitch depends on frequency, loudness on amplitude; echo and its use in SONAR.\nLight travels in straight lines; reflection: angle of incidence = angle of reflection.\nRefraction bends light between media; concave and convex mirrors and lenses form real or virtual images.\nOptical instruments: the human eye, spectacles for myopia and hypermetropia, cameras, microscopes and telescopes.',
+      search: 'sabaq foundation sound light optical instruments class 10',
+      diagramType: 'physics-ohms',
+    },
+  ],
+  'electricity, magnetism and electronics': [
+    {
+      name: 'Electricity, Magnetism and Electronics',
+      romanUrdu: 'Electromagnetic induction se generator bijli banata hai aur motor bijli se harkat. Transformer voltage badalta hai. Logic gates AND, OR aur NOT electronics ki buniyad hain.',
+      content: 'Electromagnetic induction: a changing magnetic field induces an emf (Faraday); the basis of the generator.\nAn electric motor converts electrical energy into mechanical energy.\nTransformers step voltage up or down for transmission; Np/Ns = Vp/Vs.\nConductors, insulators and semiconductors; diodes conduct in one direction, transistors amplify or switch.\nBasic logic gates: AND, OR, NOT, NAND and NOR with their truth tables.',
+      search: 'sabaq foundation electricity magnetism electronics logic gates class 10',
+      diagramType: 'physics-ohms',
+    },
+  ],
+  'information technology and communication': [
+    {
+      name: 'Information Technology and Communication',
+      romanUrdu: 'Computer input, process, output aur storage karta hai. Internet duniya bhar ke networks ka jaal hai. Email aur mobile communication ne rabta asaan bana diya hai.',
+      content: 'A computer system: input devices, CPU (control unit and ALU), memory, output devices and storage.\nHardware vs software; RAM is volatile, ROM is permanent.\nNetworks: LAN, WAN and the Internet; the World Wide Web, browsers, email and search engines.\nCommunication technology: radio waves, satellites, optical fibre and mobile phone networks.\nSafe and ethical use: passwords, viruses, plagiarism and protecting personal data.',
+      search: 'sabaq foundation information technology communication class 10',
+      diagramType: 'cs-spa',
+    },
+  ],
+  'space science and modern technology': [
+    {
+      name: 'Space Science and Modern Technology',
+      romanUrdu: 'Satellites communication, mausam aur GPS ke liye istemal hote hain. Telescope door ki cheezein dekhata hai. Pakistan ka space program SUPARCO chalata hai.',
+      content: 'Artificial satellites: communication, weather forecasting, remote sensing and GPS navigation.\nOrbits: low Earth orbit and geostationary orbit (period of 24 hours).\nTelescopes: optical and radio; space probes and the exploration of the solar system.\nSUPARCO is Pakistan\'s national space agency; Badr-1 was its first satellite (1990).\nModern technology: lasers, robotics, nanotechnology and their uses in medicine and industry.',
+      search: 'sabaq foundation space science technology satellites SUPARCO class 10',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+};
+
 export const TOPIC_BANK: Record<string, SubjectTopics> = {
   physics,
-  chemistry,
+  chemistry: { ...chemistry, ...generalScience },
   math,
   mathematics: math,
   biology,

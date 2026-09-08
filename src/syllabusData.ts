@@ -317,6 +317,19 @@ export const CHAPTER_LISTS: Record<string, string[]> = {
     "Unit 10: Statistical Inference in Business",
   ],
 
+  "syl-ch-11-fsc": [
+    "Unit 1: Basic Concepts",
+    "Unit 2: Experimental Techniques in Chemistry",
+    "Unit 3: Gases",
+    "Unit 4: Liquids and Solids",
+    "Unit 5: Atomic Structure",
+    "Unit 6: Chemical Bonding",
+    "Unit 7: Thermochemistry",
+    "Unit 8: Chemical Equilibrium",
+    "Unit 9: Solutions",
+    "Unit 10: Electrochemistry",
+    "Unit 11: Reaction Kinetics",
+  ],
   "syl-ch-12-fsc": [
     "Unit 1: Periodic Classification of Elements and Periodicity",
     "Unit 2: s-Block Elements",
