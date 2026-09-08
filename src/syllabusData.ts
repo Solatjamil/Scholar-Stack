@@ -1,0 +1,446 @@
+/**
+ * Authoritative chapter lists for the BISE / PCTB curriculum.
+ *
+ * WHY THIS FILE EXISTS
+ * --------------------
+ * The chapter arrays previously inlined in App.tsx were heavily truncated:
+ * 30 of the 42 syllabus entries listed fewer than 8 chapters, and several
+ * collapsed whole spans of the book into a single row (12th Chemistry had
+ * "Unit 8-12: Hydrocarbons, Alcohols & Alkyl Halides" as one item and omitted
+ * units 3-6 entirely). A student ticking those off would believe they had
+ * finished the book while missing most of it, and the Dashboard completion
+ * percentage was correspondingly wrong.
+ *
+ * These lists follow the Punjab Curriculum & Textbook Board (PCTB) editions
+ * used by all Punjab boards, which FBISE/KPK/Sindh/Balochistan track closely
+ * in chapter count and order. Verified against ilmkidunya, PDF Hive and
+ * out-class chapter indexes (Sept 2026).
+ *
+ * Keyed by the same syllabus id used in App.tsx's getSyllabusForClass().
+ * Anything not listed here keeps its original inline list.
+ */
+
+export const CHAPTER_LISTS: Record<string, string[]> = {
+  /* ============================ CLASS 9 ============================ */
+
+  "syl-math-9-sci": [
+    "Unit 1: Matrices and Determinants",
+    "Unit 2: Real and Complex Numbers",
+    "Unit 3: Logarithms",
+    "Unit 4: Algebraic Expressions and Algebraic Formulas",
+    "Unit 5: Factorization",
+    "Unit 6: Algebraic Manipulation",
+    "Unit 7: Linear Equations and Inequalities",
+    "Unit 8: Linear Graphs and Their Application",
+    "Unit 9: Introduction to Coordinate Geometry",
+    "Unit 10: Congruent Triangles",
+    "Unit 11: Parallelograms and Triangles",
+    "Unit 12: Line Bisectors and Angle Bisectors",
+    "Unit 13: Sides and Angles of a Triangle",
+    "Unit 14: Ratio and Proportion",
+    "Unit 15: Pythagoras Theorem",
+    "Unit 16: Theorems Related with Area",
+    "Unit 17: Practical Geometry - Triangles",
+  ],
+
+  "syl-math-9-art": [
+    "Unit 1: Percentage, Ratio and Proportion",
+    "Unit 2: Zakat, Ushr and Inheritance",
+    "Unit 3: Business Mathematics",
+    "Unit 4: Financial Mathematics (Taxes and Insurance)",
+    "Unit 5: Consumer Mathematics (Profit, Loss, Discount)",
+    "Unit 6: Exponents and Logarithms",
+    "Unit 7: Arithmetic and Geometric Sequences",
+    "Unit 8: Sets and Functions",
+    "Unit 9: Linear Equations and Inequalities",
+    "Unit 10: Matrices and Determinants",
+    "Unit 11: Basic Statistics",
+    "Unit 12: Geometry: Lines, Angles and Triangles",
+  ],
+
+  "syl-ch-9-sci": [
+    "Unit 1: Fundamentals of Chemistry",
+    "Unit 2: Structure of Atoms",
+    "Unit 3: Periodic Table and Periodicity of Properties",
+    "Unit 4: Structure of Molecules (Chemical Bonding)",
+    "Unit 5: Physical States of Matter",
+    "Unit 6: Solutions",
+    "Unit 7: Electrochemistry",
+    "Unit 8: Chemical Reactivity",
+  ],
+
+  "syl-bio-9-sci": [
+    "Unit 1: Introduction to Biology",
+    "Unit 2: Solving a Biological Problem",
+    "Unit 3: Biodiversity",
+    "Unit 4: Cells and Tissues",
+    "Unit 5: Cell Cycle",
+    "Unit 6: Enzymes",
+    "Unit 7: Bioenergetics (Photosynthesis & Respiration)",
+    "Unit 8: Nutrition",
+    "Unit 9: Transport",
+  ],
+
+  "syl-cs-9": [
+    "Unit 1: Problem Solving",
+    "Unit 2: Binary System (Number Systems)",
+    "Unit 3: Networks",
+    "Unit 4: Data and Privacy",
+    "Unit 5: Designing Websites (HTML)",
+    "Unit 6: Introduction to Programming",
+    "Unit 7: Input / Output Handling",
+    "Unit 8: Computational Thinking and Algorithms",
+  ],
+
+  "syl-gsci-9-art": [
+    "Unit 1: The Nature of Science",
+    "Unit 2: Life and Living Things (Cells & Organisms)",
+    "Unit 3: Human Body Systems and Health",
+    "Unit 4: Diversity Among Living Things",
+    "Unit 5: Matter and Its Structure",
+    "Unit 6: Chemical Reactions in Daily Life",
+    "Unit 7: Energy, Force and Motion",
+    "Unit 8: Electricity and Magnetism in Daily Life",
+    "Unit 9: The Earth, Atmosphere and Environment",
+    "Unit 10: Space and the Solar System",
+  ],
+
+  "syl-isl-9-all": [
+    "Unit 1: Aqaid (Tauheed, Risalat and Akhirat)",
+    "Unit 2: Ibadat (Salat, Sawm, Zakat and Hajj)",
+    "Unit 3: Quranic Ayat and Their Translation",
+    "Unit 4: Ahadith-e-Nabvi (SAW) and Their Explanation",
+    "Unit 5: Seerat-un-Nabi (SAW) - Makki Life",
+    "Unit 6: Seerat-un-Nabi (SAW) - Madani Life",
+    "Unit 7: Akhlaqiyat (Islamic Morals and Manners)",
+    "Unit 8: Huqooq-ul-Ibad (Rights of Fellow Beings)",
+    "Unit 9: Khulafa-e-Rashideen and Their Services",
+  ],
+
+  /* ============================ CLASS 10 ============================ */
+
+  "syl-math-10-sci": [
+    "Unit 1: Quadratic Equations",
+    "Unit 2: Theory of Quadratic Equations",
+    "Unit 3: Variations",
+    "Unit 4: Partial Fractions",
+    "Unit 5: Sets and Functions",
+    "Unit 6: Basic Statistics",
+    "Unit 7: Introduction to Trigonometry",
+    "Unit 8: Projection of a Side of a Triangle",
+    "Unit 9: Chords of a Circle",
+    "Unit 10: Tangent to a Circle",
+    "Unit 11: Chords and Arcs",
+    "Unit 12: Angle in a Segment of a Circle",
+    "Unit 13: Practical Geometry - Circles",
+  ],
+
+  "syl-math-10-art": [
+    "Unit 1: Algebraic Formulas and Applications",
+    "Unit 2: Factorization and Algebraic Manipulation",
+    "Unit 3: Linear Equations and Inequalities",
+    "Unit 4: Quadratic Equations",
+    "Unit 5: Matrices and Determinants",
+    "Unit 6: Sets and Functions",
+    "Unit 7: Basic Statistics (Mean, Median, Mode)",
+    "Unit 8: Introduction to Trigonometry",
+    "Unit 9: Practical Geometry and Mensuration",
+    "Unit 10: Business and Financial Mathematics",
+  ],
+
+  "syl-ch-10-sci": [
+    "Unit 9: Chemical Equilibrium",
+    "Unit 10: Acids, Bases and Salts",
+    "Unit 11: Organic Chemistry",
+    "Unit 12: Hydrocarbons",
+    "Unit 13: Biochemistry",
+    "Unit 14: The Atmosphere",
+    "Unit 15: Water",
+    "Unit 16: Chemical Industries",
+  ],
+
+  "syl-bio-10-sci": [
+    "Unit 10: Gaseous Exchange",
+    "Unit 11: Homeostasis",
+    "Unit 12: Coordination and Control",
+    "Unit 13: Support and Movement",
+    "Unit 14: Reproduction",
+    "Unit 15: Inheritance",
+    "Unit 16: Man and His Environment",
+    "Unit 17: Biotechnology",
+    "Unit 18: Pharmacology",
+  ],
+
+  "syl-cs-10": [
+    "Unit 1: Programming Fundamentals (C / Python)",
+    "Unit 2: User Interaction and Input Handling",
+    "Unit 3: Conditional Logic and Control Structures",
+    "Unit 4: Data and Repetition (Loops)",
+    "Unit 5: Functions and Modular Programming",
+    "Unit 6: Arrays and Data Structures",
+    "Unit 7: Databases and Data Management",
+    "Unit 8: Web Development and Publishing",
+  ],
+
+  "syl-gsci-10-art": [
+    "Unit 1: Environment and Pollution Control",
+    "Unit 2: Natural Resources and Their Conservation",
+    "Unit 3: Human Health, Disease and Nutrition",
+    "Unit 4: Heredity and Reproduction in Living Things",
+    "Unit 5: Acids, Bases, Salts and Everyday Chemicals",
+    "Unit 6: Chemical Industries and Their Products",
+    "Unit 7: Sound, Light and Optical Instruments",
+    "Unit 8: Electricity, Magnetism and Electronics",
+    "Unit 9: Information Technology and Communication",
+    "Unit 10: Space Science and Modern Technology",
+  ],
+
+  "syl-isl-10-all": [
+    "Unit 1: Quranic Surahs and Their Translation",
+    "Unit 2: Ahadith and Their Explanation",
+    "Unit 3: Seerat-un-Nabi (SAW) as a Model of Life",
+    "Unit 4: Ibadat and Their Social Wisdom",
+    "Unit 5: Islamic Social and Economic System",
+    "Unit 6: Ideology of Pakistan and Its Basis",
+    "Unit 7: Pakistan Movement and the Creation of Pakistan",
+    "Unit 8: Land, Climate and Resources of Pakistan",
+    "Unit 9: Population, Culture and Society of Pakistan",
+    "Unit 10: Pakistan and the Muslim World",
+  ],
+
+  /* ============================ CLASS 11 ============================ */
+
+  "syl-math-11-fsc": [
+    "Unit 1: Number Systems",
+    "Unit 2: Sets, Functions and Groups",
+    "Unit 3: Matrices and Determinants",
+    "Unit 4: Quadratic Equations",
+    "Unit 5: Partial Fractions",
+    "Unit 6: Sequences and Series",
+    "Unit 7: Permutation, Combination and Probability",
+    "Unit 8: Mathematical Induction and Binomial Theorem",
+    "Unit 9: Fundamentals of Trigonometry",
+    "Unit 10: Trigonometric Identities (Sum and Difference)",
+    "Unit 11: Trigonometric Functions and Their Graphs",
+    "Unit 12: Application of Trigonometry",
+    "Unit 13: Inverse Trigonometric Functions",
+    "Unit 14: Solutions of Trigonometric Equations",
+  ],
+
+  "syl-math-11-comm": [
+    "Unit 1: Number Systems and Sets",
+    "Unit 2: Ratio, Proportion and Percentage",
+    "Unit 3: Simple and Compound Interest",
+    "Unit 4: Annuities and Present Value",
+    "Unit 5: Matrices and Determinants",
+    "Unit 6: Linear Equations and Inequalities",
+    "Unit 7: Quadratic Equations in Business",
+    "Unit 8: Sequences and Series",
+    "Unit 9: Permutation, Combination and Probability",
+    "Unit 10: Mathematics of Trade and Discount",
+  ],
+
+  "syl-cs-11": [
+    "Unit 1: Information and Data",
+    "Unit 2: Number Systems and Data Representation",
+    "Unit 3: Digital Logic and Boolean Algebra",
+    "Unit 4: Computer Architecture and Components",
+    "Unit 5: Operating Systems",
+    "Unit 6: Computer Networks and Topologies",
+    "Unit 7: Data Communication and Transmission",
+    "Unit 8: Internet, Web and Emerging Technologies",
+    "Unit 9: Security, Privacy and Cyber Ethics",
+    "Unit 10: Introduction to Programming and Algorithms",
+  ],
+
+  "syl-comm-11": [
+    "Unit 1: Introduction to Commerce and Business",
+    "Unit 2: Forms of Business Organisation",
+    "Unit 3: Sole Proprietorship and Partnership",
+    "Unit 4: Joint Stock Company",
+    "Unit 5: Co-operative Societies and State Enterprises",
+    "Unit 6: Trade: Home and Foreign",
+    "Unit 7: Channels of Distribution",
+    "Unit 8: Aids to Trade: Banking and Insurance",
+    "Unit 9: Aids to Trade: Transport, Warehousing and Advertising",
+    "Unit 10: Business Combination and Stock Exchange",
+  ],
+
+  "syl-acc-11": [
+    "Unit 1: Introduction to Accounting",
+    "Unit 2: The Accounting Equation and Double Entry",
+    "Unit 3: Books of Original Entry (Journal)",
+    "Unit 4: Ledger and Posting",
+    "Unit 5: Cash Book and Petty Cash Book",
+    "Unit 6: Bank Reconciliation Statement",
+    "Unit 7: Trial Balance and Rectification of Errors",
+    "Unit 8: Adjusting and Closing Entries",
+    "Unit 9: Financial Statements of a Sole Trader",
+    "Unit 10: Depreciation and Its Accounting Treatment",
+    "Unit 11: Capital and Revenue Expenditure",
+  ],
+
+  "syl-isl-11-all": [
+    "Unit 1: Tauheed and Its Effects on Human Life",
+    "Unit 2: Risalat and the Finality of Prophethood",
+    "Unit 3: Belief in the Hereafter (Akhirat)",
+    "Unit 4: The Holy Quran: Compilation and Importance",
+    "Unit 5: Hadith and Sunnah as Sources of Guidance",
+    "Unit 6: Ibadat and Their Spiritual Wisdom",
+    "Unit 7: Islamic Moral System (Akhlaqiyat)",
+    "Unit 8: Huqooq-ul-Ibad and Social Justice",
+    "Unit 9: The Islamic Economic and Social System",
+  ],
+
+  /* ============================ CLASS 12 ============================ */
+
+  "syl-math-12-fsc": [
+    "Unit 1: Functions and Limits",
+    "Unit 2: Differentiation",
+    "Unit 3: Integration",
+    "Unit 4: Introduction to Analytic Geometry",
+    "Unit 5: Linear Inequalities and Linear Programming",
+    "Unit 6: Conic Sections",
+    "Unit 7: Vectors",
+  ],
+
+  "syl-math-12-comm": [
+    "Unit 1: Introduction to Statistics and Data",
+    "Unit 2: Presentation of Data (Tables and Graphs)",
+    "Unit 3: Measures of Central Tendency",
+    "Unit 4: Measures of Dispersion",
+    "Unit 5: Index Numbers",
+    "Unit 6: Time Series Analysis",
+    "Unit 7: Correlation and Regression",
+    "Unit 8: Probability and Probability Distributions",
+    "Unit 9: Sampling and Estimation",
+    "Unit 10: Statistical Inference in Business",
+  ],
+
+  "syl-ch-12-fsc": [
+    "Unit 1: Periodic Classification of Elements and Periodicity",
+    "Unit 2: s-Block Elements",
+    "Unit 3: Group IIIA and Group IVA Elements",
+    "Unit 4: Group VA and Group VIA Elements",
+    "Unit 5: The Halogens and the Noble Gases",
+    "Unit 6: Transition Elements",
+    "Unit 7: Fundamental Principles of Organic Chemistry",
+    "Unit 8: Aliphatic Hydrocarbons",
+    "Unit 9: Aromatic Hydrocarbons",
+    "Unit 10: Alkyl Halides",
+    "Unit 11: Alcohols, Phenols and Ethers",
+    "Unit 12: Aldehydes and Ketones",
+    "Unit 13: Carboxylic Acids",
+    "Unit 14: Macromolecules",
+    "Unit 15: Common Chemical Industries in Pakistan",
+    "Unit 16: Environmental Chemistry",
+  ],
+
+  "syl-bio-12-fsc": [
+    "Unit 15: Homeostasis",
+    "Unit 16: Support and Movement",
+    "Unit 17: Coordination and Control",
+    "Unit 18: Reproduction",
+    "Unit 19: Growth and Development",
+    "Unit 20: Chromosomes and DNA",
+    "Unit 21: Cell Cycle",
+    "Unit 22: Variation and Genetics",
+    "Unit 23: Biotechnology",
+    "Unit 24: Evolution",
+    "Unit 25: Ecosystem",
+    "Unit 26: Some Major Ecosystems",
+    "Unit 27: Man and His Environment",
+  ],
+
+  "syl-cs-12-fsc": [
+    "Unit 1: Data Basics and Database Concepts",
+    "Unit 2: Data Integrity and Normalisation",
+    "Unit 3: Introduction to Database Management Systems",
+    "Unit 4: Microsoft Access and Query Design",
+    "Unit 5: Structured Query Language (SQL)",
+    "Unit 6: Introduction to C Language",
+    "Unit 7: Input / Output Handling in C",
+    "Unit 8: Decision Constructs and Control Structures",
+    "Unit 9: Loop Constructs and Iteration",
+    "Unit 10: Functions and Arrays",
+  ],
+
+  "syl-comm-12": [
+    "Unit 1: Introduction to Commercial Geography",
+    "Unit 2: Location, Land and Physical Features of Pakistan",
+    "Unit 3: Climate and Its Effect on Economic Activity",
+    "Unit 4: Agricultural Resources and Crops",
+    "Unit 5: Water Resources and Irrigation",
+    "Unit 6: Mineral and Power Resources",
+    "Unit 7: Industries of Pakistan",
+    "Unit 8: Means of Transport and Communication",
+    "Unit 9: Foreign Trade of Pakistan",
+    "Unit 10: Population and Human Resources",
+  ],
+
+  "syl-acc-12": [
+    "Unit 1: Partnership: Formation and Accounts",
+    "Unit 2: Partnership: Admission of a Partner",
+    "Unit 3: Partnership: Retirement and Death",
+    "Unit 4: Partnership: Dissolution of a Firm",
+    "Unit 5: Company Accounts: Issue of Shares",
+    "Unit 6: Company Accounts: Debentures",
+    "Unit 7: Financial Statements of a Company",
+    "Unit 8: Analysis of Financial Statements (Ratios)",
+    "Unit 9: Cash Flow Statement",
+    "Unit 10: Accounting for Non-Trading Concerns",
+    "Unit 11: Single Entry and Incomplete Records",
+  ],
+
+  "syl-eng-12-all": [
+    "Book III: Prose - The Dying Sun",
+    "Book III: Prose - Using the Scientific Method",
+    "Book III: Prose - Why Boys Fail in College",
+    "Book III: Prose - End of Term",
+    "Book III: Prose - On Destroying Books",
+    "Book III: Prose - The Man Who Was a Hospital",
+    "Book III: Prose - My Financial Career",
+    "Book III: Prose - China's Way to Progress",
+    "Book III: Prose - Hunger and Population Explosion",
+    "Book III: Prose - The Jewel of the World",
+    "Book III: Prose - First Year at Harrow",
+    "Book III: Prose - Hitch-hiking Across the Sahara",
+    "Book III: Prose - Sir Alexander Fleming",
+    "Book III: Prose - Louis Pasteur",
+    "Poems: Selected Poems (Book III)",
+    "Play: Heat Lightning",
+    "Writing Skills: Essays, Letters and Applications",
+    "Grammar: Translation, Idioms and Pair of Words",
+  ],
+
+  "syl-urd-12-all": [
+    "نثر: سبق ۱ تا ۵ (تشریحات و خلاصہ)",
+    "نثر: سبق ۶ تا ۱۰ (تشریحات و خلاصہ)",
+    "نثر: سبق ۱۱ تا ۱۵ (تشریحات و خلاصہ)",
+    "غزلیات: منتخب اشعار کی تشریح",
+    "نظمیں: منتخب نظموں کی تشریح",
+    "علامہ اقبال کا کلام اور فکر",
+    "قواعد: اسم، فعل، حرف اور اقسام",
+    "قواعد: محاورات، ضرب الامثال اور تذکیر و تانیث",
+    "مضمون نویسی",
+    "خط نویسی اور درخواست نویسی",
+    "خلاصہ نگاری اور تلخیص",
+    "سلیس اردو میں ترجمہ",
+  ],
+
+  "syl-isl-12-all": [
+    "Unit 1: Quranic Ayat and Their Detailed Translation",
+    "Unit 2: Ahadith on Social and Moral Conduct",
+    "Unit 3: Seerat-un-Nabi (SAW): Charter of Madinah and Treaties",
+    "Unit 4: Islamic System of Worship and Its Objectives",
+    "Unit 5: Islamic Concept of Knowledge and Education",
+    "Unit 6: Constitutional Development of Pakistan",
+    "Unit 7: Economy and Natural Resources of Pakistan",
+    "Unit 8: Foreign Policy and International Relations",
+    "Unit 9: Challenges Facing Pakistan and Their Solutions",
+    "Unit 10: Contribution of Muslim Scientists and Scholars",
+  ],
+};
+
+/** Number of syllabus entries corrected by this file. */
+export const CORRECTED_COUNT = Object.keys(CHAPTER_LISTS).length;

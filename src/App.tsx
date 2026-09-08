@@ -49,6 +49,7 @@ import MockupSection from "./components/MockupSection";
 import StudentEvaluation, { EvaluationRecord, SelfAssessment } from "./components/StudentEvaluation";
 import ChapterWiseStudy from "./components/ChapterWiseStudy";
 import BoardExamCenter from "./components/BoardExamCenter";
+import { CHAPTER_LISTS } from "./syllabusData";
 import MobileTabBar, { MobileMoreSheet } from "./components/MobileTabBar";
 import InstallPrompt from "./components/InstallPrompt";
 
@@ -568,7 +569,54 @@ const DIRECT_BOOKS_DATA: DirectBook[] = [
   }
 ];
 
+/**
+ * Replaces truncated inline chapter arrays with the authoritative PCTB lists
+ * in syllabusData.ts. Completion state is preserved by chapter NAME (ids are
+ * regenerated), so a student who had already ticked "Homeostasis" keeps it
+ * ticked even though the surrounding list grew from 4 entries to 13.
+ */
+function applyAuthoritativeChapters(items: SyllabusItem[]): SyllabusItem[] {
+  // Old inline names carried parenthetical detail and merged ranges, e.g.
+  // "Unit 15: Homeostasis (Excretion in Plants & Kidney)". Normalising strips
+  // the leading Unit/Chapter label, any bracketed suffix and punctuation so
+  // it still matches the clean authoritative name.
+  const norm = (raw: string) =>
+    raw
+      .toLowerCase()
+      .replace(/^(unit|chapter|book)\s*[ivx\d\-–,\s]*:?\s*/i, "")
+      .replace(/\([^)]*\)/g, "")
+      .replace(/[^a-z0-9\u0600-\u06FF]+/g, " ")
+      .trim();
+
+  return items.map((item) => {
+    const authoritative = CHAPTER_LISTS[item.id];
+    if (!authoritative) return item;
+
+    const doneKeys: string[] = [];
+    item.chapters.forEach((c) => {
+      if (c.completed) doneKeys.push(norm(c.name));
+    });
+
+    return {
+      ...item,
+      chapters: authoritative.map((name, idx) => {
+        const key = norm(name);
+        // Match if either side contains the other, so "homeostasis" still
+        // matches the old "homeostasis excretion in plants kidney".
+        const completed = doneKeys.some(
+          (d) => d === key || (key.length > 3 && d.includes(key)) || (d.length > 3 && key.includes(d))
+        );
+        return { id: `${item.id}-ch-${idx + 1}`, name, completed };
+      }),
+    };
+  });
+}
+
 function getSyllabusForClass(classLevel: string, group: string, board: string): SyllabusItem[] {
+  return applyAuthoritativeChapters(getSyllabusForClassRaw(classLevel, group, board));
+}
+
+function getSyllabusForClassRaw(classLevel: string, group: string, board: string): SyllabusItem[] {
   const normGroup = (group || "").toLowerCase();
   
   if (classLevel === "9th") {
