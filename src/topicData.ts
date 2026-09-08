@@ -221,6 +221,15 @@ const physics: SubjectTopics = {
 
 /* ============================== CHEMISTRY ============================== */
 const chemistry: SubjectTopics = {
+  'structure of atom': [
+    {
+      name: 'Structure of Atoms: Particles and Isotopes',
+      romanUrdu: 'Atom me proton aur neutron nucleus me hote hain aur electron orbits me. Atomic number protons ki tadaad hai aur mass number protons + neutrons. Isotopes ka atomic number same magar mass number alag hota hai.',
+      content: 'Proton (+1, in nucleus), neutron (0, in nucleus), electron (−1, in shells).\nAtomic number Z = protons; mass number A = protons + neutrons.\nIsotopes: same Z, different A (e.g. ¹²C, ¹⁴C).\nElectronic configuration: 2, 8, 8 rule; max per shell = 2n².',
+      search: 'sabaq foundation structure of atom isotopes class 9',
+      diagramType: 'chemistry-structure',
+    },
+  ],
   'fundamentals of chemistry': [
     {
       name: 'Fundamentals: Atoms, Molecules and Formulas',
@@ -508,6 +517,204 @@ const chemistry: SubjectTopics = {
 
 /* ============================= MATHEMATICS ============================= */
 const math: SubjectTopics = {
+  'real and complex': [
+    {
+      name: 'Real and Complex Numbers',
+      romanUrdu: 'Real numbers me rational aur irrational dono aate hain. Complex number a + bi ki shakl me hota hai jahan i = √−1. i² = −1 yaad rakhein — yeh har sawal me lagta hai.',
+      content: 'Real = rational ∪ irrational.\nComplex z = a + bi, i = √−1, i² = −1\nConjugate of a + bi is a − bi.\n|z| = √(a² + b²)\nProperties: closure, commutative, associative, distributive.',
+      search: 'sabaq foundation real and complex numbers class 9',
+      diagramType: 'math-graph',
+    },
+  ],
+  'number system': [
+    {
+      name: 'Number Systems',
+      romanUrdu: 'Natural, whole, integers, rational aur irrational — in sab ka farq aur misalen yaad rakhein. Rational number p/q ki shakl me likha ja sakta hai jahan q ≠ 0.',
+      content: 'N ⊂ W ⊂ Z ⊂ Q ⊂ R\nRational: p/q, q ≠ 0 (terminating or recurring decimal).\nIrrational: √2, π, e (non-terminating, non-recurring).\nProperties of equality and inequality.',
+      search: 'sabaq foundation number system math',
+      diagramType: 'math-graph',
+    },
+  ],
+  'linear graph': [
+    {
+      name: 'Linear Graphs and Their Applications',
+      romanUrdu: 'Linear equation ka graph hamesha straight line hota hai. Do points nikal kar line kheench dein. Slope line ka jhukao batata hai aur intercept woh point hai jahan line axis ko kaate.',
+      content: 'y = mx + c: m = slope, c = y-intercept.\nPlot by finding any two points (often the intercepts).\nParallel lines: equal slopes. Perpendicular: m₁m₂ = −1.\nApplications: conversion graphs, distance–time graphs.',
+      search: 'sabaq foundation linear graphs application',
+      diagramType: 'math-graph',
+    },
+  ],
+  'bisector': [
+    {
+      name: 'Line Bisectors and Angle Bisectors',
+      romanUrdu: "Right bisector line ko do barabar hisson me kaat'ta hai aur us par har point dono siron se barabar faasle par hota hai. Angle bisector par har point dono arms se barabar door hota hai.",
+      content: "Any point on the right bisector of a segment is equidistant from its end points.\nAny point on the bisector of an angle is equidistant from its arms.\nThe right bisectors of a triangle's sides are concurrent (circumcentre).\nThe angle bisectors are concurrent (incentre).",
+      search: 'sabaq foundation line bisector angle bisector',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'chords and arcs': [
+    {
+      name: 'Chords and Arcs of a Circle',
+      romanUrdu: 'Barabar chords barabar arcs banate hain aur centre par barabar angles. Ek hi arc par bane angles barabar hote hain — yeh theorem long question me aata hai.',
+      content: 'Equal chords cut off equal arcs and subtend equal angles at the centre.\nAngles in the same segment are equal.\nThe angle at the centre = twice the angle at the circumference on the same arc.\nOpposite angles of a cyclic quadrilateral sum to 180°.',
+      search: 'sabaq foundation chords and arcs circle theorem',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'variation': [
+    {
+      name: 'Variations: Direct, Inverse and Joint',
+      romanUrdu: 'Direct variation me y = kx, dono sath barhte hain. Inverse me y = k/x, ek barhe to doosra kam. Pehle k nikalein di gayi values se, phir naye case me lagayein.',
+      content: 'Direct: y ∝ x ⇒ y = kx\nInverse: y ∝ 1/x ⇒ y = k/x\nJoint: y ∝ xz ⇒ y = kxz\nTheorem on proportions: componendo and dividendo.',
+      search: 'sabaq foundation variations direct inverse math',
+      diagramType: 'math-graph',
+    },
+  ],
+  'trigonometric identit': [
+    {
+      name: 'Sum and Difference Trigonometric Identities',
+      romanUrdu: 'Sum aur difference formulas se compound angles hal hote hain. sin(A+B) aur cos(A+B) yaad hone chahiyen — baqi sab inhi se derive hote hain.',
+      content: 'sin(A±B) = sinA cosB ± cosA sinB\ncos(A±B) = cosA cosB ∓ sinA sinB\ntan(A±B) = (tanA ± tanB)/(1 ∓ tanA tanB)\nDouble angle: sin2A = 2sinA cosA; cos2A = cos²A − sin²A',
+      search: 'sabaq foundation sum difference trigonometric identities',
+      diagramType: 'math-graph',
+    },
+  ],
+  'trigonometric function': [
+    {
+      name: 'Trigonometric Functions and Their Graphs',
+      romanUrdu: 'sin aur cos ki range −1 se +1 hai aur period 2π. tan ka period π hai aur woh 90° par undefined ho jata hai. Graph ka shape aur period yaad rakhein.',
+      content: 'sin x, cos x: domain R, range [−1, 1], period 2π.\ntan x: period π, undefined at odd multiples of π/2.\nAmplitude of a sin bx = |a|; period = 2π/|b|.',
+      search: 'sabaq foundation trigonometric functions graphs',
+      diagramType: 'math-graph',
+    },
+  ],
+  'inverse trigonometric': [
+    {
+      name: 'Inverse Trigonometric Functions',
+      romanUrdu: 'Inverse function tab hi banta hai jab domain restrict karein. sin⁻¹x ki range −π/2 se π/2 hai. Yaad rakhein sin⁻¹x ka matlab 1/sin x nahi hai.',
+      content: 'sin⁻¹x: domain [−1,1], range [−π/2, π/2]\ncos⁻¹x: domain [−1,1], range [0, π]\ntan⁻¹x: domain R, range (−π/2, π/2)\nsin⁻¹x ≠ 1/sin x',
+      search: 'sabaq foundation inverse trigonometric functions',
+      diagramType: 'math-graph',
+    },
+  ],
+  'trigonometric equation': [
+    {
+      name: 'Solutions of Trigonometric Equations',
+      romanUrdu: 'Pehle general solution nikalein phir di gayi range me particular values choose karein. Quadrants me sign ka khayal rakhein — CAST rule madad karta hai.',
+      content: 'sinθ = 0 ⇒ θ = nπ\ncosθ = 0 ⇒ θ = (2n+1)π/2\ntanθ = 0 ⇒ θ = nπ\nCAST rule gives the quadrants where each ratio is positive.',
+      search: 'sabaq foundation solutions of trigonometric equations',
+      diagramType: 'math-graph',
+    },
+  ],
+  'central tendency': [
+    {
+      name: 'Measures of Central Tendency',
+      romanUrdu: 'Mean sab values ka average hai magar extreme values se mutasir hota hai. Median beech ki value hai jo outliers se mehfooz rehti hai. Mode sab se zyada aane wali value hai.',
+      content: 'Mean x̄ = Σfx/Σf (grouped data)\nMedian = value of the (n+1)/2 th item; for grouped data use the median formula.\nMode = most frequent value.\nMean is affected by extreme values; median is not.',
+      search: 'statistics measures of central tendency mean median',
+      diagramType: 'math-graph',
+    },
+  ],
+  'presentation of data': [
+    {
+      name: 'Presentation of Data: Tables and Graphs',
+      romanUrdu: 'Data ko frequency distribution me tabdeel karein phir graph banayein. Histogram continuous data ke liye, bar chart discrete ke liye aur pie chart proportions ke liye.',
+      content: 'Frequency distribution: classes, tally, frequency.\nClass mark = (lower + upper limit)/2; class width = upper − lower.\nHistogram (continuous), bar chart (discrete), pie chart (proportion), ogive (cumulative).',
+      search: 'statistics presentation of data histogram',
+      diagramType: 'math-graph',
+    },
+  ],
+  'probability distribution': [
+    {
+      name: 'Probability and Probability Distributions',
+      romanUrdu: 'Probability 0 se 1 ke darmiyan hoti hai. Binomial distribution me do hi natije hote hain (success/failure). Normal distribution bell-shaped aur symmetric hoti hai.',
+      content: 'P(E) = favourable/total, 0 ≤ P ≤ 1; ΣP = 1\nBinomial: P(x) = nCx pˣ qⁿ⁻ˣ, mean = np, variance = npq\nNormal: bell-shaped, symmetric about the mean; z = (x − μ)/σ',
+      search: 'probability distribution binomial normal statistics',
+      diagramType: 'math-graph',
+    },
+  ],
+  'time series': [
+    {
+      name: 'Time Series Analysis',
+      romanUrdu: 'Time series waqt ke sath data ka silsila hai. Iske chaar ajza: trend, seasonal, cyclical aur irregular. Moving average se trend nikala jata hai.',
+      content: 'Components: secular trend, seasonal, cyclical, irregular.\nTrend measurement: free-hand curve, semi-average, moving average, least squares.\nLeast squares trend line: Y = a + bX',
+      search: 'time series analysis trend moving average',
+      diagramType: 'math-graph',
+    },
+  ],
+  'sampling': [
+    {
+      name: 'Sampling and Estimation',
+      romanUrdu: 'Population poora group hai aur sample uska hissa. Random sampling me har unit ka barabar chance hota hai. Sample se population ka andaza lagana estimation kehlata hai.',
+      content: 'Population vs sample; parameter vs statistic.\nRandom, stratified, systematic and cluster sampling.\nStandard error of the mean = σ/√n\nPoint estimate vs interval estimate (confidence interval).',
+      search: 'sampling and estimation statistics',
+      diagramType: 'math-graph',
+    },
+  ],
+  'annuit': [
+    {
+      name: 'Annuities and Present Value',
+      romanUrdu: 'Annuity barabar rakam ki regular adaigi hai. Present value batati hai ke mustaqbil ki rakam aaj kitni qeemat rakhti hai. Discounting compounding ka ulta amal hai.',
+      content: 'Future value of an annuity: FV = R[((1+i)ⁿ − 1)/i]\nPresent value of an annuity: PV = R[(1 − (1+i)⁻ⁿ)/i]\nPresent value of a single sum: PV = FV/(1+i)ⁿ',
+      search: 'annuities present value business mathematics',
+      diagramType: 'math-graph',
+    },
+  ],
+  'trade and discount': [
+    {
+      name: 'Mathematics of Trade and Discount',
+      romanUrdu: 'Trade discount list price par milta hai aur cash discount jaldi adaigi par. Successive discounts ek ke baad ek lagte hain, jama nahi hote — yeh aam ghalti hai.',
+      content: 'Trade discount = list price × rate; net price = list − discount.\nSuccessive discounts are applied one after another, not added.\nCash discount rewards early payment.\nCommission and brokerage are percentages of the transaction value.',
+      search: 'mathematics of trade and discount commerce',
+      diagramType: 'math-graph',
+    },
+  ],
+  'ledger': [
+    {
+      name: 'Ledger and Posting',
+      romanUrdu: 'Ledger me har account alag hota hai. Journal se ledger me post karte waqt debit ko debit side aur credit ko credit side par likhein. Aakhir me balance nikalein.',
+      content: 'Ledger: a separate T-account for each head.\nPosting: debit entries to the debit side, credit to the credit side.\nBalancing: balance c/d (carried down) and b/d (brought down).\nLedger folio links back to the journal.',
+      search: 'ledger posting accounting class 11',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'adjusting': [
+    {
+      name: 'Adjusting and Closing Entries',
+      romanUrdu: 'Adjusting entries saal ke aakhir me hoti hain — outstanding expenses, prepaid, accrued income aur depreciation. Closing entries nominal accounts ko band karti hain.',
+      content: 'Adjustments: outstanding expenses, prepaid expenses, accrued income, unearned income, depreciation, bad debts.\nClosing entries transfer nominal accounts to the Trading and P&L account.\nMatching principle: record expenses in the period they help earn revenue.',
+      search: 'adjusting closing entries accounting',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'capital and revenue': [
+    {
+      name: 'Capital and Revenue Expenditure',
+      romanUrdu: 'Capital expenditure se asset banti hai aur uska faida kai saal chalta hai. Revenue expenditure rozmarra ka kharch hai. Ghalat classification se profit aur balance sheet dono ghalat ho jate hain.',
+      content: 'Capital expenditure: long-term benefit, shown in the balance sheet (machinery, building).\nRevenue expenditure: short-term, charged to the P&L (rent, wages, repairs).\nDeferred revenue expenditure: heavy expense written off over several years.',
+      search: 'capital and revenue expenditure accounting',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'cash flow': [
+    {
+      name: 'Cash Flow Statement',
+      romanUrdu: 'Cash flow statement teen hisson me hota hai: operating, investing aur financing activities. Yeh batata hai ke cash kahan se aaya aur kahan gaya — profit se alag cheez hai.',
+      content: 'Operating activities: from the main business.\nInvesting: purchase/sale of fixed assets and investments.\nFinancing: shares, debentures, loans, dividends.\nNet cash flow = closing cash − opening cash.\nProfit ≠ cash.',
+      search: 'cash flow statement accounting',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'single entry': [
+    {
+      name: 'Single Entry and Incomplete Records',
+      romanUrdu: 'Single entry me poora double entry record nahi hota. Profit nikalne ka statement of affairs method use hota hai: closing capital − opening capital, drawings aur fresh capital adjust karke.',
+      content: 'Profit = Closing capital − Opening capital + Drawings − Additional capital\nStatement of affairs is used in place of a balance sheet.\nDrawbacks: incomplete, unreliable, no trial balance possible.',
+      search: 'single entry incomplete records accounting',
+      diagramType: 'generic-mindmap',
+    },
+  ],
   'logarithm': [
     {
       name: 'Logarithms and Their Laws',
@@ -874,6 +1081,141 @@ const math: SubjectTopics = {
 
 /* =============================== BIOLOGY =============================== */
 const biology: SubjectTopics = {
+  'nature of science': [
+    {
+      name: 'The Nature of Science',
+      romanUrdu: 'Science maloomat hasil karne ka manazzam tareeqa hai. Scientific knowledge tabdeel ho sakti hai jab naye shawahid milen. Observation, hypothesis aur experiment iske bunyadi auzaar hain.',
+      content: "Science is a systematic, evidence-based way of knowing.\nScientific knowledge is testable, repeatable and revisable.\nHypothesis → experiment → theory → law.\nScience answers 'how'; it is limited to the observable and testable.",
+      search: 'nature of science general science class 9',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'human body system': [
+    {
+      name: 'Human Body Systems and Health',
+      romanUrdu: 'Jism ke ahem systems: digestive, respiratory, circulatory, nervous, excretory aur skeletal. Har system ka bunyadi kaam aur ek do amraz yaad rakhein.',
+      content: 'Digestive (breakdown and absorption), respiratory (gas exchange), circulatory (transport), nervous (control), excretory (waste removal), skeletal (support).\nHealth: balanced diet, exercise, hygiene, vaccination, adequate sleep.',
+      search: 'human body systems health general science',
+      diagramType: 'biology-cell',
+    },
+  ],
+  'diversity among living': [
+    {
+      name: 'Diversity Among Living Things',
+      romanUrdu: 'Jandaar bohat mukhtalif hain magar unhein groups me taqseem kiya ja sakta hai. Five kingdom system aur binomial nomenclature is chapter ki bunyad hain.',
+      content: 'Five kingdoms: Monera, Protista, Fungi, Plantae, Animalia.\nVertebrates: fish, amphibians, reptiles, birds, mammals.\nInvertebrates: porifera, coelenterata, arthropoda, mollusca.\nBinomial nomenclature: genus + species.',
+      search: 'diversity among living things classification',
+      diagramType: 'biology-cell',
+    },
+  ],
+  'matter and its structure': [
+    {
+      name: 'Matter and Its Structure',
+      romanUrdu: 'Matter ke teen halat hain aur woh atoms se bana hai. Element ek hi qism ke atoms se, compound do ya zyada elements ke chemical jor se aur mixture physical mel se banta hai.',
+      content: 'States: solid, liquid, gas (differ in particle arrangement and energy).\nElement: one type of atom. Compound: chemically combined. Mixture: physically mixed.\nPhysical change is reversible; chemical change forms a new substance.',
+      search: 'matter and its structure general science',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'chemical reactions in daily': [
+    {
+      name: 'Chemical Reactions in Daily Life',
+      romanUrdu: 'Rozmarra ki misalen: lohe ka zang lagna, khana pakna, doodh ka kharab hona aur photosynthesis. Chemical change me nayi cheez banti hai jo wapas nahi hoti.',
+      content: 'Rusting: iron + oxygen + water → hydrated iron oxide.\nCombustion, neutralisation, fermentation, corrosion, digestion.\nSigns of chemical change: gas, precipitate, colour change, heat, light.',
+      search: 'chemical reactions in daily life science',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'energy, force': [
+    {
+      name: 'Energy, Force and Motion',
+      romanUrdu: 'Force dhakka ya khinchav hai jo motion badalti hai. Energy kaam karne ki salahiyat hai aur ek shakl se doosri me badalti hai magar khatam nahi hoti.',
+      content: 'Force changes the state of rest or motion; F = ma.\nEnergy forms: kinetic, potential, heat, light, sound, chemical, electrical.\nLaw of conservation: energy is neither created nor destroyed.\nWork = force × distance; Power = work/time.',
+      search: 'energy force and motion general science',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'electricity and magnetism in daily': [
+    {
+      name: 'Electricity and Magnetism in Daily Life',
+      romanUrdu: 'Current electrons ke bahav se banti hai. Circuit complete hona zaroori hai. Magnet ke do pole hote hain aur hum-naam pole ek doosre ko dhakelte hain.',
+      content: 'Current flows only in a closed circuit; I = V/R.\nConductors vs insulators.\nMagnet: like poles repel, unlike attract.\nElectromagnet: current through a coil around a soft-iron core.\nSafety: fuse, earthing, circuit breaker.',
+      search: 'electricity magnetism daily life science',
+      diagramType: 'physics-ohms',
+    },
+  ],
+  'earth, atmosphere': [
+    {
+      name: 'The Earth, Atmosphere and Environment',
+      romanUrdu: 'Zameen ki structure: crust, mantle aur core. Atmosphere ki layers hamein UV se bachati hain. Pollution aur global warming aaj ke bare masail hain.',
+      content: "Earth's layers: crust, mantle, outer core, inner core.\nAtmospheric layers: troposphere, stratosphere, mesosphere, thermosphere.\nWater cycle: evaporation, condensation, precipitation.\nIssues: global warming, ozone depletion, pollution.",
+      search: 'earth atmosphere environment general science',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'space': [
+    {
+      name: 'Space, the Solar System and Modern Technology',
+      romanUrdu: 'Solar system me 8 sayyare hain jo sooraj ke gird ghoomte hain. Satellites communication, mausam aur navigation me kaam aate hain.',
+      content: '8 planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.\nRotation causes day and night; revolution causes seasons.\nSatellites: communication, weather forecasting, GPS, remote sensing.\nSPACE and SUPARCO are the relevant space agencies.',
+      search: 'space solar system satellites science',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'man and his environment': [
+    {
+      name: 'Man and His Environment',
+      romanUrdu: 'Insan aur maahol ka gehra taalluq hai. Aabadi ka izafa, sanaat aur deforestation maahol par dabao daal rahe hain. Sustainable development hi hal hai.',
+      content: 'Human impact: deforestation, urbanisation, industrial waste, overpopulation.\nConsequences: pollution, climate change, biodiversity loss, resource depletion.\nSolutions: afforestation, recycling, renewable energy, sustainable development.',
+      search: 'man and his environment biology',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'acids, bases, salts and everyday': [
+    {
+      name: 'Acids, Bases, Salts and Everyday Chemicals',
+      romanUrdu: 'Acid khatta hota hai aur blue litmus ko laal karta hai; base karwa hota hai aur red litmus ko neela. Rozmarra me sirka, baking soda aur sabun ki misalen dein.',
+      content: 'Acid: sour, turns blue litmus red, pH < 7 (vinegar, citric acid).\nBase: bitter, slippery, turns red litmus blue, pH > 7 (soap, lime).\nNeutralisation: acid + base → salt + water.\nEveryday: baking soda, bleach, detergent, antacid.',
+      search: 'acids bases salts everyday chemicals science',
+      diagramType: 'chemistry-structure',
+    },
+  ],
+  'sound, light': [
+    {
+      name: 'Sound, Light and Optical Instruments',
+      romanUrdu: 'Sound ko medium chahiye magar light vacuum me bhi chalti hai. Light ki speed 3 × 10⁸ m/s hai. Lens se image banti hai — convex converging aur concave diverging.',
+      content: 'Sound needs a medium; speed in air ≈ 340 m/s. Light travels at 3 × 10⁸ m/s.\nReflection: i = r. Refraction: bending between media.\nConvex lens converges (magnifier, camera); concave diverges.\nInstruments: microscope, telescope, periscope.',
+      search: 'sound light optical instruments science',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'electronics': [
+    {
+      name: 'Electricity, Magnetism and Electronics',
+      romanUrdu: 'Basic electronics me diode current ek hi taraf jaane deta hai aur transistor switch ya amplifier ka kaam karta hai. Logic gates digital circuits ki bunyad hain.',
+      content: 'Diode: allows current in one direction (rectification).\nTransistor: switching and amplification.\nLogic gates: AND, OR, NOT, NAND, NOR.\nAnalogue vs digital signals.',
+      search: 'electricity magnetism electronics science',
+      diagramType: 'cs-spa',
+    },
+  ],
+  'information technology': [
+    {
+      name: 'Information Technology and Communication',
+      romanUrdu: 'IT me computer aur communication technology shamil hain. Internet, email aur mobile networks ne raabta aasan bana diya hai magar privacy ka masla bhi paida hua hai.',
+      content: 'Components: hardware, software, data, people, procedures.\nCommunication: internet, email, mobile networks, satellite.\nApplications: education, health, banking, e-commerce, governance.\nConcerns: privacy, security, digital divide.',
+      search: 'information technology communication science',
+      diagramType: 'cs-spa',
+    },
+  ],
+  'chemical industries and their': [
+    {
+      name: 'Chemical Industries and Their Products',
+      romanUrdu: 'Sanaat khaam maal ko mufeed cheezon me badalti hai. Pakistan me fertiliser, cement, sugar aur textile ahem industries hain.',
+      content: 'Raw material → process → product.\nMajor Pakistani industries: fertiliser (urea), cement, sugar, textile, paper.\nBy-products and industrial waste must be treated before disposal.',
+      search: 'chemical industries products pakistan science',
+      diagramType: 'generic-mindmap',
+    },
+  ],
   'introduction to biology': [
     {
       name: 'Introduction to Biology and Its Branches',
@@ -1114,6 +1456,51 @@ const biology: SubjectTopics = {
 
 /* =========================== COMPUTER SCIENCE =========================== */
 const cs: SubjectTopics = {
+  'normalis': [
+    {
+      name: 'Data Integrity and Normalisation',
+      romanUrdu: 'Normalisation se data ki duplication khatam hoti hai. 1NF me har cell me ek hi value, 2NF me partial dependency nahi aur 3NF me transitive dependency nahi hoti.',
+      content: '1NF: atomic values, no repeating groups.\n2NF: 1NF + no partial dependency on a composite key.\n3NF: 2NF + no transitive dependency.\nIntegrity: entity integrity (primary key not null), referential integrity (valid foreign key).',
+      search: 'database normalisation 1NF 2NF 3NF',
+      diagramType: 'cs-spa',
+    },
+  ],
+  'access': [
+    {
+      name: 'Microsoft Access and Query Design',
+      romanUrdu: 'Access me tables data rakhti hain, queries data nikalti hain, forms entry ke liye aur reports printing ke liye. Query design view me criteria dena sab se ahem skill hai.',
+      content: 'Objects: tables, queries, forms, reports, macros.\nQuery types: select, parameter, action (update, delete, append), crosstab.\nCriteria examples: >100, Like "A*", Between #1/1/2024# And #31/12/2024#\nRelationships: one-to-one, one-to-many, many-to-many.',
+      search: 'microsoft access query design database',
+      diagramType: 'cs-spa',
+    },
+  ],
+  'structured query language': [
+    {
+      name: 'Structured Query Language (SQL)',
+      romanUrdu: 'SQL se database se baat ki jati hai. DDL structure banata hai (CREATE, ALTER, DROP) aur DML data handle karta hai (SELECT, INSERT, UPDATE, DELETE).',
+      content: 'DDL: CREATE TABLE, ALTER TABLE, DROP TABLE\nDML: SELECT, INSERT, UPDATE, DELETE\nSELECT col1, col2 FROM table WHERE cond ORDER BY col;\nAggregates: COUNT, SUM, AVG, MAX, MIN with GROUP BY / HAVING.\nJoins combine rows from related tables.',
+      search: 'structured query language SQL commands',
+      diagramType: 'cs-spa',
+    },
+  ],
+  'c language': [
+    {
+      name: 'Introduction to C Language',
+      romanUrdu: 'C program main() se shuru hota hai. Har statement semicolon par khatam hoti hai. printf output aur scanf input ke liye hai; scanf me & lagana na bhoolein.',
+      content: '#include <stdio.h>\nint main() { printf("Hello"); return 0; }\nData types: int, float, char, double.\nprintf("%d", x);  scanf("%d", &x);\nOperators: arithmetic, relational, logical, assignment.',
+      search: 'introduction to c language programming',
+      diagramType: 'cs-spa',
+    },
+  ],
+  'decision construct': [
+    {
+      name: 'Decision Constructs and Control Structures',
+      romanUrdu: 'if, if-else aur nested if se program faisla karta hai. switch bohat sari fixed values ke liye behtar hai. Condition ke baad semicolon lagana aam ghalti hai.',
+      content: 'if (cond) { … } else if (cond) { … } else { … }\nswitch(var) { case 1: … break; default: … }\nDo NOT put a semicolon right after if(cond).\nLogical operators: && (and), || (or), ! (not).',
+      search: 'decision constructs control structures programming',
+      diagramType: 'cs-spa',
+    },
+  ],
   'problem solving': [
     {
       name: 'Problem Solving, Algorithms and Flowcharts',
@@ -1292,6 +1679,33 @@ const cs: SubjectTopics = {
 
 /* ============================ ENGLISH / URDU ============================ */
 const english: SubjectTopics = {
+  'prose': [
+    {
+      name: 'Book III Prose: How to Answer Lesson Questions',
+      romanUrdu: 'Prose ke sawal me pehle lesson ka markazi khayal likhein, phir writer ka naam aur ahem points. Jawab apne alfaz me ho magar text se related. Ratta lagane ke bajaye mafhoom samjhein.',
+      content: 'For every prose lesson prepare: author, central idea, 4–5 short questions, key vocabulary.\nAnswer in complete sentences; begin by restating the question.\nQuote briefly from the text where it strengthens the point.\nCommon Book III authors: Sir James Jeans, Stephen Leacock, Winston Churchill, Alexander Fleming.',
+      search: 'english book 3 prose lessons class 12',
+      diagramType: 'english-tree',
+    },
+  ],
+  'poem': [
+    {
+      name: 'Selected Poems: Explanation and Central Idea',
+      romanUrdu: 'Poem ki tashreeh me poet ka naam, poem ka markazi khayal aur ahem figures of speech likhein. Reference to the context ka format board me lazmi hai.',
+      content: 'Reference to the context: poem title → poet → context → explanation.\nIdentify the theme, tone, rhyme scheme and imagery.\nFigures of speech: simile, metaphor, personification, alliteration.\nLearn 2–3 quotable lines from each poem.',
+      search: 'english poems class 12 explanation central idea',
+      diagramType: 'english-tree',
+    },
+  ],
+  'play': [
+    {
+      name: 'Play: Heat Lightning and Drama Questions',
+      romanUrdu: 'Drama me characters, plot aur theme par sawal aate hain. Har character ki khaas khoobi aur kahani ka mor yaad rakhein. Jawab me events tarteeb se likhein.',
+      content: 'For a play prepare: plot summary, main characters and their traits, theme, climax.\nCharacter sketch: appearance, personality, role, significance.\nNarrate events in chronological order.\nRefer to specific scenes as evidence.',
+      search: 'english play heat lightning class 12',
+      diagramType: 'english-tree',
+    },
+  ],
   "grammar": [
     {
       name: "Tenses, Voice and Narration",
@@ -1339,6 +1753,33 @@ const english: SubjectTopics = {
 };
 
 const urdu: SubjectTopics = {
+  'اقبال': [
+    {
+      name: 'علامہ اقبال کا کلام اور فکر',
+      romanUrdu: 'Iqbal ke kalam me khudi, shaheen, ishq aur millat ke tasawwurat markazi hain. Tashreeh me sirf lafzi maani nahi balke Iqbal ka falsafa bhi likhein tabhi pooray marks milte hain.',
+      content: 'اقبال کے بنیادی تصورات: خودی، عشق، شاہین، مردِ مومن، ملّتِ اسلامیہ، اجتہاد\nمجموعے: بانگِ درا، بالِ جبریل، ضربِ کلیم، اسرارِ خودی\nتشریح میں فلسفہ، پس منظر اور صنائع بدائع لازمی بیان کریں۔',
+      search: 'urdu allama iqbal kalam fikr tashreeh',
+      diagramType: 'urdu-calligraphy',
+    },
+  ],
+  'خط نویسی': [
+    {
+      name: 'خط نویسی اور درخواست نویسی',
+      romanUrdu: 'Darkhwast me bakhidmat janab, unwan, matn aur ikhtitami kalimat lazmi hain. Zaati khat me be-takalluf zaban chalti hai magar darkhwast me hamesha rasmi aur ba-adab lehja rakhein.',
+      content: 'درخواست: بخدمت جناب (عہدہ، ادارہ) ← عنوان ← جسمِ مضمون ← آپ کا تابع فرمان، نام، جماعت، تاریخ\nذاتی خط: پتہ، تاریخ، القاب (پیارے بھائی)، متن، اختتام (آپ کا مخلص)\nرسمی خط میں ادب اور اختصار ضروری ہے۔',
+      search: 'urdu khat nawesi darkhwast nawesi',
+      diagramType: 'urdu-calligraphy',
+    },
+  ],
+  'ترجمہ': [
+    {
+      name: 'سلیس اردو میں ترجمہ',
+      romanUrdu: 'Tarjuma karte waqt lafzi ke bajaye ba-mohawra tarjuma karein. English idiom ka seedha tarjuma ghalat lagta hai — Urdu ka hum-maani mohawra dhoondhein.',
+      content: 'ترجمے کے اصول: مفہوم کو ترجیح دیں، لفظی ترجمے سے گریز کریں\nمحاورے کا ترجمہ محاورے سے کریں\nاردو جملے کی ترتیب: فاعل ← مفعول ← فعل\nاصطلاحات کو رائج اردو متبادل سے بدلیں۔',
+      search: 'urdu tarjuma salees urdu translation',
+      diagramType: 'urdu-calligraphy',
+    },
+  ],
   "تشریح": [
     {
       name: "نظم و نثر کی تشریح کا طریقہ",
@@ -1387,6 +1828,141 @@ const urdu: SubjectTopics = {
 
 /* ============================ ISLAMIYAT ============================ */
 const islam: SubjectTopics = {
+  'ahadith': [
+    {
+      name: 'Ahadith-e-Nabvi ﷺ aur Un ki Tashreeh',
+      romanUrdu: 'Hadith Nabi ﷺ ke qaul, fail ya taqreer ko kehte hain. Har hadith ka tarjuma, mafhoom aur amali pehlu likhein. Sanad aur matn hadith ke do hisse hain.',
+      content: "Hadith = the sayings, actions and tacit approvals of the Prophet صلى الله عليه وسلم.\nParts: sanad (chain) and matn (text).\nTypes: Qauli, Fai'li, Taqreeri.\nSix authentic books (Sihah Sitta): Bukhari, Muslim, Abu Dawood, Tirmidhi, Nasai, Ibn Majah.\nIn answers give the translation, explanation and practical lesson.",
+      search: 'islamiyat ahadith e nabvi tashreeh',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'khulafa': [
+    {
+      name: 'Khulafa-e-Rashideen and Their Services',
+      romanUrdu: 'Chaar khulafa: Hazrat Abu Bakr, Umar, Usman aur Ali (RA). Har ek ki khidmaat alag hain — Abu Bakr ne irtidad ki jang lari, Umar ne nizam qaim kiya, Usman ne Quran jama karwaya.',
+      content: 'Hazrat Abu Bakr (RA): wars of apostasy, compilation of the Quran began.\nHazrat Umar (RA): administrative system, Hijri calendar, expansion, justice.\nHazrat Usman (RA): standard copies of the Quran (Jami-ul-Quran), naval power.\nHazrat Ali (RA): knowledge, justice, simplicity.',
+      search: 'islamiyat khulafa e rashideen services',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'social and economic': [
+    {
+      name: 'Islamic Social and Economic System',
+      romanUrdu: "Islam me muashra adl, musawat aur ta'awun par qaim hai. Maeeshat me sood haram hai, zakat farz hai aur halal kamai par zor diya gaya hai.",
+      content: 'Social: justice, equality, brotherhood, rights of women, family system.\nEconomic: riba (interest) is forbidden; zakat is obligatory; halal earning; fair trade; no hoarding or fraud.\nWealth circulates rather than concentrating (Surah Al-Hashr 59:7).',
+      search: 'islamiyat islamic social economic system',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'ideology of pakistan': [
+    {
+      name: 'Ideology of Pakistan and Its Basis',
+      romanUrdu: 'Nazariya-e-Pakistan ki bunyad Kalima Tayyaba aur Two Nation Theory hai. Sir Syed, Allama Iqbal aur Quaid-e-Azam is ke ahem mufakkir aur rehnuma hain.',
+      content: 'Basis: Kalima Tayyaba, the Two Nation Theory — Muslims are a separate nation.\nSir Syed Ahmad Khan: Aligarh movement, educational awakening.\nAllama Iqbal: Allahabad Address 1930.\nQuaid-e-Azam: political leadership; Lahore Resolution 1940.',
+      search: 'pakistan studies ideology of pakistan two nation theory',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'pakistan movement': [
+    {
+      name: 'Pakistan Movement and the Creation of Pakistan',
+      romanUrdu: '1857 se 1947 tak ka safar. Ahem waqiat: Partition of Bengal 1905, Muslim League 1906, Lucknow Pact 1916, Lahore Resolution 1940 aur 3 June Plan 1947.',
+      content: '1857 War of Independence → 1885 Congress → 1905 Partition of Bengal → 1906 All India Muslim League (Dhaka) → 1916 Lucknow Pact → 1930 Allahabad Address → 1940 Lahore Resolution → 1946 Cabinet Mission → 3 June 1947 Plan → 14 August 1947.',
+      search: 'pakistan movement creation of pakistan history',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'land, climate': [
+    {
+      name: 'Land, Climate and Resources of Pakistan',
+      romanUrdu: 'Pakistan me pahar, maidan, sehra aur sahili ilaqe sab hain. Char mausam hote hain. Indus river nizam mulk ki zirat ki reedh ki haddi hai.',
+      content: 'Physical regions: northern mountains, western highlands, Balochistan plateau, Potwar plateau, Indus plain, deserts, coastal areas.\nSeasons: winter, spring, summer, autumn; monsoon rains July–September.\nRivers: Indus, Jhelum, Chenab, Ravi, Sutlej.',
+      search: 'pakistan studies land climate resources',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'population, culture': [
+    {
+      name: 'Population, Culture and Society of Pakistan',
+      romanUrdu: 'Pakistan ki aabadi tezi se barh rahi hai jo wasail par dabao daalti hai. Culture me zaban, libas, khana, adab aur rasoomat shamil hain jo har sube me mukhtalif hain.',
+      content: 'Rapid population growth strains resources, education and health.\nProvinces have distinct languages: Punjabi, Sindhi, Pashto, Balochi; Urdu is the national language.\nCulture: dress, food, festivals, literature, architecture, crafts.\nUnity in diversity built on Islam and shared history.',
+      search: 'pakistan studies population culture society',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'muslim world': [
+    {
+      name: 'Pakistan and the Muslim World',
+      romanUrdu: 'Pakistan Muslim ummah ka ahem rukn hai. OIC ka bani member hai aur Saudi Arabia, Turkey, Iran aur China ke sath gehre taalluqat rakhta hai.',
+      content: 'Pakistan is a founding member of the OIC.\nClose ties: Saudi Arabia, Turkey, Iran, UAE, Malaysia.\nRole: Islamic Summit 1974 (Lahore), support for Palestine and Kashmir.\nAims: Muslim unity, economic cooperation, common defence.',
+      search: 'pakistan and the muslim world',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'constitutional development': [
+    {
+      name: 'Constitutional Development of Pakistan',
+      romanUrdu: 'Pakistan ke teen dastoor: 1956, 1962 aur 1973. Maujooda 1973 ka dastoor hai jo parliamentary nizam aur federation qaim karta hai.',
+      content: '1956: first constitution, Islamic Republic, parliamentary.\n1962: presidential system (Ayub Khan).\n1973: unanimous, parliamentary, bicameral (National Assembly + Senate), Islam as state religion.\n18th Amendment (2010): greater provincial autonomy.',
+      search: 'pakistan studies constitutional development 1973',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'economy and natural resource': [
+    {
+      name: 'Economy and Natural Resources of Pakistan',
+      romanUrdu: 'Maeeshat ka bara hissa zirat par hai. Ahem fasalein gandum, chawal, kapas aur ganna hain. Minerals me coal, gas, namak aur copper shamil hain.',
+      content: 'Agriculture: wheat, rice, cotton, sugarcane, maize.\nMinerals: coal (Thar), natural gas (Sui), rock salt (Khewra), copper and gold (Reko Diq), limestone.\nIndustry: textiles (largest export), cement, fertiliser, sugar.\nChallenges: energy shortfall, water scarcity, trade deficit.',
+      search: 'pakistan economy natural resources',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'foreign policy': [
+    {
+      name: 'Foreign Policy and International Relations',
+      romanUrdu: 'Pakistan ki foreign policy ke usool: khud-mukhtari, aman, Muslim ummah se yakjehti aur Kashmir ka hal. UN, OIC aur SAARC ka member hai.',
+      content: 'Principles: sovereignty, peaceful coexistence, non-interference, Islamic solidarity, support for self-determination in Kashmir.\nMemberships: UN, OIC, SAARC, ECO, Commonwealth.\nKey relations: China (CPEC), USA, Saudi Arabia, Turkey.',
+      search: 'pakistan foreign policy international relations',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'challenges facing pakistan': [
+    {
+      name: 'Challenges Facing Pakistan and Their Solutions',
+      romanUrdu: 'Ahem masail: aabadi ka izafa, taleem ki kami, energy crisis, corruption aur terrorism. Har masle ka hal bhi likhein warna jawab adhoora rehta hai.',
+      content: 'Challenges: overpopulation, illiteracy, energy crisis, unemployment, corruption, terrorism, water scarcity, climate change.\nSolutions: population planning, investment in education and skills, renewable energy, rule of law, national unity.\nAlways pair each problem with a concrete solution.',
+      search: 'challenges facing pakistan solutions',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'muslim scientist': [
+    {
+      name: 'Contribution of Muslim Scientists and Scholars',
+      romanUrdu: 'Musalman scientists ne science ki bunyad rakhi. Al-Khwarizmi algebra ke bani, Ibn-e-Sina tibb me, Al-Biruni jugrafia me aur Jabir bin Hayyan chemistry me mashhoor hain.',
+      content: 'Al-Khwarizmi: algebra, algorithms.\nIbn-e-Sina (Avicenna): Al-Qanun fi al-Tibb (medicine).\nAl-Razi: clinical medicine, chemistry.\nAl-Biruni: geography, astronomy, Kitab-ul-Hind.\nJabir bin Hayyan: father of chemistry.\nIbn-ul-Haitham: optics.',
+      search: 'islamiyat muslim scientists scholars contribution',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'knowledge and education': [
+    {
+      name: 'Islamic Concept of Knowledge and Education',
+      romanUrdu: "Islam me ilm hasil karna har musalman mard aur aurat par farz hai. Pehli wahi 'Iqra' thi. Ilm-e-nafi (mufeed ilm) ki tarteeb di gayi hai.",
+      content: "The first revelation was 'Iqra' (Read).\nSeeking knowledge is obligatory upon every Muslim man and woman (Hadith).\nBoth religious and worldly beneficial knowledge are encouraged.\nAdab of learning: sincerity, respect for teachers, acting upon knowledge.",
+      search: 'islamiyat concept of knowledge education',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'worship': [
+    {
+      name: 'Islamic System of Worship and Its Objectives',
+      romanUrdu: 'Ibadat ka maqsad Allah ki raza aur nafs ki tarbiyat hai. Har ibadat ka zahiri amal aur batini rooh dono zaroori hain — sirf rasm ada karna kafi nahi.',
+      content: 'Objectives: nearness to Allah, self-discipline, purification of the soul, social cohesion.\nSalat: five daily prayers, congregational unity.\nSawm, Zakat, Hajj each combine individual devotion with social benefit.\nIkhlas (sincerity) is the condition of acceptance.',
+      search: 'islamiyat system of worship objectives',
+      diagramType: 'generic-mindmap',
+    },
+  ],
   "aqaid": [
     {
       name: "Tauheed, Risalat aur Akhirat",
@@ -1444,6 +2020,207 @@ const islam: SubjectTopics = {
   ],
 };
 
+/* ===== COMMERCE / I.Com (see cross-subject note in lookupTopics) ===== */
+const commerce: SubjectTopics = {
+  'introduction to commerce': [
+    {
+      name: 'Introduction to Commerce and Business',
+      romanUrdu: 'Commerce me trade aur uske auxiliaries shamil hain. Business ki teen shakhen: industry, commerce aur direct services. Profit motive business ki pehchan hai.',
+      content: 'Business = industry + commerce.\nCommerce = trade + aids to trade (banking, insurance, transport, warehousing, advertising).\nIndustry: primary (extractive), secondary (manufacturing), tertiary (services).\nObjectives: profit, service, growth, employment.',
+      search: 'principles of commerce introduction business',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'forms of business': [
+    {
+      name: 'Forms of Business Organisation',
+      romanUrdu: 'Sole proprietorship sab se aasan hai magar liability unlimited. Partnership me 2-20 partners hote hain. Joint stock company me limited liability aur separate legal entity hoti hai.',
+      content: 'Sole proprietorship: one owner, unlimited liability, easy to form.\nPartnership: 2–20 partners, partnership deed, unlimited liability.\nJoint stock company: separate legal entity, limited liability, perpetual succession.\nCo-operative society: service motive, one member one vote.',
+      search: 'forms of business organisation commerce',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'sole proprietorship': [
+    {
+      name: 'Sole Proprietorship and Partnership',
+      romanUrdu: 'Sole proprietor akela malik hai — sara munafa uska magar sara nuqsan bhi. Partnership me deed likhna zaroori hai warna Partnership Act 1932 ke default rules lagte hain.',
+      content: 'Sole proprietorship: single owner, full control, unlimited liability, limited capital.\nPartnership Act 1932; the deed states the profit ratio, capital and duties.\nTypes of partner: active, sleeping, nominal, minor.\nDissolution: by agreement, notice, court order or insolvency.',
+      search: 'sole proprietorship partnership commerce',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'joint stock company': [
+    {
+      name: 'Joint Stock Company',
+      romanUrdu: 'Company ek separate legal person hai. Memorandum aur Articles of Association iske bunyadi dastawezat hain. Shareholders malik hain magar management directors karte hain.',
+      content: 'Features: separate legal entity, limited liability, perpetual succession, transferable shares.\nDocuments: Memorandum of Association, Articles of Association, Prospectus.\nTypes: private (2–50 members) and public (min 3 members, no upper limit).\nFormation: promotion → incorporation → subscription → commencement.',
+      search: 'joint stock company commerce class 11',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'co-operative': [
+    {
+      name: 'Co-operative Societies and State Enterprises',
+      romanUrdu: 'Co-operative ka maqsad khidmat hai munafa nahi. Har member ka ek vote hota hai chahe uska hissa kitna bhi ho. State enterprise hukumat chalati hai.',
+      content: 'Co-operative: service motive, one member one vote, open membership, democratic.\nTypes: consumer, producer, credit, housing, farming.\nState enterprises: departmental undertaking, public corporation, government company.\nAim: public welfare rather than profit.',
+      search: 'co-operative societies state enterprises commerce',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'trade: home': [
+    {
+      name: 'Trade: Home and Foreign',
+      romanUrdu: 'Home trade mulk ke andar hota hai (wholesale aur retail) aur foreign trade mulkon ke darmiyan (import, export, entrepot). Foreign trade me documents aur customs ahem hain.',
+      content: 'Home trade: wholesale and retail.\nForeign trade: import, export, entrepot (re-export).\nDocuments: invoice, bill of lading, letter of credit, certificate of origin.\nBalance of trade = exports − imports (visible items only).',
+      search: 'home trade foreign trade commerce',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'channels of distribution': [
+    {
+      name: 'Channels of Distribution',
+      romanUrdu: 'Channel woh raasta hai jis se maal producer se consumer tak pohanchta hai. Jitne zyada middlemen, utni qeemat barhti hai. Direct channel me producer khud bechta hai.',
+      content: 'Producer → wholesaler → retailer → consumer (traditional).\nDirect: producer → consumer (online, own outlets).\nMiddlemen: wholesaler, retailer, agent, broker.\nServices of a wholesaler: bulk buying, storage, credit, transport.',
+      search: 'channels of distribution commerce',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'banking and insurance': [
+    {
+      name: 'Aids to Trade: Banking and Insurance',
+      romanUrdu: 'Bank paisa mehfooz rakhta hai aur qarz deta hai. Insurance khatre ko baant deta hai. Insurance ke usool: utmost good faith, insurable interest aur indemnity.',
+      content: 'Banks: accept deposits, advance loans, transfer funds, issue drafts and letters of credit.\nAccounts: current, savings, fixed, PLS.\nInsurance principles: utmost good faith, insurable interest, indemnity, subrogation, contribution.\nTypes: life, fire, marine, accident.',
+      search: 'banking insurance aids to trade commerce',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'transport, warehousing': [
+    {
+      name: 'Aids to Trade: Transport, Warehousing and Advertising',
+      romanUrdu: 'Transport maal ko jagah tak pohanchata hai, warehousing waqt ka farq mitati hai aur advertising maloomat deti hai. Yeh teeno trade ki rukawaten door karte hain.',
+      content: 'Transport: road, rail, sea, air, pipeline — removes the place barrier.\nWarehousing: storage — removes the time barrier; types: private, public, bonded.\nAdvertising: informs and persuades — removes the knowledge barrier.\nMedia: print, electronic, outdoor, digital.',
+      search: 'transport warehousing advertising commerce',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'business combination': [
+    {
+      name: 'Business Combination and Stock Exchange',
+      romanUrdu: 'Combination me firms mil kar taaqat barhati hain. Stock exchange woh mandi hai jahan shares kharide aur beche jate hain — Pakistan Stock Exchange iski misal hai.',
+      content: 'Combinations: horizontal, vertical, lateral; forms include merger, amalgamation, cartel, trust, holding company.\nStock exchange: an organised market for securities.\nFunctions: liquidity, price determination, capital formation.\nPakistan Stock Exchange (PSX) formed in 2016.',
+      search: 'business combination stock exchange commerce',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'commercial geography': [
+    {
+      name: 'Introduction to Commercial Geography',
+      romanUrdu: 'Commercial geography me yeh dekha jata hai ke jugrafia maeeshat par kaise asar daalta hai. Mausam, zameen aur wasail hi tay karte hain ke kahan kya paida hoga.',
+      content: 'Commercial geography studies the effect of geography on economic activity.\nFactors: location, climate, soil, water, minerals, transport, population.\nHelps in planning agriculture, industry and trade routes.',
+      search: 'introduction to commercial geography',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'location, land': [
+    {
+      name: 'Location, Land and Physical Features of Pakistan',
+      romanUrdu: 'Pakistan ki location strategic hai — Central Asia, China, Iran aur Arabian Sea ke darmiyan. CPEC isi ahmiyat ka nateeja hai.',
+      content: 'Location: 23°–37° N, 61°–78° E; borders with India, Afghanistan, Iran, China; coastline on the Arabian Sea.\nStrategic value: gateway to Central Asia, Gwadar port, CPEC.\nRegions: northern mountains, plateaus, Indus plain, deserts, coast.',
+      search: 'location land physical features pakistan geography',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'climate and its effect': [
+    {
+      name: 'Climate and Its Effect on Economic Activity',
+      romanUrdu: 'Mausam fasal ka tay karta hai. Monsoon ki barish zirat ke liye ahem hai magar kami se khushksali aur ziyadti se sailab aata hai.',
+      content: 'Pakistan has a mostly arid to semi-arid climate; rainfall is uneven.\nMonsoon (July–Sept) supports kharif crops; winter rain supports rabi crops.\nKharif: cotton, rice, sugarcane, maize. Rabi: wheat, gram, barley.\nHazards: drought, floods, heatwaves.',
+      search: 'climate effect on economic activity pakistan',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'agricultural resource': [
+    {
+      name: 'Agricultural Resources and Crops',
+      romanUrdu: 'Zirat Pakistan ki maeeshat ki bunyad hai. Gandum sab se bari fasal hai aur kapas sab se bari cash crop. Green Revolution ne paidawar barhai.',
+      content: 'Food crops: wheat, rice, maize, gram.\nCash crops: cotton, sugarcane, tobacco.\nWheat is the staple; cotton feeds the textile industry (the largest export sector).\nProblems: waterlogging, salinity, small holdings, low yield per acre.',
+      search: 'agricultural resources crops pakistan',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'water resources': [
+    {
+      name: 'Water Resources and Irrigation',
+      romanUrdu: 'Indus river system Pakistan ki lifeline hai. Irrigation ke tareeqe: canal, tube well, karez aur lift. Waterlogging aur salinity bare masail hain.',
+      content: 'Indus system: Indus, Jhelum, Chenab, Ravi, Sutlej.\nIndus Waters Treaty 1960: western rivers to Pakistan, eastern to India.\nDams: Tarbela, Mangla, Warsak; Diamer-Bhasha under construction.\nIrrigation: canals, tube wells, karez, lift.\nProblems: waterlogging, salinity, silting, water shortage.',
+      search: 'water resources irrigation pakistan',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'mineral and power': [
+    {
+      name: 'Mineral and Power Resources',
+      romanUrdu: 'Pakistan me coal, gas, namak aur copper ke zakhair hain. Bijli hydel, thermal, nuclear aur renewable se banti hai. Energy crisis maeeshat ka bara masla hai.',
+      content: 'Minerals: coal (Thar), natural gas (Sui), rock salt (Khewra), gypsum, limestone, copper and gold (Reko Diq), chromite.\nPower: hydel (Tarbela, Mangla), thermal, nuclear (Chashma, Karachi), solar, wind (Gharo–Keti Bandar).\nIssue: dependence on imported oil, circular debt.',
+      search: 'mineral power resources pakistan geography',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'industries of pakistan': [
+    {
+      name: 'Industries of Pakistan',
+      romanUrdu: 'Textile sab se bari sanaat aur sab se bara export hai. Cement, sugar, fertiliser aur sports goods bhi ahem hain. Sialkot surgical aur sports goods ke liye mashhoor hai.',
+      content: 'Textiles: the largest industry and export earner (Faisalabad, Karachi).\nOthers: cement, sugar, fertiliser, steel (Karachi), cotton ginning.\nCottage industries: carpets, pottery, handicrafts.\nSialkot: sports goods and surgical instruments.\nProblems: energy shortage, outdated technology, low value addition.',
+      search: 'industries of pakistan commercial geography',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'means of transport': [
+    {
+      name: 'Means of Transport and Communication',
+      romanUrdu: 'Road transport sab se zyada use hota hai. Railway sasta hai bare maal ke liye. Karachi aur Gwadar ahem bandargahen hain.',
+      content: 'Road: the dominant mode; motorways M1–M9, Karakoram Highway.\nRail: Pakistan Railways, cheap for bulk freight.\nSea: Karachi, Port Qasim, Gwadar ports handle most foreign trade.\nAir: PIA and private airlines.\nCommunication: post, telephone, mobile, internet.',
+      search: 'means of transport communication pakistan',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'foreign trade of pakistan': [
+    {
+      name: 'Foreign Trade of Pakistan',
+      romanUrdu: 'Pakistan zyada tar textile export karta hai aur machinery, petroleum aur khane ka tel import karta hai. Trade deficit musalsal masla hai.',
+      content: 'Exports: textiles and garments, rice, leather, surgical goods, sports goods.\nImports: petroleum, machinery, edible oil, chemicals, iron and steel.\nMain partners: China, USA, UAE, EU, Saudi Arabia.\nTrade deficit: imports exceed exports; remedies include export diversification and import substitution.',
+      search: 'foreign trade of pakistan',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+  'population and human resource': [
+    {
+      name: 'Population and Human Resources',
+      romanUrdu: 'Aabadi agar hunarmand ho to woh asset hai warna bojh. Pakistan ki aabadi jawan hai — yeh demographic dividend ban sakti hai agar taleem aur training di jaye.',
+      content: 'Population is an asset when skilled, a burden when unskilled.\nPakistan has a young population (a potential demographic dividend).\nIssues: rapid growth, low literacy, unemployment, rural–urban migration, brain drain.\nSolutions: education, technical training, family planning, job creation.',
+      search: 'population human resources pakistan',
+      diagramType: 'generic-mindmap',
+    },
+  ],
+};
+
+
+/**
+ * Alias keys. Some board chapter titles phrase the same topic differently
+ * ("Huqooq-ul-Ibad" vs "akhlaq", "Economic and Social" vs "social and
+ * economic"), so we point the alternate wording at the existing entry rather
+ * than duplicating the content.
+ */
+islam["huqooq"] = islam["akhlaq"];
+islam["tauheed"] = islam["aqaid"];
+islam["risalat"] = islam["aqaid"];
+islam["hereafter"] = islam["aqaid"];
+islam["akhirat"] = islam["aqaid"];
+islam["hadith and sunnah"] = islam["ahadith"];
+islam["economic and social"] = islam["social and economic"];
+math["financial mathematics"] = math["business"];
+math["consumer mathematics"] = math["business"];
+
 export const TOPIC_BANK: Record<string, SubjectTopics> = {
   physics,
   chemistry,
@@ -1454,6 +2231,7 @@ export const TOPIC_BANK: Record<string, SubjectTopics> = {
   english,
   urdu,
   islam,
+  commerce,
 };
 
 /**
@@ -1462,18 +2240,34 @@ export const TOPIC_BANK: Record<string, SubjectTopics> = {
  * caller can fall back to its own generic advice.
  */
 export function lookupTopics(subjectId: string, chapterName: string): TopicSeed[] | null {
-  const subject = TOPIC_BANK[subjectId.toLowerCase()];
-  if (!subject) return null;
-
   const hay = chapterName.toLowerCase();
-  let best: { key: string; topics: TopicSeed[] } | null = null;
 
-  for (const [key, topics] of Object.entries(subject)) {
-    if (hay.includes(key) && (!best || key.length > best.key.length)) {
-      best = { key, topics };
+  const scan = (bank: SubjectTopics | undefined) => {
+    if (!bank) return null;
+    let best: { key: string; topics: TopicSeed[] } | null = null;
+    for (const [key, topics] of Object.entries(bank)) {
+      if (hay.includes(key) && (!best || key.length > best.key.length)) {
+        best = { key, topics };
+      }
     }
+    return best ? best.topics : null;
+  };
+
+  const primary = scan(TOPIC_BANK[subjectId.toLowerCase()]);
+  if (primary) return primary;
+
+  // Commerce (I.Com) students reuse the physics / chemistry / cs subject
+  // slots in App.tsx: "physics" is renamed Principles of Commerce, "chemistry"
+  // becomes Principles of Accounting and "cs" becomes Economics. So a miss in
+  // the science bank may still be a commerce chapter. Accounting topics live
+  // in the math bank, business subjects in the commerce bank.
+  for (const fallback of ["commerce", "math"]) {
+    if (fallback === subjectId.toLowerCase()) continue;
+    const hit = scan(TOPIC_BANK[fallback]);
+    if (hit) return hit;
   }
-  return best ? best.topics : null;
+
+  return null;
 }
 
 /**
