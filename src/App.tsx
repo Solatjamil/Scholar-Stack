@@ -40,6 +40,7 @@ import {
   Search,
   ListFilter,
   AlertTriangle,
+  ChevronUp,
 } from "lucide-react";
 import { auth, db, isRealFirebaseConfigured } from "./firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -1959,6 +1960,7 @@ export default function App() {
   const [biseFetchError, setBiseFetchError] = useState<string | null>(null);
   const [countdownTab, setCountdownTab] = useState<"personal" | "bise">("personal");
   const [mobileMoreOpen, setMobileMoreOpen] = useState<boolean>(false);
+  const [expandedSyllabusCards, setExpandedSyllabusCards] = useState<Record<string, boolean>>({});
 
   // Authentication State (Firebase & Local Synergized)
   const [studentUser, setStudentUser] = useState<{
@@ -3390,11 +3392,11 @@ export default function App() {
       <nav id="top_navbar" className="h-16 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between shrink-0 sticky top-0 z-40 shadow-xs">
         <div className="flex items-center space-x-3 lg:space-x-8 min-w-0">
           {/* Logo with clean structural branding */}
-          <div className="flex items-center space-x-2.5 cursor-pointer" onClick={() => setActiveTab("dashboard")}>
+          <div className="flex items-center space-x-2.5 cursor-pointer shrink-0" onClick={() => setActiveTab("dashboard")}>
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-display font-bold text-sm tracking-wide shadow-sm hover:bg-indigo-700 transition-colors">
               S
             </div>
-            <span className="font-display font-bold text-lg tracking-tight text-slate-800">ScholarStack</span>
+            <span className="font-display font-bold text-lg tracking-tight text-slate-800 hidden min-[380px]:inline">ScholarStack</span>
           </div>
 
           {/* Navigation Links with Active States */}
@@ -3475,8 +3477,8 @@ export default function App() {
         </div>
 
         {/* Board Picker and Profile Segment */}
-        <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
-          <div className="relative flex items-center text-xs bg-slate-100 border border-slate-200 rounded-full px-3 py-1 min-h-[40px] text-slate-700 hover:bg-slate-200/80 transition-colors cursor-pointer max-w-[46vw] sm:max-w-none">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 justify-end">
+          <div className="relative flex items-center text-xs bg-slate-100 border border-slate-200 rounded-full px-3 py-1 min-h-[40px] text-slate-700 hover:bg-slate-200/80 transition-colors cursor-pointer min-w-0 flex-1 sm:flex-none sm:max-w-none">
             <span className="font-semibold text-slate-700 mr-1.5 hidden sm:inline">Board:</span>
             <select
               value={boardSelection}
@@ -3555,17 +3557,19 @@ export default function App() {
                 setAuthMode("register");
                 setShowAuthModal(true);
               }}
-              className="flex items-center space-x-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-xs hover:shadow-md transition-all animate-pulse"
+              className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2 min-h-[40px] bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white rounded-lg text-xs font-semibold shadow-xs hover:shadow-md transition-all shrink-0"
+              aria-label="Student Profile Sign-In"
             >
-              <User size={13} />
-              <span>Student Profile Sign-In</span>
+              <User size={15} />
+              <span className="hidden sm:inline">Student Profile Sign-In</span>
+              <span className="sm:hidden">Sign In</span>
             </button>
           )}
         </div>
       </nav>
 
       {/* Main Container */}
-      <div className="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8 flex flex-col overflow-hidden">
+      <div className="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 pb-28 lg:pb-8 flex flex-col">
         
         {/* --- VIEW 1: MAIN DASHBOARD --- */}
         {activeTab === "dashboard" && (
@@ -3716,7 +3720,7 @@ export default function App() {
                               </span>
                             </div>
 
-                            <div className="max-h-[180px] overflow-y-auto space-y-2 scrollbar-thin pr-1">
+                            <div className="space-y-2 lg:max-h-[180px] lg:overflow-y-auto lg:scrollbar-thin lg:pr-1">
                               {biseDatesheet.schedule.map((paper: any, idx: number) => {
                                 const paperDateObj = new Date(paper.date);
                                 const isPassed = paperDateObj.getTime() < new Date("2026-06-07").getTime(); // Reference current local time
@@ -4235,29 +4239,29 @@ export default function App() {
 
         {/* --- VIEW 3: SYLLABUS ARCHIVE SCREEN --- */}
         {activeTab === "syllabus" && (
-          <div id="syllabus_archive_view" className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs">
+          <div id="syllabus_archive_view" className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-8 shadow-xs">
             
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-100 pb-5 mb-6 gap-y-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-100 pb-4 sm:pb-5 mb-4 sm:mb-6 gap-y-3">
               <div>
-                <h2 className="text-xl font-display font-bold text-slate-800">Board Syllabus & Course Outlines</h2>
-                <p className="text-xs sm:text-sm text-slate-500">
-                  Select and complete subject chapters to automatically calculate and drive your Dashboard progress metrics.
+                <h2 className="text-base sm:text-xl font-display font-bold text-slate-800">Board Syllabus &amp; Course Outlines</h2>
+                <p className="text-[11px] sm:text-sm text-slate-500 mt-0.5 leading-relaxed">
+                  Tick chapters as you finish them &mdash; your Dashboard progress updates instantly.
                 </p>
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center w-full sm:w-auto">
                 <button
                   onClick={() => setShowAddSubjectSyllabusModal(true)}
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg shadow-xs transition-colors"
+                  className="w-full sm:w-auto px-4 py-2.5 min-h-[44px] bg-white sm:bg-indigo-600 border border-indigo-200 sm:border-transparent text-indigo-700 sm:text-white hover:bg-indigo-50 sm:hover:bg-indigo-700 text-xs font-bold rounded-lg shadow-xs transition-colors whitespace-nowrap"
                 >
-                  Create Custom Subject Structure
+                  + Add Custom Subject
                 </button>
               </div>
             </div>
 
             {/* Search Bar & Result Summary indicator */}
-            <div className="mb-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:max-w-xl">
+            <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center sm:justify-between">
+              <div className="flex flex-row gap-2 sm:gap-3 w-full sm:max-w-xl">
                 <div className="relative flex-1">
                   <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                   <input
@@ -4281,7 +4285,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setSortChaptersIncompleteFirst(!sortChaptersIncompleteFirst)}
-                  className={`px-4 py-2.5 rounded-xl border text-xs font-bold transition-all flex items-center justify-center space-x-2 shrink-0 ${
+                  className={`px-3 sm:px-4 py-2.5 min-h-[44px] rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-2 shrink-0 ${
                     sortChaptersIncompleteFirst
                       ? "bg-indigo-50 border-indigo-200 text-indigo-700 hover:bg-indigo-100"
                       : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
@@ -4289,16 +4293,15 @@ export default function App() {
                   title="Toggle sorting incomplete chapters to the top of the list"
                 >
                   <ListFilter size={15} className={sortChaptersIncompleteFirst ? "text-indigo-600" : "text-slate-500"} />
-                  <span>{sortChaptersIncompleteFirst ? "Incomplete First" : "Standard Order"}</span>
+                  <span className="hidden sm:inline">{sortChaptersIncompleteFirst ? "Incomplete First" : "Standard Order"}</span>
                 </button>
               </div>
 
-              <div className="text-xs text-slate-500 font-semibold flex items-center space-x-1.5 shrink-0 bg-slate-50 border border-slate-200/80 rounded-full px-3 py-1.5">
-                <span>Showing</span>
+              <div className="text-[11px] sm:text-xs text-slate-500 font-semibold flex items-center gap-1.5 shrink-0 self-start sm:self-auto sm:bg-slate-50 sm:border sm:border-slate-200/80 sm:rounded-full sm:px-3 sm:py-1.5">
                 <span className="text-indigo-600 font-bold">{filteredSyllabusList.length}</span>
                 <span>of</span>
                 <span className="text-slate-700 font-bold">{syllabusList.length}</span>
-                <span>Course Modules</span>
+                <span>subjects</span>
               </div>
             </div>
 
@@ -4350,16 +4353,24 @@ export default function App() {
                         </p>
 
                         {/* Course status list inside card */}
-                        <div className="space-y-2 mt-4 max-h-[220px] overflow-y-auto pr-1">
-                          {[...item.chapters]
-                            .sort((a, b) => {
+                        <div className="space-y-2 mt-4 lg:max-h-[220px] lg:overflow-y-auto lg:pr-1">
+                          {(() => {
+                            const sorted = [...item.chapters].sort((a, b) => {
                               if (sortChaptersIncompleteFirst) {
                                 if (a.completed === b.completed) return 0;
                                 return a.completed ? 1 : -1;
                               }
                               return 0;
-                            })
-                            .map((ch) => (
+                            });
+                            // On phones the inner scrollbar was a trap, so instead of
+                            // nesting a scroll area we collapse long lists behind a
+                            // "show all" toggle. Desktop still scrolls inside the card.
+                            const isOpen = expandedSyllabusCards[item.id];
+                            const visible = isOpen ? sorted : sorted.slice(0, 4);
+                            const hiddenCount = sorted.length - visible.length;
+                            return (
+                              <>
+                                {visible.map((ch) => (
                               <div
                                 key={ch.id}
                                 onClick={() => toggleChapterCompletion(item.id, ch.id)}
@@ -4376,7 +4387,27 @@ export default function App() {
                                   {ch.name}
                                 </span>
                               </div>
-                            ))}
+                                ))}
+                                {(hiddenCount > 0 || isOpen) && (
+                                  <button
+                                    onClick={() =>
+                                      setExpandedSyllabusCards((prev) => ({
+                                        ...prev,
+                                        [item.id]: !prev[item.id],
+                                      }))
+                                    }
+                                    className="w-full flex items-center justify-center gap-1 py-2.5 min-h-[44px] text-[11px] font-bold text-indigo-600 hover:bg-indigo-50 active:bg-indigo-100 rounded-lg transition-colors"
+                                  >
+                                    {isOpen ? (
+                                      <>Show fewer <ChevronUp size={13} /></>
+                                    ) : (
+                                      <>Show all {sorted.length} units <ChevronDown size={13} /></>
+                                    )}
+                                  </button>
+                                )}
+                              </>
+                            );
+                          })()}
                         </div>
                       </div>
 
@@ -5436,7 +5467,7 @@ export default function App() {
               <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Topic Milestone Tracker</h4>
               <p className="text-xs text-slate-500 mb-3">Check off completed segments or lessons to adjust live course stats:</p>
               
-              <div className="space-y-2 max-h-[250px] overflow-y-auto pr-1">
+              <div className="space-y-2 max-h-[45vh] overflow-y-auto overscroll-contain pr-1">
                 {showSyllabusDetails.chapters.map((ch) => {
                   return (
                     <div
@@ -5509,7 +5540,7 @@ export default function App() {
                   No assignments or studies planned for this date.
                 </p>
               ) : (
-                <div className="space-y-2 max-h-[120px] overflow-y-auto pr-1">
+                <div className="space-y-2 max-h-[30vh] overflow-y-auto overscroll-contain pr-1">
                   {dayEvents.map((ev) => (
                     <div key={ev.id} className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 text-xs">
                       <div className="flex items-center space-x-2">
@@ -5738,7 +5769,7 @@ export default function App() {
             </button>
 
             {/* Scrollable Container inside modal for mobile */}
-            <div className="overflow-y-auto pr-1">
+            <div className="overflow-y-auto overscroll-contain pr-1">
               {/* If Student User is Already Authenticated: Show Profile Manager */}
               {studentUser ? (
                 <div className="space-y-5 animate-fade-in">
