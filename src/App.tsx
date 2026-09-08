@@ -1818,6 +1818,8 @@ export default function App() {
   const [authEmail, setAuthEmail] = useState<string>("");
   const [authPassword, setAuthPassword] = useState<string>("");
   const [authError, setAuthError] = useState<string | null>(null);
+  // Non-fatal message shown after we fall back to a local profile.
+  const [authNotice, setAuthNotice] = useState<string | null>(null);
   const [isAuthLoading, setIsAuthLoading] = useState<boolean>(false);
 
   // Dynamic Class & Subjects State Setup
@@ -2212,6 +2214,37 @@ export default function App() {
     });
   }, [studentClass, studentGroup]);
 
+  /**
+   * Firebase config problems (revoked/invalid key, project deleted, auth method
+   * disabled) are not something a student can act on, and they used to leave
+   * the sign-in modal permanently stuck showing a raw SDK error. When one of
+   * these occurs we fall back to a local profile so the app stays usable.
+   */
+  const isUnrecoverableAuthConfigError = (err: any) => {
+    const code = String(err?.code || "");
+    const msg = String(err?.message || "");
+    return [
+      "api-key-not-valid",
+      "auth/invalid-api-key",
+      "auth/api-key-not-valid",
+      "auth/configuration-not-found",
+      "auth/operation-not-allowed",
+      "auth/app-deleted",
+      "auth/invalid-app-id",
+    ].some((k) => code.includes(k) || msg.includes(k));
+  };
+
+  const buildLocalProfile = (name: string, email: string) => ({
+    uid: "local_" + Date.now(),
+    name: name || "Student",
+    email,
+    classLevel: studentClass,
+    board: boardSelection,
+    academicGroup: studentGroup,
+    isSimulated: true,
+    createdAt: new Date().toISOString(),
+  });
+
   // --- REGISTRATION & LOGIN FOR STUDENT COLLECTORS ---
   const handleStudentAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -2313,8 +2346,20 @@ export default function App() {
       setShowAuthModal(false);
     } catch (err: any) {
       console.error(err);
-      if (err.code === "auth/operation-not-allowed" || (err.message && err.message.includes("operation-not-allowed"))) {
-        setAuthError("auth/operation-not-allowed");
+      if (isUnrecoverableAuthConfigError(err)) {
+        // Cloud sync is misconfigured server-side. Save the profile locally so
+        // the student can still use the app instead of hitting a dead end.
+        const profile = buildLocalProfile(authName, authEmail);
+        setStudentUser(profile);
+        localStorage.setItem("student_profile", JSON.stringify(profile));
+        setAuthName("");
+        setAuthEmail("");
+        setAuthPassword("");
+        setShowAuthModal(false);
+        setAuthError(null);
+        setAuthNotice(
+          "Cloud sync is unavailable right now, so your profile was saved on this device. Everything in the app still works."
+        );
       } else {
         setAuthError(err.message || "An authentication transaction problem occurred. Please check entries.");
       }
@@ -2394,7 +2439,18 @@ export default function App() {
       setShowAuthModal(false);
     } catch (err: any) {
       console.error(err);
-      setAuthError(err.message || "A Google authentication transaction failed.");
+      if (isUnrecoverableAuthConfigError(err)) {
+        const profile = buildLocalProfile("Student", "");
+        setStudentUser(profile);
+        localStorage.setItem("student_profile", JSON.stringify(profile));
+        setShowAuthModal(false);
+        setAuthError(null);
+        setAuthNotice(
+          "Google sign-in is unavailable right now, so a local profile was created on this device. Everything in the app still works."
+        );
+      } else {
+        setAuthError(err.message || "A Google authentication transaction failed.");
+      }
     } finally {
       setIsAuthLoading(false);
     }
@@ -3159,6 +3215,21 @@ export default function App() {
     <div id="scholarstack_app" className="relative w-full min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900 leading-normal selection:bg-indigo-100">
       
       {/* Top Professional Header Navigation */}
+      {/* Shown after we fall back to a local profile because cloud sync failed. */}
+      {authNotice && (
+        <div className="bg-emerald-50 border-b border-emerald-200 px-4 py-2.5 flex items-start gap-2 text-[11px] sm:text-xs text-emerald-800 leading-relaxed">
+          <AlertCircle size={14} className="mt-0.5 shrink-0 text-emerald-600" />
+          <span className="flex-1">{authNotice}</span>
+          <button
+            onClick={() => setAuthNotice(null)}
+            className="shrink-0 font-bold text-emerald-700 hover:text-emerald-900 px-2 min-h-[24px]"
+            aria-label="Dismiss notice"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
       <nav id="top_navbar" className="h-16 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between shrink-0 sticky top-0 z-40 shadow-xs">
         <div className="flex items-center space-x-3 lg:space-x-8 min-w-0">
           {/* Logo with clean structural branding */}
@@ -3325,6 +3396,8 @@ export default function App() {
             <button
               onClick={() => {
                 setAuthMode("register");
+                setAuthError(null);
+                setAuthNotice(null);
                 setShowAuthModal(true);
               }}
               className="flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2 min-h-[40px] bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white rounded-lg text-xs font-semibold shadow-xs hover:shadow-md transition-all shrink-0"
