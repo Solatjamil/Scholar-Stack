@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
-import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -9,23 +8,6 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-// Initialize Google GenAI Client securely
-// User-Agent: aistudio-build is mandatory for telemetry
-const getGeminiClient = () => {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    console.warn("WARNING: GEMINI_API_KEY environment variable is not set. Predictor will run in simulation mode.");
-    return null;
-  }
-  return new GoogleGenAI({
-    apiKey: apiKey,
-    httpOptions: {
-      headers: {
-        "User-Agent": "aistudio-build",
-      },
-    },
-  });
-};
 
 function buildExactPredictionFormat(
   subject: string, 
@@ -203,7 +185,7 @@ function buildExactPredictionFormat(
   };
 }
 
-function generateFallbackPrediction(classLevel: string, board: string, subject: string, streamGroup: any) {
+function generateCurriculumPrediction(classLevel: string, board: string, subject: string, streamGroup: any) {
   const subLower = (subject || "").toLowerCase();
   const clLower = (classLevel || "").toLowerCase();
   
@@ -1505,7 +1487,7 @@ function generateFallbackPrediction(classLevel: string, board: string, subject: 
     mcqs: exactFormat.mcqs,
     shorts: exactFormat.shorts,
     longs: exactFormat.longs,
-    summary: `The Morning Session prediction model is operating in safe-fallback mode matching past parameters for ${subject} (${classLevel}) in the ${board} 2026 scheme.`
+    summary: `Morning Session paper for ${subject} (${classLevel}), built offline from the ${board} 2026 scheme and recurring past-paper topics.`
   };
 
   const eveningExam = {
@@ -1547,13 +1529,13 @@ function generateFallbackPrediction(classLevel: string, board: string, subject: 
         text: pt.text + " [Evening session evaluation key]"
       }))
     })),
-    summary: `The Evening Session prediction model is operating in safe-fallback mode matching past patterns for ${subject} (${classLevel}) in the ${board} 2026 scheme.`
+    summary: `Evening Session paper for ${subject} (${classLevel}), built offline from the ${board} 2026 scheme and recurring past-paper topics.`
   };
 
   return {
     success: true,
-    isSimulated: true,
-    isRefreshedByFallback: true,
+    isOffline: true,
+    isCurriculumBased: true,
     classLevel,
     board,
     subject,
@@ -1564,7 +1546,7 @@ function generateFallbackPrediction(classLevel: string, board: string, subject: 
       { title: "BISE Dynamic Board Archive Portal", uri: "https://www.ilmkidunya.com/past_papers/" },
       { title: "Pak textbook Boards Curriculum Guides", uri: "https://www.taleem360.com/" }
     ],
-    summary: `The AI prediction model is temporarily operating in safe-fallback mode owing to high dynamic request volumes on the server-bound Google platform. To support your revision seamlessly, we have dynamically built this high-fidelity curriculum exam map matching the past patterns for ${subject} (${classLevel}) in the ${board} 2026 scheme.`
+    summary: `Offline curriculum-based exam map for ${subject} (${classLevel}), matching the ${board} 2026 scheme and the topics that recur most often in past papers. Generated on-device — no internet required.`
   };
 }
 
@@ -1578,223 +1560,10 @@ app.post("/api/predict-exam", async (req, res) => {
     return res.status(400).json({ error: "Missing required parameters: classLevel, board, subject" });
   }
 
-  const ai = getGeminiClient();
-
-  if (!ai) {
-    console.log(`[Simulated Predictor API] Creating high-fidelity fallback dataset for ${classLevel}, Board: ${board}, Subject: ${subject}`);
-    const fallbackData = generateFallbackPrediction(classLevel, board, subject, streamGroup);
-    return res.json(fallbackData);
-  }
-
-  try {
-    const prompt = `You are an expert academic analyst specializing in Pakistani Board Exams (BISE Punjab, FBISE Federal, BIEK Karachi, BISE Peshawar).
-Analyze the past 5 years of exam papers (2021-2025) and curriculum guides to design and forecast predicted 2026 exam papers for:
-Class/Level: ${classLevel} (e.g. 9th, 10th, 11th, 12th)
-Educational Board: ${board}
-Subject: ${subject}
-Academic Stream/Group: ${streamGroup || 'Science'}
-
-You MUST predict 2 distinct exam sessions representing separate student shifts:
-1. "morning": First Session Morning slot exam
-2. "evening": Second Session Evening slot exam
-
-For both Morning and Evening session papers, you must independently match these rules:
-1. Section A: Multiple Choice Questions (MCQs) carrying 1 mark each. The total number of MCQs generated MUST be between 15 and 18.
-2. Section B: Short (SLO-based) conceptual questions covering the whole book. The total number of short questions generated MUST be exactly 24, with a Choice to do at least 18 (e.g., "Section B: Attempt any 18 questions out of 24").
-3. Section C: Structured Long/Descriptive Essay Questions. The total number of long questions generated MUST be exactly 3. Each long question must have 2 distinct parts (Part A and Part B). It is mandatory to solve/answer exactly 2 of these questions, answering both parts of the chosen questions (e.g., "Section C: Attempt any 2 questions out of 3. Both parts are mandatory for each attempted question").
-
-Provide your response strictly in JSON format matching this schema:
-{
-  "confidence": 95,
-  "morning": {
-    "summary": "An analytical description explaining your 2026 Morning session predictions methodology and syllabus focus.",
-    "examScheme": {
-      "totalMarks": 85,
-      "timeAllowed": "3 Hours",
-      "passingMarks": 28,
-      "structureNotes": "Description of the sections distribution and SLO-based markings schema of this board subject for morning session."
-    },
-    "predictedTopics": [
-      {
-        "topic": "Specific chapter or SLO topic name",
-        "probability": "94%",
-        "description": "Why this is a high-priority area for 2026 boards in morning session"
-      }
-    ],
-    "predictedQuestions": [
-      {
-        "type": "Short Question",
-        "text": "Core predicted question text for morning session",
-        "probability": "92%",
-        "reason": "Repeating trends analysis"
-      }
-    ],
-    "mcqs": [
-      {
-        "id": "m-1",
-        "question": "The MCQ question statement for morning session?",
-        "options": ["A) Choice A", "B) Choice B", "C) Choice C", "D) Choice D"],
-        "correctAnswer": "A",
-        "explanation": "Brief scientific or grammatical explanation of correct option choice."
-      }
-    ],
-    "shorts": [
-      {
-        "groupTitle": "Section B - Part I (Attempt any 5 of 8)",
-        "instruction": "Short answer conceptual questions",
-        "totalMarks": 15,
-        "questions": [
-          {
-            "id": "s-1",
-            "text": "What is the short question text for morning session?",
-            "marks": 3,
-            "hint": "Brief bulleted guidance."
-          }
-        ]
-      }
-    ],
-    "longs": [
-      {
-        "questionNum": "Question No. 5",
-        "totalMarks": 8,
-        "parts": [
-          {
-            "partLetter": "A",
-            "text": "Theoretical long question derived from core chapters",
-            "marks": 5,
-            "stepSchema": "Suggested marking distribution by the examiner",
-            "answer": "Complete structured model answer or essay-style proof using bullet points and mathematical formatting where appropriate."
-          },
-          {
-            "partLetter": "B",
-            "text": "Numerical problem or application scenario matching syllabus",
-            "marks": 3,
-            "stepSchema": "Examiner's step calculation marks",
-            "answer": "Detailed step-by-step numerical solution."
-          }
-        ]
-      }
-    ]
-  },
-  "evening": {
-    "summary": "An analytical description explaining your 2026 Evening session predictions methodology and syllabus focus.",
-    "examScheme": {
-      "totalMarks": 85,
-      "timeAllowed": "3 Hours",
-      "passingMarks": 28,
-      "structureNotes": "Description of the sections distribution and SLO-based markings schema for evening session."
-    },
-    "predictedTopics": [
-      {
-        "topic": "Specific chapter or SLO topic name",
-        "probability": "94%",
-        "description": "Why this is a high-priority area for 2026 boards in evening session"
-      }
-    ],
-    "predictedQuestions": [
-      {
-        "type": "Short Question",
-        "text": "Core predicted question text for evening session",
-        "probability": "92%",
-        "reason": "Repeating trends analysis"
-      }
-    ],
-    "mcqs": [
-      {
-        "id": "m-e1",
-        "question": "The MCQ question statement for evening session?",
-        "options": ["A) Choice A", "B) Choice B", "C) Choice C", "D) Choice D"],
-        "correctAnswer": "A",
-        "explanation": "Brief explanation."
-      }
-    ],
-    "shorts": [
-      {
-        "groupTitle": "Section B - Part I (Attempt any 5 of 8)",
-        "instruction": "Short answer conceptual questions",
-        "totalMarks": 15,
-        "questions": [
-          {
-            "id": "s-e1",
-            "text": "What is the short question text for evening session?",
-            "marks": 3,
-            "hint": "Brief bulleted guidance."
-          }
-        ]
-      }
-    ],
-    "longs": [
-      {
-        "questionNum": "Question No. 5",
-        "totalMarks": 8,
-        "parts": [
-          {
-            "partLetter": "A",
-            "text": "Theoretical long question for evening session",
-            "marks": 5,
-            "stepSchema": "Suggested marking distribution",
-            "answer": "Complete structured model answer or essay-style proof."
-          },
-          {
-            "partLetter": "B",
-            "text": "Numerical problem or application scenario for evening session",
-            "marks": 3,
-            "stepSchema": "Examiner's step calculation marks",
-            "answer": "Detailed solution."
-          }
-        ]
-      }
-    ]
-  }
-}
-
-The questions of Morning and Evening sessions MUST BE DIFFERENT to represent actual papers distributed to students of respective sessions.
-Ensure the response contains valid JSON and nothing else. No markdown headers or wrappers.`;
-
-    const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
-      contents: prompt,
-      config: {
-        tools: [{ googleSearch: {} }],
-        responseMimeType: "application/json"
-      },
-    });
-
-    const parsedData = JSON.parse(response.text || "{}");
-
-    // Extract grounding URLs for Pakistan boards citations
-    const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
-    const sources = groundingChunks ? groundingChunks.map((chunk: any) => {
-      if (chunk.web) {
-        return { title: chunk.web.title, uri: chunk.web.uri };
-      }
-      return null;
-    }).filter(Boolean) : [
-      { title: "Ilm Ki Duniya Past Papers Portal", uri: "https://www.ilmkidunya.com/past_papers/" },
-      { title: "Taleem360 Boards Syllabus Guide", uri: "https://www.taleem360.com/" }
-    ];
-
-    res.json({
-      success: true,
-      isSimulated: false,
-      classLevel,
-      board,
-      subject,
-      confidence: parsedData.confidence || 95,
-      morning: parsedData.morning || null,
-      evening: parsedData.evening || null,
-      groundingSources: sources
-    });
-
-  } catch (error: any) {
-    if (error?.message && error.message.includes("quota")) {
-      console.warn("Gemini API quota capacity reached. Moving cleanly to static fallback simulation databases.");
-    } else {
-      console.warn("Recoverable helper-exception caught during Gemini API model generation, handling gracefully:", error?.message || error);
-    }
-    const fallback = generateFallbackPrediction(classLevel, board, subject, streamGroup);
-    res.json(fallback);
-  }
+  // Fully offline, deterministic curriculum-based prediction.
+  // No external model is called and no API key is required.
+  const data = generateCurriculumPrediction(classLevel, board, subject, streamGroup);
+  res.json(data);
 });
 
 function getLocalBiseDatesheet(board: string, classLevel: string) {
@@ -1876,12 +1645,14 @@ function getLocalBiseDatesheet(board: string, classLevel: string) {
 
   return {
     success: true,
-    isSimulated: true,
+    isOffline: true,
     board,
     classLevel,
     startDate,
     examinationName: examName,
     sourceUrl,
+    isIndicative: true,
+    note: "Indicative schedule based on previous years' patterns. Always confirm the final date sheet on your board's official website before making any plans.",
     schedule
   };
 }
@@ -1894,84 +1665,8 @@ app.post("/api/bise-datesheet", async (req, res) => {
     return res.status(400).json({ error: "Missing required parameters: board, classLevel" });
   }
 
-  const ai = getGeminiClient();
-
-  if (!ai) {
-    console.log(`[Simulated DateSheet] Crafting local model lookup for Board: ${board}, Class: ${classLevel}`);
-    const localSheet = getLocalBiseDatesheet(board, classLevel);
-    return res.json(localSheet);
-  }
-
-  try {
-    const prompt = `You are an expert academic analyst specializing in Pakistani intermediate and matriculation secondary education boards (BISE Lahore, Federal Board FBISE, BIEK Karachi, BISE Rawalpindi, etc.).
-Search the web to find the real 2026 datesheet, start dates, and exam subjects schedules for:
-Board: ${board}
-Class: ${classLevel}
-
-IMPORTANT: Today is June 18, 2026, and the 11th Class (First Year) Chemistry / Statistics exam is held today on June 18, 2026.
-The complete official schedule sequence for 11th class starts on June 15, 2026:
-- June 15, 2026: English Compulsory
-- June 16, 2026: Computer Science / Civics
-- June 17, 2026: Tarjuma-tul-Quran Compulsory
-- June 18, 2026: Chemistry / Statistics (Today!)
-- June 19, 2026: Physics / Principles of Commerce
-- June 20, 2026: Mathematics / Biology
-- June 22, 2026: Urdu Compulsory
-- June 23, 2026: Islamic Education (Compulsory)
-
-Please align the output date list precisely according to this sequence for 11th class and make sure other classes also have accurate, verified chronological dates matching the ongoing May/June 2026 board schedule.
-
-Return YOUR COMPLETE response strictly in JSON format matching this schema with absolutely no markdown headers, wrappers (such as \`\`\`json), or text before/after:
-{
-  "startDate": "YYYY-MM-DD",
-  "examinationName": "Official BISE Name for this exam",
-  "sourceUrl": "https://www.ilmkidunya.com/datesheet/...",
-  "schedule": [
-    {
-      "date": "YYYY-MM-DD",
-      "subject": "Subject Name",
-      "time": "Morning" or "Afternoon"
-    }
-  ]
-}
-If no exact date sheet is found on the web, fail gracefully by returning a logical list matching realistic Pakistan board schedules starting at a logical date in 2026. JSON only.`;
-
-    const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
-      contents: prompt,
-      config: {
-        tools: [{ googleSearch: {} }],
-        responseMimeType: "application/json"
-      },
-    });
-
-    const parsedData = JSON.parse(response.text || "{}");
-    
-    // Validate result structure
-    if (!parsedData.startDate || !Array.isArray(parsedData.schedule)) {
-      throw new Error("Invalid schema received from model");
-    }
-
-    res.json({
-      success: true,
-      isSimulated: false,
-      board,
-      classLevel,
-      startDate: parsedData.startDate,
-      examinationName: parsedData.examinationName || `${board} Class ${classLevel} Exams 25/26`,
-      sourceUrl: parsedData.sourceUrl || "https://www.ilmkidunya.com/datesheet/",
-      schedule: parsedData.schedule
-    });
-
-  } catch (error: any) {
-    if (error?.message && error.message.includes("quota")) {
-      console.warn("Gemini API datesheet fetch quota capacity reached. Failing over smoothly to localized board database lookup.");
-    } else {
-      console.warn("Recoverable helper-exception caught during Gemini API datesheet fetch:", error?.message || error);
-    }
-    const fallback = getLocalBiseDatesheet(board, classLevel);
-    res.json(fallback);
-  }
+  // Offline indicative date sheet drawn from the local board database.
+  res.json(getLocalBiseDatesheet(board, classLevel));
 });
 
 // Configure Vite or Static Asset delivery

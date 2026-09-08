@@ -1,4 +1,7 @@
 import React, { useState, useMemo } from "react";
+import { EXAM_BANK } from "../examBank";
+import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_NUMERICALS } from "../bankSupplement";
+import { QUESTION_BANK } from "../questionBank";
 import {
   BookOpen,
   CheckCircle,
@@ -955,7 +958,91 @@ export default function ChapterWiseStudy({
       };
     }
 
-    // Default Fallback
+    // ---------------------------------------------------------------
+    // Bank-driven fallback.
+    // Every subject without a hand-written block above now pulls real
+    // MCQs, shorts, longs and (where applicable) fully-solved numericals
+    // from the shared question banks instead of a single stub item.
+    // ---------------------------------------------------------------
+    const lvl = isMatric ? "matric" : "inter";
+    const keep = (x: { level: string }) => x.level === "both" || x.level === lvl;
+    const bankKey = subId === "mathematics" ? "math" : subId;
+
+    const eb = EXAM_BANK[bankKey];
+    const qb = QUESTION_BANK[bankKey];
+
+    const bankMcqs = [
+      ...(eb ? eb.mcqs.filter(keep) : []),
+      ...(qb ? qb.mcqs.map((q) => ({ ...q, level: "both" as const, topic: "Core" })) : []),
+      ...((EXTRA_MCQS[bankKey] ?? []).filter(keep)),
+    ];
+    const bankShorts = [
+      ...(eb ? eb.shorts.filter(keep) : []),
+      ...(qb ? qb.shorts.map((q) => ({ ...q, level: "both" as const, topic: "Core" })) : []),
+      ...((EXTRA_SHORTS[bankKey] ?? []).filter(keep)),
+    ];
+    const bankLongs = [
+      ...(eb ? eb.longs.filter(keep) : []),
+      ...(qb ? qb.longs.map((q) => ({ ...q, level: "both" as const, topic: "Core" })) : []),
+    ];
+    const bankNums = [
+      ...(eb ? eb.numericals.filter(keep) : []),
+      ...((EXTRA_NUMERICALS[bankKey] ?? []).filter(keep)),
+    ];
+
+    if (bankMcqs.length || bankShorts.length) {
+      return {
+        mcqs: bankMcqs.slice(0, 12).map((q, i) => ({
+          id: `bk-m-${i}`,
+          question: q.question,
+          options: q.options,
+          correctIndex: q.correctIndex,
+          explanation: q.explanation,
+        })),
+        shorts: bankShorts.slice(0, 12).map((q, i) => ({
+          id: `bk-s-${i}`,
+          question: q.question,
+          answer: q.modelAnswer,
+        })),
+        longs: bankLongs.slice(0, 6).flatMap((g, i) => [
+          { id: `bk-l-${i}a`, title: g.a.question, answer: g.a.modelAnswer },
+          { id: `bk-l-${i}b`, title: g.b.question, answer: g.b.modelAnswer },
+        ]),
+        specialTitle: bankNums.length ? "Solved Numericals (Step-by-Step)" : "Board Answer Technique",
+        specialType: "numericals",
+        specials: bankNums.length
+          ? bankNums.slice(0, 8).map((n, i) => ({
+              id: `bk-n-${i}`,
+              label: `${n.topic} — ${n.marks} marks`,
+              problem: n.question,
+              formulaUsed: n.formula,
+              steps: n.solution.split("\n").filter((l) => l.trim().length > 0),
+              correctOutput:
+                n.solution
+                  .split("\n")
+                  .find((l) => l.trim().toUpperCase().startsWith("RESULT"))
+                  ?.replace(/^RESULT:\s*/i, "") ?? "See full working above",
+            }))
+          : [
+              {
+                id: "tech-1",
+                label: "How to attempt long questions",
+                problem: `Structuring a full-mark answer in ${activeSubjectInfo?.name} for ${currentBoard}.`,
+                formulaUsed: "Definition -> Explanation -> Example -> Conclusion",
+                steps: [
+                  "Step 1: Open with the exact textbook definition; examiners award the first mark for precise wording.",
+                  "Step 2: Explain the concept in your own words across two short paragraphs.",
+                  "Step 3: Add a labelled diagram, table or quoted reference where the topic allows it.",
+                  "Step 4: Give a real example linked to the syllabus.",
+                  "Step 5: Close with a one-line conclusion that restates the main idea.",
+                ],
+                correctOutput: "A complete, well-structured board answer",
+              },
+            ],
+      };
+    }
+
+    // Last-resort fallback if no bank content exists for this subject.
     return {
       mcqs: [
         {
