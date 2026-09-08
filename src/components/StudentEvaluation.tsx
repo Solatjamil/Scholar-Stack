@@ -1,3 +1,4 @@
+import { bandsForBoard, gradeFor, gradeWithMeaning, scaleLabel } from "../grading";
 import React, { useState, useEffect } from "react";
 import { 
   Award, 
@@ -58,14 +59,21 @@ export interface SelfAssessment {
   notes: string;
 }
 
-const getBoardPeerAverage = (boardName: string) => {
-  const name = (boardName || "").toLowerCase();
-  if (name.includes("federal") || name.includes("fbise")) return 74;
-  if (name.includes("lahore") || name.includes("punjab")) return 68;
-  if (name.includes("karachi") || name.includes("sindh")) return 62;
-  if (name.includes("peshawar") || name.includes("kpk")) return 65;
-  if (name.includes("quetta") || name.includes("balochistan")) return 58;
-  return 67; // average fallback
+/**
+ * A fixed reference line to benchmark against, NOT observed peer data.
+ *
+ * This was previously labelled "Board Peer Avg" and returned per-board numbers
+ * (68 for Punjab, 62 for Sindh, and so on) as though they were real statistics
+ * for other students on that board. No such data is collected by this app and
+ * none of those figures came from a published source, so the comparison and
+ * the "Margin" it produced were meaningless. It is now presented as what it
+ * actually is: a target line set at the board's A-grade threshold, which is a
+ * genuine, checkable number the student can aim for.
+ */
+const getBoardTargetLine = (boardName: string) => {
+  const bands = bandsForBoard(boardName);
+  const aBand = bands.find((b) => b.grade === "A");
+  return aBand ? aBand.min : 70;
 };
 
 interface CustomTooltipProps {
@@ -105,7 +113,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
             )}
             {peerVal !== undefined && (
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Board Peer Avg:</span>
+                <span className="text-slate-400">A-Grade Target:</span>
                 <span className="font-extrabold text-amber-400 font-mono">{peerVal}%</span>
               </div>
             )}
@@ -237,17 +245,17 @@ export default function StudentEvaluation({
     ? [...evaluationRecords].sort((a,b) => b.percentage - a.percentage)[0]
     : null;
 
-  // Chronologically sorted records with board peer baseline for the trend line chart
+  // Chronologically sorted records with the A-grade target line for the trend chart
   const chronologicallySortedRecords = [...evaluationRecords].sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   ).map(rec => ({
     ...rec,
-    peerAverage: getBoardPeerAverage(rec.boardName || currentBoard)
+    peerAverage: getBoardTargetLine(rec.boardName || currentBoard)
   }));
 
   const boardAvg = chronologicallySortedRecords.length > 0
-    ? Math.round(chronologicallySortedRecords.reduce((sum, r) => sum + (r.peerAverage || 65), 0) / chronologicallySortedRecords.length)
-    : 65;
+    ? Math.round(chronologicallySortedRecords.reduce((sum, r) => sum + (r.peerAverage || getBoardTargetLine(currentBoard)), 0) / chronologicallySortedRecords.length)
+    : getBoardTargetLine(currentBoard);
   const diffFromBoard = avgPercentage - boardAvg;
 
   // Grade distributions
@@ -383,7 +391,7 @@ export default function StudentEvaluation({
                 </div>
                 {totalMockups > 0 ? (
                   <p className="text-[10px] text-slate-500 mt-3 border-t border-slate-50 pt-1.5 font-semibold">
-                    Current Grade: {avgPercentage >= 80 ? "A+/A Level" : avgPercentage >= 60 ? "B/C Level" : "Requires revision"}
+                    Current Grade: {gradeWithMeaning(avgPercentage, currentBoard)} — {scaleLabel(currentBoard)}
                   </p>
                 ) : (
                   <p className="text-[10px] text-slate-400 mt-3 border-t border-slate-50 pt-1.5">No exams undertaken yet</p>
@@ -422,7 +430,7 @@ export default function StudentEvaluation({
                       onChange={(e) => setShowPeerBaseline(e.target.checked)}
                       className="rounded text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5 border-slate-300"
                     />
-                    <span className="font-semibold text-slate-700">Compare Board Peer Avg</span>
+                    <span className="font-semibold text-slate-700">Show A-grade target line</span>
                   </label>
                   {evaluationRecords.length > 0 && (
                     <span className="text-[10px] bg-indigo-50 text-indigo-700 font-bold px-2 py-1 rounded-lg font-mono whitespace-nowrap">
@@ -493,7 +501,7 @@ export default function StudentEvaluation({
                           <Line 
                             type="monotone" 
                             dataKey="peerAverage" 
-                            name={`Board Peer Avg (${currentBoard.split(" ")[0]})`}
+                            name={`A-Grade Target (${gradeFor(getBoardTargetLine(currentBoard), currentBoard)} at ${getBoardTargetLine(currentBoard)}%)`}
                             stroke="#f59e0b" 
                             strokeWidth={2}
                             strokeDasharray="5 5"
@@ -513,12 +521,12 @@ export default function StudentEvaluation({
                           <Award size={15} />
                         </div>
                         <div>
-                          <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Your Standings Variance</p>
+                          <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Gap To A-Grade Target</p>
                           <p className="text-xs font-semibold text-slate-700 mt-0.5">
                             {diffFromBoard >= 0 ? (
-                              <span>Outperforming peer baseline by <b className="text-emerald-600 font-extrabold font-mono">+{diffFromBoard}%</b></span>
+                              <span>Above the A-grade target by <b className="text-emerald-600 font-extrabold font-mono">+{diffFromBoard}%</b></span>
                             ) : (
-                              <span>Lagging selected board average by <b className="text-rose-600 font-extrabold font-mono">{diffFromBoard}%</b></span>
+                              <span>Below the A-grade target by <b className="text-rose-600 font-extrabold font-mono">{Math.abs(diffFromBoard)}%</b></span>
                             )}
                           </p>
                         </div>

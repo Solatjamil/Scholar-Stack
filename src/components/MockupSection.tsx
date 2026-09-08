@@ -1,3 +1,4 @@
+import { gradeFor, gradeWithMeaning, hasPassed, scaleLabel } from "../grading";
 import React, { useState, useEffect, useMemo } from "react";
 import { 
   generateBoardPaper, 
@@ -185,13 +186,9 @@ export default function MockupSection({
     const maxPossMarks = paper.totalMarks;
     const pct = Math.round((totalMarksEarned / maxPossMarks) * 100);
 
-    let assignedGrade = "F";
-    if (pct >= 90) assignedGrade = "A+";
-    else if (pct >= 80) assignedGrade = "A";
-    else if (pct >= 70) assignedGrade = "B";
-    else if (pct >= 60) assignedGrade = "C";
-    else if (pct >= 50) assignedGrade = "D";
-    else if (pct >= 40) assignedGrade = "E";
+    // Graded on the student's actual board scale. The previous inline ladder
+    // was one band stricter than any real Pakistani board (see src/grading.ts).
+    const assignedGrade = gradeFor(pct, currentBoard);
 
     const summaryRecord = {
       id: `eval-${Date.now()}`,
@@ -208,7 +205,7 @@ export default function MockupSection({
       totalMax: maxPossMarks,
       percentage: pct,
       grade: assignedGrade,
-      feedback: `Successfully undertook timed mock revision paper. Scored ${totalMarksEarned}/${maxPossMarks} (${pct}%) on SEC-A (Choice) + SEC-B/C (Written Model check).`
+      feedback: `Scored ${totalMarksEarned}/${maxPossMarks} (${pct}%) — ${gradeWithMeaning(pct, currentBoard)} on the ${scaleLabel(currentBoard)}. ${hasPassed(pct, currentBoard) ? "This is a pass" : "This is below the pass mark"} for ${currentBoard}. Objective ${mcqComponentScore}/${paper.sectionA.length}, written ${writtenComponentScore}/${maxPossMarks - paper.sectionA.length}.`
     };
 
     if (onAddEvaluationRecord) {
