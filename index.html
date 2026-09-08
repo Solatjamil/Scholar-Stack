@@ -1,17 +1,37 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-PK">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ScholarStack — Scholar Dashboard</title>
+    <!-- viewport-fit=cover + user-scalable for accessibility on Android/iOS -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+    />
+    <title>ScholarStack — BISE Study Companion (9th–12th)</title>
+    <meta
+      name="description"
+      content="Syllabus tracking, mock board papers, paper prediction and study resources for Pakistani 9th, 10th, 11th and 12th class students."
+    />
+    <meta name="theme-color" content="#4F46E5" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ScholarStack" />
+    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
     <!-- Premium minimalist fonts and Google symbols -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="bg-slate-50 text-slate-900 selection:bg-indigo-100 font-sans antialiased">
+  <body
+    class="bg-slate-50 text-slate-900 selection:bg-indigo-100 font-sans antialiased"
+  >
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

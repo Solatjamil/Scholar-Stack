@@ -38,7 +38,8 @@ import {
   Sun,
   Moon,
   Search,
-  ListFilter
+  ListFilter,
+  AlertTriangle,
 } from "lucide-react";
 import { auth, db, isRealFirebaseConfigured } from "./firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -46,6 +47,9 @@ import { doc, getDoc, setDoc, collection, addDoc, getDocs } from "firebase/fires
 import MockupSection from "./components/MockupSection";
 import StudentEvaluation, { EvaluationRecord, SelfAssessment } from "./components/StudentEvaluation";
 import ChapterWiseStudy from "./components/ChapterWiseStudy";
+import BoardExamCenter from "./components/BoardExamCenter";
+import MobileTabBar, { MobileMoreSheet } from "./components/MobileTabBar";
+import InstallPrompt from "./components/InstallPrompt";
 
 enum OperationType {
   CREATE = 'create',
@@ -1855,7 +1859,7 @@ export default function App() {
   ];
 
   // --- STATE VARIABLES ---
-  const [activeTab, setActiveTab] = useState<"dashboard" | "syllabus" | "resources" | "mockups" | "predictor" | "evaluation" | "chapterstudy">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "syllabus" | "resources" | "mockups" | "predictor" | "evaluation" | "chapterstudy" | "boardexams">("dashboard");
   const [boardSelection, setBoardSelection] = useState<string>("BISE Lahore (Punjab)");
   const [subjects, setSubjects] = useState<Subject[]>(initialSubjects);
   const [syllabusList, setSyllabusList] = useState<SyllabusItem[]>(initialSyllabusList);
@@ -1947,11 +1951,14 @@ export default function App() {
     examinationName: string;
     sourceUrl: string;
     schedule: { date: string; subject: string; time: string }[];
-    isSimulated?: boolean;
+    isOffline?: boolean;
+    isIndicative?: boolean;
+    note?: string;
   } | null>(null);
   const [isFetchingBise, setIsFetchingBise] = useState<boolean>(false);
   const [biseFetchError, setBiseFetchError] = useState<string | null>(null);
   const [countdownTab, setCountdownTab] = useState<"personal" | "bise">("personal");
+  const [mobileMoreOpen, setMobileMoreOpen] = useState<boolean>(false);
 
   // Authentication State (Firebase & Local Synergized)
   const [studentUser, setStudentUser] = useState<{
@@ -3381,7 +3388,7 @@ export default function App() {
       
       {/* Top Professional Header Navigation */}
       <nav id="top_navbar" className="h-16 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between shrink-0 sticky top-0 z-40 shadow-xs">
-        <div className="flex items-center space-x-6 sm:space-x-8">
+        <div className="flex items-center space-x-3 lg:space-x-8 min-w-0">
           {/* Logo with clean structural branding */}
           <div className="flex items-center space-x-2.5 cursor-pointer" onClick={() => setActiveTab("dashboard")}>
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-display font-bold text-sm tracking-wide shadow-sm hover:bg-indigo-700 transition-colors">
@@ -3391,7 +3398,7 @@ export default function App() {
           </div>
 
           {/* Navigation Links with Active States */}
-          <div className="flex space-x-1 sm:space-x-4 text-xs sm:text-sm font-medium text-slate-500">
+          <div className="hidden lg:flex space-x-1 sm:space-x-4 text-xs sm:text-sm font-medium text-slate-500">
             <button
               onClick={() => setActiveTab("dashboard")}
               className={`px-3 py-1.5 rounded-lg transition-all ${
@@ -3434,15 +3441,15 @@ export default function App() {
               Mockup Exams
             </button>
             <button
-              onClick={() => setActiveTab("predictor")}
+              onClick={() => setActiveTab("boardexams")}
               className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1 ${
-                activeTab === "predictor"
+                activeTab === "boardexams"
                   ? "text-indigo-600 bg-indigo-50 font-semibold shadow-xs"
-                  : "hover:text-amber-600 hover:bg-amber-50/50"
+                  : "hover:text-slate-800 hover:bg-slate-100/80"
               }`}
             >
-              <Sparkles size={14} className="text-amber-500 animate-pulse" />
-              <span>Exam Predictor</span>
+              <FileText size={14} />
+              <span>Papers &amp; Predictor</span>
             </button>
             <button
               onClick={() => setActiveTab("evaluation")}
@@ -3468,16 +3475,16 @@ export default function App() {
         </div>
 
         {/* Board Picker and Profile Segment */}
-        <div className="flex items-center space-x-3">
-          <div className="relative flex items-center text-xs bg-slate-100 border border-slate-200 rounded-full px-3 py-1 text-slate-700 hover:bg-slate-200/80 transition-colors cursor-pointer">
-            <span className="font-semibold text-slate-700 mr-1.5">Board:</span>
+        <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+          <div className="relative flex items-center text-xs bg-slate-100 border border-slate-200 rounded-full px-3 py-1 min-h-[40px] text-slate-700 hover:bg-slate-200/80 transition-colors cursor-pointer max-w-[46vw] sm:max-w-none">
+            <span className="font-semibold text-slate-700 mr-1.5 hidden sm:inline">Board:</span>
             <select
               value={boardSelection}
               onChange={(e) => {
                 setBoardSelection(e.target.value);
                 if (studentUser) handleUpdateProfile({ board: e.target.value });
               }}
-              className="bg-transparent font-medium border-none outline-none text-slate-700 cursor-pointer pr-1"
+              className="bg-transparent font-medium border-none outline-none text-slate-700 cursor-pointer pr-1 max-w-full truncate text-[11px] sm:text-xs"
             >
               <optgroup label="Federal & Islamabad">
                 <option value="Federal Board (FBISE) Islamabad">Federal Board (FBISE)</option>
@@ -3558,7 +3565,7 @@ export default function App() {
       </nav>
 
       {/* Main Container */}
-      <div className="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col overflow-hidden">
+      <div className="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8 flex flex-col overflow-hidden">
         
         {/* --- VIEW 1: MAIN DASHBOARD --- */}
         {activeTab === "dashboard" && (
@@ -3680,7 +3687,7 @@ export default function App() {
                           <Clock size={24} />
                         </div>
                         <p className="text-xs text-indigo-500 animate-pulse font-mono">
-                          Crawling board calendars & connecting to live {boardSelection} datesheet index...
+                          Loading {boardSelection} schedule from the offline board database...
                         </p>
                       </div>
                     ) : biseFetchError ? (
@@ -3749,6 +3756,13 @@ export default function App() {
                               </div>
                             </div>
 
+                            {biseDatesheet.note && (
+                              <div className="flex items-start gap-2 p-2.5 mb-3 bg-amber-50 border border-amber-200 rounded-lg">
+                                <AlertTriangle size={13} className="text-amber-600 mt-0.5 shrink-0" />
+                                <p className="text-[10px] leading-relaxed text-amber-800">{biseDatesheet.note}</p>
+                              </div>
+                            )}
+
                             <a
                               href={biseDatesheet.sourceUrl}
                               target="_blank"
@@ -3756,7 +3770,7 @@ export default function App() {
                               className="w-full text-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition-all flex items-center justify-center space-x-1"
                             >
                               <ExternalLink size={13} />
-                              <span>View Official BISE Source</span>
+                              <span>Check Official Board Website</span>
                             </a>
                           </div>
                         </div>
@@ -5168,710 +5182,47 @@ export default function App() {
         )}
 
         {/* --- DYNAMIC EXAM PREDICTOR VIEW --- */}
-        {activeTab === "predictor" && (
-          <div id="exam_predictor_tab" className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-fade-in">
-            
-            {/* Header Description: Span 12 */}
-            <div className="col-span-1 py-1 lg:col-span-12">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-5">
-                <div>
-                  <div className="flex items-center space-x-2 text-indigo-600 mb-1">
-                    <Sparkles size={16} className="text-amber-500 animate-spin-slow" />
-                    <span className="text-xs font-bold tracking-widest uppercase">Predictive Learning Engine</span>
-                  </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-slate-800">2026 BISE & Federal Exam Predictor</h2>
-                  <p className="text-sm text-slate-500">Pattern analysis of the last 5 years' papers (2021-2025) via Google Search Grounding with estimated 95% accuracy metrics.</p>
-                </div>
-                
-                {/* Active Info Badge */}
-                <span className="px-3 py-1.5 bg-amber-50 border border-amber-200 rounded-full text-xs font-semibold text-amber-700 flex items-center space-x-1.5 self-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping" />
-                  <span>Configured Stream: {studentClass} Class • {studentGroup} Group</span>
-                </span>
-              </div>
+        {activeTab === "boardexams" && (
+          <div id="boardexams_view" className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 lg:p-8 shadow-xs">
+            <div className="mb-5">
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 font-display">
+                Past Papers &amp; Exam Predictor
+              </h2>
+              <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-relaxed">
+                Five years of full papers plus a predicted morning/evening paper, in the current board
+                scheme. Works fully offline &mdash; synced to your class, group and board.
+              </p>
             </div>
-
-            {/* Left Column: Input Selection and Scraping Console (span-5) */}
-            <div className="lg:col-span-5 flex flex-col space-y-6">
-              
-              <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
-                <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center space-x-2">
-                  <SlidersHorizontal size={15} className="text-indigo-600" />
-                  <span>Configure Prediction Variables</span>
-                </h3>
-
-                <form onSubmit={(e) => { e.preventDefault(); runExamPredictor(); }} className="space-y-4">
-                  {/* Select Class */}
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Selected Class</label>
-                    <div className="grid grid-cols-4 gap-2">
-                      {["9th", "10th", "11th", "12th"].map((cl) => (
-                        <button
-                          key={cl}
-                          type="button"
-                          onClick={() => {
-                            setStudentClass(cl);
-                            if (studentUser) handleUpdateProfile({ classLevel: cl });
-                          }}
-                          className={`py-2 text-center rounded-lg text-xs font-semibold transition-all border ${
-                            studentClass === cl
-                              ? "bg-indigo-600 text-white border-indigo-600 shadow-xs"
-                              : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
-                          }`}
-                        >
-                          {cl}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Select Stream Group */}
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Academic stream</label>
-                    <select
-                      value={studentGroup}
-                      onChange={(e) => {
-                        setStudentGroup(e.target.value);
-                        if (studentUser) handleUpdateProfile({ academicGroup: e.target.value });
-                      }}
-                      className="w-full text-xs bg-slate-50 border border-slate-200 rounded-lg p-2.5 outline-none text-slate-700 font-medium"
-                    >
-                      {studentClass === "9th" || studentClass === "10th" ? (
-                        <>
-                          <option value="Biology">Biology Group (9th-10th)</option>
-                          <option value="Computer">Computer Group (9th-10th)</option>
-                          <option value="Arts">Arts Group (9th-10th)</option>
-                        </>
-                      ) : (
-                        <>
-                          <option value="Pre-Engineering">Pre-Engineering Group (11th-12th)</option>
-                          <option value="Pre-Medical">Pre-Medical Group (11th-12th)</option>
-                          <option value="Computer Science / ICS">Computer Science (ICS Group)</option>
-                          <option value="Arts / Humanities">Arts / Humanities Group</option>
-                          <option value="Commerce / ICom">Commerce (ICom Group)</option>
-                        </>
-                      )}
-                    </select>
-                  </div>
-
-                  {/* Select Subject */}
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Target Subject for Recurrence</label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {filteredSubjects.map((sub) => (
-                        <button
-                          key={sub.id}
-                          type="button"
-                          onClick={() => setPredictSubject(sub.id)}
-                          className={`p-2.5 rounded-lg border text-left flex items-center space-x-2 transition-all ${
-                            predictSubject === sub.id
-                              ? "bg-slate-900 text-white border-slate-900 shadow-xs"
-                              : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                          }`}
-                        >
-                          <span className={`w-2 h-2 rounded-full ${sub.color}`} />
-                          <span className="text-xs font-semibold truncate">{sub.name}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Paper range */}
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Historical Papers scan Range</label>
-                    <select
-                      value={predictYears}
-                      onChange={(e) => setPredictYears(e.target.value)}
-                      className="w-full text-xs bg-slate-50 border border-slate-200 rounded-lg p-2.5 outline-none text-slate-700 font-medium"
-                    >
-                      <option value="5Years">Last 5 Years board papers (2021-2025)</option>
-                      <option value="3Years">Last 3 Years board papers (2023-2025)</option>
-                      <option value="10Years">Decadal Boards scan (2016-2025)</option>
-                    </select>
-                  </div>
-
-                  {/* Action Item buttons representing trigger */}
-                  <button
-                    type="button"
-                    disabled={isPredicting}
-                    onClick={runExamPredictor}
-                    className={`w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-indigo-600 text-white font-semibold text-xs tracking-wider uppercase flex items-center justify-center space-x-2 shadow-md transition-all ${
-                      isPredicting ? "opacity-70 cursor-not-allowed" : "hover:shadow-lg hover:scale-[1.01]"
-                    }`}
-                  >
-                    {isPredicting ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                        <span>Scanning Pakistan Board Databases...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles size={14} className="text-amber-300" />
-                        <span>Predict 2026 Exams (95% Significance)</span>
-                      </>
-                    )}
-                  </button>
-                </form>
-              </div>
-
-              {/* Console Scraping Realtime Terminal Logs */}
-              {isPredicting && (
-                <div className="bg-slate-900 rounded-2xl border border-slate-800 p-5 font-mono text-[11px] text-emerald-400 shadow-md">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 shrink-0">
-                    <span className="font-bold text-slate-400 uppercase tracking-widest">Board Scraper Console Terminal</span>
-                    <div className="flex space-x-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/80 animate-ping" />
-                    </div>
-                  </div>
-                  <div className="space-y-1.5 h-36 overflow-y-auto scrollbar-thin">
-                    {predictionLog.map((logLine, idx) => (
-                      <div key={idx} className="animate-fade-in flex items-start space-x-1.5">
-                        <span className="text-slate-600">{`>`}</span>
-                        <span>{logLine}</span>
-                      </div>
-                    ))}
-                    <div className="animate-pulse text-indigo-400">⚡ Awaiting structural AI compiler callback...</div>
-                  </div>
-                </div>
-              )}
-
-            </div>
-
-            {/* Right Column: Calculations Outputs and Prediction Cards */}
-            <div className="lg:col-span-7">
-              {predictResult && currentExam ? (
-                <div className="space-y-6">
-                   
-                   {/* Morning vs Evening Session Segmented Switcher */}
-                   <div className="grid grid-cols-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-xs gap-1.5">
-                     <button
-                       onClick={() => setSelectedSession("morning")}
-                       className={`flex items-center justify-center space-x-2.5 py-3 rounded-xl text-xs font-bold transition-all ${
-                         selectedSession === "morning"
-                           ? "bg-white text-indigo-600 shadow-sm border border-slate-200"
-                           : "text-slate-500 hover:text-slate-700 hover:bg-white/50"
-                       }`}
-                     >
-                       <Sun size={15} className={selectedSession === "morning" ? "text-amber-500 animate-pulse" : "text-slate-400"} />
-                       <div className="text-left leading-tight">
-                         <div className="font-extrabold">Morning Exam</div>
-                         <div className="text-[10px] text-slate-400 font-normal">Session Group 1</div>
-                       </div>
-                     </button>
-                     <button
-                       onClick={() => setSelectedSession("evening")}
-                       className={`flex items-center justify-center space-x-2.5 py-3 rounded-xl text-xs font-bold transition-all ${
-                         selectedSession === "evening"
-                           ? "bg-white text-indigo-600 shadow-sm border border-slate-200"
-                           : "text-slate-500 hover:text-slate-700 hover:bg-white/50"
-                       }`}
-                     >
-                       <Moon size={15} className={selectedSession === "evening" ? "text-purple-500 animate-pulse" : "text-slate-400"} />
-                       <div className="text-left leading-tight">
-                         <div className="font-extrabold">Evening Exam</div>
-                         <div className="text-[10px] text-slate-400 font-normal">Session Group 2</div>
-                       </div>
-                     </button>
-                   </div>
-
-                   {/* Confidence Summary Header Widget */}
-                   <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs relative overflow-hidden">
-                     <div className="absolute right-0 top-0 w-24 h-24 bg-indigo-50/50 rounded-full -translate-y-8 translate-x-8 blur-lg" />
-                     
-                     <div className="flex items-center justify-between mb-4">
-                       <div>
-                         <span className="px-2 py-0.5 bg-indigo-50 text-[10px] font-mono text-indigo-600 font-bold rounded-full mr-2">
-                           AI Grounded SLO Evaluation
-                         </span>
-                         <span className={`px-2 py-0.5 text-[10px] font-mono font-bold rounded-full ${selectedSession === 'morning' ? 'bg-amber-100 text-amber-700' : 'bg-purple-100 text-purple-700'}`}>
-                           {selectedSession === 'morning' ? 'Morning: Group 1' : 'Evening: Group 2'}
-                         </span>
-                         <h3 className="text-base font-bold text-slate-800 mt-1">2026 Model Predictions & Target Simulator</h3>
-                       </div>
-                       
-                       <div className="text-right">
-                         <div className="text-2xl font-black text-indigo-600 font-mono flex items-center justify-end">
-                           <span>{currentExam.confidence}%</span>
-                         </div>
-                         <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Accuracy Index</span>
-                       </div>
-                     </div>
-
-                     <p className="text-xs text-slate-600 leading-relaxed bg-slate-50/70 rounded-xl p-3 border border-slate-100 mb-4">
-                       {currentExam.summary}
-                     </p>
-
-                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-indigo-50/20 border border-indigo-100/40 p-3.5 rounded-xl mb-4">
-                       <div className="flex items-center space-x-2">
-                         <span className="flex h-2 w-2 relative">
-                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                         </span>
-                         <span className="text-[11px] font-semibold text-slate-600">Predicted Exam is compiled & ready for download</span>
-                       </div>
-                       <button
-                         onClick={downloadPredictedExam}
-                         className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow-xs flex items-center justify-center space-x-1.5 transition-all hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
-                       >
-                         <Download size={13} strokeWidth={2.5} />
-                         <span>Download Predicted Exam (.html)</span>
-                       </button>
-                     </div>
-
-                     {/* Official SI Scheme Card */}
-                     {currentExam.examScheme && (
-                       <div className="border border-indigo-100 bg-indigo-50/40 rounded-xl p-4">
-                         <h4 className="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2.5 flex items-center">
-                           <Award size={13} className="mr-1.5 text-indigo-600" />
-                           Official 2026 BISE Paper Blueprint (Student Learning Outcomes)
-                         </h4>
-                         <div className="grid grid-cols-3 gap-3 mb-3">
-                           <div className="bg-white/80 p-2 rounded-lg border border-indigo-100/60 text-center">
-                             <div className="text-[10px] uppercase text-slate-400 font-bold">Total Marks</div>
-                             <div className="text-sm font-extrabold text-slate-800 font-mono mt-0.5">
-                               {currentExam.examScheme.totalMarks} Marks
-                             </div>
-                           </div>
-                           <div className="bg-white/80 p-2 rounded-lg border border-indigo-100/60 text-center">
-                             <div className="text-[10px] uppercase text-slate-400 font-bold">Time Allowed</div>
-                             <div className="text-sm font-extrabold text-slate-800 font-mono mt-0.5">
-                               {currentExam.examScheme.timeAllowed}
-                             </div>
-                           </div>
-                           <div className="bg-white/80 p-2 rounded-lg border border-indigo-100/60 text-center">
-                             <div className="text-[10px] uppercase text-slate-400 font-bold">Passing Marks (33%)</div>
-                             <div className="text-sm font-extrabold text-slate-800 font-mono mt-0.5">
-                               {currentExam.examScheme.passingMarks} Marks
-                             </div>
-                           </div>
-                         </div>
-                         <p className="text-[11px] text-indigo-950/70 leading-relaxed font-sans italic">
-                           ★ {currentExam.examScheme.structureNotes}
-                         </p>
-                       </div>
-                     )}
-                   </div>
-
-                   {/* Sub-Tabs Selector */}
-                   <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-                     <div className="flex bg-slate-50/50 border-b border-slate-200">
-                       <button
-                         onClick={() => setActivePredictorTab("topics")}
-                         className={`flex-1 py-3 px-1 text-xs font-bold border-b-2 text-center transition-colors ${
-                           activePredictorTab === "topics"
-                             ? "border-indigo-600 text-indigo-600 bg-white"
-                             : "border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50/80"
-                         }`}
-                       >
-                         Chapter Metrics
-                       </button>
-                       <button
-                         onClick={() => setActivePredictorTab("mcqs")}
-                         className={`flex-1 py-3 px-1 text-xs font-bold border-b-2 text-center transition-colors relative ${
-                           activePredictorTab === "mcqs"
-                             ? "border-indigo-600 text-indigo-600 bg-white"
-                             : "border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50/80"
-                         }`}
-                       >
-                         Sec A: MCQs Mock
-                         {currentExam.mcqs && (
-                           <span className="ml-1 bg-indigo-100 text-indigo-700 text-[9px] px-1.5 py-0.2 rounded-full font-mono">
-                             {currentExam.mcqs.length}
-                           </span>
-                         )}
-                       </button>
-                       <button
-                         onClick={() => setActivePredictorTab("shorts")}
-                         className={`flex-1 py-3 px-1 text-xs font-bold border-b-2 text-center transition-colors ${
-                           activePredictorTab === "shorts"
-                             ? "border-indigo-600 text-indigo-600 bg-white"
-                             : "border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50/80"
-                         }`}
-                       >
-                         Sec B: Short Questions
-                       </button>
-                       <button
-                         onClick={() => setActivePredictorTab("longs")}
-                         className={`flex-1 py-3 px-1 text-xs font-bold border-b-2 text-center transition-colors ${
-                           activePredictorTab === "longs"
-                             ? "border-indigo-600 text-indigo-600 bg-white"
-                             : "border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50/80"
-                         }`}
-                       >
-                         Sec C: Long Questions
-                       </button>
-                     </div>
-
-                     <div className="p-6">
-                       
-                       {/* TAB 1: CHAPTER WEIGHTAGE METRICS */}
-                       {activePredictorTab === "topics" && (
-                         <div className="space-y-4">
-                           <div className="flex items-center justify-between">
-                             <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                               Predicted Chapter weightage distribution
-                             </h4>
-                             <span className="text-[10px] text-xs font-mono text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full font-semibold">
-                               BISE Curriculum Weight
-                             </span>
-                           </div>
-
-                           <div className="space-y-3.5">
-                             {currentExam.predictedTopics.map((pt, idx) => {
-                               const probPercentage = parseInt(pt.probability) || 85;
-                               return (
-                                 <div key={idx} className="p-3.5 bg-slate-50/40 hover:bg-slate-50 border border-slate-200 rounded-xl transition-all">
-                                   <div className="flex items-center justify-between mb-1">
-                                     <span className="text-xs font-bold text-slate-800">{pt.topic}</span>
-                                     <span className="px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[10px] font-mono font-bold rounded-lg border border-emerald-100">
-                                       {pt.probability} Probability
-                                     </span>
-                                   </div>
-                                   
-                                   {/* Visual Bar representation */}
-                                   <div className="w-full bg-slate-200/60 rounded-full h-1.5 my-2.5 overflow-hidden">
-                                     <div
-                                       className="bg-indigo-500 h-1.5 rounded-full transition-all duration-500" 
-                                       style={{ width: `${probPercentage}%` }}
-                                     />
-                                   </div>
-                                   
-                                   <p className="text-[11px] text-slate-500 leading-relaxed italic">{pt.description}</p>
-                                 </div>
-                               );
-                             })}
-                           </div>
-                         </div>
-                       )}
-
-                       {/* TAB 2: INTERACTIVE MCQ PRACTICE */}
-                       {activePredictorTab === "mcqs" && (
-                         <div className="space-y-5">
-                           <div className="flex items-center justify-between bg-slate-50 border border-slate-200 p-3 rounded-xl mb-2">
-                             <div>
-                               <h4 className="text-xs font-bold text-slate-800">Section A: Multiple Choice Questions (15 - 18 MCQs)</h4>
-                               <p className="text-[10px] text-slate-400 mt-0.5">Attempt predicted Multiple Choice Questions (typically 15 to 18 questions carrying 1 mark each).</p>
-                             </div>
-                             
-                             <div className="text-right">
-                               <div className="text-xs font-bold text-indigo-600 font-mono">
-                                 Correct Choices: {
-                                   currentExam.mcqs 
-                                     ? `${Object.keys(userMcqAnswers).filter(mqid => userMcqAnswers[mqid] === currentExam.mcqs?.find(m => m.id === mqid)?.correctAnswer).length} / ${currentExam.mcqs.length}`
-                                     : "0"
-                                 }
-                               </div>
-                               <span className="text-[9px] text-slate-400 block font-bold">LIVE PROGRESS</span>
-                             </div>
-                           </div>
-
-                           {currentExam.mcqs && currentExam.mcqs.length > 0 ? (
-                             <div className="space-y-6">
-                               {currentExam.mcqs.map((mcq, idx) => {
-                                 const selectedOption = userMcqAnswers[mcq.id];
-                                 const isCorrect = selectedOption === mcq.correctAnswer;
-                                 return (
-                                   <div key={mcq.id} className="border border-slate-150 rounded-xl p-4 bg-white hover:shadow-xs transition-shadow">
-                                     <div className="flex items-start justify-between gap-2 mb-3">
-                                       <span className="bg-slate-100 text-slate-700 text-[10px] font-mono font-bold px-2 py-0.5 rounded-md">
-                                         Q{idx + 1}
-                                       </span>
-                                       <span className="text-[10px] text-indigo-500 font-semibold font-mono">
-                                         (1 Mark)
-                                       </span>
-                                     </div>
-
-                                     <p className="text-xs font-bold text-slate-800 mb-3.5 leading-relaxed">
-                                       {mcq.question}
-                                     </p>
-
-                                     {/* Option Button Matrix */}
-                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-                                       {mcq.options.map((opt, oIdx) => {
-                                         const parts = opt.split(")");
-                                         const optLetter = parts[0].trim().toUpperCase(); // "A", "B", "C", "D"
-                                         const optText = parts.slice(1).join(")").trim();
-                                         const isThisOptionSelected = selectedOption === optLetter;
-                                         const isThisOptionCorrect = mcq.correctAnswer === optLetter;
-
-                                         let btnStyles = "border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700";
-                                         let addonIcon = null;
-
-                                         if (selectedOption) {
-                                           if (isThisOptionSelected) {
-                                             if (isCorrect) {
-                                               btnStyles = "border-emerald-500 bg-emerald-50/65 text-emerald-950 font-semibold";
-                                               addonIcon = <CheckCircle size={13} className="text-emerald-500 shrink-0" />;
-                                             } else {
-                                               btnStyles = "border-red-500 bg-red-50/65 text-red-950 font-semibold";
-                                               addonIcon = <X size={13} className="text-red-500 shrink-0" />;
-                                             }
-                                           } else if (isThisOptionCorrect) {
-                                             btnStyles = "border-emerald-500 bg-emerald-50/20 text-emerald-900";
-                                             addonIcon = <CheckCircle size={13} className="text-emerald-400 shrink-0" />;
-                                           } else {
-                                             btnStyles = "border-slate-100 bg-slate-50/40 text-slate-400 cursor-not-allowed";
-                                           }
-                                         }
-
-                                         return (
-                                           <button
-                                             key={oIdx}
-                                             disabled={!!selectedOption}
-                                             onClick={() => {
-                                               setUserMcqAnswers(prev => ({ ...prev, [mcq.id]: optLetter }));
-                                             }}
-                                             className={`text-left text-xs p-2.5 rounded-lg flex items-center justify-between transition-all leading-relaxed ${btnStyles}`}
-                                           >
-                                             <div className="flex items-center space-x-2">
-                                               <span className="font-mono font-bold bg-slate-100 px-1.5 py-0.5 rounded text-[10px] text-slate-600">
-                                                 {optLetter}
-                                               </span>
-                                               <span className="truncate max-w-[200px] md:max-w-xs">{optText || opt}</span>
-                                             </div>
-                                             {addonIcon}
-                                           </button>
-                                         );
-                                       })}
-                                     </div>
-
-                                     {/* Answer Explanation Panel */}
-                                     {selectedOption && (
-                                       <div className={`mt-3.5 p-3 rounded-lg text-[11px] leading-relaxed border ${
-                                         isCorrect ? "bg-emerald-50/40 border-emerald-100 text-emerald-900" : "bg-indigo-50/30 border-indigo-100 text-slate-700"
-                                       }`}>
-                                         <div className="font-bold mb-0.5 flex items-center">
-                                           {isCorrect ? "✓ Excellent, Correct Option!" : `✗ Incorrect (Correct choice was ${mcq.correctAnswer})`}
-                                         </div>
-                                         <p className="italic">{mcq.explanation}</p>
-                                       </div>
-                                     )}
-                                   </div>
-                                 );
-                               })}
-                             </div>
-                           ) : (
-                             <div className="text-center py-6 text-slate-400 text-xs">
-                               No predicted multiple choice questions available for this selection.
-                             </div>
-                           )}
-                         </div>
-                       )}
-
-                       {/* TAB 3: SECTION B: SHORT QUESTIONS */}
-                       {activePredictorTab === "shorts" && (
-                         <div className="space-y-5">
-                           <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl mb-1">
-                             <h4 className="text-xs font-bold text-slate-800">Section B: Short Questions (24 Questions - Attempt 18)</h4>
-                             <p className="text-[10px] text-indigo-600 font-semibold mt-0.5">Exactly 24 short questions covering the whole book. You have a choice to solve at least 18 questions.</p>
-                           </div>
-
-                           {currentExam.shorts && currentExam.shorts.length > 0 ? (
-                             <div className="space-y-6">
-                               {currentExam.shorts.map((group, gIdx) => (
-                                 <div key={gIdx} className="space-y-3.5">
-                                   <div className="bg-slate-100/80 p-2.5 rounded-lg border border-slate-200 flex items-center justify-between">
-                                     <span className="text-[10px] font-bold text-slate-700 uppercase tracking-wider">{group.groupTitle}</span>
-                                     <span className="text-[10px] font-mono text-slate-500 font-bold bg-white px-2 py-0.5 rounded-full border border-slate-200">
-                                       {group.instruction} (Total: {group.totalMarks} Marks)
-                                     </span>
-                                   </div>
-
-                                   <div className="space-y-3">
-                                     {group.questions.map((q, qIdx) => {
-                                       const isRevealed = revealedShortHints[q.id];
-                                       return (
-                                         <div key={q.id} className="bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-4 transition-all col-span-1">
-                                           <div className="flex items-start justify-between gap-4 mb-2.5">
-                                             <div className="flex items-start space-x-2">
-                                               <span className="bg-indigo-50 text-indigo-700 text-[9px] font-mono px-2 py-0.5 rounded-md font-bold mt-0.5 shrink-0">
-                                                 Q{qIdx + 1}
-                                               </span>
-                                               <p className="text-xs font-bold text-slate-800 leading-relaxed">
-                                                 {q.text}
-                                               </p>
-                                             </div>
-                                             <span className="text-[10px] font-mono text-indigo-500 font-bold bg-indigo-50/50 px-1.5 py-0.2 rounded-md shrink-0">
-                                               {q.marks} M
-                                             </span>
-                                           </div>
-
-                                           <div className="flex items-center justify-between pt-1">
-                                             <button
-                                               onClick={() => setRevealedShortHints(prev => ({ ...prev, [q.id]: !isRevealed }))}
-                                               className="text-[10px] text-indigo-600 hover:text-indigo-800 font-bold flex items-center space-x-1 transition-colors"
-                                             >
-                                               <span>{isRevealed ? "Hide Answer Rubric" : "Reveal Answer Outline & Rubric"}</span>
-                                               <ChevronDown size={12} className={`transform transition-transform ${isRevealed ? "rotate-180" : ""}`} />
-                                             </button>
-                                           </div>
-
-                                           {isRevealed && (
-                                             <div className="mt-2.5 p-3 bg-slate-50 border border-slate-150 rounded-lg text-[11px] text-slate-600 leading-relaxed">
-                                               <span className="font-bold text-slate-700 block mb-1">💡 2026 SLO Grading Rubric:</span>
-                                               <p className="italic font-sans text-slate-600">{q.hint}</p>
-                                             </div>
-                                           )}
-                                         </div>
-                                       );
-                                     })}
-                                   </div>
-                                 </div>
-                               ))}
-                             </div>
-                           ) : (
-                             // Fallback to standard questions if structural fields do not compile
-                             <div className="space-y-3">
-                               {currentExam.predictedQuestions.filter(q => q.type.includes("Short")).map((pq, idx) => (
-                                 <div key={idx} className="p-3.5 bg-slate-50 border border-slate-150 rounded-xl">
-                                   <div className="flex items-center justify-between mb-1">
-                                     <span className="text-xs font-bold text-slate-800">Q{idx + 1}: {pq.text}</span>
-                                     <span className="text-[10px] text-indigo-600 font-mono font-bold">Short Question</span>
-                                   </div>
-                                   <p className="text-[11px] text-slate-500 mt-1 italic">Trend Prediction: {pq.reason}</p>
-                                 </div>
-                               ))}
-                             </div>
-                           )}
-                         </div>
-                       )}
-
-                       {/* TAB 4: SECTION C: LONG QUESTIONS */}
-                       {activePredictorTab === "longs" && (
-                         <div className="space-y-5">
-                           <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl mb-1">
-                             <h4 className="text-xs font-bold text-slate-800">Section C: Long Essay Questions (3 Questions - Solve 2)</h4>
-                             <p className="text-[10px] text-indigo-600 font-semibold mt-0.5">Exactly 3 long structured questions with 2 parts (Part A and Part B) each. It is mandatory to solve any 2 questions, answering both parts of your selected questions.</p>
-                           </div>
-
-                           {currentExam.longs && currentExam.longs.length > 0 ? (
-                             <div className="space-y-6">
-                               {currentExam.longs.map((lq, idx) => (
-                                 <div key={idx} className="border border-slate-200 hover:border-slate-300 rounded-xl p-4 bg-white space-y-3.5">
-                                   <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                                     <span className="text-xs font-bold text-slate-700 font-mono">QUESTION {lq.questionNum}</span>
-                                     <span className="text-[10px] font-mono text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full font-bold border border-indigo-100">
-                                       Total: {lq.totalMarks} Marks
-                                     </span>
-                                   </div>
-
-                                   <div className="space-y-3.5">
-                                     {lq.parts.map((p, pIdx) => {
-                                       const partId = `${lq.questionNum}_${p.partLetter}`;
-                                       const isSchemaRevealed = revealedLongSchemas[partId];
-                                       return (
-                                         <div key={partId} className="pl-3 border-l-2 border-indigo-100 space-y-2">
-                                           <div className="flex items-start justify-between gap-4">
-                                             <div className="flex items-start space-x-1.5">
-                                               <span className="text-xs font-bold text-indigo-600 font-mono">({p.partLetter})</span>
-                                               <p className="text-xs font-semibold text-slate-800 leading-relaxed">{p.text}</p>
-                                             </div>
-                                             <span className="text-[10px] font-mono text-slate-500 font-bold bg-slate-50 px-1.5 py-0.2 rounded-md border border-slate-200 shrink-0">
-                                               ({p.marks} Marks)
-                                             </span>
-                                           </div>
-
-                                           <div className="pt-1">
-                                             <button
-                                               onClick={() => setRevealedLongSchemas(prev => ({ ...prev, [partId]: !isSchemaRevealed }))}
-                                               className="text-[9px] text-slate-500 hover:text-indigo-600 font-semibold flex items-center space-x-1 transition-colors"
-                                             >
-                                               <span>{isSchemaRevealed ? "Hide Marking Breakdown" : "Reveal SLO Step Marking Schema"}</span>
-                                               <ChevronDown size={11} className={`transform transition-transform ${isSchemaRevealed ? "rotate-180" : ""}`} />
-                                             </button>
-                                           </div>
-
-                                           {isSchemaRevealed && (
-                                             <div className="space-y-2.5"> <div className="p-2.5 bg-indigo-50/30 border border-indigo-100 rounded-lg text-[10px] text-slate-600 leading-relaxed font-mono">
-                                               <span className="font-bold text-indigo-900 block mb-1">✓ Official step weightage allocations:</span>
-                                               <p className="italic text-slate-600">{p.stepSchema}</p></div>{(p.answer || p.solution) && (<div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs leading-relaxed"><span className="font-bold text-slate-700 block mb-2 font-sans text-[11px] flex items-center space-x-1.5"><span>🧠 Model Solution / Numerical Derivation:</span></span><AnswerRenderer text={p.answer || p.solution} /></div>)}
-                                             </div>
-                                           )}
-                                         </div>
-                                       );
-                                     })}
-                                   </div>
-                                 </div>
-                               ))}
-                             </div>
-                           ) : (
-                             // Fallback to standard questions if structural fields do not compile
-                             <div className="space-y-3">
-                               {currentExam.predictedQuestions.filter(q => q.type.includes("Long")).map((pq, idx) => (
-                                 <div key={idx} className="p-3.5 bg-slate-50 border border-slate-150 rounded-xl">
-                                   <div className="flex items-center justify-between mb-1">
-                                     <span className="text-xs font-bold text-slate-800">Q{idx + 1}: {pq.text}</span>
-                                     <span className="text-[10px] text-red-600 font-mono font-bold">Long Question</span>
-                                   </div>
-                                   <p className="text-[11px] text-slate-500 mt-1 italic">Trend Prediction: {pq.reason}</p>
-                                 </div>
-                               ))}
-                             </div>
-                           )}
-                         </div>
-                       )}
-
-                     </div>
-                   </div>
-
-                   {/* Web Search Grounding Citations */}
-                   <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
-                     <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center space-x-1">
-                       <Bookmark size={13} className="text-slate-400" />
-                       <span>Verified Board paper citations (ilm ki duniya, taleem360, board portals)</span>
-                     </h3>
-                     
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                       {predictResult.groundingSources.map((src, idx) => (
-                         <a
-                           key={idx}
-                           href={src.uri}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-slate-100/40 border border-slate-150 rounded-lg group transition-colors"
-                         >
-                           <div className="truncate pr-2">
-                             <p className="text-[11px] font-bold text-slate-700 truncate">{src.title}</p>
-                             <span className="text-[9px] font-mono text-slate-400 block truncate">{src.uri}</span>
-                           </div>
-                           <ExternalLink size={12} className="text-slate-400 group-hover:text-indigo-600 shrink-0" />
-                         </a>
-                       ))}
-                     </div>
-                   </div>
-
-                 </div>
-               ) : (
-                <div className="bg-white rounded-2xl border border-slate-200 border-dashed p-12 text-center h-full flex flex-col items-center justify-center min-h-[400px]">
-                  <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-4 animate-bounce">
-                    <Sparkles size={24} />
-                  </div>
-                  <h4 className="text-sm font-bold text-slate-800 mb-1">Awaiting Predictions Parameter Set</h4>
-                  <p className="text-xs text-slate-500 max-w-sm leading-relaxed mb-4">
-                    Select your targeted syllabus class, city-wise Pakistani board, and subject, then launch the search scraper to forecast 2026 board questions.
-                  </p>
-                  <button
-                    onClick={runExamPredictor}
-                    className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold shadow-xs"
-                  >
-                    Quick-Launch Physics 2026 Model
-                  </button>
-                </div>
-              )}
-            </div>
-
+            <BoardExamCenter
+              currentClass={studentClass}
+              currentBoard={boardSelection}
+              studentGroup={studentGroup}
+              subjects={filteredSubjects}
+            />
           </div>
         )}
 
       </div>
 
       {/* Footer Branding copyright with no tech-larping Indicator */}
-      <footer className="h-12 border-t border-slate-200/80 px-8 flex items-center justify-between shrink-0 bg-white/50 text-[11px] text-slate-400 mt-auto">
+      <footer className="hidden lg:flex h-12 border-t border-slate-200/80 px-8 items-center justify-between shrink-0 bg-white/50 text-[11px] text-slate-400 mt-auto">
         <span>© {new Date().getFullYear()} ScholarStack Curriculum Tracker</span>
-        <span>Aesthetic Concept: Clean Minimalism</span>
+        <span>Works offline · Installable</span>
       </footer>
+
+      {/* Native-style bottom navigation for phones */}
+      <MobileTabBar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onMore={() => setMobileMoreOpen(true)}
+      />
+      <InstallPrompt />
+      <MobileMoreSheet
+        open={mobileMoreOpen}
+        onClose={() => setMobileMoreOpen(false)}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
 
       {/* --- POPUP MODAL A: NEW TASK --- */}
       {showTaskModal && (
