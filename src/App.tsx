@@ -83,12 +83,13 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
   const errInfo: FirestoreErrorInfo = {
     error: error instanceof Error ? error.message : String(error),
     authInfo: {
-      userId: auth.currentUser?.uid,
-      email: auth.currentUser?.email,
-      emailVerified: auth.currentUser?.emailVerified,
-      isAnonymous: auth.currentUser?.isAnonymous,
-      tenantId: auth.currentUser?.tenantId,
-      providerInfo: auth.currentUser?.providerData?.map(provider => ({
+      // auth is null when running in local mode (no Firebase configured).
+      userId: auth?.currentUser?.uid,
+      email: auth?.currentUser?.email,
+      emailVerified: auth?.currentUser?.emailVerified,
+      isAnonymous: auth?.currentUser?.isAnonymous,
+      tenantId: auth?.currentUser?.tenantId,
+      providerInfo: auth?.currentUser?.providerData?.map(provider => ({
         providerId: provider?.providerId,
         email: provider?.email,
       })) || []
@@ -2091,6 +2092,10 @@ export default function App() {
 
   // --- STUDENT AUTH OBSERVER & LOCAL FALLBACKS ---
   useEffect(() => {
+    // In local mode there is no Firebase auth instance to observe; the profile
+    // is restored from localStorage by the effect below instead.
+    if (!isRealFirebaseConfigured() || !auth) return;
+
     const unsubscribe = onAuthStateChanged(auth, async (u) => {
       if (u && isRealFirebaseConfigured()) {
         try {
@@ -5458,7 +5463,11 @@ export default function App() {
                       <Lock size={18} />
                     </div>
                     <h3 className="text-base font-bold text-slate-800 font-display">Student Session Portal</h3>
-                    <p className="text-xs text-slate-500">Collect user credentials to synchronize progress stats.</p>
+                    <p className="text-xs text-slate-500">
+                      {isRealFirebaseConfigured()
+                        ? "Sign in to sync your progress across devices."
+                        : "Create a local profile to save your progress on this device."}
+                    </p>
                   </div>
 
                   {/* Real Firebase deactivation info box */}
@@ -5466,7 +5475,7 @@ export default function App() {
                     <div className="p-3 bg-indigo-50/50 border border-indigo-100 rounded-xl flex items-start space-x-2 text-[10px] md:text-xs text-indigo-700 leading-relaxed">
                       <AlertCircle size={14} className="mt-0.5 shrink-0" />
                       <span>
-                        <strong>Offline Compatibility Loaded:</strong> Since live Firebase settings are unconfigured, your student credentials and subject preferences will save locally via offline caches.
+                        <strong>Local mode:</strong> cloud sync is not configured, so your profile and chapter progress are saved on this device only. Everything else in the app works normally.
                       </span>
                     </div>
                   )}
