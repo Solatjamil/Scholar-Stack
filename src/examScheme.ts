@@ -245,6 +245,19 @@ interface Pools {
   numericals: BankNumerical[];
 }
 
+/** Remove entries whose question text repeats. The base banks and the
+ *  supplement are maintained separately, so the same question can legitimately
+ *  exist in both; without this guard it could appear twice in one paper. */
+function dedupe<T extends { question: string }>(items: T[]): T[] {
+  const seen = new Set<string>();
+  return items.filter((q) => {
+    const key = q.question.trim().toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function poolsFor(subjectId: string, classLevel: string): Pools {
   const norm = subjectId.toLowerCase();
   const lvl = levelOf(classLevel);
@@ -256,8 +269,8 @@ function poolsFor(subjectId: string, classLevel: string): Pools {
 
   if (eb) {
     return {
-      mcqs: [...eb.mcqs, ...exMcq].filter((q) => levelMatches(q, lvl)),
-      shorts: [...eb.shorts, ...exShort].filter((q) => levelMatches(q, lvl)),
+      mcqs: dedupe([...eb.mcqs, ...exMcq].filter((q) => levelMatches(q, lvl))),
+      shorts: dedupe([...eb.shorts, ...exShort].filter((q) => levelMatches(q, lvl))),
       longs: eb.longs.filter((q) => levelMatches(q, lvl)),
       numericals: [...eb.numericals, ...exNum].filter((q) => levelMatches(q, lvl)),
     };
@@ -267,14 +280,14 @@ function poolsFor(subjectId: string, classLevel: string): Pools {
   const qb = QUESTION_BANK[norm];
   if (qb) {
     return {
-      mcqs: [
+      mcqs: dedupe([
         ...qb.mcqs.map((q) => ({ ...q, level: "both" as Level, topic: "Core Syllabus" })),
         ...exMcq,
-      ].filter((q) => levelMatches(q, lvl)),
-      shorts: [
+      ].filter((q) => levelMatches(q, lvl))),
+      shorts: dedupe([
         ...qb.shorts.map((q) => ({ ...q, level: "both" as Level, topic: "Core Syllabus" })),
         ...exShort,
-      ].filter((q) => levelMatches(q, lvl)),
+      ].filter((q) => levelMatches(q, lvl))),
       longs: qb.longs.map((q) => ({ ...q, level: "both" as Level, topic: "Core Syllabus" })),
       numericals: [],
     };
