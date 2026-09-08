@@ -1665,7 +1665,7 @@ export default function App() {
     },
     {
       id: "task-2",
-      title: "Upload React Weather App code to Portfolio GitHub directory",
+      title: "Practise past-paper MCQs: Computer Science Ch. 3 (Data Structures)",
       subjectId: "cs",
       priority: "Medium",
       status: "In Review",
@@ -1692,9 +1692,9 @@ export default function App() {
 
   const initialEvents: CalendarEvent[] = [
     { id: "ev-1", date: daysFromToday(14), title: "Board Exams Start", type: "exam" },
-    { id: "ev-2", date: daysFromToday(11), title: "Weather App Review", type: "deadline" },
+    { id: "ev-2", date: daysFromToday(11), title: "Chemistry Practical Notebook Submission", type: "deadline" },
     { id: "ev-3", date: daysFromToday(19), title: "Physics Mock Evaluation", type: "exam" },
-    { id: "ev-4", date: daysFromToday(7), title: "Study Group: Calculus Ch. 5", type: "study" }
+    { id: "ev-4", date: daysFromToday(7), title: "Study Group: Mathematics Ch. 5", type: "study" }
   ];
 
   // --- STATE VARIABLES ---
