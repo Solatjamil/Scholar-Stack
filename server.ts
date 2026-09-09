@@ -1,4 +1,5 @@
 import express from "express";
+import zlib from "zlib";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
@@ -1699,6 +1700,133 @@ function getLocalBiseDatesheet(board: string, classLevel: string) {
 }
 
 // API: BISE Live Date Sheet & Countdown Estimator
+/* ------------------------------------------------------------------ *
+ *  SCANNED TEXTBOOK PROXY
+ *  archive.org serves the PDFs without an Access-Control-Allow-Origin
+ *  header, so the browser cannot fetch them directly. We stream them
+ *  through here instead, forwarding Range headers so PDF.js can request
+ *  byte ranges and render page-by-page without pulling the whole file.
+ * ------------------------------------------------------------------ */
+
+/** Whitelist of archive.org items we serve, mirroring src/bookLibrary.ts. */
+const BOOK_SOURCES: Record<string, { archiveId: string; pdfFile: string; textFile: string }> = {
+  "bio-9-ptb": { archiveId: "pakbooks-seed-0023", pdfFile: "PTB Biology 9.pdf", textFile: "PTB Biology 9_djvu.txt" },
+  "bio-10-ptb": { archiveId: "pakbooks-seed-0024", pdfFile: "PTB Biology 10TH_text.pdf", textFile: "PTB Biology 10TH_djvu.txt" },
+  "chem-10-ptb": { archiveId: "pakbooks-seed-0025", pdfFile: "PTB Chemistry 10 EM_text.pdf", textFile: "PTB Chemistry 10 EM_djvu.txt" },
+  "chem-9-fbise": { archiveId: "pakbooks-seed-0001", pdfFile: "CHEMISTRY 9TH FBISE.pdf", textFile: "CHEMISTRY 9TH FBISE_djvu.txt" },
+  "chem-10-fbise": { archiveId: "pakbooks-seed-0002", pdfFile: "CHEMISTRY 10TH FBISE.pdf", textFile: "CHEMISTRY 10TH FBISE_djvu.txt" },
+};
+
+function archiveUrl(archiveId: string, file: string) {
+  return `https://archive.org/download/${archiveId}/${encodeURIComponent(file)}`;
+}
+
+app.get("/api/book-pdf/:bookId", async (req, res) => {
+  const src = BOOK_SOURCES[req.params.bookId];
+  if (!src) return res.status(404).json({ error: "Unknown book id" });
+  try {
+    const range = req.headers.range;
+    const upstream = await fetch(archiveUrl(src.archiveId, src.pdfFile), {
+      headers: range ? { Range: range } : undefined,
+      redirect: "follow",
+    });
+    if (!upstream.ok && upstream.status !== 206) {
+      return res.status(502).json({ error: `Upstream returned ${upstream.status}` });
+    }
+    res.status(upstream.status === 206 ? 206 : 200);
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Accept-Ranges", "bytes");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    const cr = upstream.headers.get("content-range");
+    if (cr) res.setHeader("Content-Range", cr);
+    const cl = upstream.headers.get("content-length");
+    if (cl) res.setHeader("Content-Length", cl);
+    const buf = Buffer.from(await upstream.arrayBuffer());
+    return res.end(buf);
+  } catch (err: any) {
+    return res.status(500).json({ error: err?.message || "Failed to fetch book" });
+  }
+});
+
+/**
+ * OCR full-text search.
+ *
+ * archive.org's djvu.txt has NO page delimiters (verified: zero form feeds),
+ * so splitting on \f would report the whole book as one page. The correct
+ * source is the pair of hOCR sidecars: *_hocr_searchtext.txt.gz holds the
+ * text and *_hocr_pageindex.json.gz holds one [startChar, endChar, ...] entry
+ * per page. Binary-searching a match offset against those start offsets gives
+ * the true printed page - spot-checked against the Biology 9 scan
+ * ("Mitosis" -> p.109, "enzymes" -> p.43).
+ */
+interface BookIndex {
+  text: string;
+  starts: number[];
+}
+const bookTextCache = new Map<string, BookIndex>();
+
+async function loadBookIndex(archiveId: string, textFile: string): Promise<BookIndex> {
+  const base = textFile.replace(/_djvu\.txt$/, "");
+  const gunzip = async (file: string) => {
+    const r = await fetch(archiveUrl(archiveId, file), { redirect: "follow" });
+    if (!r.ok) throw new Error(`Upstream ${r.status} for ${file}`);
+    const buf = Buffer.from(await r.arrayBuffer());
+    return zlib.gunzipSync(buf).toString("utf8");
+  };
+  const [text, idxRaw] = await Promise.all([
+    gunzip(`${base}_hocr_searchtext.txt.gz`),
+    gunzip(`${base}_hocr_pageindex.json.gz`),
+  ]);
+  const idx = JSON.parse(idxRaw) as number[][];
+  return { text, starts: idx.map((e) => e[0]) };
+}
+
+/** 1-based page number for a character offset. */
+function pageForOffset(starts: number[], pos: number): number {
+  let lo = 0;
+  let hi = starts.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (starts[mid] <= pos) lo = mid + 1;
+    else hi = mid;
+  }
+  return Math.max(1, lo);
+}
+
+app.get("/api/book-text/:bookId", async (req, res) => {
+  const src = BOOK_SOURCES[req.params.bookId];
+  if (!src) return res.status(404).json({ error: "Unknown book id" });
+  const q = String(req.query.q || "").trim();
+  if (q.length < 2) return res.json({ results: [], query: q });
+  try {
+    let idx = bookTextCache.get(req.params.bookId);
+    if (!idx) {
+      idx = await loadBookIndex(src.archiveId, src.textFile);
+      bookTextCache.set(req.params.bookId, idx);
+    }
+    const hay = idx.text.toLowerCase();
+    const needle = q.toLowerCase();
+    const results: { page: number; snippet: string }[] = [];
+    const seenPages = new Set<number>();
+    let at = hay.indexOf(needle);
+    while (at !== -1 && results.length < 60) {
+      const page = pageForOffset(idx.starts, at);
+      if (!seenPages.has(page)) {
+        seenPages.add(page);
+        const snippet = idx.text
+          .slice(Math.max(0, at - 70), at + needle.length + 90)
+          .replace(/\s+/g, " ")
+          .trim();
+        results.push({ page, snippet });
+      }
+      at = hay.indexOf(needle, at + needle.length);
+    }
+    return res.json({ query: q, totalPages: idx.starts.length, results });
+  } catch (err: any) {
+    return res.status(500).json({ error: err?.message || "Search failed" });
+  }
+});
+
 app.post("/api/bise-datesheet", async (req, res) => {
   const { board, classLevel } = req.body;
 

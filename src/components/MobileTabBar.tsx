@@ -5,6 +5,7 @@ import {
   FileText,
   ClipboardList,
   MoreHorizontal,
+  PlayCircle,
 } from "lucide-react";
 
 export type TabId =
@@ -14,7 +15,8 @@ export type TabId =
   | "mockups"
   | "evaluation"
   | "chapterstudy"
-  | "boardexams";
+  | "boardexams"
+  | "learn";
 
 interface Props {
   activeTab: TabId;
@@ -34,8 +36,8 @@ export default function MobileTabBar({ activeTab, setActiveTab, onMore }: Props)
   const items: { id: TabId; label: string; icon: React.ReactNode }[] = [
     { id: "dashboard", label: "Home", icon: <LayoutDashboard size={19} /> },
     { id: "chapterstudy", label: "Study", icon: <BookOpen size={19} /> },
+    { id: "learn", label: "Learn", icon: <PlayCircle size={19} /> },
     { id: "boardexams", label: "Papers", icon: <FileText size={19} /> },
-    { id: "mockups", label: "Tests", icon: <ClipboardList size={19} /> },
   ];
 
   const moreActive = ["syllabus", "resources", "evaluation"].includes(activeTab);
@@ -105,6 +107,7 @@ export function MobileMoreSheet({ open, onClose, activeTab, setActiveTab }: Shee
   if (!open) return null;
 
   const rest: { id: TabId; label: string; desc: string }[] = [
+    { id: "mockups", label: "Mockup Exams", desc: "Practice tests in the real board pattern" },
     { id: "syllabus", label: "Syllabus Tracker", desc: "Chapter completion across all subjects" },
     { id: "evaluation", label: "Student Evaluation", desc: "Your scores and progress reports" },
     { id: "resources", label: "Books & Resources", desc: "Verified textbook downloads" },

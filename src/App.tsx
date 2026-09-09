@@ -41,10 +41,12 @@ import {
   ListFilter,
   AlertTriangle,
   ChevronUp,
+  PlayCircle,
 } from "lucide-react";
 import { auth, db, isRealFirebaseConfigured } from "./firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, setDoc, collection, addDoc, getDocs } from "firebase/firestore";
+import LearnHub from "./components/LearnHub";
 import MockupSection from "./components/MockupSection";
 import StudentEvaluation, { EvaluationRecord, SelfAssessment } from "./components/StudentEvaluation";
 import ChapterWiseStudy from "./components/ChapterWiseStudy";
@@ -1698,7 +1700,7 @@ export default function App() {
   ];
 
   // --- STATE VARIABLES ---
-  const [activeTab, setActiveTab] = useState<"dashboard" | "syllabus" | "resources" | "mockups" | "predictor" | "evaluation" | "chapterstudy" | "boardexams">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "syllabus" | "resources" | "mockups" | "predictor" | "evaluation" | "chapterstudy" | "boardexams" | "learn">("dashboard");
   const [boardSelection, setBoardSelection] = useState<string>("BISE Lahore (Punjab)");
   const [subjects, setSubjects] = useState<Subject[]>(initialSubjects);
   const [syllabusList, setSyllabusList] = useState<SyllabusItem[]>(initialSyllabusList);
@@ -3264,6 +3266,17 @@ export default function App() {
               <span>Chapter Study</span>
             </button>
             <button
+              onClick={() => setActiveTab("learn")}
+              className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1 ${
+                activeTab === "learn"
+                  ? "text-indigo-600 bg-indigo-50 font-semibold shadow-xs"
+                  : "hover:text-sky-600 hover:bg-sky-50/50"
+              }`}
+            >
+              <PlayCircle size={14} className="text-sky-500" />
+              <span>Learn &amp; Videos</span>
+            </button>
+            <button
               onClick={() => setActiveTab("syllabus")}
               className={`px-3 py-1.5 rounded-lg transition-all ${
                 activeTab === "syllabus"
@@ -4059,6 +4072,13 @@ export default function App() {
               onDeleteSelfAssessment={handleDeleteSelfAssessment}
               currentBoard={boardSelection}
             />
+          </div>
+        )}
+
+        {/* --- VIEW: LEARN & VIDEOS (topic-wise learning) --- */}
+        {activeTab === "learn" && (
+          <div className="animate-fade-in">
+            <LearnHub />
           </div>
         )}
 
