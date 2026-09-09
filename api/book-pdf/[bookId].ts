@@ -1,6 +1,10 @@
 /**
  * Vercel serverless function: stream a scanned textbook PDF.
  *
+ * Runs on the Node runtime, not edge: the edge runtime's fetch re-encoded the
+ * "%20" in these filenames and archive.org answered 400/404 (it 404s on the
+ * "+" form). Node's fetch preserves the URL byte-for-byte.
+ *
  * The Express app in server.ts only runs during local development - Vercel
  * deploys the Vite build as static files, so anything under /api must exist as
  * its own function here or it 404s in production.
@@ -10,7 +14,7 @@
  * PDF.js / the native viewer can stream pages instead of the whole file.
  */
 
-export const config = { runtime: "edge" };
+export const config = { runtime: "nodejs" };
 
 const BOOK_SOURCES: Record<string, { archiveId: string; pdfFile: string }> = {
   "bio-9-ptb": { archiveId: "pakbooks-seed-0023", pdfFile: "PTB Biology 9.pdf" },
@@ -31,9 +35,15 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   const range = req.headers.get("range");
+  const headersOut: Record<string, string> = {
+    // archive.org's CDN is picky about default client hints; a plain desktop UA
+    // is what we verified working.
+    "User-Agent": "Mozilla/5.0 (compatible; ScholarStack/1.0)",
+  };
+  if (range) headersOut.Range = range;
   const upstream = await fetch(
     `https://archive.org/download/${src.archiveId}/${encodeURIComponent(src.pdfFile)}`,
-    { headers: range ? { Range: range } : undefined, redirect: "follow" }
+    { headers: headersOut, redirect: "follow" }
   );
 
   if (!upstream.ok && upstream.status !== 206) {

@@ -7,9 +7,16 @@
  *   <base>_hocr_pageindex.json.gz   - one [startChar, endChar, ...] per page
  * Binary-searching a match offset against those start offsets yields the true
  * printed page (spot-checked: "Mitosis" -> p.109 in the Biology 9 scan).
+ *
+ * Runs on the Node runtime: the edge runtime re-encoded the "%20" in these
+ * filenames (archive.org 400s/404s on that) and its DecompressionStream fought
+ * with the CDN's own gzip transfer encoding. Node + zlib.gunzipSync is
+ * deterministic here.
  */
 
-export const config = { runtime: "edge" };
+import zlib from "node:zlib";
+
+export const config = { runtime: "nodejs" };
 
 const BOOK_SOURCES: Record<string, { archiveId: string; base: string }> = {
   "bio-9-ptb": { archiveId: "pakbooks-seed-0023", base: "PTB Biology 9" },
@@ -25,15 +32,25 @@ const json = (body: unknown, status = 200) =>
     headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" },
   });
 
-/** Fetch a .gz sidecar and inflate it using the platform's DecompressionStream. */
+/**
+ * Fetch a .gz sidecar and inflate it. "Accept-Encoding: identity" stops the CDN
+ * from gzipping the already-gzipped file, so what arrives is exactly the .gz
+ * bytes we then gunzip ourselves.
+ */
 async function fetchGz(archiveId: string, file: string): Promise<string> {
   const res = await fetch(
     `https://archive.org/download/${archiveId}/${encodeURIComponent(file)}`,
-    { redirect: "follow" }
+    {
+      redirect: "follow",
+      headers: {
+        "Accept-Encoding": "identity",
+        "User-Agent": "Mozilla/5.0 (compatible; ScholarStack/1.0)",
+      },
+    }
   );
-  if (!res.ok || !res.body) throw new Error(`Upstream ${res.status} for ${file}`);
-  const stream = res.body.pipeThrough(new DecompressionStream("gzip"));
-  return await new Response(stream).text();
+  if (!res.ok) throw new Error(`Upstream ${res.status} for ${file}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  return zlib.gunzipSync(buf).toString("utf8");
 }
 
 function pageForOffset(starts: number[], pos: number): number {
