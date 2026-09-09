@@ -3,6 +3,7 @@ import { lookupTopics, youtubeSearchUrl, SABAQ_SITE } from "../topicData";
 import { EXAM_BANK } from "../examBank";
 import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_NUMERICALS } from "../bankSupplement";
 import { QUESTION_BANK } from "../questionBank";
+import ChapterResources from "./ChapterResources";
 import {
   BookOpen,
   CheckCircle,
@@ -1117,7 +1118,7 @@ export default function ChapterWiseStudy({
                 }`}
               >
                 <Sparkles size={14} className="text-violet-500 shrink-0" />
-                <span>Important Topics</span>
+                <span>Topics, Videos &amp; Solutions</span>
               </button>
               
               <button
@@ -1240,6 +1241,14 @@ export default function ChapterWiseStudy({
               {/* === TAB 1.5: IMPORTANT TOPICS WITH DIAGRAMS & VIDEOS === */}
               {activeStudyTab === "topics" && (
                 <div className="space-y-6">
+                  {/* Per-chapter desk: animated diagram, verified video lectures,
+                      solved exercises and glossary for the SELECTED chapter. */}
+                  <ChapterResources
+                    classLevel={currentClass}
+                    subjectId={selectedSubjectId}
+                    chapterName={activeChapter?.name || ""}
+                  />
+
                   <div className="bg-gradient-to-r from-violet-50 to-indigo-50 border border-indigo-100 rounded-xl p-3.5 text-xs text-slate-600 flex items-start gap-2.5">
                     <Sparkles className="text-violet-600 mt-0.5 shrink-0 animate-bounce" size={16} />
                     <div>
