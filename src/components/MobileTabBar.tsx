@@ -6,6 +6,7 @@ import {
   ClipboardList,
   MoreHorizontal,
   PlayCircle,
+  Calculator,
 } from "lucide-react";
 
 export type TabId =
@@ -16,7 +17,8 @@ export type TabId =
   | "evaluation"
   | "chapterstudy"
   | "boardexams"
-  | "learn";
+  | "learn"
+  | "solver";
 
 interface Props {
   activeTab: TabId;
@@ -107,6 +109,7 @@ export function MobileMoreSheet({ open, onClose, activeTab, setActiveTab }: Shee
   if (!open) return null;
 
   const rest: { id: TabId; label: string; desc: string }[] = [
+    { id: "solver", label: "Numericals & Theorems", desc: "Step-by-step solver and worked book solutions" },
     { id: "mockups", label: "Mockup Exams", desc: "Practice tests in the real board pattern" },
     { id: "syllabus", label: "Syllabus Tracker", desc: "Chapter completion across all subjects" },
     { id: "evaluation", label: "Student Evaluation", desc: "Your scores and progress reports" },

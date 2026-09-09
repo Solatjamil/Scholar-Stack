@@ -42,11 +42,13 @@ import {
   AlertTriangle,
   ChevronUp,
   PlayCircle,
+  Calculator,
 } from "lucide-react";
 import { auth, db, isRealFirebaseConfigured } from "./firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, setDoc, collection, addDoc, getDocs } from "firebase/firestore";
 import LearnHub from "./components/LearnHub";
+import SolverHub from "./components/SolverHub";
 import MockupSection from "./components/MockupSection";
 import StudentEvaluation, { EvaluationRecord, SelfAssessment } from "./components/StudentEvaluation";
 import ChapterWiseStudy from "./components/ChapterWiseStudy";
@@ -1700,7 +1702,7 @@ export default function App() {
   ];
 
   // --- STATE VARIABLES ---
-  const [activeTab, setActiveTab] = useState<"dashboard" | "syllabus" | "resources" | "mockups" | "predictor" | "evaluation" | "chapterstudy" | "boardexams" | "learn">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "syllabus" | "resources" | "mockups" | "predictor" | "evaluation" | "chapterstudy" | "boardexams" | "learn" | "solver">("dashboard");
   const [boardSelection, setBoardSelection] = useState<string>("BISE Lahore (Punjab)");
   const [subjects, setSubjects] = useState<Subject[]>(initialSubjects);
   const [syllabusList, setSyllabusList] = useState<SyllabusItem[]>(initialSyllabusList);
@@ -3277,6 +3279,17 @@ export default function App() {
               <span>Learn &amp; Videos</span>
             </button>
             <button
+              onClick={() => setActiveTab("solver")}
+              className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1 ${
+                activeTab === "solver"
+                  ? "text-indigo-600 bg-indigo-50 font-semibold shadow-xs"
+                  : "hover:text-emerald-600 hover:bg-emerald-50/50"
+              }`}
+            >
+              <Calculator size={14} className="text-emerald-500" />
+              <span>Numericals</span>
+            </button>
+            <button
               onClick={() => setActiveTab("syllabus")}
               className={`px-3 py-1.5 rounded-lg transition-all ${
                 activeTab === "syllabus"
@@ -4079,6 +4092,13 @@ export default function App() {
         {activeTab === "learn" && (
           <div className="animate-fade-in">
             <LearnHub />
+          </div>
+        )}
+
+        {/* --- VIEW: NUMERICALS, THEOREMS & SOLUTIONS --- */}
+        {activeTab === "solver" && (
+          <div className="animate-fade-in">
+            <SolverHub studentClass={(["9th","10th","11th","12th"].includes(studentClass) ? studentClass : "10th") as "9th" | "10th" | "11th" | "12th"} />
           </div>
         )}
 
