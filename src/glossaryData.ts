@@ -634,6 +634,386 @@ export const GLOSSARY: GlossaryGroup[] = [
       },
     ],
   },
+
+  /* ---------- PHYSICS: vectors & equilibrium (11th) ---------- */
+  {
+    subject: "physics",
+    keywords: ["vector", "equilibrium", "scalar", "resultant"],
+    chapterLabel: "Vectors and Equilibrium",
+    terms: [
+      {
+        term: "Resultant vector",
+        definition: "A single vector that produces the same effect as the combined effect of all the vectors acting together.",
+        romanUrdu: "Aik aisa vector jo tamam vectors ke mile jule asar ke barabar asar paida kare.",
+        formula: "F = √(F₁² + F₂² + 2F₁F₂ cos θ)",
+      },
+      {
+        term: "Torque (moment of force)",
+        definition: "The turning effect of a force about a pivot, equal to the product of the force and the moment arm.",
+        romanUrdu: "Kisi force ka ghumane wala asar. Force aur moment arm ka hasil-e-zarb.",
+        unit: "N m",
+        formula: "τ = F × L",
+      },
+      {
+        term: "Equilibrium",
+        definition: "The state of a body in which there is no net force and no net torque acting on it, so it has neither linear nor angular acceleration.",
+        romanUrdu: "Jism ki woh haalat jismein na koi net force ho na net torque.",
+        sideNote: "Do shartein hain: ΣF = 0 (first condition) aur Στ = 0 (second condition). Dono likhna zaroori hai.",
+      },
+    ],
+  },
+  /* ---------- PHYSICS: thermodynamics (11th) ---------- */
+  {
+    subject: "physics",
+    keywords: ["thermodynamic", "heat", "thermal", "temperature", "entropy", "engine"],
+    chapterLabel: "Heat and Thermodynamics",
+    terms: [
+      {
+        term: "Internal energy",
+        definition: "The sum of all the kinetic and potential energies of the molecules of a system.",
+        romanUrdu: "System ke tamam molecules ki kinetic aur potential energy ka majmua.",
+        unit: "J",
+      },
+      {
+        term: "First law of thermodynamics",
+        definition: "The heat supplied to a system is equal to the increase in its internal energy plus the work done by the system on its surroundings.",
+        romanUrdu: "System ko di gayi heat, uski internal energy ke izafay aur kiye gaye work ke barabar hoti hai.",
+        formula: "ΔQ = ΔU + ΔW",
+        sideNote: "Yeh law of conservation of energy ka hi roop hai.",
+      },
+      {
+        term: "Isothermal process",
+        definition: "A process carried out at constant temperature, so that the internal energy of an ideal gas remains unchanged.",
+        romanUrdu: "Woh amal jo constant temperature par hota hai, is liye ΔU = 0 hota hai.",
+        sideNote: "Isothermal mein ΔU = 0, adiabatic mein ΔQ = 0. Inko aapas mein na milayein.",
+      },
+      {
+        term: "Adiabatic process",
+        definition: "A process in which no heat enters or leaves the system.",
+        romanUrdu: "Woh amal jismein na heat andar aati hai na bahar jati hai.",
+        formula: "ΔQ = 0, so ΔU = −ΔW",
+      },
+      {
+        term: "Efficiency of a heat engine",
+        definition: "The ratio of the net work done by the engine to the total heat absorbed from the source, usually expressed as a percentage.",
+        romanUrdu: "Engine ke kiye gaye work aur li gayi total heat ka nisbat.",
+        formula: "η = (W / Q₁) × 100 %",
+        sideNote: "Efficiency kabhi 100 % nahi ho sakti — yeh second law kehta hai.",
+      },
+    ],
+  },
+  /* ---------- PHYSICS: waves & oscillation ---------- */
+  {
+    subject: "physics",
+    keywords: ["wave", "oscillat", "harmonic", "sound", "vibrat", "resonance"],
+    chapterLabel: "Oscillations and Waves",
+    terms: [
+      {
+        term: "Simple harmonic motion (SHM)",
+        definition: "A vibratory motion in which the acceleration of the body is directly proportional to its displacement from the mean position and is always directed towards that mean position.",
+        romanUrdu: "Woh jhoolne wali harkat jismein acceleration displacement ke mutanasib ho aur hamesha mean position ki taraf ho.",
+        formula: "a = −ω² x",
+        sideNote: "Minus sign zaroori hai — woh batata hai ke acceleration displacement ke ulat rukh mein hai.",
+      },
+      {
+        term: "Time period",
+        definition: "The time taken by a vibrating body to complete one full vibration.",
+        romanUrdu: "Aik mukammal vibration mein laga hua waqt.",
+        unit: "s",
+        formula: "T = 1 / f",
+      },
+      {
+        term: "Frequency",
+        definition: "The number of complete vibrations performed by a body in one second.",
+        romanUrdu: "Aik second mein poori hone wali vibrations ki tadaad.",
+        unit: "Hz",
+      },
+      {
+        term: "Wavelength",
+        definition: "The distance between two consecutive crests or two consecutive troughs of a wave.",
+        romanUrdu: "Do mutawatir crests ya troughs ke darmiyan ka faasla.",
+        unit: "m",
+        formula: "v = f λ",
+      },
+      {
+        term: "Resonance",
+        definition: "The setting up of vibrations of large amplitude in a body when the frequency of the applied force matches the natural frequency of the body.",
+        romanUrdu: "Jab lagayi gayi force ki frequency jism ki natural frequency ke barabar ho jaye to bari amplitude ki vibrations paida hoti hain.",
+      },
+    ],
+  },
+  /* ---------- CHEMISTRY: gases & states of matter ---------- */
+  {
+    subject: "chemistry",
+    keywords: ["gas", "liquid", "solid", "state of matter", "states of matter"],
+    chapterLabel: "States of Matter",
+    terms: [
+      {
+        term: "Boyle's law",
+        definition: "At constant temperature, the volume of a given mass of a gas is inversely proportional to the pressure applied on it.",
+        romanUrdu: "Constant temperature par gas ka volume pressure ke ulta mutanasib hota hai.",
+        formula: "P₁V₁ = P₂V₂",
+      },
+      {
+        term: "Charles's law",
+        definition: "At constant pressure, the volume of a given mass of a gas is directly proportional to its absolute temperature.",
+        romanUrdu: "Constant pressure par gas ka volume absolute temperature ke seedha mutanasib hota hai.",
+        formula: "V₁/T₁ = V₂/T₂",
+        sideNote: "Temperature hamesha Kelvin mein daalein, Celsius mein nahi. K = °C + 273.",
+      },
+      {
+        term: "Ideal gas equation",
+        definition: "The equation of state that combines Boyle's, Charles's and Avogadro's laws for an ideal gas.",
+        romanUrdu: "Teenon gas laws ko mila kar banne wali equation.",
+        formula: "PV = nRT,  R = 0.0821 dm³ atm mol⁻¹ K⁻¹",
+      },
+      {
+        term: "Diffusion",
+        definition: "The spontaneous spreading and mixing of the molecules of one substance through another due to their random motion.",
+        romanUrdu: "Molecules ka khud ba khud phail kar aapas mein mil jana.",
+      },
+      {
+        term: "Evaporation",
+        definition: "The spontaneous change of a liquid into vapour at any temperature below its boiling point, occurring only at the surface.",
+        romanUrdu: "Boiling point se neeche bhi liquid ka sirf sattah se vapour ban jana.",
+        sideNote: "Evaporation sirf surface par hota hai, boiling poore liquid mein.",
+      },
+    ],
+  },
+  /* ---------- CHEMISTRY: thermochemistry & kinetics ---------- */
+  {
+    subject: "chemistry",
+    keywords: ["thermochem", "kinetic", "rate", "enthalpy", "energetic", "equilibrium"],
+    chapterLabel: "Thermochemistry, Equilibrium and Kinetics",
+    terms: [
+      {
+        term: "Exothermic reaction",
+        definition: "A reaction in which heat is released to the surroundings, so the enthalpy change is negative.",
+        romanUrdu: "Woh reaction jismein heat bahar nikalti hai, ΔH manfi hota hai.",
+        formula: "ΔH < 0",
+      },
+      {
+        term: "Endothermic reaction",
+        definition: "A reaction in which heat is absorbed from the surroundings, so the enthalpy change is positive.",
+        romanUrdu: "Woh reaction jo heat jazb karti hai, ΔH musbat hota hai.",
+        formula: "ΔH > 0",
+      },
+      {
+        term: "Enthalpy of a reaction",
+        definition: "The amount of heat absorbed or evolved when the reaction occurs at constant pressure.",
+        romanUrdu: "Constant pressure par reaction mein li gayi ya nikli hui heat ki miqdar.",
+        unit: "kJ mol⁻¹",
+      },
+      {
+        term: "Hess's law",
+        definition: "The total enthalpy change of a reaction is the same whether it takes place in one step or in several steps.",
+        romanUrdu: "Reaction aik qadam mein ho ya kai qadmon mein, total enthalpy change wahi rehta hai.",
+      },
+      {
+        term: "Rate of reaction",
+        definition: "The change in the concentration of a reactant or a product per unit time.",
+        romanUrdu: "Aik waqt ke andar reactant ya product ki concentration mein tabdeeli.",
+        unit: "mol dm⁻³ s⁻¹",
+      },
+      {
+        term: "Le Chatelier's principle",
+        definition: "If a stress is applied to a system at equilibrium, the system shifts in the direction that relieves that stress.",
+        romanUrdu: "Equilibrium par dabao daalein to system us rukh mein shift hota hai jo dabao kam kare.",
+        sideNote: "Pressure, temperature aur concentration — teenon ka asar alag alag likhna chahiye.",
+      },
+      {
+        term: "Catalyst",
+        definition: "A substance that alters the rate of a chemical reaction without itself being consumed in the reaction.",
+        romanUrdu: "Woh cheez jo reaction ki raftaar badle magar khud khatam na ho.",
+        sideNote: "Catalyst equilibrium ki position nahi badalta, sirf usay jaldi haasil karwata hai.",
+      },
+    ],
+  },
+  /* ---------- CHEMISTRY: organic ---------- */
+  {
+    subject: "chemistry",
+    keywords: ["organic", "hydrocarbon", "alkyl", "alcohol", "aldehyde", "carboxylic", "aromatic", "macromolecule"],
+    chapterLabel: "Organic Chemistry",
+    terms: [
+      {
+        term: "Organic chemistry",
+        definition: "The branch of chemistry that deals with the study of hydrocarbons and their derivatives.",
+        romanUrdu: "Chemistry ki woh shakh jo hydrocarbons aur unke derivatives ka mutala karti hai.",
+      },
+      {
+        term: "Functional group",
+        definition: "An atom or a group of atoms that determines the characteristic chemical properties of an organic compound.",
+        romanUrdu: "Woh atom ya atoms ka group jo compound ki khaas chemical khasoosiyat tay karta hai.",
+        sideNote: "−OH alcohol, −CHO aldehyde, −COOH carboxylic acid. Yeh yaad karna lazmi hai.",
+      },
+      {
+        term: "Homologous series",
+        definition: "A series of organic compounds having the same functional group and the same general formula, in which each successive member differs by a −CH₂− unit.",
+        romanUrdu: "Aisay compounds ka silsila jinka functional group aik ho aur har agla member −CH₂− se barhta ho.",
+      },
+      {
+        term: "Isomerism",
+        definition: "The phenomenon in which two or more compounds have the same molecular formula but different structural formulae and different properties.",
+        romanUrdu: "Jab do compounds ka molecular formula aik ho magar structure alag ho.",
+      },
+      {
+        term: "Saturated hydrocarbon",
+        definition: "A hydrocarbon in which all the carbon-to-carbon bonds are single covalent bonds.",
+        romanUrdu: "Woh hydrocarbon jismein carbon ke darmiyan sirf single bonds hon, jaise alkanes.",
+      },
+    ],
+  },
+  /* ---------- MATHS: sequences, series, binomial, probability ---------- */
+  {
+    subject: "math",
+    keywords: ["sequence", "series", "progression", "binomial", "induction", "permutation", "combination", "probability"],
+    chapterLabel: "Sequences, Series and Counting",
+    terms: [
+      {
+        term: "Arithmetic progression (AP)",
+        definition: "A sequence in which each term after the first is obtained by adding a fixed number, called the common difference, to the preceding term.",
+        romanUrdu: "Woh sequence jismein har term pichhle term mein aik muqarrara adad jama kar ke banti hai.",
+        formula: "aₙ = a + (n − 1)d,  Sₙ = n/2 [2a + (n − 1)d]",
+      },
+      {
+        term: "Geometric progression (GP)",
+        definition: "A sequence in which each term after the first is obtained by multiplying the preceding term by a fixed non-zero number called the common ratio.",
+        romanUrdu: "Woh sequence jismein har term pichhli term ko aik muqarrara adad se zarb de kar banti hai.",
+        formula: "aₙ = a rⁿ⁻¹,  Sₙ = a(1 − rⁿ)/(1 − r)",
+      },
+      {
+        term: "Binomial theorem",
+        definition: "A formula that gives the expansion of any power of a binomial expression as a sum of terms involving binomial coefficients.",
+        romanUrdu: "Woh formula jo (a + b)ⁿ ka expansion deta hai.",
+        formula: "T₍ᵣ₊₁₎ = C(n, r) aⁿ⁻ʳ bʳ",
+        sideNote: "r-wein term ke liye r = (term number − 1) lagta hai.",
+      },
+      {
+        term: "Permutation",
+        definition: "An arrangement of a number of objects in a definite order.",
+        romanUrdu: "Cheezon ko aik muqarrara tarteeb mein rakhna — yahan order maayne rakhta hai.",
+        formula: "ⁿPᵣ = n! / (n − r)!",
+      },
+      {
+        term: "Combination",
+        definition: "A selection of objects without regard to the order in which they are selected.",
+        romanUrdu: "Cheezon ka intekhab jismein tarteeb ki koi ahmiyat nahi hoti.",
+        formula: "ⁿCᵣ = n! / [r! (n − r)!]",
+        sideNote: "Order zaroori ho to permutation, warna combination. Yeh farq pehchanna sab se ahem hai.",
+      },
+      {
+        term: "Probability",
+        definition: "The ratio of the number of favourable outcomes to the total number of equally likely possible outcomes.",
+        romanUrdu: "Matlooba nateejon ki tadaad taqseem kul mumkina nateejon ki tadaad.",
+        formula: "P(E) = n(E) / n(S),  0 ≤ P(E) ≤ 1",
+      },
+    ],
+  },
+  /* ---------- MATHS: matrices, sets & functions ---------- */
+  {
+    subject: "math",
+    keywords: ["matrix", "matrices", "determinant", "set", "function", "group", "number system", "partial fraction"],
+    chapterLabel: "Sets, Functions and Matrices",
+    terms: [
+      {
+        term: "Matrix",
+        definition: "A rectangular array of numbers arranged in rows and columns and enclosed by brackets.",
+        romanUrdu: "Adad ka aik mustateel jadwal jo rows aur columns mein bracket ke andar likha jata hai.",
+      },
+      {
+        term: "Determinant",
+        definition: "A single number associated with every square matrix, obtained from its elements by a fixed rule.",
+        romanUrdu: "Har square matrix se hasil hone wala aik adad.",
+        formula: "For [[a, b], [c, d]],  det = ad − bc",
+      },
+      {
+        term: "Singular matrix",
+        definition: "A square matrix whose determinant is equal to zero, and which therefore has no inverse.",
+        romanUrdu: "Woh square matrix jiska determinant sifar ho — iska inverse mumkin nahi.",
+        sideNote: "Inverse nikalne se pehle hamesha determinant check karein.",
+      },
+      {
+        term: "Function",
+        definition: "A relation in which every element of the first set is paired with exactly one element of the second set.",
+        romanUrdu: "Aisa taluq jismein pehle set ka har element doosre set ke sirf aik element se juda ho.",
+      },
+      {
+        term: "Domain and range",
+        definition: "The domain is the set of all first elements of a relation, and the range is the set of all second elements.",
+        romanUrdu: "Domain pehle elements ka set hai aur range doosre elements ka.",
+      },
+    ],
+  },
+  /* ---------- CS: databases & SQL (12th) ---------- */
+  {
+    subject: "cs",
+    keywords: ["database", "dbms", "sql", "query", "normalis", "normaliz", "integrity", "access", "table"],
+    chapterLabel: "Databases and SQL",
+    terms: [
+      {
+        term: "Database",
+        definition: "An organised collection of logically related data stored in such a way that it can be easily accessed, managed and updated.",
+        romanUrdu: "Aapas mein jure hue data ka manzam majmua jise aasani se dhoonda aur badla ja sake.",
+      },
+      {
+        term: "DBMS",
+        definition: "Database Management System: software that allows users to create, store, retrieve and manage the data in a database.",
+        romanUrdu: "Woh software jo database banane, mehfooz karne aur istemal karne mein madad karta hai — jaise MS Access, Oracle.",
+      },
+      {
+        term: "Primary key",
+        definition: "A field, or a combination of fields, that uniquely identifies each record in a table and cannot contain a null value.",
+        romanUrdu: "Woh field jo table ke har record ko yakta tor par pehchanti hai aur khali nahi ho sakti.",
+        sideNote: "Primary key kabhi duplicate ya null nahi ho sakti — yeh do shartein exam mein poochhi jati hain.",
+      },
+      {
+        term: "Foreign key",
+        definition: "A field in one table that refers to the primary key of another table, and is used to establish a link between the two tables.",
+        romanUrdu: "Aik table ki woh field jo doosre table ki primary key se juri hoti hai.",
+      },
+      {
+        term: "Normalisation",
+        definition: "The process of organising the data in a database into tables in order to remove redundancy and avoid update anomalies.",
+        romanUrdu: "Data ko is tarah tables mein tarteeb dena ke takrar khatam ho jaye.",
+      },
+      {
+        term: "SQL",
+        definition: "Structured Query Language: the standard language used to create, retrieve, update and delete data in a relational database.",
+        romanUrdu: "Woh standard zabaan jis se database mein data banaya, dhoonda aur badla jata hai.",
+        formula: "SELECT column FROM table WHERE condition;",
+      },
+      {
+        term: "Data redundancy",
+        definition: "The unnecessary repetition of the same data at more than one place in a database.",
+        romanUrdu: "Aik hi data ka database mein kai jagah ghair zaroori tor par dohraya jana.",
+      },
+    ],
+  },
+  /* ---------- CS: C programming (12th) ---------- */
+  {
+    subject: "cs",
+    keywords: ["c language", "input", "output", "decision", "control structure", "loop", "iteration", "array", "function"],
+    chapterLabel: "Programming in C",
+    terms: [
+      {
+        term: "Compiler",
+        definition: "A program that translates the whole source code written in a high level language into machine code in one go, before execution.",
+        romanUrdu: "Woh program jo poore source code ko aik saath machine code mein tarjuma karta hai.",
+        sideNote: "Compiler poora program aik dafa mein, interpreter aik aik line kar ke tarjuma karta hai.",
+      },
+      {
+        term: "Array",
+        definition: "A collection of a fixed number of elements of the same data type stored in consecutive memory locations under one name.",
+        romanUrdu: "Aik hi qism ke elements ka majmua jo aik naam ke tehat mutasil memory mein rakha jata hai.",
+        sideNote: "Array ka pehla index hamesha 0 hota hai, 1 nahi.",
+      },
+      {
+        term: "Function",
+        definition: "A self contained block of statements that performs a specific task and can be called from anywhere in the program.",
+        romanUrdu: "Statements ka aik alag block jo koi khaas kaam karta hai aur baar baar bulaya ja sakta hai.",
+      },
+    ],
+  },
 ];
 
 const CS_ALIASES = ["cs", "computer", "computerscience", "ics", "it"];

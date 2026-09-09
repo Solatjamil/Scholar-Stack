@@ -822,6 +822,505 @@ const intermediate: WorkedProblem[] = [
   },
 ];
 
+/* ===================== INTERMEDIATE BATCH 2 =====================
+ * Deepens 11th/12th coverage, which was thinner than matric.
+ * Chapter names match CHAPTER_LISTS in syllabusData.ts (minus the
+ * "Unit N:" prefix, which ChapterResources strips before matching).
+ * Every numerical below is arithmetically checked by the test harness.
+ */
+const intermediate2: WorkedProblem[] = [
+  /* ---------- 11th PHYSICS ---------- */
+  {
+    id: "p11-vec-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Vectors and Equilibrium",
+    kind: "numerical",
+    question:
+      "Two forces of 3 N and 4 N act at right angles to each other on a body. Find the magnitude and direction of the resultant force.",
+    romanUrdu:
+      "3 N aur 4 N ki do forces aik doosre par 90 degree par lag rahi hain. Resultant ka magnitude aur direction nikalein.",
+    given: [
+      { label: "First force", value: "F₁ = 3 N" },
+      { label: "Second force", value: "F₂ = 4 N" },
+      { label: "Angle between them", value: "θ = 90°" },
+    ],
+    formula: "F = √(F₁² + F₂²)   and   tan φ = F₂ / F₁",
+    steps: [
+      { label: "Squaring the forces", value: "F₁² = 9,  F₂² = 16" },
+      { label: "Adding", value: "F₁² + F₂² = 9 + 16 = 25" },
+      { label: "Taking the square root", value: "F = √25 = 5 N" },
+      { label: "Direction", value: "tan φ = 4 / 3 = 1.333" },
+      { label: "Taking inverse tangent", value: "φ = 53.13°" },
+    ],
+    answer: "F = 5 N at 53.13° from the 3 N force",
+    examTip:
+      "Perpendicular forces par hi Pythagoras lagta hai. Agar angle 90° na ho to F = √(F₁² + F₂² + 2F₁F₂cosθ) use karein.",
+  },
+  {
+    id: "p11-work-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Work and Energy",
+    kind: "numerical",
+    question:
+      "A force of 50 N pulls a box through 8 m. The force makes an angle of 60° with the direction of motion. Calculate the work done.",
+    romanUrdu:
+      "50 N force ne box ko 8 m kheencha, force 60° ke angle par hai. Work done nikalein.",
+    given: [
+      { label: "Force", value: "F = 50 N" },
+      { label: "Displacement", value: "d = 8 m" },
+      { label: "Angle", value: "θ = 60°" },
+    ],
+    formula: "W = F d cos θ",
+    steps: [
+      { label: "Value of cos 60°", value: "cos 60° = 0.5" },
+      { label: "Substituting", value: "W = 50 × 8 × 0.5" },
+      { label: "Computing", value: "W = 400 × 0.5 = 200" },
+    ],
+    answer: "W = 200 J",
+    examTip:
+      "cos θ lagana na bhoolein. Agar force motion ke saath hi ho (θ = 0) tab hi W = F d hota hai.",
+  },
+  {
+    id: "p11-fluid-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Fluid Dynamics",
+    kind: "numerical",
+    question:
+      "Water flows through a pipe of cross-sectional area 4 cm² with a speed of 5 m/s. The pipe narrows to an area of 2 cm². Find the speed of water in the narrow section.",
+    romanUrdu:
+      "Paani 4 cm² wale pipe mein 5 m/s se beh raha hai. Pipe 2 cm² tak tang ho jata hai. Nayi speed nikalein.",
+    given: [
+      { label: "First area", value: "A₁ = 4 cm²" },
+      { label: "First speed", value: "v₁ = 5 m/s" },
+      { label: "Second area", value: "A₂ = 2 cm²" },
+    ],
+    formula: "A₁ v₁ = A₂ v₂   (equation of continuity)",
+    steps: [
+      { label: "Rearranging", value: "v₂ = A₁ v₁ / A₂" },
+      { label: "Substituting", value: "v₂ = (4 × 5) / 2" },
+      { label: "Computing", value: "v₂ = 20 / 2 = 10" },
+    ],
+    answer: "v₂ = 10 m/s",
+    examTip:
+      "Areas ka ratio hi kaafi hai, cm² ko m² mein badalne ki zaroorat nahi kyunke units cancel ho jate hain.",
+  },
+  {
+    id: "p11-heat-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Thermodynamics",
+    kind: "numerical",
+    question:
+      "A heat engine absorbs 800 J of heat from the source and rejects 600 J to the sink in each cycle. Calculate the work done and the efficiency of the engine.",
+    romanUrdu:
+      "Heat engine 800 J heat leta hai aur 600 J reject karta hai. Work aur efficiency nikalein.",
+    given: [
+      { label: "Heat absorbed", value: "Q₁ = 800 J" },
+      { label: "Heat rejected", value: "Q₂ = 600 J" },
+    ],
+    formula: "W = Q₁ − Q₂   and   η = (W / Q₁) × 100",
+    steps: [
+      { label: "Work done", value: "W = 800 − 600 = 200 J" },
+      { label: "Efficiency ratio", value: "η = 200 / 800 = 0.25" },
+      { label: "As a percentage", value: "η = 0.25 × 100 = 25" },
+    ],
+    answer: "W = 200 J and η = 25 %",
+    examTip:
+      "Efficiency hamesha 100 % se kam hoti hai. Agar 100 % se zyada aa jaye to Q₁ aur Q₂ ulat gaye hain.",
+  },
+  {
+    id: "p11-wave-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Waves",
+    kind: "numerical",
+    question:
+      "A stretched string vibrates with a frequency of 250 Hz and the wavelength of the wave produced is 1.2 m. Calculate the speed of the wave on the string.",
+    romanUrdu:
+      "String 250 Hz par vibrate kar rahi hai aur wavelength 1.2 m hai. Wave ki speed nikalein.",
+    given: [
+      { label: "Frequency", value: "f = 250 Hz" },
+      { label: "Wavelength", value: "λ = 1.2 m" },
+    ],
+    formula: "v = f λ",
+    steps: [
+      { label: "Substituting", value: "v = 250 × 1.2" },
+      { label: "Computing", value: "v = 300" },
+    ],
+    answer: "v = 300 m/s",
+    examTip:
+      "Frequency Hz mein aur wavelength metre mein ho to speed seedhi m/s mein aati hai.",
+  },
+
+  /* ---------- 11th CHEMISTRY ---------- */
+  {
+    id: "c11-mole-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "Basic Concepts",
+    kind: "numerical",
+    question:
+      "Calculate the number of moles and the number of molecules present in 88 g of carbon dioxide (CO₂). [C = 12, O = 16, N_A = 6.02 × 10²³]",
+    romanUrdu:
+      "88 g CO₂ mein kitne moles aur kitne molecules hain? Nikalein.",
+    given: [
+      { label: "Mass", value: "m = 88 g" },
+      { label: "Molar mass of CO₂", value: "M = 12 + 2(16) = 44 g/mol" },
+      { label: "Avogadro number", value: "N_A = 6.02 × 10²³" },
+    ],
+    formula: "n = m / M   and   N = n × N_A",
+    steps: [
+      { label: "Number of moles", value: "n = 88 / 44 = 2 mol" },
+      { label: "Number of molecules", value: "N = 2 × 6.02 × 10²³" },
+      { label: "Computing", value: "N = 12.04 × 10²³ = 1.204 × 10²⁴" },
+    ],
+    answer: "n = 2 mol and N = 1.204 × 10²⁴ molecules",
+    examTip:
+      "Molar mass pehle theek nikalein. CO₂ ka 44 hai, 28 nahi — oxygen do hain.",
+  },
+  {
+    id: "c11-atom-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "Atomic Structure",
+    kind: "numerical",
+    question:
+      "Calculate the energy of a photon of light whose wavelength is 600 nm. [h = 6.63 × 10⁻³⁴ J s, c = 3 × 10⁸ m/s]",
+    romanUrdu:
+      "600 nm wavelength wale photon ki energy nikalein.",
+    given: [
+      { label: "Wavelength", value: "λ = 600 nm = 6 × 10⁻⁷ m" },
+      { label: "Planck constant", value: "h = 6.63 × 10⁻³⁴ J s" },
+      { label: "Speed of light", value: "c = 3 × 10⁸ m/s" },
+    ],
+    formula: "E = h c / λ",
+    steps: [
+      { label: "Converting nm to m", value: "600 nm = 600 × 10⁻⁹ = 6 × 10⁻⁷ m" },
+      { label: "Numerator", value: "h c = 6.63 × 10⁻³⁴ × 3 × 10⁸ = 1.989 × 10⁻²⁵" },
+      { label: "Dividing", value: "E = 1.989 × 10⁻²⁵ / 6 × 10⁻⁷" },
+      { label: "Computing", value: "E = 3.315 × 10⁻¹⁹" },
+    ],
+    answer: "E = 3.315 × 10⁻¹⁹ J",
+    examTip:
+      "nm ko metre mein badalna sab se aam ghalti hai: 1 nm = 10⁻⁹ m.",
+  },
+  {
+    id: "c11-thermo-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "Thermochemistry",
+    kind: "numerical",
+    question:
+      "When 100 g of water is heated, its temperature rises from 25 °C to 55 °C. Calculate the heat absorbed. [specific heat of water = 4.2 J g⁻¹ K⁻¹]",
+    romanUrdu:
+      "100 g paani ka temperature 25 °C se 55 °C hua. Kitni heat absorb hui?",
+    given: [
+      { label: "Mass", value: "m = 100 g" },
+      { label: "Specific heat", value: "c = 4.2 J g⁻¹ K⁻¹" },
+      { label: "Temperature change", value: "ΔT = 55 − 25 = 30 K" },
+    ],
+    formula: "q = m c ΔT",
+    steps: [
+      { label: "Substituting", value: "q = 100 × 4.2 × 30" },
+      { label: "First product", value: "100 × 4.2 = 420" },
+      { label: "Computing", value: "q = 420 × 30 = 12600" },
+    ],
+    answer: "q = 12600 J = 12.6 kJ",
+    examTip:
+      "ΔT ke liye Celsius ka farq aur Kelvin ka farq barabar hota hai, is liye conversion ki zaroorat nahi.",
+  },
+  {
+    id: "c11-equil-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "Chemical Equilibrium",
+    kind: "numerical",
+    question:
+      "For the reaction H₂ + I₂ ⇌ 2HI, the equilibrium concentrations are [H₂] = 0.2 M, [I₂] = 0.2 M and [HI] = 1.6 M. Calculate the equilibrium constant K_c.",
+    romanUrdu:
+      "Di gayi equilibrium concentrations se K_c nikalein.",
+    given: [
+      { label: "Hydrogen", value: "[H₂] = 0.2 M" },
+      { label: "Iodine", value: "[I₂] = 0.2 M" },
+      { label: "Hydrogen iodide", value: "[HI] = 1.6 M" },
+    ],
+    formula: "K_c = [HI]² / ([H₂][I₂])",
+    steps: [
+      { label: "Numerator", value: "[HI]² = (1.6)² = 2.56" },
+      { label: "Denominator", value: "[H₂][I₂] = 0.2 × 0.2 = 0.04" },
+      { label: "Dividing", value: "K_c = 2.56 / 0.04" },
+      { label: "Computing", value: "K_c = 64" },
+    ],
+    answer: "K_c = 64 (no units, since moles cancel here)",
+    examTip:
+      "Coefficient power banta hai. HI ka coefficient 2 hai is liye square karna zaroori hai.",
+  },
+
+  /* ---------- 11th MATHS ---------- */
+  {
+    id: "m11-quad-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Quadratic Equations",
+    kind: "numerical",
+    question:
+      "Solve the quadratic equation 2x² − 7x + 3 = 0 using the quadratic formula.",
+    romanUrdu:
+      "Quadratic formula se 2x² − 7x + 3 = 0 hal karein.",
+    given: [
+      { label: "Coefficients", value: "a = 2, b = −7, c = 3" },
+    ],
+    formula: "x = [−b ± √(b² − 4ac)] / 2a",
+    steps: [
+      { label: "Discriminant", value: "b² − 4ac = (−7)² − 4(2)(3) = 49 − 24 = 25" },
+      { label: "Square root", value: "√25 = 5" },
+      { label: "Substituting", value: "x = (7 ± 5) / 4" },
+      { label: "First root", value: "x = (7 + 5)/4 = 12/4 = 3" },
+      { label: "Second root", value: "x = (7 − 5)/4 = 2/4 = 0.5" },
+    ],
+    answer: "x = 3 or x = 1/2",
+    examTip:
+      "−b ka matlab −(−7) = +7 hota hai. Sign ki ghalti yahan sab se zyada hoti hai.",
+  },
+  {
+    id: "m11-binom-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Mathematical Induction and Binomial Theorem",
+    kind: "numerical",
+    question:
+      "Find the 4th term in the expansion of (x + 2)⁶.",
+    romanUrdu:
+      "(x + 2)⁶ ke expansion ka chautha term nikalein.",
+    given: [
+      { label: "Expression", value: "(x + 2)⁶, so a = x, b = 2, n = 6" },
+      { label: "Term required", value: "r + 1 = 4, therefore r = 3" },
+    ],
+    formula: "T_(r+1) = C(n, r) · a^(n−r) · b^r",
+    steps: [
+      { label: "Binomial coefficient", value: "C(6, 3) = 6! / (3! 3!) = 720 / 36 = 20" },
+      { label: "Power of a", value: "x^(6−3) = x³" },
+      { label: "Power of b", value: "2³ = 8" },
+      { label: "Multiplying", value: "T₄ = 20 × x³ × 8 = 160 x³" },
+    ],
+    answer: "T₄ = 160 x³",
+    examTip:
+      "Chautha term ke liye r = 3 lagta hai, r = 4 nahi. Hamesha r = (term number − 1).",
+  },
+  {
+    id: "m11-trig-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Fundamentals of Trigonometry",
+    kind: "numerical",
+    question:
+      "An arc of a circle of radius 14 cm subtends an angle of 45° at the centre. Find the length of the arc. [π = 22/7]",
+    romanUrdu:
+      "14 cm radius ke circle mein 45° ka arc kitna lamba hai?",
+    given: [
+      { label: "Radius", value: "r = 14 cm" },
+      { label: "Angle", value: "θ = 45°" },
+    ],
+    formula: "S = r θ, where θ must be in radians",
+    steps: [
+      { label: "Converting to radians", value: "θ = 45 × π/180 = π/4" },
+      { label: "Using π = 22/7", value: "θ = 22/(7 × 4) = 22/28 = 0.7857 rad" },
+      { label: "Substituting", value: "S = 14 × 0.7857" },
+      { label: "Computing", value: "S = 11" },
+    ],
+    answer: "S = 11 cm",
+    examTip:
+      "S = rθ mein θ radians mein hona zaroori hai. Degrees seedhe daal dena sab se badi ghalti hai.",
+  },
+
+  /* ---------- 12th PHYSICS ---------- */
+  {
+    id: "p12-curr-1",
+    classLevel: "12th",
+    subject: "physics",
+    chapter: "Current Electricity",
+    kind: "numerical",
+    question:
+      "Three resistors of 2 Ω, 3 Ω and 6 Ω are connected in parallel across a 12 V battery. Find the equivalent resistance and the total current drawn.",
+    romanUrdu:
+      "2, 3 aur 6 ohm parallel mein 12 V battery par lage hain. Equivalent resistance aur current nikalein.",
+    given: [
+      { label: "Resistances", value: "R₁ = 2 Ω, R₂ = 3 Ω, R₃ = 6 Ω" },
+      { label: "Voltage", value: "V = 12 V" },
+    ],
+    formula: "1/R_e = 1/R₁ + 1/R₂ + 1/R₃   and   I = V / R_e",
+    steps: [
+      { label: "Adding reciprocals", value: "1/R_e = 1/2 + 1/3 + 1/6" },
+      { label: "Common denominator 6", value: "1/R_e = 3/6 + 2/6 + 1/6 = 6/6 = 1" },
+      { label: "Equivalent resistance", value: "R_e = 1 Ω" },
+      { label: "Total current", value: "I = 12 / 1 = 12" },
+    ],
+    answer: "R_e = 1 Ω and I = 12 A",
+    examTip:
+      "Parallel mein equivalent resistance hamesha sab se chhoti resistance se bhi kam hoti hai — yahan 1 Ω < 2 Ω, is liye jawab theek hai.",
+  },
+  {
+    id: "p12-emf-1",
+    classLevel: "12th",
+    subject: "physics",
+    chapter: "Electromagnetic Induction",
+    kind: "numerical",
+    question:
+      "A coil of 200 turns experiences a change of magnetic flux of 0.05 Wb in 0.4 s. Calculate the average induced EMF.",
+    romanUrdu:
+      "200 turns wali coil mein 0.4 s mein 0.05 Wb flux change hua. Induced EMF nikalein.",
+    given: [
+      { label: "Number of turns", value: "N = 200" },
+      { label: "Change in flux", value: "ΔΦ = 0.05 Wb" },
+      { label: "Time", value: "Δt = 0.4 s" },
+    ],
+    formula: "ε = − N (ΔΦ / Δt)",
+    steps: [
+      { label: "Rate of change of flux", value: "ΔΦ/Δt = 0.05 / 0.4 = 0.125 Wb/s" },
+      { label: "Multiplying by turns", value: "ε = 200 × 0.125" },
+      { label: "Computing", value: "ε = 25" },
+    ],
+    answer: "ε = 25 V (the minus sign shows opposition, per Lenz's law)",
+    examTip:
+      "Minus sign Lenz's law ka hai — magnitude poochha jaye to 25 V likhein, magar sign ka matlab zaroor samjhayein.",
+  },
+  {
+    id: "p12-nuc-1",
+    classLevel: "12th",
+    subject: "physics",
+    chapter: "Nuclear Physics",
+    kind: "numerical",
+    question:
+      "The half-life of a radioactive element is 8 days. If the initial mass of the sample is 64 g, how much remains after 24 days?",
+    romanUrdu:
+      "Half-life 8 din hai aur shuru mein 64 g tha. 24 din baad kitna bachega?",
+    given: [
+      { label: "Half-life", value: "T½ = 8 days" },
+      { label: "Initial mass", value: "N₀ = 64 g" },
+      { label: "Total time", value: "t = 24 days" },
+    ],
+    formula: "n = t / T½   and   N = N₀ / 2ⁿ",
+    steps: [
+      { label: "Number of half-lives", value: "n = 24 / 8 = 3" },
+      { label: "Applying the halving", value: "N = 64 / 2³ = 64 / 8" },
+      { label: "Computing", value: "N = 8" },
+    ],
+    answer: "N = 8 g remains (64 → 32 → 16 → 8)",
+    examTip:
+      "Har half-life par aadha hota hai. Teen half-lives ka matlab 1/8 bacha, 1/3 nahi.",
+  },
+
+  /* ---------- 12th CHEMISTRY ---------- */
+  {
+    id: "c12-ph-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Solutions and Titration",
+    kind: "numerical",
+    question:
+      "Calculate the pH of a 0.001 M solution of hydrochloric acid (HCl).",
+    romanUrdu:
+      "0.001 M HCl ka pH nikalein.",
+    given: [
+      { label: "Concentration", value: "[HCl] = 0.001 M = 1 × 10⁻³ M" },
+      { label: "Note", value: "HCl is a strong acid, so [H⁺] = [HCl]" },
+    ],
+    formula: "pH = − log [H⁺]",
+    steps: [
+      { label: "Hydrogen ion concentration", value: "[H⁺] = 1 × 10⁻³ M" },
+      { label: "Taking log", value: "log (1 × 10⁻³) = −3" },
+      { label: "Applying the minus", value: "pH = −(−3) = 3" },
+    ],
+    answer: "pH = 3 (acidic, as expected)",
+    examTip:
+      "Strong acid hone ki wajah se hi [H⁺] = concentration liya. Weak acid par yeh shortcut ghalat hota hai.",
+  },
+  {
+    id: "c12-org-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Fundamental Principles of Organic Chemistry",
+    kind: "concept",
+    question:
+      "A compound contains 40 % carbon, 6.7 % hydrogen and 53.3 % oxygen by mass. Determine its empirical formula. [C = 12, H = 1, O = 16]",
+    romanUrdu:
+      "Percentage composition se empirical formula maloom karein.",
+    given: [
+      { label: "Carbon", value: "40 %" },
+      { label: "Hydrogen", value: "6.7 %" },
+      { label: "Oxygen", value: "53.3 %" },
+    ],
+    formula: "Moles = percentage / atomic mass, then divide by the smallest",
+    steps: [
+      { label: "Moles of C", value: "40 / 12 = 3.33" },
+      { label: "Moles of H", value: "6.7 / 1 = 6.7" },
+      { label: "Moles of O", value: "53.3 / 16 = 3.33" },
+      { label: "Smallest value", value: "3.33" },
+      { label: "Dividing C", value: "3.33 / 3.33 = 1" },
+      { label: "Dividing H", value: "6.7 / 3.33 = 2" },
+      { label: "Dividing O", value: "3.33 / 3.33 = 1" },
+    ],
+    answer: "Empirical formula = CH₂O",
+    examTip:
+      "Empirical formula sirf simplest ratio deta hai. Molecular formula ke liye molar mass alag se chahiye hoti hai.",
+  },
+
+  /* ---------- 12th MATHS ---------- */
+  {
+    id: "m12-lim-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Functions and Limits",
+    kind: "numerical",
+    question:
+      "Evaluate the limit of (x² − 9)/(x − 3) as x approaches 3.",
+    romanUrdu:
+      "x → 3 par (x² − 9)/(x − 3) ki limit nikalein.",
+    given: [
+      { label: "Function", value: "f(x) = (x² − 9)/(x − 3)" },
+      { label: "Limit point", value: "x → 3" },
+    ],
+    formula: "Factorise first, because direct substitution gives 0/0",
+    steps: [
+      { label: "Direct substitution", value: "(9 − 9)/(3 − 3) = 0/0, which is indeterminate" },
+      { label: "Factorising the numerator", value: "x² − 9 = (x − 3)(x + 3)" },
+      { label: "Cancelling (x − 3)", value: "f(x) = x + 3, for x ≠ 3" },
+      { label: "Now substituting", value: "limit = 3 + 3 = 6" },
+    ],
+    answer: "limit = 6",
+    examTip:
+      "0/0 aane par foran factorise karein. Seedha 0/0 likh dena zero marks deta hai.",
+  },
+  {
+    id: "m12-vec-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Vectors",
+    kind: "numerical",
+    question:
+      "Find the dot product of the vectors a = 2i + 3j + k and b = i − 2j + 4k, and state whether they are perpendicular.",
+    romanUrdu:
+      "Do vectors ka dot product nikalein aur batayein ke perpendicular hain ya nahi.",
+    given: [
+      { label: "First vector", value: "a = 2i + 3j + k" },
+      { label: "Second vector", value: "b = i − 2j + 4k" },
+    ],
+    formula: "a · b = a₁b₁ + a₂b₂ + a₃b₃",
+    steps: [
+      { label: "First products", value: "2 × 1 = 2" },
+      { label: "Second product", value: "3 × (−2) = −6" },
+      { label: "Third product", value: "1 × 4 = 4" },
+      { label: "Adding", value: "a · b = 2 − 6 + 4 = 0" },
+    ],
+    answer: "a · b = 0, therefore the vectors are perpendicular",
+    examTip:
+      "Dot product zero hone ka matlab hamesha perpendicular hota hai — yeh line likhne par extra mark milta hai.",
+  },
+];
+
 export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...physics9,
   ...physics10,
@@ -829,6 +1328,7 @@ export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...math,
   ...theorems,
   ...intermediate,
+  ...intermediate2,
 ];
 
 /**
