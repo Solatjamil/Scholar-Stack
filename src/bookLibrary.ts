@@ -320,12 +320,38 @@ const SUBJECT_NAME: Record<string, string> = {
   biology: "Biology",
   math: "Mathematics",
   cs: "Computer Science",
+  accounting: "Principles of Accounting",
+  commerce: "Principles of Commerce",
+  economics: "Principles of Economics",
+  banking: "Principles of Banking",
+};
+
+export const COMMERCE_SUBJECT_NAMES: Record<string, string> = {
+  accounting: "Principles of Accounting",
+  commerce: "Principles of Commerce",
+  economics: "Principles of Economics",
+  banking: "Principles of Banking",
 };
 
 export function missingBookNote(classLevel: string, subject: string): string | null {
   if (booksFor(classLevel, subject).length > 0) return null;
 
-  const name = SUBJECT_NAME[subject.toLowerCase()] ?? subject;
+  const subj = subject.toLowerCase();
+  const name = SUBJECT_NAME[subj] ?? subject;
+
+  // I.Com commerce papers are published by private authors (Sohail Afzal,
+  // M. Arif Ch, Nadeem Akhtar Siddiqui) rather than as a free PTB scan, so no
+  // legal public PDF exists to link. Say so plainly and name the standard book
+  // the student should buy, instead of implying the app is incomplete.
+  const COMMERCE_TEXTS: Record<string, string> = {
+    accounting: "Principles of Accounting by Sohail Afzal & M. Arif Ch",
+    commerce: "Principles of Commerce by M. Saeed Nasir",
+    economics: "Principles of Economics by M. Saeed Nasir",
+    banking: "Principles of Banking by M. Saeed Nasir",
+  };
+  if (COMMERCE_TEXTS[subj]) {
+    return `I.Com ${name} is published commercially, so there is no free scanned PDF to link legally. The standard board-recommended text is ${COMMERCE_TEXTS[subj]}. The Topics tab covers this entire syllabus with Urdu video lectures.`;
+  }
 
   // Be specific about *why* it is missing and what to use instead, rather than
   // leaving the student staring at an empty tab. Maths/CS at matric level are
