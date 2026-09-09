@@ -40,7 +40,7 @@ function toWorkedSubject(subjectId: string): WorkedSubject | null {
 }
 
 /** Strip "Unit 3:" / bracketed detail so chapter names compare cleanly. */
-function cleanChapter(name: string): string {
+export function cleanChapter(name: string): string {
   return name
     .replace(/^(unit|chapter|ch)\s*[\divx\-\s]*:?\s*/i, "")
     .replace(/\([^)]*\)/g, "")
