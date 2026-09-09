@@ -4105,7 +4105,7 @@ export default function App() {
         {/* --- VIEW: LEARN & VIDEOS (topic-wise learning) --- */}
         {activeTab === "learn" && (
           <div className="animate-fade-in">
-            <LearnHub />
+            <LearnHub studentClass={studentClass} />
           </div>
         )}
 

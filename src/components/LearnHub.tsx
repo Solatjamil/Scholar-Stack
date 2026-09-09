@@ -19,17 +19,47 @@ import { booksFor } from "../bookLibrary";
  */
 
 type View = "topics" | "videos" | "book";
-const CLASSES = ["9th", "10th"] as const;
-const SUBJECTS = ["physics", "chemistry", "biology"] as const;
+type ClassLevel = "9th" | "10th" | "11th" | "12th";
 
-export default function LearnHub() {
+const CLASSES: ClassLevel[] = ["9th", "10th", "11th", "12th"];
+
+/** Subject ids shown per class, matching what the boards actually offer. */
+const SUBJECTS_FOR: Record<ClassLevel, string[]> = {
+  "9th": ["physics", "chemistry", "biology", "math", "cs"],
+  "10th": ["physics", "chemistry", "biology", "math", "cs"],
+  "11th": ["physics", "chemistry", "biology", "math", "cs"],
+  "12th": ["physics", "chemistry", "biology", "math", "cs"],
+};
+
+const SUBJECT_LABEL: Record<string, string> = {
+  physics: "Physics",
+  chemistry: "Chemistry",
+  biology: "Biology",
+  math: "Mathematics",
+  cs: "Computer Science",
+};
+
+export default function LearnHub({ studentClass }: { studentClass?: string } = {}) {
   const [view, setView] = useState<View>("topics");
-  const [classLevel, setClassLevel] = useState<"9th" | "10th">("9th");
+  // Open on the student's own class where we know it, so the hub is relevant
+  // the moment it loads rather than always starting at 9th.
+  const initialClass = (CLASSES as string[]).includes(studentClass || "")
+    ? (studentClass as ClassLevel)
+    : "9th";
+  const [classLevel, setClassLevel] = useState<ClassLevel>(initialClass);
   const [subject, setSubject] = useState<string>("physics");
 
+  const subjectsForClass = SUBJECTS_FOR[classLevel];
+
+  // If the chosen subject is not offered for the newly picked class, fall back
+  // to the first one that is, instead of rendering an empty panel.
+  const activeSubject = subjectsForClass.includes(subject)
+    ? subject
+    : subjectsForClass[0];
+
   const topics = useMemo(
-    () => videosForSubject(classLevel, subject),
-    [classLevel, subject]
+    () => videosForSubject(classLevel, activeSubject),
+    [classLevel, activeSubject]
   );
 
   return (
@@ -70,17 +100,17 @@ export default function LearnHub() {
           ))}
         </div>
         <div className="flex flex-wrap gap-2">
-          {SUBJECTS.map((s) => (
+          {subjectsForClass.map((s) => (
             <button
               key={s}
               onClick={() => setSubject(s)}
-              className={`min-h-[40px] rounded-lg px-4 text-sm font-medium capitalize transition ${
-                subject === s
+              className={`min-h-[40px] rounded-lg px-4 text-sm font-medium transition ${
+                activeSubject === s
                   ? "bg-slate-100 text-slate-900"
                   : "bg-slate-800 text-slate-300 hover:bg-slate-700"
               }`}
             >
-              {s}
+              {SUBJECT_LABEL[s] ?? s}
             </button>
           ))}
         </div>
@@ -105,16 +135,16 @@ export default function LearnHub() {
             }`}
           >
             {label}
-            {id === "book" && booksFor(classLevel, subject).length === 0 && (
+            {id === "book" && booksFor(classLevel, activeSubject).length === 0 && (
               <span className="ml-1.5 text-[10px] text-amber-400">!</span>
             )}
           </button>
         ))}
       </div>
 
-      {view === "topics" && <TopicsView classLevel={classLevel} subject={subject} topics={topics} />}
-      {view === "videos" && <GalleryView classLevel={classLevel} subject={subject} />}
-      {view === "book" && <BookReader classLevel={classLevel} subject={subject} />}
+      {view === "topics" && <TopicsView classLevel={classLevel} subject={activeSubject} topics={topics} />}
+      {view === "videos" && <GalleryView classLevel={classLevel} subject={activeSubject} />}
+      {view === "book" && <BookReader classLevel={classLevel} subject={activeSubject} />}
     </div>
   );
 }
