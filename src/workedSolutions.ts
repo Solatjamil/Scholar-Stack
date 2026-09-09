@@ -23,7 +23,13 @@
  * arithmetically verified by a test harness.
  */
 
-export type WorkedSubject = "physics" | "chemistry" | "math" | "biology";
+export type WorkedSubject =
+  | "physics"
+  | "chemistry"
+  | "math"
+  | "biology"
+  /** I.Com Principles of Accounting - numerical/practical questions. */
+  | "accounting";
 export type WorkedClass = "9th" | "10th" | "11th" | "12th";
 
 export interface WorkedStep {
@@ -1321,6 +1327,597 @@ const intermediate2: WorkedProblem[] = [
   },
 ];
 
+/* ============ I.COM PRINCIPLES OF ACCOUNTING (11th & 12th) ============
+ * Practical questions in the exact style of the BISE I.Com paper, where the
+ * long questions are drawn from bills of exchange, bank reconciliation, final
+ * accounts, adjustments, rectification, partnership and company accounts.
+ * Every figure below is arithmetically verified.
+ */
+const accounting: WorkedProblem[] = [
+  {
+    id: "ac11-intro-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Introduction to Accounting",
+    kind: "numerical",
+    question:
+      "State the accounting equation and show its effect when Mr. Ali starts a business with cash Rs. 500,000, buys furniture for cash Rs. 120,000 and purchases goods on credit for Rs. 80,000.",
+    romanUrdu:
+      "Accounting equation likh kar in teen transactions ka asar dikhayein.",
+    given: [
+      { label: "Capital introduced", value: "Rs. 500,000 cash" },
+      { label: "Furniture bought for cash", value: "Rs. 120,000" },
+      { label: "Goods bought on credit", value: "Rs. 80,000" },
+    ],
+    formula: "Assets = Liabilities + Owner's Equity",
+    steps: [
+      { label: "Transaction 1", value: "Cash +500,000 ; Capital +500,000. Equation: 500,000 = 0 + 500,000" },
+      { label: "Transaction 2", value: "Furniture +120,000 ; Cash -120,000. Only asset composition changes, total unchanged." },
+      { label: "After 2", value: "Cash 380,000 + Furniture 120,000 = 500,000 = 0 + 500,000" },
+      { label: "Transaction 3", value: "Stock +80,000 ; Creditors +80,000" },
+      { label: "Final assets", value: "Cash 380,000 + Furniture 120,000 + Stock 80,000 = Rs. 580,000" },
+      { label: "Final equities", value: "Creditors 80,000 + Capital 500,000 = Rs. 580,000" },
+    ],
+    answer: "Assets Rs. 580,000 = Liabilities Rs. 80,000 + Capital Rs. 500,000. The equation balances.",
+    examTip:
+      "Har transaction ke baad equation barabar honi chahiye. Agar nahi hai to entry ghalat hai - foran check karein.",
+  },
+  {
+    id: "ac11-journal-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Books of Original Entry",
+    kind: "numerical",
+    question:
+      "Journalise: (a) Started business with cash Rs. 200,000. (b) Purchased goods for cash Rs. 50,000. (c) Sold goods on credit to Bilal Rs. 30,000. (d) Paid rent Rs. 5,000.",
+    romanUrdu:
+      "In transactions ki journal entries banayein.",
+    given: [
+      { label: "Number of transactions", value: "4" },
+      { label: "Rule", value: "Debit the receiver / what comes in / expenses; Credit the giver / what goes out / income" },
+    ],
+    formula: "Every debit must have an equal and corresponding credit",
+    steps: [
+      { label: "(a)", value: "Cash A/c ......... Dr 200,000 ; To Capital A/c 200,000  (being business started with cash)" },
+      { label: "(b)", value: "Purchases A/c .... Dr 50,000 ; To Cash A/c 50,000  (being goods purchased for cash)" },
+      { label: "(c)", value: "Bilal A/c ........ Dr 30,000 ; To Sales A/c 30,000  (being goods sold on credit)" },
+      { label: "(d)", value: "Rent Expense A/c . Dr 5,000 ; To Cash A/c 5,000  (being rent paid)" },
+      { label: "Check", value: "Total debits = 200,000+50,000+30,000+5,000 = Rs. 285,000 ; total credits = same" },
+    ],
+    answer: "Total debits Rs. 285,000 = Total credits Rs. 285,000. Journal is correctly balanced.",
+    examTip:
+      "Goods kharidne par 'Purchases' account use karein, 'Goods' nahi. Har entry ke neeche narration likhna zaroori hai warna marks katte hain.",
+  },
+  {
+    id: "ac11-ledger-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Ledger and Posting",
+    kind: "numerical",
+    question:
+      "Post the following to the Cash Account and balance it: opening cash Rs. 60,000; received from Ahmed Rs. 25,000; paid salaries Rs. 18,000; paid to creditor Rs. 22,000.",
+    romanUrdu:
+      "Cash account mein posting kar ke balance nikalein.",
+    given: [
+      { label: "Opening balance", value: "Rs. 60,000 (debit)" },
+      { label: "Receipts", value: "Rs. 25,000" },
+      { label: "Payments", value: "Rs. 18,000 and Rs. 22,000" },
+    ],
+    formula: "Balance c/d = Total debit side - Total credit side",
+    steps: [
+      { label: "Debit side", value: "Balance b/d 60,000 + Ahmed 25,000 = Rs. 85,000" },
+      { label: "Credit side", value: "Salaries 18,000 + Creditor 22,000 = Rs. 40,000" },
+      { label: "Difference", value: "85,000 - 40,000 = Rs. 45,000" },
+      { label: "Balancing", value: "Write Balance c/d 45,000 on the credit side so both sides total Rs. 85,000" },
+      { label: "Next period", value: "Balance b/d Rs. 45,000 is brought down on the debit side" },
+    ],
+    answer: "Closing cash balance = Rs. 45,000 (debit balance).",
+    examTip:
+      "Cash account ka balance hamesha debit hota hai ya zero - credit balance kabhi mumkin nahi kyunke aap mojood cash se zyada kharch nahi kar sakte.",
+  },
+  {
+    id: "ac11-cashbook-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Cash Book and Petty Cash Book",
+    kind: "numerical",
+    question:
+      "A petty cashier is given a float of Rs. 5,000 under the imprest system. During the month he spends Rs. 850 on stationery, Rs. 1,200 on conveyance and Rs. 640 on postage. How much will he be reimbursed and what is his closing balance?",
+    romanUrdu:
+      "Imprest system mein petty cashier ko kitni raqam dobara milegi?",
+    given: [
+      { label: "Imprest amount", value: "Rs. 5,000" },
+      { label: "Stationery", value: "Rs. 850" },
+      { label: "Conveyance", value: "Rs. 1,200" },
+      { label: "Postage", value: "Rs. 640" },
+    ],
+    formula: "Reimbursement = Total petty expenses ; Closing float = Imprest amount",
+    steps: [
+      { label: "Total spent", value: "850 + 1,200 + 640 = Rs. 2,690" },
+      { label: "Cash in hand before reimbursement", value: "5,000 - 2,690 = Rs. 2,310" },
+      { label: "Reimbursement", value: "Exactly the amount spent = Rs. 2,690" },
+      { label: "Balance after reimbursement", value: "2,310 + 2,690 = Rs. 5,000" },
+    ],
+    answer: "Reimbursement = Rs. 2,690; the float is restored to Rs. 5,000.",
+    examTip:
+      "Imprest system ka asal usool: har period ke shuru mein petty cashier ke paas hamesha wohi muqarrara raqam hoti hai.",
+  },
+  {
+    id: "ac11-brs-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Bank Reconciliation Statement",
+    kind: "numerical",
+    question:
+      "The cash book shows a debit balance of Rs. 48,000. Cheques issued but not presented Rs. 9,500; cheques deposited but not yet credited Rs. 6,200; bank charges not recorded in cash book Rs. 300. Prepare the bank reconciliation statement and find the pass book balance.",
+    romanUrdu:
+      "Bank reconciliation statement bana kar pass book ka balance maloom karein.",
+    given: [
+      { label: "Cash book balance (Dr)", value: "Rs. 48,000" },
+      { label: "Unpresented cheques", value: "Rs. 9,500" },
+      { label: "Uncredited deposits", value: "Rs. 6,200" },
+      { label: "Bank charges", value: "Rs. 300" },
+    ],
+    formula: "Pass book balance = Cash book balance + unpresented cheques - uncredited deposits - bank charges",
+    steps: [
+      { label: "Start", value: "Balance as per cash book = Rs. 48,000" },
+      { label: "Add unpresented cheques", value: "Bank has not yet paid them, so bank shows more: +9,500 = Rs. 57,500" },
+      { label: "Less uncredited deposits", value: "Bank has not yet credited them, so bank shows less: -6,200 = Rs. 51,300" },
+      { label: "Less bank charges", value: "Debited by bank but not in cash book: -300 = Rs. 51,000" },
+    ],
+    answer: "Balance as per pass book = Rs. 51,000 (credit balance in the bank's books).",
+    examTip:
+      "Sign ka faisla hamesha yeh soch kar karein: 'bank ki kitaab mein zyada dikhega ya kam?'. Ratta lagane se ghalti hoti hai.",
+  },
+  {
+    id: "ac11-tb-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Trial Balance and Rectification of Errors",
+    kind: "numerical",
+    question:
+      "A trial balance does not agree; the debit side is short by Rs. 2,700. It is later found that a purchase of Rs. 2,700 from Kamran was posted to the debit of his account instead of the credit. Give the rectifying entry.",
+    romanUrdu:
+      "Trial balance ka farq theek karne ki entry banayein.",
+    given: [
+      { label: "Shortage on debit side", value: "Rs. 2,700" },
+      { label: "Error", value: "Purchase from Kamran posted to debit of his account instead of credit" },
+    ],
+    formula: "Rectify by reversing the wrong effect and recording the correct one",
+    steps: [
+      { label: "Correct entry should have been", value: "Purchases A/c Dr 2,700 ; To Kamran A/c 2,700" },
+      { label: "What was actually done", value: "Kamran's account was debited Rs. 2,700" },
+      { label: "Effect", value: "Kamran debited 2,700 instead of credited 2,700 - a double error of 2 x 2,700 = Rs. 5,400 in his account" },
+      { label: "Rectifying entry", value: "Suspense A/c ..... Dr 5,400 ; To Kamran A/c 5,400" },
+      { label: "Note", value: "Kamran must be credited twice: once to cancel the wrong debit, once to record the correct credit" },
+    ],
+    answer: "Rectifying entry: Suspense A/c Dr Rs. 5,400; To Kamran A/c Rs. 5,400.",
+    examTip:
+      "Jab ek hi account ghalat taraf post ho to rectification hamesha DOUBLE raqam ki hoti hai, single nahi. Yeh sab se aam ghalti hai.",
+  },
+  {
+    id: "ac11-adj-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Adjusting and Closing Entries",
+    kind: "numerical",
+    question:
+      "At 31 December, salaries of Rs. 14,000 for December are unpaid, and insurance of Rs. 9,000 was paid on 1 October for one year. Pass the adjusting entries and state the amounts shown in the final accounts.",
+    romanUrdu:
+      "Saal ke akhir par adjusting entries banayein.",
+    given: [
+      { label: "Unpaid salaries", value: "Rs. 14,000" },
+      { label: "Insurance paid 1 Oct for 12 months", value: "Rs. 9,000" },
+    ],
+    formula: "Accrued expense: Expense Dr, Outstanding Cr | Prepaid: Prepaid Dr, Expense Cr",
+    steps: [
+      { label: "Salaries adjustment", value: "Salaries A/c Dr 14,000 ; To Outstanding Salaries A/c 14,000" },
+      { label: "Insurance used", value: "1 Oct to 31 Dec = 3 months out of 12" },
+      { label: "Expired portion", value: "9,000 x 3/12 = Rs. 2,250" },
+      { label: "Unexpired portion", value: "9,000 - 2,250 = Rs. 6,750" },
+      { label: "Insurance adjustment", value: "Prepaid Insurance A/c Dr 6,750 ; To Insurance A/c 6,750" },
+    ],
+    answer: "P&L shows salaries expense Rs. 14,000 (with Rs. 14,000 outstanding as a liability) and insurance expense Rs. 2,250; balance sheet shows prepaid insurance Rs. 6,750 as an asset.",
+    examTip:
+      "Outstanding expense liability hai (balance sheet ki credit side), prepaid expense asset hai. Dono ko ulta likhna sab se aam ghalti hai.",
+  },
+  {
+    id: "ac11-final-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Financial Statements of a Sole Trader",
+    kind: "numerical",
+    question:
+      "From the following prepare a trading account: opening stock Rs. 40,000; purchases Rs. 260,000; purchase returns Rs. 10,000; carriage inward Rs. 8,000; sales Rs. 380,000; sales returns Rs. 5,000; closing stock Rs. 55,000.",
+    romanUrdu:
+      "Trading account bana kar gross profit nikalein.",
+    given: [
+      { label: "Opening stock", value: "Rs. 40,000" },
+      { label: "Purchases", value: "Rs. 260,000" },
+      { label: "Purchase returns", value: "Rs. 10,000" },
+      { label: "Carriage inward", value: "Rs. 8,000" },
+      { label: "Sales", value: "Rs. 380,000" },
+      { label: "Sales returns", value: "Rs. 5,000" },
+      { label: "Closing stock", value: "Rs. 55,000" },
+    ],
+    formula: "Gross Profit = Net Sales - Cost of Goods Sold ; COGS = Opening stock + Net purchases + Direct expenses - Closing stock",
+    steps: [
+      { label: "Net sales", value: "380,000 - 5,000 = Rs. 375,000" },
+      { label: "Net purchases", value: "260,000 - 10,000 = Rs. 250,000" },
+      { label: "Cost of goods available", value: "40,000 + 250,000 + 8,000 = Rs. 298,000" },
+      { label: "Cost of goods sold", value: "298,000 - 55,000 = Rs. 243,000" },
+      { label: "Gross profit", value: "375,000 - 243,000 = Rs. 132,000" },
+    ],
+    answer: "Gross Profit = Rs. 132,000.",
+    examTip:
+      "Carriage INWARD trading account mein aata hai, carriage OUTWARD profit and loss account mein. Dono ko mila dena bara ghalti hai.",
+  },
+  {
+    id: "ac11-dep-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Depreciation and Its Accounting Treatment",
+    kind: "numerical",
+    question:
+      "A machine costing Rs. 450,000 has an estimated scrap value of Rs. 50,000 and a useful life of 8 years. Calculate annual depreciation by the straight line method and the book value at the end of year 3.",
+    romanUrdu:
+      "Straight line method se salana depreciation aur teesray saal ki book value nikalein.",
+    given: [
+      { label: "Cost of machine", value: "Rs. 450,000" },
+      { label: "Scrap value", value: "Rs. 50,000" },
+      { label: "Useful life", value: "8 years" },
+    ],
+    formula: "Annual depreciation = (Cost - Scrap value) / Useful life",
+    steps: [
+      { label: "Depreciable amount", value: "450,000 - 50,000 = Rs. 400,000" },
+      { label: "Annual depreciation", value: "400,000 / 8 = Rs. 50,000 per year" },
+      { label: "Depreciation for 3 years", value: "50,000 x 3 = Rs. 150,000" },
+      { label: "Book value at end of year 3", value: "450,000 - 150,000 = Rs. 300,000" },
+    ],
+    answer: "Annual depreciation = Rs. 50,000; book value at end of year 3 = Rs. 300,000.",
+    examTip:
+      "Straight line mein scrap value pehle GHATAYI jati hai. Diminishing balance mein nahi ghatate - dono methods ko mix na karein.",
+  },
+  {
+    id: "ac11-caprev-1",
+    classLevel: "11th",
+    subject: "accounting",
+    chapter: "Capital and Revenue Expenditure",
+    kind: "numerical",
+    question:
+      "Classify as capital or revenue: (a) Rs. 300,000 paid for a delivery van. (b) Rs. 12,000 for repainting the office. (c) Rs. 45,000 for installing the new van's refrigeration unit. (d) Rs. 6,000 annual van insurance.",
+    romanUrdu:
+      "Batayein ke kaunsa kharcha capital hai aur kaunsa revenue.",
+    given: [
+      { label: "Item (a)", value: "Rs. 300,000 delivery van" },
+      { label: "Item (b)", value: "Rs. 12,000 repainting" },
+      { label: "Item (c)", value: "Rs. 45,000 refrigeration unit" },
+      { label: "Item (d)", value: "Rs. 6,000 insurance" },
+    ],
+    formula: "Capital expenditure: benefit lasts beyond one year or increases earning capacity. Revenue expenditure: benefit consumed within the year.",
+    steps: [
+      { label: "(a) Van", value: "Fixed asset acquired, benefit over many years = CAPITAL, shown in balance sheet" },
+      { label: "(b) Repainting", value: "Only maintains existing condition, benefit within the year = REVENUE, shown in P&L" },
+      { label: "(c) Refrigeration unit", value: "Increases the earning capacity of the van = CAPITAL, added to van's cost" },
+      { label: "(d) Insurance", value: "Recurring annual running cost = REVENUE, shown in P&L" },
+      { label: "Totals", value: "Capital = 300,000 + 45,000 = Rs. 345,000 ; Revenue = 12,000 + 6,000 = Rs. 18,000" },
+    ],
+    answer: "Capital expenditure Rs. 345,000 (van and refrigeration unit); revenue expenditure Rs. 18,000 (repainting and insurance).",
+    examTip:
+      "Test yeh hai: kya kharche se asset ki kamai ki salahiyat BARHI? Agar haan to capital, agar sirf halat barqarar rakhi to revenue.",
+  },
+  {
+    id: "ac12-pship-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Partnership: Formation and Accounts",
+    kind: "numerical",
+    question:
+      "A and B are partners sharing profits 3:2. Capitals: A Rs. 400,000, B Rs. 300,000. Interest on capital is 10% p.a. and B gets a salary of Rs. 24,000 p.a. Profit before appropriations is Rs. 190,000. Prepare the profit and loss appropriation account.",
+    romanUrdu:
+      "Profit and loss appropriation account bana kar dono partners ka hissa nikalein.",
+    given: [
+      { label: "Profit sharing ratio", value: "A : B = 3 : 2" },
+      { label: "Capitals", value: "A Rs. 400,000 ; B Rs. 300,000" },
+      { label: "Interest on capital", value: "10% p.a." },
+      { label: "B's salary", value: "Rs. 24,000" },
+      { label: "Profit before appropriation", value: "Rs. 190,000" },
+    ],
+    formula: "Divisible profit = Net profit - interest on capital - partners' salary",
+    steps: [
+      { label: "Interest to A", value: "400,000 x 10% = Rs. 40,000" },
+      { label: "Interest to B", value: "300,000 x 10% = Rs. 30,000" },
+      { label: "Total appropriations", value: "40,000 + 30,000 + 24,000 = Rs. 94,000" },
+      { label: "Divisible profit", value: "190,000 - 94,000 = Rs. 96,000" },
+      { label: "A's share", value: "96,000 x 3/5 = Rs. 57,600" },
+      { label: "B's share", value: "96,000 x 2/5 = Rs. 38,400" },
+      { label: "A total", value: "40,000 + 57,600 = Rs. 97,600" },
+      { label: "B total", value: "30,000 + 24,000 + 38,400 = Rs. 92,400" },
+    ],
+    answer: "A receives Rs. 97,600 and B receives Rs. 92,400 (total Rs. 190,000).",
+    examTip:
+      "Interest on capital aur salary profit ka BATWARA hai, kharcha nahi. Inhein P&L account mein na dalein, sirf appropriation account mein.",
+  },
+  {
+    id: "ac12-admis-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Partnership: Admission of a Partner",
+    kind: "numerical",
+    question:
+      "X and Y share profits 3:2. They admit Z for a 1/5 share. Calculate the new profit sharing ratio and the sacrificing ratio.",
+    romanUrdu:
+      "Naya profit sharing ratio aur sacrificing ratio nikalein.",
+    given: [
+      { label: "Old ratio", value: "X : Y = 3 : 2" },
+      { label: "Z's share", value: "1/5" },
+    ],
+    formula: "Remaining share = 1 - new partner's share ; Sacrificing ratio = Old ratio - New ratio",
+    steps: [
+      { label: "Remaining share", value: "1 - 1/5 = 4/5" },
+      { label: "X's new share", value: "4/5 x 3/5 = 12/25" },
+      { label: "Y's new share", value: "4/5 x 2/5 = 8/25" },
+      { label: "Z's share", value: "1/5 = 5/25" },
+      { label: "New ratio", value: "12 : 8 : 5" },
+      { label: "X's sacrifice", value: "3/5 - 12/25 = 15/25 - 12/25 = 3/25" },
+      { label: "Y's sacrifice", value: "2/5 - 8/25 = 10/25 - 8/25 = 2/25" },
+      { label: "Sacrificing ratio", value: "3/25 : 2/25 = 3 : 2" },
+    ],
+    answer: "New profit sharing ratio X : Y : Z = 12 : 8 : 5; sacrificing ratio X : Y = 3 : 2.",
+    examTip:
+      "Jab naya partner purane ratio mein hissa le to sacrificing ratio purane ratio ke barabar hi hota hai. Check karne ka aasan tareeqa.",
+  },
+  {
+    id: "ac12-retire-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Partnership: Retirement and Death",
+    kind: "numerical",
+    question:
+      "P, Q and R share profits 5:3:2. R retires and his share is taken over by P and Q equally. Find the new ratio and the gaining ratio.",
+    romanUrdu:
+      "R ke retire hone par naya ratio aur gaining ratio nikalein.",
+    given: [
+      { label: "Old ratio", value: "P : Q : R = 5 : 3 : 2" },
+      { label: "R's share taken", value: "equally by P and Q" },
+    ],
+    formula: "Gaining ratio = New ratio - Old ratio",
+    steps: [
+      { label: "R's share", value: "2/10" },
+      { label: "Each of P and Q gains", value: "2/10 x 1/2 = 1/10" },
+      { label: "P's new share", value: "5/10 + 1/10 = 6/10" },
+      { label: "Q's new share", value: "3/10 + 1/10 = 4/10" },
+      { label: "New ratio", value: "6 : 4 = 3 : 2" },
+      { label: "Gaining ratio", value: "1/10 : 1/10 = 1 : 1" },
+    ],
+    answer: "New profit sharing ratio P : Q = 3 : 2; gaining ratio = 1 : 1.",
+    examTip:
+      "Retirement mein GAINING ratio nikalte hain, admission mein SACRIFICING ratio. Ulta karna aam ghalti hai.",
+  },
+  {
+    id: "ac12-dissol-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Partnership: Dissolution of a Firm",
+    kind: "numerical",
+    question:
+      "On dissolution, assets (other than cash) book value Rs. 260,000 realised Rs. 215,000. Creditors of Rs. 90,000 were settled at Rs. 84,000. Realisation expenses Rs. 6,000. Partners M and N share 1:1. Find the profit or loss on realisation and each partner's share.",
+    romanUrdu:
+      "Realisation account ka nafa nuqsan aur har partner ka hissa nikalein.",
+    given: [
+      { label: "Book value of assets", value: "Rs. 260,000" },
+      { label: "Amount realised", value: "Rs. 215,000" },
+      { label: "Creditors book value", value: "Rs. 90,000" },
+      { label: "Creditors settled at", value: "Rs. 84,000" },
+      { label: "Realisation expenses", value: "Rs. 6,000" },
+    ],
+    formula: "Loss on realisation = (Book value - Realised) - Discount from creditors + Realisation expenses",
+    steps: [
+      { label: "Loss on assets", value: "260,000 - 215,000 = Rs. 45,000" },
+      { label: "Gain on creditors", value: "90,000 - 84,000 = Rs. 6,000" },
+      { label: "Realisation expenses", value: "Rs. 6,000" },
+      { label: "Net loss", value: "45,000 - 6,000 + 6,000 = Rs. 45,000" },
+      { label: "M's share", value: "45,000 x 1/2 = Rs. 22,500" },
+      { label: "N's share", value: "45,000 x 1/2 = Rs. 22,500" },
+    ],
+    answer: "Loss on realisation Rs. 45,000, shared Rs. 22,500 by each of M and N.",
+    examTip:
+      "Creditors ko kam raqam par settle karna FAIDA hai (gain), nuqsan nahi. Is sign ko ulta lagana bohat aam ghalti hai.",
+  },
+  {
+    id: "ac12-shares-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Company Accounts: Issue of Shares",
+    kind: "numerical",
+    question:
+      "A company issues 50,000 ordinary shares of Rs. 10 each at a premium of Rs. 4 per share, payable in full on application. Applications were received for 65,000 shares and excess money was refunded. Pass the journal entries.",
+    romanUrdu:
+      "Shares ke issue ki journal entries banayein.",
+    given: [
+      { label: "Shares issued", value: "50,000 of Rs. 10 each" },
+      { label: "Premium", value: "Rs. 4 per share" },
+      { label: "Applications received", value: "65,000 shares" },
+    ],
+    formula: "Share capital is credited at face value; the excess is credited to Share Premium",
+    steps: [
+      { label: "Application money per share", value: "10 + 4 = Rs. 14" },
+      { label: "Money received", value: "65,000 x 14 = Rs. 910,000" },
+      { label: "Entry 1", value: "Bank A/c Dr 910,000 ; To Share Application A/c 910,000" },
+      { label: "Shares allotted", value: "50,000 x 14 = Rs. 700,000" },
+      { label: "Refund", value: "15,000 x 14 = Rs. 210,000" },
+      { label: "Entry 2", value: "Share Application A/c Dr 700,000 ; To Share Capital A/c 500,000 ; To Share Premium A/c 200,000" },
+      { label: "Entry 3", value: "Share Application A/c Dr 210,000 ; To Bank A/c 210,000  (excess refunded)" },
+    ],
+    answer: "Share Capital Rs. 500,000; Share Premium Rs. 200,000; Rs. 210,000 refunded to unsuccessful applicants.",
+    examTip:
+      "Share Capital hamesha FACE value par credit hota hai (Rs. 10), premium alag account mein. Dono ko mila kar credit karna ghalat hai.",
+  },
+  {
+    id: "ac12-deb-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Company Accounts: Debentures",
+    kind: "numerical",
+    question:
+      "A company issues 2,000 debentures of Rs. 100 each at a discount of 5%, redeemable at par. Calculate the amount received and pass the journal entry.",
+    romanUrdu:
+      "Debentures ke issue ki entry aur wasool shuda raqam nikalein.",
+    given: [
+      { label: "Number of debentures", value: "2,000" },
+      { label: "Face value", value: "Rs. 100 each" },
+      { label: "Discount", value: "5%" },
+    ],
+    formula: "Discount on issue of debentures is a capital loss, written off over the life of the debentures",
+    steps: [
+      { label: "Face value total", value: "2,000 x 100 = Rs. 200,000" },
+      { label: "Discount", value: "200,000 x 5% = Rs. 10,000" },
+      { label: "Cash received", value: "200,000 - 10,000 = Rs. 190,000" },
+      { label: "Journal entry", value: "Bank A/c Dr 190,000 ; Discount on Issue of Debentures A/c Dr 10,000 ; To Debentures A/c 200,000" },
+    ],
+    answer: "Cash received Rs. 190,000; debentures credited at their face value of Rs. 200,000.",
+    examTip:
+      "Debentures hamesha FACE value par credit hote hain chahe discount par issue hon. Discount alag debit account hai.",
+  },
+  {
+    id: "ac12-fs-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Financial Statements of a Company",
+    kind: "numerical",
+    question:
+      "A company has gross profit Rs. 620,000, operating expenses Rs. 245,000, interest on debentures Rs. 35,000 and tax at 30%. Calculate profit after tax.",
+    romanUrdu:
+      "Company ka tax ke baad munafa nikalein.",
+    given: [
+      { label: "Gross profit", value: "Rs. 620,000" },
+      { label: "Operating expenses", value: "Rs. 245,000" },
+      { label: "Debenture interest", value: "Rs. 35,000" },
+      { label: "Tax rate", value: "30%" },
+    ],
+    formula: "PAT = (Gross profit - operating expenses - interest) x (1 - tax rate)",
+    steps: [
+      { label: "Operating profit", value: "620,000 - 245,000 = Rs. 375,000" },
+      { label: "Profit before tax", value: "375,000 - 35,000 = Rs. 340,000" },
+      { label: "Tax", value: "340,000 x 30% = Rs. 102,000" },
+      { label: "Profit after tax", value: "340,000 - 102,000 = Rs. 238,000" },
+    ],
+    answer: "Profit after tax = Rs. 238,000.",
+    examTip:
+      "Debenture interest tax se PEHLE ghata jata hai (yeh kharcha hai), jabke dividend tax ke BAAD diya jata hai. Yeh farq zaroor yaad rakhein.",
+  },
+  {
+    id: "ac12-ratio-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Analysis of Financial Statements",
+    kind: "numerical",
+    question:
+      "Current assets Rs. 480,000 (including stock Rs. 180,000 and prepaid expenses Rs. 20,000); current liabilities Rs. 240,000. Calculate the current ratio and the quick ratio, and comment.",
+    romanUrdu:
+      "Current ratio aur quick ratio nikal kar tabsara karein.",
+    given: [
+      { label: "Current assets", value: "Rs. 480,000" },
+      { label: "Stock", value: "Rs. 180,000" },
+      { label: "Prepaid expenses", value: "Rs. 20,000" },
+      { label: "Current liabilities", value: "Rs. 240,000" },
+    ],
+    formula: "Current ratio = Current assets / Current liabilities ; Quick ratio = (Current assets - stock - prepaid) / Current liabilities",
+    steps: [
+      { label: "Current ratio", value: "480,000 / 240,000 = 2 : 1" },
+      { label: "Quick assets", value: "480,000 - 180,000 - 20,000 = Rs. 280,000" },
+      { label: "Quick ratio", value: "280,000 / 240,000 = 1.17 : 1" },
+      { label: "Comment", value: "Both exceed their standards (2:1 and 1:1), so short-term liquidity is satisfactory" },
+    ],
+    answer: "Current ratio = 2 : 1; quick ratio = 1.17 : 1. The company's liquidity position is satisfactory.",
+    examTip:
+      "Quick ratio mein stock AUR prepaid expenses dono nikalte hain, kyunke yeh foran cash mein nahi badalte. Sirf stock nikalna adhoora jawab hai.",
+  },
+  {
+    id: "ac12-cashflow-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Cash Flow Statement",
+    kind: "numerical",
+    question:
+      "Net profit before tax Rs. 320,000; depreciation Rs. 60,000; increase in debtors Rs. 45,000; decrease in stock Rs. 25,000; increase in creditors Rs. 30,000. Calculate cash generated from operating activities.",
+    romanUrdu:
+      "Operating activities se hasil hone wala cash nikalein.",
+    given: [
+      { label: "Net profit before tax", value: "Rs. 320,000" },
+      { label: "Depreciation", value: "Rs. 60,000" },
+      { label: "Increase in debtors", value: "Rs. 45,000" },
+      { label: "Decrease in stock", value: "Rs. 25,000" },
+      { label: "Increase in creditors", value: "Rs. 30,000" },
+    ],
+    formula: "Operating cash flow = Net profit + non-cash charges +/- changes in working capital",
+    steps: [
+      { label: "Start", value: "Net profit before tax = Rs. 320,000" },
+      { label: "Add depreciation", value: "Non-cash expense: +60,000 = Rs. 380,000" },
+      { label: "Less increase in debtors", value: "Cash tied up in receivables: -45,000 = Rs. 335,000" },
+      { label: "Add decrease in stock", value: "Stock converted into cash: +25,000 = Rs. 360,000" },
+      { label: "Add increase in creditors", value: "Payment deferred, cash retained: +30,000 = Rs. 390,000" },
+    ],
+    answer: "Cash generated from operating activities = Rs. 390,000.",
+    examTip:
+      "Depreciation cash kharcha NAHI hai is liye wapas jama karte hain. Current asset barhe to cash ghata, current liability barhe to cash barha.",
+  },
+  {
+    id: "ac12-npo-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Accounting for Non-Trading Concerns",
+    kind: "numerical",
+    question:
+      "A club received subscriptions of Rs. 180,000 during the year. Rs. 15,000 related to last year and Rs. 12,000 was received in advance for next year. Rs. 20,000 is still outstanding for the current year. Calculate the subscription income for the income and expenditure account.",
+    romanUrdu:
+      "Income and expenditure account ke liye subscription income nikalein.",
+    given: [
+      { label: "Subscriptions received", value: "Rs. 180,000" },
+      { label: "Relating to last year", value: "Rs. 15,000" },
+      { label: "Received in advance", value: "Rs. 12,000" },
+      { label: "Outstanding for current year", value: "Rs. 20,000" },
+    ],
+    formula: "Income for the year = Received - previous year's arrears - advance for next year + current year's outstanding",
+    steps: [
+      { label: "Start", value: "Total received = Rs. 180,000" },
+      { label: "Less last year's arrears", value: "Belongs to previous year: -15,000 = Rs. 165,000" },
+      { label: "Less advance", value: "Belongs to next year: -12,000 = Rs. 153,000" },
+      { label: "Add outstanding", value: "Earned but not received: +20,000 = Rs. 173,000" },
+    ],
+    answer: "Subscription income for the year = Rs. 173,000.",
+    examTip:
+      "Receipts and payments account CASH dikhata hai, income and expenditure account us SAAL ki income. Sirf is saal ki raqam lein.",
+  },
+  {
+    id: "ac12-single-1",
+    classLevel: "12th",
+    subject: "accounting",
+    chapter: "Single Entry and Incomplete Records",
+    kind: "numerical",
+    question:
+      "Opening capital Rs. 250,000; closing capital Rs. 390,000; drawings during the year Rs. 60,000; additional capital introduced Rs. 40,000. Calculate the profit for the year.",
+    romanUrdu:
+      "Adhoore record se saal ka munafa nikalein.",
+    given: [
+      { label: "Opening capital", value: "Rs. 250,000" },
+      { label: "Closing capital", value: "Rs. 390,000" },
+      { label: "Drawings", value: "Rs. 60,000" },
+      { label: "Additional capital", value: "Rs. 40,000" },
+    ],
+    formula: "Profit = Closing capital + Drawings - Additional capital - Opening capital",
+    steps: [
+      { label: "Closing capital", value: "Rs. 390,000" },
+      { label: "Add drawings", value: "Withdrawn profit must be added back: +60,000 = Rs. 450,000" },
+      { label: "Less additional capital", value: "Not profit, it is fresh investment: -40,000 = Rs. 410,000" },
+      { label: "Less opening capital", value: "-250,000 = Rs. 160,000" },
+    ],
+    answer: "Profit for the year = Rs. 160,000.",
+    examTip:
+      "Drawings JAMA karte hain aur additional capital GHATATE hain. Yeh sign ulta lagana sab se aam ghalti hai is chapter mein.",
+  },
+];
+
 export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...physics9,
   ...physics10,
@@ -1329,6 +1926,7 @@ export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...theorems,
   ...intermediate,
   ...intermediate2,
+  ...accounting,
 ];
 
 /**

@@ -74,7 +74,7 @@ for (const prof of PROFILES) {
       let solvedN = -1;
       if (WANT_SOLVED.has(subj)) {
         const cls = CYCLE[prof.cls] ? prof.cls : "10th";
-        const pool = problemsFor(cls, subj === "accounting" ? "math" : subj);
+        const pool = problemsFor(cls, subj);
         const t = clean.toLowerCase();
         const words = t.split(/[^a-z]+/).filter(w=>w.length>3);
         solvedN = pool.filter(p=>{

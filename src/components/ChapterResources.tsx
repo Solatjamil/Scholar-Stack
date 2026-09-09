@@ -27,6 +27,7 @@ function toVideoSubject(subjectId: string): string | null {
   if (s.includes("physic")) return "physics";
   if (s.includes("chem")) return "chemistry";
   if (s.includes("bio")) return "biology";
+  if (s.includes("account")) return "accounting";
   return null;
 }
 
@@ -36,6 +37,7 @@ function toWorkedSubject(subjectId: string): WorkedSubject | null {
   if (s.includes("chem")) return "chemistry";
   if (s.includes("math")) return "math";
   if (s.includes("bio")) return "biology";
+  if (s.includes("account")) return "accounting";
   return null;
 }
 
