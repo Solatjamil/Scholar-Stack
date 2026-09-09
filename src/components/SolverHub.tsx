@@ -58,6 +58,11 @@ export default function SolverHub({
           Har numerical ka mukammal hal - Given, Formula, Steps aur Answer ke saath.
           Apne numbers daal kar khud bhi hal nikaalein.
         </p>
+        <p className="mt-2 text-xs text-slate-400">
+          Matric (9th-10th) aur Intermediate (11th-12th) alag cycles hain: 10th walon
+          ko 9th ka content bhi milta hai aur 12th walon ko 11th ka - dono cycles
+          aapas mein mix nahi hote.
+        </p>
       </header>
 
       <div className="flex flex-wrap items-center gap-2">

@@ -665,25 +665,198 @@ const theorems: WorkedProblem[] = [
   },
 ];
 
+
+/* ============ INTERMEDIATE (11th / 12th) ============
+ * Separate cycle from matric: an 11th/12th student sees these plus the other
+ * Intermediate year only, never 9th/10th material. */
+const intermediate: WorkedProblem[] = [
+  {
+    id: "p11-proj-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Motion and Force",
+    kind: "numerical",
+    question:
+      "A ball is thrown with a velocity of 20 m/s at an angle of 30° to the horizontal. Find its maximum height and horizontal range. (g = 10 m/s²)",
+    romanUrdu:
+      "20 m/s ki raftaar se 30° ke zaawiye par phenki gayi ball ki maximum bulandi aur range nikalein.",
+    given: [
+      { label: "Initial velocity", value: "v = 20 m/s" },
+      { label: "Angle of projection", value: "θ = 30°" },
+      { label: "Gravity", value: "g = 10 m/s²" },
+    ],
+    formula: "H = v² sin²θ / (2g)   and   R = v² sin(2θ) / g",
+    steps: [
+      { label: "sin 30°", value: "sin 30° = 0.5" },
+      { label: "sin²30°", value: "(0.5)² = 0.25" },
+      { label: "Maximum height", value: "H = (20)² × 0.25 / (2 × 10) = 400 × 0.25 / 20" },
+      { label: "Computing H", value: "H = 100 / 20 = 5 m" },
+      { label: "sin 60°", value: "sin(2 × 30°) = sin 60° = 0.866" },
+      { label: "Range", value: "R = (20)² × 0.866 / 10 = 400 × 0.866 / 10" },
+      { label: "Computing R", value: "R = 346.4 / 10 = 34.64 m" },
+    ],
+    answer: "H = 5 m and R = 34.64 m",
+    examTip:
+      "Range maximum tab hoti hai jab θ = 45°. Yeh nateeja aksar theory question mein poocha jaata hai.",
+  },
+  {
+    id: "p11-circ-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Circular Motion",
+    kind: "numerical",
+    question:
+      "A car of mass 1000 kg takes a circular turn of radius 50 m at a speed of 10 m/s. Calculate the centripetal force required.",
+    romanUrdu: "1000 kg gaari 50 m radius ke mor par 10 m/s se muraati hai. Centripetal force nikalein.",
+    given: [
+      { label: "Mass", value: "m = 1000 kg" },
+      { label: "Radius", value: "r = 50 m" },
+      { label: "Speed", value: "v = 10 m/s" },
+    ],
+    formula: "F_c = m v² / r",
+    steps: [
+      { label: "v²", value: "(10)² = 100" },
+      { label: "Substituting", value: "F_c = 1000 × 100 / 50" },
+      { label: "Computing", value: "F_c = 100000 / 50" },
+    ],
+    answer: "F_c = 2000 N, directed towards the centre of the circle",
+    examTip:
+      "Centripetal force hamesha markaz ki taraf hoti hai. 'Centrifugal force' asal force nahi, sirf ek mehsoos hone wala asar hai.",
+  },
+  {
+    id: "c11-gas-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "States of Matter (Gases)",
+    kind: "numerical",
+    question:
+      "Calculate the pressure exerted by 2 moles of an ideal gas occupying 10 dm³ at 300 K. (R = 0.0821 dm³·atm/mol·K)",
+    romanUrdu: "2 mole gas 300 K par 10 dm³ mein hai. Pressure nikalein.",
+    given: [
+      { label: "Moles", value: "n = 2 mol" },
+      { label: "Volume", value: "V = 10 dm³" },
+      { label: "Temperature", value: "T = 300 K" },
+      { label: "Gas constant", value: "R = 0.0821 dm³·atm/mol·K" },
+    ],
+    formula: "P V = n R T",
+    steps: [
+      { label: "Rearranging", value: "P = n R T / V" },
+      { label: "Substituting", value: "P = (2 × 0.0821 × 300) / 10" },
+      { label: "Numerator", value: "2 × 0.0821 × 300 = 49.26" },
+      { label: "Dividing", value: "P = 49.26 / 10" },
+    ],
+    answer: "P = 4.926 atm",
+    examTip:
+      "Temperature hamesha Kelvin mein daalein (K = °C + 273). Celsius daalna sab se aam ghalti hai.",
+  },
+  {
+    id: "m11-ap-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Sequences and Series",
+    kind: "numerical",
+    question:
+      "Find the 15th term and the sum of the first 15 terms of the arithmetic progression 3, 7, 11, ...",
+    romanUrdu: "Is AP ka 15waan term aur pehle 15 terms ka total nikalein.",
+    given: [
+      { label: "First term", value: "a₁ = 3" },
+      { label: "Common difference", value: "d = 7 − 3 = 4" },
+      { label: "Number of terms", value: "n = 15" },
+    ],
+    formula: "aₙ = a₁ + (n − 1)d   and   Sₙ = n/2 [2a₁ + (n − 1)d]",
+    steps: [
+      { label: "15th term", value: "a₁₅ = 3 + (15 − 1) × 4 = 3 + 56" },
+      { label: "Computing", value: "a₁₅ = 59" },
+      { label: "Sum", value: "S₁₅ = 15/2 [2(3) + 14 × 4] = 7.5 [6 + 56]" },
+      { label: "Computing", value: "S₁₅ = 7.5 × 62 = 465" },
+    ],
+    answer: "a₁₅ = 59 and S₁₅ = 465",
+    examTip: "Common difference nikalte waqt hamesha (doosra term − pehla term) karein, ulta nahi.",
+  },
+  {
+    id: "p12-cap-1",
+    classLevel: "12th",
+    subject: "physics",
+    chapter: "Electrostatics",
+    kind: "numerical",
+    question:
+      "A capacitor stores a charge of 6 × 10⁻⁴ C when connected across a 200 V supply. Find its capacitance.",
+    romanUrdu: "200 V par capacitor 6 × 10⁻⁴ C charge jama karta hai. Capacitance nikalein.",
+    given: [
+      { label: "Charge", value: "Q = 6 × 10⁻⁴ C" },
+      { label: "Voltage", value: "V = 200 V" },
+    ],
+    formula: "C = Q / V",
+    steps: [
+      { label: "Substituting", value: "C = 6 × 10⁻⁴ / 200" },
+      { label: "Computing", value: "C = 3 × 10⁻⁶ F" },
+      { label: "In microfarads", value: "C = 3 μF" },
+    ],
+    answer: "C = 3 × 10⁻⁶ F (3 μF)",
+    examTip: "1 μF = 10⁻⁶ F. Answer ko μF mein likhna zyada munasib hota hai.",
+  },
+  {
+    id: "c12-titr-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Solutions and Titration",
+    kind: "numerical",
+    question:
+      "25 cm³ of 0.1 M HCl is diluted to 100 cm³. Calculate the molarity of the diluted solution.",
+    romanUrdu: "0.1 M HCl ke 25 cm³ ko 100 cm³ tak dilute kiya gaya. Nayi molarity nikalein.",
+    given: [
+      { label: "Initial molarity", value: "M₁ = 0.1 mol/dm³" },
+      { label: "Initial volume", value: "V₁ = 25 cm³" },
+      { label: "Final volume", value: "V₂ = 100 cm³" },
+    ],
+    formula: "M₁V₁ = M₂V₂",
+    steps: [
+      { label: "Rearranging", value: "M₂ = M₁V₁ / V₂" },
+      { label: "Substituting", value: "M₂ = (0.1 × 25) / 100" },
+      { label: "Numerator", value: "0.1 × 25 = 2.5" },
+      { label: "Dividing", value: "M₂ = 2.5 / 100" },
+    ],
+    answer: "M₂ = 0.025 mol/dm³",
+    examTip:
+      "Dilution mein moles same rehte hain, sirf volume barhta hai - isi liye molarity kam ho jaati hai.",
+  },
+];
+
 export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...physics9,
   ...physics10,
   ...chemistry,
   ...math,
   ...theorems,
+  ...intermediate,
 ];
 
-const CLASS_ORDER: WorkedClass[] = ["9th", "10th", "11th", "12th"];
+/**
+ * Matric (9th-10th) and Intermediate (11th-12th) are separate cycles, so
+ * worked solutions never cascade across them: a 12th student revises 11th
+ * material, not 9th/10th.
+ */
+const CYCLE: Record<WorkedClass, WorkedClass[]> = {
+  "9th": ["9th"],
+  "10th": ["9th", "10th"],
+  "11th": ["11th"],
+  "12th": ["11th", "12th"],
+};
 
-/** Problems a student can use: their class and everything below it (revision). */
+/** Classes whose material a student of `classLevel` should be shown. */
+export function visibleClasses(classLevel: WorkedClass): WorkedClass[] {
+  return CYCLE[classLevel] ?? [classLevel];
+}
+
+/** Problems a student can use: their year plus earlier years of the same cycle. */
 export function problemsFor(
   classLevel: WorkedClass,
   subject?: WorkedSubject
 ): WorkedProblem[] {
-  const maxIdx = CLASS_ORDER.indexOf(classLevel);
+  const allowed = visibleClasses(classLevel);
   return WORKED_PROBLEMS.filter((p) => {
     if (subject && p.subject !== subject) return false;
-    return CLASS_ORDER.indexOf(p.classLevel) <= maxIdx;
+    return allowed.includes(p.classLevel);
   });
 }
 

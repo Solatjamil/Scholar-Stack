@@ -1066,10 +1066,377 @@ const mathFormulas: Formula[] = [
   },
 ];
 
+
+/* ------------------------------------------------------------------ *
+ * INTERMEDIATE (11th / 12th)
+ * Matric and Intermediate are separate cycles, so an 11th/12th student sees
+ * only these plus the other Intermediate year - never 9th/10th material.
+ * ------------------------------------------------------------------ */
+
+const intermediateFormulas: Formula[] = [
+  /* ---------------- 11th PHYSICS ---------------- */
+  {
+    id: "phy11-proj-range",
+    subject: "physics",
+    classLevel: "11th",
+    chapter: "Motion and Force",
+    title: "Range of a projectile",
+    expression: "R = v² sin(2θ) / g",
+    romanUrdu: "Projectile zameen par kitni door ja kar girega.",
+    vars: [
+      { sym: "v", name: "Initial velocity", unit: "m/s", positiveOnly: true },
+      { sym: "θ", name: "Angle of projection", unit: "degrees" },
+    ],
+    solveFor: {
+      R: {
+        rearranged: "R = v² sin(2θ) / g",
+        unit: "m",
+        compute: (x) => (x.v * x.v * Math.sin((2 * x["θ"] * Math.PI) / 180)) / G_ACCEL,
+        steps: (x) => [
+          { label: "v²", value: `(${fmt(x.v)})² = ${fmt(x.v * x.v)}` },
+          { label: "sin 2θ", value: `sin(${fmt(2 * x["θ"])}°) = ${fmt(Math.sin((2 * x["θ"] * Math.PI) / 180))}` },
+        ],
+      },
+    },
+  },
+  {
+    id: "phy11-proj-height",
+    subject: "physics",
+    classLevel: "11th",
+    chapter: "Motion and Force",
+    title: "Maximum height of a projectile",
+    expression: "H = v² sin²θ / (2g)",
+    romanUrdu: "Projectile sab se zyada kitni bulandi tak jayega.",
+    vars: [
+      { sym: "v", name: "Initial velocity", unit: "m/s", positiveOnly: true },
+      { sym: "θ", name: "Angle of projection", unit: "degrees" },
+    ],
+    solveFor: {
+      H: {
+        rearranged: "H = v² sin²θ / (2g)",
+        unit: "m",
+        compute: (x) => (x.v * x.v * Math.pow(Math.sin((x["θ"] * Math.PI) / 180), 2)) / (2 * G_ACCEL),
+        steps: (x) => [
+          { label: "sin θ", value: `${fmt(Math.sin((x["θ"] * Math.PI) / 180))}` },
+          { label: "sin²θ", value: `${fmt(Math.pow(Math.sin((x["θ"] * Math.PI) / 180), 2))}` },
+        ],
+      },
+    },
+  },
+  {
+    id: "phy11-work-energy",
+    subject: "physics",
+    classLevel: "11th",
+    chapter: "Work and Energy",
+    title: "Work-energy principle",
+    expression: "W = ½ m (v_f² − v_i²)",
+    romanUrdu: "Kiya gaya kaam kinetic energy ki tabdeeli ke barabar hota hai.",
+    vars: [
+      { sym: "m", name: "Mass", unit: "kg", positiveOnly: true },
+      { sym: "v_f", name: "Final velocity", unit: "m/s" },
+      { sym: "v_i", name: "Initial velocity", unit: "m/s" },
+    ],
+    solveFor: {
+      W: {
+        rearranged: "W = ½ m (v_f² − v_i²)",
+        unit: "J",
+        compute: (x) => 0.5 * x.m * (x.v_f * x.v_f - x.v_i * x.v_i),
+        steps: (x) => [
+          { label: "v_f² − v_i²", value: `${fmt(x.v_f * x.v_f)} − ${fmt(x.v_i * x.v_i)} = ${fmt(x.v_f * x.v_f - x.v_i * x.v_i)}` },
+        ],
+      },
+    },
+  },
+  {
+    id: "phy11-angular",
+    subject: "physics",
+    classLevel: "11th",
+    chapter: "Circular Motion",
+    title: "Centripetal force",
+    expression: "F_c = m v² / r",
+    romanUrdu: "Circular motion mein markaz ki taraf kheenchne wali force.",
+    vars: [
+      { sym: "m", name: "Mass", unit: "kg", positiveOnly: true },
+      { sym: "v", name: "Linear velocity", unit: "m/s" },
+      { sym: "r", name: "Radius", unit: "m", positiveOnly: true, nonZero: true },
+    ],
+    solveFor: {
+      F: {
+        rearranged: "F_c = m v² / r",
+        unit: "N",
+        compute: (x) => (x.m * x.v * x.v) / x.r,
+        steps: (x) => [{ label: "v²", value: `(${fmt(x.v)})² = ${fmt(x.v * x.v)}` }],
+      },
+    },
+  },
+  /* ---------------- 11th CHEMISTRY ---------------- */
+  {
+    id: "chem11-ideal-gas",
+    subject: "chemistry",
+    classLevel: "11th",
+    chapter: "States of Matter (Gases)",
+    title: "Ideal gas equation",
+    expression: "P V = n R T",
+    romanUrdu: "Gas ka pressure, volume, moles aur temperature ka rishta. R = 0.0821 dm³·atm/mol·K.",
+    vars: [
+      { sym: "n", name: "Number of moles", unit: "mol", positiveOnly: true },
+      { sym: "T", name: "Temperature", unit: "K", positiveOnly: true },
+      { sym: "V", name: "Volume", unit: "dm³", positiveOnly: true, nonZero: true },
+    ],
+    solveFor: {
+      P: {
+        rearranged: "P = n R T / V",
+        unit: "atm",
+        compute: (x) => (x.n * 0.0821 * x.T) / x.V,
+        steps: (x) => [
+          { label: "R", value: "0.0821 dm³·atm/mol·K" },
+          { label: "n R T", value: `${fmt(x.n)} × 0.0821 × ${fmt(x.T)} = ${fmt(x.n * 0.0821 * x.T)}` },
+        ],
+      },
+    },
+  },
+  {
+    id: "chem11-boyle",
+    subject: "chemistry",
+    classLevel: "11th",
+    chapter: "States of Matter (Gases)",
+    title: "Boyle's law",
+    expression: "P₁V₁ = P₂V₂",
+    romanUrdu: "Temperature constant ho to pressure barhne se volume kam hota hai.",
+    vars: [
+      { sym: "P1", name: "Initial pressure", unit: "atm", positiveOnly: true },
+      { sym: "V1", name: "Initial volume", unit: "dm³", positiveOnly: true },
+      { sym: "P2", name: "Final pressure", unit: "atm", positiveOnly: true, nonZero: true },
+    ],
+    solveFor: {
+      V2: {
+        rearranged: "V₂ = P₁V₁ / P₂",
+        unit: "dm³",
+        compute: (x) => (x.P1 * x.V1) / x.P2,
+        steps: (x) => [{ label: "P₁V₁", value: `${fmt(x.P1)} × ${fmt(x.V1)} = ${fmt(x.P1 * x.V1)}` }],
+      },
+    },
+  },
+  {
+    id: "chem11-charles",
+    subject: "chemistry",
+    classLevel: "11th",
+    chapter: "States of Matter (Gases)",
+    title: "Charles's law",
+    expression: "V₁ / T₁ = V₂ / T₂",
+    romanUrdu: "Pressure constant ho to temperature barhne se volume barhta hai. Temperature Kelvin mein.",
+    vars: [
+      { sym: "V1", name: "Initial volume", unit: "dm³", positiveOnly: true },
+      { sym: "T1", name: "Initial temperature", unit: "K", positiveOnly: true, nonZero: true },
+      { sym: "T2", name: "Final temperature", unit: "K", positiveOnly: true },
+    ],
+    solveFor: {
+      V2: {
+        rearranged: "V₂ = V₁ T₂ / T₁",
+        unit: "dm³",
+        compute: (x) => (x.V1 * x.T2) / x.T1,
+        steps: (x) => [{ label: "Reminder", value: "Temperature ko hamesha Kelvin mein lein (K = °C + 273)" }],
+      },
+    },
+  },
+  /* ---------------- 11th MATHS ---------------- */
+  {
+    id: "math11-ap-nth",
+    subject: "math",
+    classLevel: "11th",
+    chapter: "Sequences and Series",
+    title: "nth term of an arithmetic progression",
+    expression: "aₙ = a₁ + (n − 1) d",
+    romanUrdu: "AP ka koi bhi term nikalne ka formula.",
+    vars: [
+      { sym: "a1", name: "First term", unit: "" },
+      { sym: "d", name: "Common difference", unit: "" },
+      { sym: "n", name: "Term number", unit: "", positiveOnly: true },
+    ],
+    solveFor: {
+      an: {
+        rearranged: "aₙ = a₁ + (n − 1) d",
+        unit: "",
+        compute: (x) => x.a1 + (x.n - 1) * x.d,
+        steps: (x) => [{ label: "(n − 1) d", value: `(${fmt(x.n)} − 1) × ${fmt(x.d)} = ${fmt((x.n - 1) * x.d)}` }],
+      },
+    },
+  },
+  {
+    id: "math11-ap-sum",
+    subject: "math",
+    classLevel: "11th",
+    chapter: "Sequences and Series",
+    title: "Sum of an arithmetic progression",
+    expression: "Sₙ = n/2 [2a₁ + (n − 1) d]",
+    romanUrdu: "AP ke pehle n terms ka total.",
+    vars: [
+      { sym: "a1", name: "First term", unit: "" },
+      { sym: "d", name: "Common difference", unit: "" },
+      { sym: "n", name: "Number of terms", unit: "", positiveOnly: true },
+    ],
+    solveFor: {
+      Sn: {
+        rearranged: "Sₙ = n/2 [2a₁ + (n − 1) d]",
+        unit: "",
+        compute: (x) => (x.n / 2) * (2 * x.a1 + (x.n - 1) * x.d),
+        steps: (x) => [
+          { label: "2a₁", value: `${fmt(2 * x.a1)}` },
+          { label: "(n − 1)d", value: `${fmt((x.n - 1) * x.d)}` },
+          { label: "Bracket", value: `${fmt(2 * x.a1 + (x.n - 1) * x.d)}` },
+        ],
+      },
+    },
+  },
+  {
+    id: "math11-gp-sum",
+    subject: "math",
+    classLevel: "11th",
+    chapter: "Sequences and Series",
+    title: "Sum of a geometric progression",
+    expression: "Sₙ = a(1 − rⁿ) / (1 − r)",
+    romanUrdu: "GP ke pehle n terms ka total (r ≠ 1).",
+    vars: [
+      { sym: "a", name: "First term", unit: "" },
+      { sym: "r", name: "Common ratio", unit: "", hint: "r = 1 allowed nahi" },
+      { sym: "n", name: "Number of terms", unit: "", positiveOnly: true },
+    ],
+    solveFor: {
+      Sn: {
+        rearranged: "Sₙ = a(1 − rⁿ) / (1 − r)",
+        unit: "",
+        compute: (x) => (x.a * (1 - Math.pow(x.r, x.n))) / (1 - x.r),
+        steps: (x) => [
+          { label: "rⁿ", value: `${fmt(Math.pow(x.r, x.n))}` },
+          { label: "1 − rⁿ", value: `${fmt(1 - Math.pow(x.r, x.n))}` },
+        ],
+      },
+    },
+  },
+  /* ---------------- 12th PHYSICS ---------------- */
+  {
+    id: "phy12-coulomb",
+    subject: "physics",
+    classLevel: "12th",
+    chapter: "Electrostatics",
+    title: "Coulomb's law",
+    expression: "F = k q₁ q₂ / r²",
+    romanUrdu: "Do charges ke darmiyan force. k = 9 × 10⁹ N·m²/C².",
+    vars: [
+      { sym: "q1", name: "First charge", unit: "C" },
+      { sym: "q2", name: "Second charge", unit: "C" },
+      { sym: "r", name: "Distance apart", unit: "m", positiveOnly: true, nonZero: true },
+    ],
+    solveFor: {
+      F: {
+        rearranged: "F = k q₁ q₂ / r²",
+        unit: "N",
+        compute: (x) => (9e9 * x.q1 * x.q2) / (x.r * x.r),
+        steps: (x) => [
+          { label: "q₁ q₂", value: `${fmt(x.q1)} × ${fmt(x.q2)} = ${fmt(x.q1 * x.q2)}` },
+          { label: "r²", value: `(${fmt(x.r)})² = ${fmt(x.r * x.r)}` },
+        ],
+      },
+    },
+  },
+  {
+    id: "phy12-capacitance",
+    subject: "physics",
+    classLevel: "12th",
+    chapter: "Electrostatics",
+    title: "Capacitance",
+    expression: "C = Q / V",
+    romanUrdu: "Capacitor kitna charge jama kar sakta hai per volt.",
+    vars: [
+      { sym: "Q", name: "Charge stored", unit: "C" },
+      { sym: "V", name: "Potential difference", unit: "V", nonZero: true },
+    ],
+    solveFor: {
+      C: { rearranged: "C = Q / V", unit: "F", compute: (x) => x.Q / x.V },
+      Q: { rearranged: "Q = C V", unit: "C", compute: (x) => x.C * x.V },
+    },
+  },
+  {
+    id: "phy12-resistivity",
+    subject: "physics",
+    classLevel: "12th",
+    chapter: "Current Electricity",
+    title: "Resistivity",
+    expression: "R = ρ L / A",
+    romanUrdu: "Wire ki resistance uski lambai aur motai par depend karti hai.",
+    vars: [
+      { sym: "ρ", name: "Resistivity", unit: "Ω·m", positiveOnly: true },
+      { sym: "L", name: "Length", unit: "m", positiveOnly: true },
+      { sym: "A", name: "Cross-sectional area", unit: "m²", positiveOnly: true, nonZero: true },
+    ],
+    solveFor: {
+      R: { rearranged: "R = ρ L / A", unit: "Ω", compute: (x) => (x["ρ"] * x.L) / x.A },
+    },
+  },
+  {
+    id: "phy12-photon",
+    subject: "physics",
+    classLevel: "12th",
+    chapter: "Dawn of Modern Physics",
+    title: "Energy of a photon",
+    expression: "E = h f",
+    romanUrdu: "Photon ki energy uski frequency par depend karti hai. h = 6.63 × 10⁻³⁴ J·s.",
+    vars: [{ sym: "f", name: "Frequency", unit: "Hz", positiveOnly: true }],
+    solveFor: {
+      E: {
+        rearranged: "E = h f",
+        unit: "J",
+        compute: (x) => 6.63e-34 * x.f,
+        steps: () => [{ label: "Planck's constant", value: "h = 6.63 × 10⁻³⁴ J·s" }],
+      },
+    },
+  },
+  /* ---------------- 12th CHEMISTRY ---------------- */
+  {
+    id: "chem12-rate",
+    subject: "chemistry",
+    classLevel: "12th",
+    chapter: "Chemical Kinetics",
+    title: "Rate of reaction",
+    expression: "Rate = Δ[concentration] / Δtime",
+    romanUrdu: "Reaction kitni tezi se ho rahi hai.",
+    vars: [
+      { sym: "dc", name: "Change in concentration", unit: "mol/dm³" },
+      { sym: "dt", name: "Time taken", unit: "s", positiveOnly: true, nonZero: true },
+    ],
+    solveFor: {
+      rate: { rearranged: "Rate = Δc / Δt", unit: "mol/dm³·s", compute: (x) => x.dc / x.dt },
+    },
+  },
+  {
+    id: "chem12-dilution",
+    subject: "chemistry",
+    classLevel: "12th",
+    chapter: "Solutions and Titration",
+    title: "Dilution / titration formula",
+    expression: "M₁V₁ = M₂V₂",
+    romanUrdu: "Titration aur dilution ka bunyadi formula.",
+    vars: [
+      { sym: "M1", name: "Initial molarity", unit: "mol/dm³", positiveOnly: true },
+      { sym: "V1", name: "Initial volume", unit: "cm³", positiveOnly: true },
+      { sym: "V2", name: "Final volume", unit: "cm³", positiveOnly: true, nonZero: true },
+    ],
+    solveFor: {
+      M2: {
+        rearranged: "M₂ = M₁V₁ / V₂",
+        unit: "mol/dm³",
+        compute: (x) => (x.M1 * x.V1) / x.V2,
+        steps: (x) => [{ label: "M₁V₁", value: `${fmt(x.M1)} × ${fmt(x.V1)} = ${fmt(x.M1 * x.V1)}` }],
+      },
+    },
+  },
+];
+
 export const ALL_FORMULAS: Formula[] = [
   ...physicsFormulas,
   ...chemistryFormulas,
   ...mathFormulas,
+  ...intermediateFormulas,
 ];
 
 /* ------------------------------------------------------------------ *
@@ -1087,14 +1454,31 @@ export interface SolveResult {
   answerRaw?: number;
 }
 
-const CLASS_ORDER: ClassKey[] = ["9th", "10th", "11th", "12th"];
+/**
+ * Matric (9th-10th) and Intermediate (11th-12th) are two separate academic
+ * cycles in the Pakistani system, so content must NOT cascade across them.
+ * A 12th-class student revises 11th work, never 9th/10th; a 10th-class student
+ * revises 9th work. Each class therefore sees its own year plus the earlier
+ * year of the SAME cycle only.
+ */
+const CYCLE: Record<ClassKey, ClassKey[]> = {
+  "9th": ["9th"],
+  "10th": ["9th", "10th"],
+  "11th": ["11th"],
+  "12th": ["11th", "12th"],
+};
 
-/** Formulas available to a student in a given class (their level and below). */
+/** Classes whose material a student of `classLevel` should be shown. */
+export function visibleClasses(classLevel: ClassKey): ClassKey[] {
+  return CYCLE[classLevel] ?? [classLevel];
+}
+
+/** Formulas available to a student: their year plus earlier years of the same cycle. */
 export function formulasFor(classLevel: ClassKey, subject?: SubjectKey): Formula[] {
-  const maxIdx = CLASS_ORDER.indexOf(classLevel);
+  const allowed = visibleClasses(classLevel);
   return ALL_FORMULAS.filter((f) => {
     if (subject && f.subject !== subject) return false;
-    return CLASS_ORDER.indexOf(f.classLevel) <= maxIdx;
+    return allowed.includes(f.classLevel);
   });
 }
 
