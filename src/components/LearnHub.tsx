@@ -27,8 +27,10 @@ const CLASSES: ClassLevel[] = ["9th", "10th", "11th", "12th"];
 const SUBJECTS_FOR: Record<ClassLevel, string[]> = {
   "9th": ["physics", "chemistry", "biology", "math", "cs"],
   "10th": ["physics", "chemistry", "biology", "math", "cs"],
-  "11th": ["physics", "chemistry", "biology", "math", "cs"],
-  "12th": ["physics", "chemistry", "biology", "math", "cs"],
+  // 11th/12th also carry the I.Com stream, so commerce students are not
+  // stuck looking at a science-only hub.
+  "11th": ["physics", "chemistry", "biology", "math", "cs", "accounting", "commerce", "economics"],
+  "12th": ["physics", "chemistry", "biology", "math", "cs", "accounting", "commerce", "banking"],
 };
 
 const SUBJECT_LABEL: Record<string, string> = {
@@ -37,7 +39,17 @@ const SUBJECT_LABEL: Record<string, string> = {
   biology: "Biology",
   math: "Mathematics",
   cs: "Computer Science",
+  accounting: "Principles of Accounting",
+  commerce: "Principles of Commerce",
+  economics: "Principles of Economics",
+  banking: "Principles of Banking",
 };
+
+/** 12th commerce is Commercial Geography, not Principles of Commerce. */
+function subjectLabel(cls: ClassLevel, s: string): string {
+  if (s === "commerce" && cls === "12th") return "Commercial Geography";
+  return SUBJECT_LABEL[s] ?? s;
+}
 
 export default function LearnHub({ studentClass }: { studentClass?: string } = {}) {
   const [view, setView] = useState<View>("topics");
@@ -110,7 +122,7 @@ export default function LearnHub({ studentClass }: { studentClass?: string } = {
                   : "bg-slate-800 text-slate-300 hover:bg-slate-700"
               }`}
             >
-              {SUBJECT_LABEL[s] ?? s}
+              {subjectLabel(classLevel, s)}
             </button>
           ))}
         </div>

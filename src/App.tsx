@@ -586,7 +586,18 @@ function getSyllabusForClass(classLevel: string, group: string, board: string): 
 }
 
 function getSyllabusForClassRaw(classLevel: string, group: string, board: string): SyllabusItem[] {
-  const normGroup = (group || "").toLowerCase();
+  // Group labels vary across the app and the saved profile ("ICom", "I.Com",
+  // "Commerce", "ICS", "Pre-Eng", "Pre-Engineering"...). The branches below
+  // test for the words "commerce" / "computer" / "engineering", so normalise
+  // the aliases into those words first. Without this an ICom or ICS student
+  // fell through every branch and got an empty syllabus.
+  const rawGroup = (group || "").toLowerCase();
+  const normGroup = rawGroup
+    .replace(/i\.?\s*com\b/g, "commerce")
+    .replace(/\bi\.?\s*c\.?\s*s\b/g, "computer")
+    .replace(/\bics\b/g, "computer")
+    .replace(/\bpre[-\s]?eng\b/g, "pre-engineering")
+    .replace(/\bfsc[-\s]?pre[-\s]?engineering\b/g, "pre-engineering");
   
   if (classLevel === "9th") {
     const list: SyllabusItem[] = [];
@@ -1019,6 +1030,19 @@ function getSyllabusForClassRaw(classLevel: string, group: string, board: string
           { id: "ac11-3", name: "Cash Book and Bank Reconciliation", completed: false }
         ]
       });
+      // Principles of Economics is a full 75-mark I.Com Part 1 paper. It was
+      // named in the subject list but had no syllabus, so ICom students saw
+      // an empty subject.
+      list.push({
+        id: "syl-eco-11",
+        subjectId: "cs",
+        title: "11th Class Principles of Economics",
+        board,
+        updatedAt: "Refreshed based on selection",
+        chapters: [
+          { id: "ec11-1", name: "Unit 1: Introduction to Economics", completed: false },
+        ]
+      });
     } else if (normGroup.includes("computer")) {
       list.push({
         id: "syl-cs-11",
@@ -1222,6 +1246,18 @@ function getSyllabusForClassRaw(classLevel: string, group: string, board: string
           { id: "ac12-1", name: "Single Entry to Double Entry conversions", completed: true },
           { id: "ac12-2", name: "Non-profit or Club Accounts formulations", completed: false },
           { id: "ac12-3", name: "Consignment accounts, Voyage and Depreciation", completed: false }
+        ]
+      });
+      // Principles of Banking is the other 75-mark I.Com Part 2 paper and was
+      // missing entirely from the app.
+      list.push({
+        id: "syl-bank-12",
+        subjectId: "cs",
+        title: "12th Class Principles of Banking",
+        board,
+        updatedAt: "Refreshed based on selection",
+        chapters: [
+          { id: "bk12-1", name: "Unit 1: Introduction to Banking", completed: false },
         ]
       });
     } else if (normGroup.includes("computer")) {
@@ -1902,7 +1938,8 @@ export default function App() {
         } else if (sub.id === "chemistry") {
           customName = studentClass === "11th" ? "Principles of Accounting" : "Intermediate Accounting";
         } else if (sub.id === "cs") {
-          customName = "Principles of Economics";
+          customName =
+            studentClass === "11th" ? "Principles of Economics" : "Principles of Banking";
         }
       }
       return { ...sub, name: customName };
