@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ScholarStack</string>
-    <string name="title_activity_main">ScholarStack</string>
+    <string name="app_name">Young Scholars Pk</string>
+    <string name="title_activity_main">Young Scholars Pk</string>
     <string name="package_name">pk.scholarstack.app</string>
     <string name="custom_url_scheme">pk.scholarstack.app</string>
 </resources>

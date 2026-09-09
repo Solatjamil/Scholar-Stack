@@ -1,5 +1,5 @@
 {
-  "name": "ScholarStack",
+  "name": "Young Scholars Pk",
   "description": "An interactive, minimal academic dashboard for tracking Pakistan BISE syllabus progress, preparing through interactive mockup board exams, reflecting on student performance evaluations, and navigating curated educational study resources.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

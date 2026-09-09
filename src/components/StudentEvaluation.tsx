@@ -293,7 +293,7 @@ export default function StudentEvaluation({
       list.push({
         type: "general",
         subjectName: "General Prep",
-        text: "Generate fresh board-format mockup papers across all subjects on your ScholarStack dashboard to evaluate and log progress gaps."
+        text: "Generate fresh board-format mockup papers across all subjects on your Young Scholars Pk dashboard to evaluate and log progress gaps."
       });
       list.push({
         type: "numerical",

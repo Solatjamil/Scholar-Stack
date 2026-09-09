@@ -76,7 +76,7 @@ export default function InstallPrompt() {
       className="lg:hidden fixed left-3 right-3 z-[70] bg-white rounded-2xl border border-slate-200 shadow-lg p-4"
       style={{ bottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}
       role="dialog"
-      aria-label="Install ScholarStack"
+      aria-label="Install Young Scholars Pk"
     >
       <button
         onClick={dismiss}
@@ -91,7 +91,7 @@ export default function InstallPrompt() {
           S
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-[13px] font-bold text-slate-900">Install ScholarStack</p>
+          <p className="text-[13px] font-bold text-slate-900">Install Young Scholars Pk</p>
           <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
             Add it to your home screen for full-screen access and offline past papers — no internet
             needed once installed.

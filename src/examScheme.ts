@@ -1,5 +1,5 @@
 /**
- * ScholarStack — Board Exam Scheme Engine
+ * Young Scholars Pk — Board Exam Scheme Engine
  * =======================================
  *
  * Implements the CURRENT BISE paper pattern requested:

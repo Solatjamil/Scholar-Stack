@@ -22,7 +22,7 @@ const BOOK_SOURCES: Record<string, { archiveId: string; pdfFile: string }> = {
   "chem-10-fbise": { archiveId: "pakbooks-seed-0002", pdfFile: "CHEMISTRY 10TH FBISE.pdf" },
 };
 
-const UA = "Mozilla/5.0 (compatible; ScholarStack/1.0)";
+const UA = "Mozilla/5.0 (compatible; YoungScholarsPk/1.0)";
 
 export default async function handler(
   req: IncomingMessage & { query?: Record<string, string | string[]> },

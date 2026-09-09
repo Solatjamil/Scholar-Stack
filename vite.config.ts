@@ -14,8 +14,8 @@ export default defineConfig(() => {
         includeAssets: ['favicon.svg', 'icons/apple-touch-icon.png'],
         manifest: {
           id: '/',
-          name: 'ScholarStack — BISE Study Companion',
-          short_name: 'ScholarStack',
+          name: 'Young Scholars Pk — BISE Study Companion',
+          short_name: 'Young Scholars Pk',
           description:
             'Syllabus tracking, mock board papers, past-paper prediction and study resources for Pakistani 9th, 10th, 11th and 12th class students (Punjab, Sindh, KPK, Balochistan, FBISE, AJK, GB).',
           lang: 'en-PK',

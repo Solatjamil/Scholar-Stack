@@ -22,7 +22,7 @@ const BOOK_SOURCES: Record<string, { archiveId: string; base: string }> = {
   "chem-10-fbise": { archiveId: "pakbooks-seed-0002", base: "CHEMISTRY 10TH FBISE" },
 };
 
-const UA = "Mozilla/5.0 (compatible; ScholarStack/1.0)";
+const UA = "Mozilla/5.0 (compatible; YoungScholarsPk/1.0)";
 
 /**
  * "Accept-Encoding: identity" stops the CDN gzipping an already-gzipped file,

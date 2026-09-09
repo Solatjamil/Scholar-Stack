@@ -2944,7 +2944,7 @@ export default function App() {
     </div>
 
     <div style="margin-top: 50px; border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center; font-size: 10px; color: #94a3b8; font-family: monospace;">
-      Generated securely by ScholarStack AI Predictive Learning Engine. Ref: ${new Date().toLocaleDateString()}
+      Generated securely by the Young Scholars Pk offline board engine. Ref: ${new Date().toLocaleDateString()}
     </div>
   </div>
 </body>
@@ -3241,7 +3241,7 @@ export default function App() {
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-display font-bold text-sm tracking-wide shadow-sm hover:bg-indigo-700 transition-colors">
               S
             </div>
-            <span className="font-display font-bold text-lg tracking-tight text-slate-800 hidden min-[380px]:inline">ScholarStack</span>
+            <span className="font-display font-bold text-lg tracking-tight text-slate-800 hidden min-[380px]:inline">Young Scholars Pk</span>
           </div>
 
           {/* Navigation Links with Active States */}
@@ -5088,7 +5088,7 @@ export default function App() {
 
       {/* Footer Branding copyright with no tech-larping Indicator */}
       <footer className="hidden lg:flex h-12 border-t border-slate-200/80 px-8 items-center justify-between shrink-0 bg-white/50 text-[11px] text-slate-400 mt-auto">
-        <span>© {new Date().getFullYear()} ScholarStack Curriculum Tracker</span>
+        <span>© {new Date().getFullYear()} Young Scholars Pk Curriculum Tracker</span>
         <span>Works offline · Installable</span>
       </footer>
 

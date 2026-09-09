@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'pk.scholarstack.app',
-  appName: 'ScholarStack',
+  appName: 'Young Scholars Pk',
   webDir: 'dist',
   android: {
     allowMixedContent: false,
