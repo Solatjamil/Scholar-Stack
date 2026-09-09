@@ -41,7 +41,7 @@ export default function MockupSection({
   studentGroup
 }: MockupSectionProps) {
   const [selectedSubject, setSelectedSubject] = useState<string>(subjects[0]?.id || "physics");
-  const [examYear, setExamYear] = useState<string>("2026-live");
+  const [examYear, setExamYear] = useState<string>("2026");
   const [paper, setPaper] = useState<BoardPaper | null>(null);
   const [examScope, setExamScope] = useState<"full" | "chapter">("full");
   const [selectedChapterId, setSelectedChapterId] = useState<string>("all");
@@ -323,7 +323,7 @@ export default function MockupSection({
                 onChange={(e) => setExamYear(e.target.value)}
                 className="bg-slate-800 text-white border border-slate-700 rounded-lg text-xs font-semibold px-3 py-1.5 outline-none focus:border-indigo-500 cursor-pointer"
               >
-                <option value="2026-live">2026 Exams (Active/Currently Going On)</option>
+                <option value="2026">2026 Past Board Paper (Latest)</option>
                 <option value="2025">2025 Past Board Paper</option>
                 <option value="2024">2024 Past Board Paper</option>
                 <option value="2023">2023 Past Board Paper</option>
@@ -452,11 +452,11 @@ export default function MockupSection({
             <h3 className="font-display font-bold text-slate-800 text-base flex items-center gap-1.5 flex-wrap">
               <span>{paper.subjectName}</span>
               <span className="px-2 py-0.5 text-[10px] font-bold rounded-lg bg-indigo-100 text-indigo-700">
-                {examYear === "2026-live" ? "2026 Live Series (Active)" : examYear === "dynamic" ? "Syllabus Simulator" : `${examYear} Board Paper`}
+                {examYear === "dynamic" ? "Syllabus Simulator" : `${examYear} Board Paper`}
               </span>
             </h3>
             <p className="text-xs text-slate-400 mt-1">
-              Exam guidelines: Answer logically relative to allocated marks. Complete MCQ sheet first. Synchronized with the last 5-year board indexes.
+              Exam guidelines: Answer logically relative to allocated marks. Complete MCQ sheet first. Synchronized with the 2021-2026 board indexes.
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -469,17 +469,11 @@ export default function MockupSection({
           </div>
         </div>
 
-        {/* Dynamic Exam-Year Warning Banner */}
-        {examYear === "2026-live" && (
-          <div className="bg-rose-50 border-b border-rose-100 px-5 py-3 flex items-center space-x-2 text-rose-800 text-xs font-semibold animate-pulse-slow">
-            <span className="px-1.5 py-0.5 bg-rose-600 text-white rounded font-mono text-[9px] font-extrabold uppercase shrink-0">ACTIVE 2026</span>
-            <span>You are reviewing the predicted questions matching the ongoing 2026 examination series. Keep attempting to gauge live benchmarks.</span>
-          </div>
-        )}
-        {examYear !== "2026-live" && examYear !== "dynamic" && (
+        {/* Exam-year context banner */}
+        {examYear !== "dynamic" && (
           <div className="bg-emerald-50 border-b border-emerald-100 px-5 py-3 flex items-center space-x-2 text-emerald-800 text-xs font-semibold">
-            <span className="px-1.5 py-0.5 bg-emerald-600 text-white rounded font-mono text-[9px] font-extrabold uppercase shrink-0">PAST SYSTEM</span>
-            <span>Successfully synced with historical {examYear} Board Papers databases. Useful for tracking recurring trends.</span>
+            <span className="px-1.5 py-0.5 bg-emerald-600 text-white rounded font-mono text-[9px] font-extrabold uppercase shrink-0">PAST PAPER</span>
+            <span>{examYear} annual board paper, rebuilt in your board's exact scheme. Useful for tracking recurring trends.</span>
           </div>
         )}
 

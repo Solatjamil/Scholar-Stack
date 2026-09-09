@@ -721,7 +721,7 @@ export function generateBoardPaper(
 
   // Stamp with board year tags if appropriate
   if (examYear && examYear !== "dynamic") {
-    const yearLabel = examYear === "2026-live" ? "2026 Live Series (Active)" : `${examYear} Annual Past Exam`;
+    const yearLabel = `${examYear} Annual Past Exam`;
     finalMCQs.forEach(m => {
       m.question = `[${boardName} - ${yearLabel}] ${m.question}`;
     });

@@ -2976,7 +2976,7 @@ export default function App() {
     const steps = [
       "📡 Constructing secure terminal request for BISE Board Archives...",
       "🔍 Querying past papers from ilmkidunya.com, taleem360.com & local directories...",
-      "📜 Downloading historical examination manuscripts for the past 5 years (2021-2025)...",
+      "📜 Preparing historical examination papers for 2021-2026...",
       "🤖 Launching Gemini pattern matching engine & calculating statistical recurrence factor...",
       "📈 Extracting recurring long questions, conceptual derivations, and short question metrics...",
       "🔮 Finalizing predictions for the 2026 academic examinations with a 95% confidence array!"
@@ -5031,7 +5031,7 @@ export default function App() {
                 Past Papers &amp; Exam Predictor
               </h2>
               <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-relaxed">
-                Five years of full papers plus a predicted morning/evening paper, in the current board
+                Six years of full papers plus a predicted morning/evening paper, in the current board
                 scheme. Works fully offline &mdash; synced to your class, group and board.
               </p>
             </div>

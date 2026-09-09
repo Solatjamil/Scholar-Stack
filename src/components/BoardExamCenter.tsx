@@ -314,7 +314,7 @@ export default function BoardExamCenter({
           }`}
         >
           <FileText size={13} className="inline mr-1.5 -mt-0.5" />
-          Last 5 Years Papers
+          Last {PAST_PAPER_YEARS.length} Years Papers
         </button>
         <button
           onClick={() => setMode("predict")}
@@ -333,10 +333,11 @@ export default function BoardExamCenter({
       {mode === "past" && (
         <div className="space-y-2.5">
           <p className="text-[11px] text-slate-500 leading-relaxed">
-            Five full papers for <strong>{activeSubject?.name}</strong>, one per year, each in the
-            current {currentBoard} scheme (18 MCQs &middot; 3 short sections of 8 &middot; 3 long
-            questions). Papers are stable — reopening {PAST_PAPER_YEARS[0]} always shows the same
-            paper.
+            {PAST_PAPER_YEARS.length} full papers for <strong>{activeSubject?.name}</strong>, one
+            per year ({PAST_PAPER_YEARS[PAST_PAPER_YEARS.length - 1]}–{PAST_PAPER_YEARS[0]}), each
+            in the current {currentBoard} scheme (18 MCQs &middot; 3 short sections of 8 &middot; 3
+            long questions). Papers are stable — reopening {PAST_PAPER_YEARS[0]} always shows the
+            same paper.
           </p>
 
           {fiveYear.map((p) => (

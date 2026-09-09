@@ -367,13 +367,13 @@ export function getTopicsForChapter(subjectId: string, chapterName: string): Imp
 1. List every formula and define each symbol with its SI unit.
 2. Re-solve all textbook examples unaided.
 3. Practise the exercise numericals; always write Given → Formula → Working → Answer with units.
-4. Attempt this chapter's questions from the last 5 years of past papers.
+4. Attempt this chapter's questions from the last 6 years of past papers.
 5. Prepare short definitions and any required derivation or diagram.`
         : `Preparation plan for ${topicName} (${label}):
 1. Read the chapter and write a summary in your own words.
 2. Prepare all textbook exercise short questions.
 3. Note key terms, definitions and important lines for long questions.
-4. Attempt this chapter's questions from the last 5 years of past papers.
+4. Attempt this chapter's questions from the last 6 years of past papers.
 5. Revise once a week so recall stays fresh before the board exam.`,
       diagramType: diagramBySubject[normSub] || "generic-mindmap",
       videoTitle: `Sabaq Foundation search: ${topicName}`,

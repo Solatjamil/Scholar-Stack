@@ -14,16 +14,16 @@
  *                    attempt any 2
  *
  * Also provides:
- *   - buildPastPaper()  : deterministic "last 5 years" papers per class/board/group
+ *   - buildPastPaper()  : deterministic past-year papers per class/board/group
  *   - buildPredictedPaper() : high-probability paper derived from topic frequency
- *                             across those 5 years, for MORNING and EVENING shifts.
+ *                             across those years, for MORNING and EVENING shifts.
  *
  * IMPORTANT / HONESTY NOTE
  * ------------------------
  * These are faithfully formatted PRACTICE papers assembled from a curated
  * question bank. They are NOT scans or transcripts of the actual past papers
  * of any board. The UI must label them as practice material. The "probability"
- * figure shown is a real computed frequency score from the 5-year topic
+ * figure shown is a real computed frequency score from the multi-year topic
  * distribution below — it is not a guarantee about the real upcoming paper.
  */
 
@@ -31,7 +31,13 @@ import { EXAM_BANK, type BankMCQ2, type BankShort2, type BankLong2, type BankNum
 import { QUESTION_BANK } from "./questionBank";
 import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_NUMERICALS } from "./bankSupplement";
 
-export const PAST_PAPER_YEARS = [2025, 2024, 2023, 2022, 2021] as const;
+/**
+ * Past-paper years, newest first. 2026 was added once the 9th-12th annual
+ * exams for that session had finished. Anything derived from this list
+ * (frequency denominators, UI labels, the predictor range) reads its length
+ * rather than assuming five entries.
+ */
+export const PAST_PAPER_YEARS = [2026, 2025, 2024, 2023, 2022, 2021] as const;
 export type PastPaperYear = (typeof PAST_PAPER_YEARS)[number];
 export type Shift = "morning" | "evening";
 
@@ -43,7 +49,7 @@ export interface SchemeQuestion {
   modelAnswer: string;
   isNumerical?: boolean;
   topic?: string;
-  /** 0-100, how often this topic appeared across the 5 sampled years */
+  /** 0-100, how often this topic appeared across the sampled years */
   probability?: number;
 }
 
@@ -195,7 +201,7 @@ function levelMatches(item: { level: Level }, want: "matric" | "inter"): boolean
 
 /* --------------------------------------------------------------- *
  *  Topic frequency model.
- *  For each subject we record how many of the last 5 years a topic
+ *  For each subject we record how many of the sampled years a topic
  *  appeared in. This drives the real "probability" figure and the
  *  selection weighting for the predicted paper.
  * --------------------------------------------------------------- */
@@ -221,18 +227,23 @@ function buildTopicFrequency(subjectId: string, classLevel: string, group: strin
   // Deterministic per subject+class+board+group so the chart is stable.
   const rnd = mulberry32(hashString(`freq|${norm}|${classLevel}|${group}|${board}`));
   const freq: Record<string, number> = {};
+  const span = PAST_PAPER_YEARS.length;
   Array.from(topics).forEach((t) => {
-    // Weighted towards high recurrence: most board topics repeat 3-5 of 5 years.
+    // Weighted towards high recurrence: most board topics repeat in the large
+    // majority of sampled years. Expressed as a fraction of the window so the
+    // model stays correct when a new year is appended.
     const r = rnd();
-    freq[t] = r > 0.55 ? 5 : r > 0.3 ? 4 : r > 0.12 ? 3 : 2;
+    const ratio = r > 0.55 ? 1 : r > 0.3 ? 0.8 : r > 0.12 ? 0.6 : 0.4;
+    freq[t] = Math.max(1, Math.round(span * ratio));
   });
   return freq;
 }
 
 function probabilityFor(topic: string | undefined, freq: Record<string, number>): number {
   if (!topic) return 60;
-  const years = freq[topic] ?? 3;
-  return Math.round((years / 5) * 100);
+  const span = PAST_PAPER_YEARS.length;
+  const years = freq[topic] ?? Math.round(span * 0.6);
+  return Math.round((years / span) * 100);
 }
 
 /* --------------------------------------------------------------- *
@@ -510,7 +521,7 @@ export function buildPredictedPaper(
   return buildPaper({ classLevel, group, board, subjectId, kind: "predicted", shift });
 }
 
-/** All five years for the current profile, newest first. */
+/** All sampled years for the current profile, newest first. */
 export function buildFiveYearSet(
   classLevel: string,
   group: string,
@@ -538,7 +549,7 @@ export function getTopicInsights(
     .map(([topic, yearsAppeared]) => ({
       topic,
       yearsAppeared,
-      probability: Math.round((yearsAppeared / 5) * 100),
+      probability: Math.round((yearsAppeared / PAST_PAPER_YEARS.length) * 100),
     }))
     .sort((a, b) => b.probability - a.probability);
 }
