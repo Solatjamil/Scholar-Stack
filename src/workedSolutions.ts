@@ -1918,6 +1918,643 @@ const accounting: WorkedProblem[] = [
   },
 ];
 
+/* ============ GAP-FILL: chapters that previously had no worked solution ====
+ * Same board format and difficulty as the existing sets. Every numerical
+ * result below is checked by an arithmetic harness before committing.
+ */
+const gapFill: WorkedProblem[] = [
+  {
+    id: "m9-mat-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Matrices and Determinants",
+    kind: "numerical",
+    question:
+      "If A = [[2, 3],[1, 4]], find |A| and A inverse.",
+    romanUrdu:
+      "Determinant aur inverse nikalein.",
+    given: [
+      { label: "Matrix A", value: "[[2, 3],[1, 4]]" },
+    ],
+    formula: "|A| = ad - bc ;  A^-1 = (1/|A|) [[d, -b],[-c, a]]",
+    steps: [
+      { label: "Determinant", value: "|A| = (2)(4) - (3)(1) = 8 - 3 = 5" },
+      { label: "Since |A| = 5 is not 0", value: "A is non-singular, so the inverse exists" },
+      { label: "Adjoint", value: "adj A = [[4, -3],[-1, 2]]" },
+      { label: "Inverse", value: "A^-1 = (1/5)[[4, -3],[-1, 2]] = [[4/5, -3/5],[-1/5, 2/5]]" },
+    ],
+    answer: "|A| = 5 and A^-1 = (1/5)[[4, -3],[-1, 2]].",
+    examTip:
+      "Adjoint mein a aur d ki jagah BADALTI hai aur b, c ke sign badalte hain. Sirf sign badal dena aam ghalti hai.",
+  },
+  {
+    id: "m9-log-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Logarithms",
+    kind: "numerical",
+    question:
+      "Evaluate log to base 2 of 32, and find x if log to base 3 of x = 4.",
+    romanUrdu:
+      "Logarithm ki qeemat aur x maloom karein.",
+    given: [
+      { label: "First", value: "log_2 32" },
+      { label: "Second", value: "log_3 x = 4" },
+    ],
+    formula: "If a^y = n then log_a n = y",
+    steps: [
+      { label: "Express 32 as a power of 2", value: "32 = 2^5" },
+      { label: "So", value: "log_2 32 = log_2 2^5 = 5" },
+      { label: "Second part", value: "log_3 x = 4 means 3^4 = x" },
+      { label: "Compute", value: "3^4 = 81" },
+    ],
+    answer: "log_2 32 = 5 and x = 81.",
+    examTip:
+      "Logarithm ka matlab hai 'kaunsi power?'. Definition a^y = n ko hamesha zehan mein rakhein.",
+  },
+  {
+    id: "m9-fact-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Factorization",
+    kind: "numerical",
+    question:
+      "Factorize x^2 - 9x + 20 and 4x^2 - 25.",
+    romanUrdu:
+      "In expressions ke factors banayein.",
+    given: [
+      { label: "First", value: "x^2 - 9x + 20" },
+      { label: "Second", value: "4x^2 - 25" },
+    ],
+    formula: "Split the middle term ; a^2 - b^2 = (a - b)(a + b)",
+    steps: [
+      { label: "For x^2 - 9x + 20", value: "Find two numbers whose product is +20 and sum is -9" },
+      { label: "Numbers", value: "-4 and -5, since (-4)(-5) = 20 and -4 + -5 = -9" },
+      { label: "Split", value: "x^2 - 4x - 5x + 20 = x(x - 4) - 5(x - 4) = (x - 4)(x - 5)" },
+      { label: "For 4x^2 - 25", value: "This is a difference of two squares: (2x)^2 - (5)^2" },
+      { label: "Apply formula", value: "(2x - 5)(2x + 5)" },
+    ],
+    answer: "x^2 - 9x + 20 = (x - 4)(x - 5) and 4x^2 - 25 = (2x - 5)(2x + 5).",
+    examTip:
+      "Difference of squares pehchanne ki aadat daalein - yeh sab se aasan marks hain.",
+  },
+  {
+    id: "m9-coord-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Introduction to Coordinate Geometry",
+    kind: "numerical",
+    question:
+      "Find the distance between A(-3, 4) and B(5, -2), and the midpoint of AB.",
+    romanUrdu:
+      "Do points ka faasla aur midpoint nikalein.",
+    given: [
+      { label: "Point A", value: "(-3, 4)" },
+      { label: "Point B", value: "(5, -2)" },
+    ],
+    formula: "d = sqrt[(x2-x1)^2 + (y2-y1)^2] ; Midpoint = ((x1+x2)/2, (y1+y2)/2)",
+    steps: [
+      { label: "x difference", value: "5 - (-3) = 8" },
+      { label: "y difference", value: "-2 - 4 = -6" },
+      { label: "Distance", value: "sqrt(8^2 + (-6)^2) = sqrt(64 + 36) = sqrt(100) = 10" },
+      { label: "Midpoint x", value: "(-3 + 5)/2 = 2/2 = 1" },
+      { label: "Midpoint y", value: "(4 + (-2))/2 = 2/2 = 1" },
+    ],
+    answer: "Distance |AB| = 10 units and the midpoint is (1, 1).",
+    examTip:
+      "Minus minus plus banta hai: 5 - (-3) = 8. Yeh sign ki ghalti sab se zyada hoti hai.",
+  },
+  {
+    id: "m9-stat-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Basic Statistics",
+    kind: "numerical",
+    question:
+      "Find the mean, median and mode of: 12, 15, 18, 15, 20, 22, 15.",
+    romanUrdu:
+      "Mean, median aur mode nikalein.",
+    given: [
+      { label: "Data", value: "12, 15, 18, 15, 20, 22, 15" },
+      { label: "n", value: "7" },
+    ],
+    formula: "Mean = sum/n ; Median = middle value of ordered data ; Mode = most frequent value",
+    steps: [
+      { label: "Sum", value: "12 + 15 + 18 + 15 + 20 + 22 + 15 = 117" },
+      { label: "Mean", value: "117 / 7 = 16.71 (2 d.p.)" },
+      { label: "Arrange in order", value: "12, 15, 15, 15, 18, 20, 22" },
+      { label: "Median", value: "n = 7 is odd, so median is the 4th value = 15" },
+      { label: "Mode", value: "15 occurs three times, more than any other value" },
+    ],
+    answer: "Mean = 16.71, median = 15, mode = 15.",
+    examTip:
+      "Median nikalne se PEHLE data ko tarteeb dena zaroori hai. Bina tarteeb ke median ghalat aayega.",
+  },
+  {
+    id: "p9-meas-1",
+    classLevel: "9th",
+    subject: "physics",
+    chapter: "Physical Quantities and Measurement",
+    kind: "numerical",
+    question:
+      "The main scale of a vernier calliper reads 2.3 cm and the 6th vernier division coincides with a main scale division. Least count is 0.01 cm. Find the reading.",
+    romanUrdu:
+      "Vernier calliper ki reading nikalein.",
+    given: [
+      { label: "Main scale reading", value: "2.3 cm" },
+      { label: "Coinciding vernier division", value: "6" },
+      { label: "Least count", value: "0.01 cm" },
+    ],
+    formula: "Total reading = Main scale reading + (vernier division x least count)",
+    steps: [
+      { label: "Vernier scale reading", value: "6 x 0.01 = 0.06 cm" },
+      { label: "Total reading", value: "2.3 + 0.06 = 2.36 cm" },
+    ],
+    answer: "Reading = 2.36 cm.",
+    examTip:
+      "Vernier division ko least count se ZAROOR multiply karein - seedha jorna ghalat hai.",
+  },
+  {
+    id: "p9-turn-1",
+    classLevel: "9th",
+    subject: "physics",
+    chapter: "Turning Effect of Forces",
+    kind: "numerical",
+    question:
+      "A force of 40 N acts at a perpendicular distance of 0.6 m from a pivot. Find the moment. What force at 0.3 m would balance it?",
+    romanUrdu:
+      "Torque nikalein aur balance karne wali force maloom karein.",
+    given: [
+      { label: "Force", value: "F = 40 N" },
+      { label: "Moment arm", value: "d = 0.6 m" },
+      { label: "Second distance", value: "0.3 m" },
+    ],
+    formula: "Moment = Force x perpendicular distance ; For equilibrium, clockwise moment = anticlockwise moment",
+    steps: [
+      { label: "Moment", value: "40 x 0.6 = 24 N m" },
+      { label: "For balance", value: "F2 x 0.3 = 24" },
+      { label: "Solve", value: "F2 = 24 / 0.3 = 80 N" },
+    ],
+    answer: "Moment = 24 N m; a force of 80 N at 0.3 m is required to balance it.",
+    examTip:
+      "Distance hamesha AMOODI (perpendicular) hona chahiye. Agar force tirchi hai to pehle component nikalein.",
+  },
+  {
+    id: "p9-grav-1",
+    classLevel: "9th",
+    subject: "physics",
+    chapter: "Gravitation",
+    kind: "numerical",
+    question:
+      "Calculate the gravitational force between two bodies of masses 60 kg and 80 kg placed 2 m apart. (G = 6.67e-11 N m^2/kg^2)",
+    romanUrdu:
+      "Do jismon ke darmiyan kashish ki quwwat nikalein.",
+    given: [
+      { label: "Mass 1", value: "m1 = 60 kg" },
+      { label: "Mass 2", value: "m2 = 80 kg" },
+      { label: "Distance", value: "r = 2 m" },
+      { label: "G", value: "6.67e-11 N m^2/kg^2" },
+    ],
+    formula: "F = G m1 m2 / r^2",
+    steps: [
+      { label: "Product of masses", value: "60 x 80 = 4800 kg^2" },
+      { label: "r squared", value: "2^2 = 4 m^2" },
+      { label: "Substitute", value: "F = (6.67e-11 x 4800) / 4" },
+      { label: "Numerator", value: "6.67e-11 x 4800 = 3.2016e-7" },
+      { label: "Divide", value: "F = 3.2016e-7 / 4 = 8.004e-8 N" },
+    ],
+    answer: "F = 8.0e-8 N (approximately).",
+    examTip:
+      "r ko square karna mat bhoolein. Yeh inverse SQUARE law hai, simple inverse nahi.",
+  },
+  {
+    id: "p9-heat-1",
+    classLevel: "9th",
+    subject: "physics",
+    chapter: "Transfer of Heat",
+    kind: "numerical",
+    question:
+      "How much heat is required to raise the temperature of 2 kg of water from 20 C to 70 C? (specific heat of water = 4200 J/kg/K)",
+    romanUrdu:
+      "Pani ka darja hararat barhane ke liye darkaar hararat nikalein.",
+    given: [
+      { label: "Mass", value: "m = 2 kg" },
+      { label: "Initial temperature", value: "20 C" },
+      { label: "Final temperature", value: "70 C" },
+      { label: "Specific heat", value: "c = 4200 J/kg/K" },
+    ],
+    formula: "Q = m c delta T",
+    steps: [
+      { label: "Temperature change", value: "delta T = 70 - 20 = 50 K" },
+      { label: "Substitute", value: "Q = 2 x 4200 x 50" },
+      { label: "Multiply", value: "Q = 8400 x 50 = 420000 J" },
+      { label: "Convert", value: "420000 J = 420 kJ" },
+    ],
+    answer: "Q = 420,000 J = 420 kJ.",
+    examTip:
+      "delta T ke liye Celsius ka farq aur Kelvin ka farq BARABAR hota hai, is liye convert karne ki zaroorat nahi.",
+  },
+  {
+    id: "c9-atom-1",
+    classLevel: "9th",
+    subject: "chemistry",
+    chapter: "Structure of Atoms",
+    kind: "numerical",
+    question:
+      "An atom has atomic number 17 and mass number 35. Find the number of protons, neutrons and electrons, and write its electronic configuration.",
+    romanUrdu:
+      "Protons, neutrons, electrons aur electronic configuration likhein.",
+    given: [
+      { label: "Atomic number Z", value: "17" },
+      { label: "Mass number A", value: "35" },
+    ],
+    formula: "Protons = Z ; Electrons = Z (neutral atom) ; Neutrons = A - Z",
+    steps: [
+      { label: "Protons", value: "= Z = 17" },
+      { label: "Electrons", value: "= 17 (atom is neutral)" },
+      { label: "Neutrons", value: "= A - Z = 35 - 17 = 18" },
+      { label: "Configuration", value: "1s2 2s2 2p6 3s2 3p5" },
+      { label: "Check", value: "2 + 2 + 6 + 2 + 5 = 17 electrons - correct. The element is chlorine." },
+    ],
+    answer: "17 protons, 17 electrons, 18 neutrons; configuration 1s2 2s2 2p6 3s2 3p5 (chlorine).",
+    examTip:
+      "Neutrons ke liye mass number se atomic number GHATATE hain. Jorna sab se aam ghalti hai.",
+  },
+  {
+    id: "c9-states-1",
+    classLevel: "9th",
+    subject: "chemistry",
+    chapter: "Physical States of Matter",
+    kind: "numerical",
+    question:
+      "A gas occupies 500 cm3 at 300 K. What volume will it occupy at 450 K if the pressure is constant?",
+    romanUrdu:
+      "Charles law se naya hajm nikalein.",
+    given: [
+      { label: "Initial volume", value: "V1 = 500 cm3" },
+      { label: "Initial temperature", value: "T1 = 300 K" },
+      { label: "Final temperature", value: "T2 = 450 K" },
+    ],
+    formula: "Charles' law: V1/T1 = V2/T2 (at constant pressure)",
+    steps: [
+      { label: "Rearrange", value: "V2 = V1 x T2 / T1" },
+      { label: "Substitute", value: "V2 = 500 x 450 / 300" },
+      { label: "Numerator", value: "500 x 450 = 225000" },
+      { label: "Divide", value: "V2 = 225000 / 300 = 750 cm3" },
+    ],
+    answer: "V2 = 750 cm3.",
+    examTip:
+      "Temperature hamesha KELVIN mein honi chahiye. Celsius istemal karne se jawab bilkul ghalat aata hai.",
+  },
+  {
+    id: "m10-var-1",
+    classLevel: "10th",
+    subject: "math",
+    chapter: "Variations",
+    kind: "numerical",
+    question:
+      "If y varies directly as x, and y = 12 when x = 4, find y when x = 9.",
+    romanUrdu:
+      "Direct variation se y ki qeemat nikalein.",
+    given: [
+      { label: "Relation", value: "y is directly proportional to x" },
+      { label: "Given", value: "y = 12 when x = 4" },
+      { label: "Find", value: "y when x = 9" },
+    ],
+    formula: "y = kx where k is the constant of proportionality",
+    steps: [
+      { label: "Find k", value: "12 = k x 4, so k = 12/4 = 3" },
+      { label: "Equation", value: "y = 3x" },
+      { label: "Substitute x = 9", value: "y = 3 x 9 = 27" },
+    ],
+    answer: "y = 27.",
+    examTip:
+      "Pehle hamesha constant k nikalein, phir nayi value daalein. Seedha ratio lagana risky hai.",
+  },
+  {
+    id: "m10-pf-1",
+    classLevel: "10th",
+    subject: "math",
+    chapter: "Partial Fractions",
+    kind: "numerical",
+    question:
+      "Resolve (3x + 5) / ((x + 1)(x + 3)) into partial fractions.",
+    romanUrdu:
+      "Partial fractions mein tordein.",
+    given: [
+      { label: "Expression", value: "(3x + 5) / ((x + 1)(x + 3))" },
+    ],
+    formula: "For distinct linear factors: N/((x+a)(x+b)) = A/(x+a) + B/(x+b)",
+    steps: [
+      { label: "Set up", value: "(3x + 5)/((x+1)(x+3)) = A/(x+1) + B/(x+3)" },
+      { label: "Multiply through", value: "3x + 5 = A(x + 3) + B(x + 1)" },
+      { label: "Put x = -1", value: "3(-1) + 5 = A(-1 + 3), so 2 = 2A, giving A = 1" },
+      { label: "Put x = -3", value: "3(-3) + 5 = B(-3 + 1), so -4 = -2B, giving B = 2" },
+      { label: "Write result", value: "1/(x+1) + 2/(x+3)" },
+    ],
+    answer: "(3x + 5)/((x+1)(x+3)) = 1/(x+1) + 2/(x+3).",
+    examTip:
+      "x ki wo value daalein jo ek factor ko sifar kar de - is se doosra constant foran mil jata hai.",
+  },
+  {
+    id: "p10-sound-1",
+    classLevel: "10th",
+    subject: "physics",
+    chapter: "Sound",
+    kind: "numerical",
+    question:
+      "A sound wave has a frequency of 500 Hz and travels at 340 m/s in air. Find its wavelength.",
+    romanUrdu:
+      "Sound wave ki wavelength nikalein.",
+    given: [
+      { label: "Frequency", value: "f = 500 Hz" },
+      { label: "Speed", value: "v = 340 m/s" },
+    ],
+    formula: "v = f x lambda",
+    steps: [
+      { label: "Rearrange", value: "lambda = v / f" },
+      { label: "Substitute", value: "lambda = 340 / 500" },
+      { label: "Compute", value: "lambda = 0.68 m" },
+    ],
+    answer: "Wavelength = 0.68 m.",
+    examTip:
+      "Speed ko frequency par TAQSEEM karte hain. Multiply karna aam ghalti hai.",
+  },
+  {
+    id: "p10-es-1",
+    classLevel: "10th",
+    subject: "physics",
+    chapter: "Electrostatics",
+    kind: "numerical",
+    question:
+      "Two charges of 4 microcoulomb and 6 microcoulomb are placed 0.3 m apart in air. Find the force between them. (k = 9e9 N m^2/C^2)",
+    romanUrdu:
+      "Do charges ke darmiyan quwwat nikalein.",
+    given: [
+      { label: "Charge 1", value: "q1 = 4e-6 C" },
+      { label: "Charge 2", value: "q2 = 6e-6 C" },
+      { label: "Distance", value: "r = 0.3 m" },
+      { label: "k", value: "9e9 N m^2/C^2" },
+    ],
+    formula: "F = k q1 q2 / r^2 (Coulomb's law)",
+    steps: [
+      { label: "Product of charges", value: "4e-6 x 6e-6 = 24e-12 = 2.4e-11 C^2" },
+      { label: "r squared", value: "0.3^2 = 0.09 m^2" },
+      { label: "Numerator", value: "9e9 x 2.4e-11 = 0.216" },
+      { label: "Divide", value: "F = 0.216 / 0.09 = 2.4 N" },
+    ],
+    answer: "F = 2.4 N (repulsive, since both charges are positive).",
+    examTip:
+      "Microcoulomb ko 10^-6 se convert karna na bhoolein, aur r ko square karein.",
+  },
+  {
+    id: "c10-hc-1",
+    classLevel: "10th",
+    subject: "chemistry",
+    chapter: "Hydrocarbons",
+    kind: "numerical",
+    question:
+      "Give the molecular formula of the alkane, alkene and alkyne containing 4 carbon atoms, and name them.",
+    romanUrdu:
+      "Chaar carbon wale alkane, alkene aur alkyne ka formula aur naam likhein.",
+    given: [
+      { label: "Number of carbon atoms", value: "n = 4" },
+    ],
+    formula: "Alkane CnH(2n+2) ; Alkene CnH(2n) ; Alkyne CnH(2n-2)",
+    steps: [
+      { label: "Alkane", value: "C4H(2x4+2) = C4H10, named butane" },
+      { label: "Alkene", value: "C4H(2x4) = C4H8, named butene" },
+      { label: "Alkyne", value: "C4H(2x4-2) = C4H6, named butyne" },
+      { label: "Note", value: "Alkanes are saturated; alkenes have a double bond and alkynes a triple bond, so both are unsaturated" },
+    ],
+    answer: "Butane C4H10, butene C4H8, butyne C4H6.",
+    examTip:
+      "General formulas ratta lagana zaroori hai - har saal paper mein aate hain.",
+  },
+  {
+    id: "p11-meas-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Measurements",
+    kind: "numerical",
+    question:
+      "The length of a wire is measured as 25.4 cm with an uncertainty of 0.1 cm. Calculate the percentage uncertainty.",
+    romanUrdu:
+      "Percentage uncertainty nikalein.",
+    given: [
+      { label: "Measured length", value: "25.4 cm" },
+      { label: "Absolute uncertainty", value: "0.1 cm" },
+    ],
+    formula: "Percentage uncertainty = (absolute uncertainty / measured value) x 100",
+    steps: [
+      { label: "Substitute", value: "(0.1 / 25.4) x 100" },
+      { label: "Divide", value: "0.1 / 25.4 = 0.003937" },
+      { label: "Multiply", value: "0.003937 x 100 = 0.394%" },
+    ],
+    answer: "Percentage uncertainty = 0.39% (approximately 0.4%).",
+    examTip:
+      "Jab quantities multiply ya divide hon to percentage uncertainties JORTE hain, absolute nahi.",
+  },
+  {
+    id: "p11-osc-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Oscillations",
+    kind: "numerical",
+    question:
+      "A simple pendulum has a length of 1.0 m. Find its time period. (g = 9.8 m/s^2)",
+    romanUrdu:
+      "Simple pendulum ka time period nikalein.",
+    given: [
+      { label: "Length", value: "L = 1.0 m" },
+      { label: "g", value: "9.8 m/s^2" },
+    ],
+    formula: "T = 2 pi sqrt(L/g)",
+    steps: [
+      { label: "L/g", value: "1.0 / 9.8 = 0.10204" },
+      { label: "Square root", value: "sqrt(0.10204) = 0.31944" },
+      { label: "Multiply by 2 pi", value: "T = 2 x 3.1416 x 0.31944 = 2.007 s" },
+    ],
+    answer: "Time period T = 2.0 s (approximately).",
+    examTip:
+      "Time period pendulum ke MASS par munhasir nahi hota - sirf length aur g par. Yeh conceptual question aksar aata hai.",
+  },
+  {
+    id: "c11-sol-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "Solutions",
+    kind: "numerical",
+    question:
+      "Calculate the molarity of a solution containing 20 g of NaOH dissolved in 500 cm3 of solution. (Molar mass of NaOH = 40 g/mol)",
+    romanUrdu:
+      "Mehlool ki molarity nikalein.",
+    given: [
+      { label: "Mass of NaOH", value: "20 g" },
+      { label: "Molar mass", value: "40 g/mol" },
+      { label: "Volume", value: "500 cm3" },
+    ],
+    formula: "Molarity = moles of solute / volume of solution in dm3 ; moles = mass / molar mass",
+    steps: [
+      { label: "Moles", value: "20 / 40 = 0.5 mol" },
+      { label: "Volume in dm3", value: "500 / 1000 = 0.5 dm3" },
+      { label: "Molarity", value: "0.5 / 0.5 = 1.0 mol/dm3" },
+    ],
+    answer: "Molarity = 1.0 M.",
+    examTip:
+      "Volume ko cm3 se dm3 mein convert karna zaroori hai (1000 se taqseem). Yeh sab se aam ghalti hai.",
+  },
+  {
+    id: "p12-elec-1",
+    classLevel: "12th",
+    subject: "physics",
+    chapter: "Electronics",
+    kind: "numerical",
+    question:
+      "Determine the output of a two-input AND gate and an OR gate for inputs A = 1, B = 0, and state the NAND output.",
+    romanUrdu:
+      "Logic gates ka output batayein.",
+    given: [
+      { label: "Input A", value: "1" },
+      { label: "Input B", value: "0" },
+    ],
+    formula: "AND: output 1 only if all inputs are 1 ; OR: output 1 if any input is 1 ; NAND = NOT of AND",
+    steps: [
+      { label: "AND", value: "1 AND 0 = 0" },
+      { label: "OR", value: "1 OR 0 = 1" },
+      { label: "NAND", value: "NOT(AND) = NOT(0) = 1" },
+    ],
+    answer: "AND = 0, OR = 1, NAND = 1.",
+    examTip:
+      "NAND aur NOR hamesha AND/OR ka ULTA hote hain. Truth table banane ki aadat daalein.",
+  },
+  {
+    id: "p12-nuc-1",
+    classLevel: "12th",
+    subject: "physics",
+    chapter: "Nuclear Physics",
+    kind: "numerical",
+    question:
+      "A radioactive sample has a half life of 8 days. What fraction of the original sample remains after 24 days?",
+    romanUrdu:
+      "24 din baad kitna hissa baqi rahega?",
+    given: [
+      { label: "Half life", value: "8 days" },
+      { label: "Total time", value: "24 days" },
+    ],
+    formula: "Remaining fraction = (1/2)^n where n = total time / half life",
+    steps: [
+      { label: "Number of half lives", value: "n = 24 / 8 = 3" },
+      { label: "Fraction remaining", value: "(1/2)^3 = 1/8" },
+      { label: "As a percentage", value: "1/8 = 0.125 = 12.5%" },
+    ],
+    answer: "1/8 (12.5%) of the original sample remains.",
+    examTip:
+      "Har half life ke baad AADHA reh jata hai. Teen half lives ka matlab 1/2 x 1/2 x 1/2 = 1/8, na ke 1/6.",
+  },
+  {
+    id: "m12-conic-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Conic Sections",
+    kind: "numerical",
+    question:
+      "Find the centre and radius of the circle x^2 + y^2 - 6x + 8y - 11 = 0.",
+    romanUrdu:
+      "Circle ka markaz aur radius nikalein.",
+    given: [
+      { label: "Equation", value: "x^2 + y^2 - 6x + 8y - 11 = 0" },
+    ],
+    formula: "For x^2 + y^2 + 2gx + 2fy + c = 0: centre = (-g, -f), radius = sqrt(g^2 + f^2 - c)",
+    steps: [
+      { label: "Compare", value: "2g = -6 so g = -3 ; 2f = 8 so f = 4 ; c = -11" },
+      { label: "Centre", value: "(-g, -f) = (3, -4)" },
+      { label: "g^2 + f^2 - c", value: "9 + 16 - (-11) = 9 + 16 + 11 = 36" },
+      { label: "Radius", value: "sqrt(36) = 6" },
+    ],
+    answer: "Centre (3, -4) and radius 6 units.",
+    examTip:
+      "c ka sign dhyan se lein: -(-11) = +11. Yahan sign ki ghalti se radius ghalat aata hai.",
+  },
+  {
+    id: "m12-vec-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Vectors",
+    kind: "numerical",
+    question:
+      "If A = 2i + 3j - k and B = i - 2j + 4k, find A . B and the angle between them.",
+    romanUrdu:
+      "Scalar product aur zaawiya nikalein.",
+    given: [
+      { label: "Vector A", value: "2i + 3j - k" },
+      { label: "Vector B", value: "i - 2j + 4k" },
+    ],
+    formula: "A . B = a1b1 + a2b2 + a3b3 ; cos(theta) = (A.B)/(|A||B|)",
+    steps: [
+      { label: "Dot product", value: "(2)(1) + (3)(-2) + (-1)(4) = 2 - 6 - 4 = -8" },
+      { label: "|A|", value: "sqrt(4 + 9 + 1) = sqrt(14) = 3.742" },
+      { label: "|B|", value: "sqrt(1 + 4 + 16) = sqrt(21) = 4.583" },
+      { label: "cos theta", value: "-8 / (3.742 x 4.583) = -8 / 17.15 = -0.4665" },
+      { label: "theta", value: "cos inverse of -0.4665 = 117.8 degrees" },
+    ],
+    answer: "A . B = -8 and the angle between them is approximately 117.8 degrees.",
+    examTip:
+      "Dot product manfi hai to zaawiya 90 degrees se ZYADA hoga. Yeh check hamesha karein.",
+  },
+  {
+    id: "m12-stat-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Measures of Central Tendency",
+    kind: "numerical",
+    question:
+      "Find the arithmetic mean of the following frequency distribution: values 5, 10, 15, 20 with frequencies 3, 7, 6, 4.",
+    romanUrdu:
+      "Frequency distribution ka mean nikalein.",
+    given: [
+      { label: "Values x", value: "5, 10, 15, 20" },
+      { label: "Frequencies f", value: "3, 7, 6, 4" },
+    ],
+    formula: "Mean = sum(fx) / sum(f)",
+    steps: [
+      { label: "fx values", value: "5x3=15 ; 10x7=70 ; 15x6=90 ; 20x4=80" },
+      { label: "sum(fx)", value: "15 + 70 + 90 + 80 = 255" },
+      { label: "sum(f)", value: "3 + 7 + 6 + 4 = 20" },
+      { label: "Mean", value: "255 / 20 = 12.75" },
+    ],
+    answer: "Arithmetic mean = 12.75.",
+    examTip:
+      "sum(f) se taqseem karein, values ki tadaad se nahi. Yahan 20 se taqseem hui, 4 se nahi.",
+  },
+  {
+    id: "c12-per-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Periodic Classification of Elements and Periodicity",
+    kind: "numerical",
+    question:
+      "Arrange Na, Mg, Al and Si in order of increasing atomic radius and explain the trend.",
+    romanUrdu:
+      "Atomic radius ke barhte hue tarteeb mein rakhein.",
+    given: [
+      { label: "Elements", value: "Na (Z=11), Mg (Z=12), Al (Z=13), Si (Z=14)" },
+      { label: "All in", value: "Period 3" },
+    ],
+    formula: "Across a period, nuclear charge increases while the shell number stays the same, so atomic radius decreases",
+    steps: [
+      { label: "Same period", value: "All four are in period 3, so all have 3 shells" },
+      { label: "Nuclear charge", value: "Increases from +11 (Na) to +14 (Si)" },
+      { label: "Effect", value: "Greater nuclear charge pulls the same shells closer, reducing the radius" },
+      { label: "Order of decreasing radius", value: "Na > Mg > Al > Si" },
+      { label: "Order of increasing radius", value: "Si < Al < Mg < Na" },
+    ],
+    answer: "Increasing atomic radius: Si < Al < Mg < Na.",
+    examTip:
+      "Period mein BAAYEN se DAAYEN radius kam hota hai, group mein UPAR se NEECHE barhta hai. Dono trends ulta na karein.",
+  },
+];
+
 export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...physics9,
   ...physics10,
@@ -1927,6 +2564,7 @@ export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...intermediate,
   ...intermediate2,
   ...accounting,
+  ...gapFill,
 ];
 
 /**
