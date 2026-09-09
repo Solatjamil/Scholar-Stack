@@ -7,17 +7,56 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
     />
-    <title>Young Scholars Pk — BISE Study Companion (9th–12th)</title>
+
+    <!-- ================= PRIMARY SEO ================= -->
+    <title>Young Scholars Pk — Free 9th, 10th, 11th &amp; 12th Class Notes, Past Papers &amp; Solved Exercises</title>
     <meta
       name="description"
-      content="Syllabus tracking, mock board papers, paper prediction and study resources for Pakistani 9th, 10th, 11th and 12th class students."
+      content="Free BISE study material for Pakistani students of 9th, 10th, 11th and 12th class. Chapter-wise notes, solved exercises, past papers 2021-2026, MCQs, short questions, video lectures, textbooks and paper prediction for Punjab, Federal, Sindh, KPK, Balochistan and AJK boards. Works offline."
     />
+    <meta
+      name="keywords"
+      content="9th class past papers, 10th class notes, 11th class notes, 12th class past papers, BISE past papers, matric notes, inter notes, solved exercises, physics notes, chemistry notes, math notes, computer science notes, guess paper, pairing scheme, PCTB textbooks, board exam preparation Pakistan"
+    />
+    <link rel="canonical" href="https://young-scholars-pk.vercel.app/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Young Scholars Pk" />
+    <meta name="language" content="en-PK" />
+    <meta name="geo.region" content="PK" />
+    <meta name="geo.placename" content="Pakistan" />
+
+    <!-- ================= OPEN GRAPH / SOCIAL ================= -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Young Scholars Pk" />
+    <meta property="og:locale" content="en_PK" />
+    <meta property="og:url" content="https://young-scholars-pk.vercel.app/" />
+    <meta property="og:title" content="Young Scholars Pk — Free BISE Notes, Past Papers &amp; Solved Exercises (9th–12th)" />
+    <meta
+      property="og:description"
+      content="Chapter-wise notes, solved exercises, MCQs, past papers and video lectures for Pakistani 9th, 10th, 11th and 12th class students. All boards. Free and works offline."
+    />
+    <meta property="og:image" content="https://young-scholars-pk.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Young Scholars Pk — free BISE study material for classes 9 to 12" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Young Scholars Pk — Free BISE Notes &amp; Past Papers (9th–12th)" />
+    <meta
+      name="twitter:description"
+      content="Free chapter-wise notes, solved exercises, MCQs and past papers for Pakistani board students. Works offline."
+    />
+    <meta name="twitter:image" content="https://young-scholars-pk.vercel.app/og-image.png" />
+
+    <!-- ================= PWA / ICONS ================= -->
     <meta name="theme-color" content="#4F46E5" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Young Scholars Pk" />
-    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+    <meta name="application-name" content="Young Scholars Pk" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
     <!-- Premium minimalist fonts and Google symbols -->
@@ -27,11 +66,177 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
+    <!--
+      ============================================================
+      STRUCTURED DATA (JSON-LD)
+      ------------------------------------------------------------
+      This app is client-rendered, so crawlers and AI answer engines
+      that do not execute JavaScript would otherwise see an empty
+      page. These static blocks describe the site in the HTML source
+      itself, which is what powers Google rich results and what
+      ChatGPT / Gemini / Perplexity cite when answering study
+      questions. Keep them in sync with the real feature set — do not
+      claim content the app does not actually have.
+      ============================================================
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "@id": "https://young-scholars-pk.vercel.app/#org",
+          "name": "Young Scholars Pk",
+          "alternateName": ["Young Scholars Pakistan", "YoungScholarsPk"],
+          "url": "https://young-scholars-pk.vercel.app/",
+          "logo": "https://young-scholars-pk.vercel.app/icons/icon-512.png",
+          "image": "https://young-scholars-pk.vercel.app/og-image.png",
+          "description": "Free board exam preparation platform for Pakistani students of classes 9, 10, 11 and 12, covering all BISE boards.",
+          "areaServed": {"@type": "Country", "name": "Pakistan"},
+          "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student",
+            "audienceType": "Secondary and Higher Secondary students in Pakistan"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://young-scholars-pk.vercel.app/#website",
+          "url": "https://young-scholars-pk.vercel.app/",
+          "name": "Young Scholars Pk",
+          "publisher": {"@id": "https://young-scholars-pk.vercel.app/#org"},
+          "inLanguage": "en-PK",
+          "description": "Chapter-wise notes, solved exercises, MCQs, short questions, past papers and video lectures for Pakistani 9th to 12th class board students."
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://young-scholars-pk.vercel.app/#app",
+          "name": "Young Scholars Pk",
+          "url": "https://young-scholars-pk.vercel.app/",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Android, iOS, Web",
+          "browserRequirements": "Requires JavaScript. Works offline after first visit.",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "PKR"},
+          "featureList": [
+            "Chapter-wise topics matching the Punjab textbook",
+            "Solved exercises with step-by-step working",
+            "MCQs and short questions per chapter",
+            "Glossary, definitions and side notes",
+            "Video lectures for 9th and 10th science",
+            "Past papers 2021-2026 with morning and evening variants",
+            "Board-accurate grading and paper scheme",
+            "Offline access on mobile"
+          ],
+          "publisher": {"@id": "https://young-scholars-pk.vercel.app/#org"}
+        },
+        {
+          "@type": "ItemList",
+          "name": "Classes covered by Young Scholars Pk",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "9th Class (SSC Part 1) notes, past papers and solved exercises"},
+            {"@type": "ListItem", "position": 2, "name": "10th Class (SSC Part 2) notes, past papers and solved exercises"},
+            {"@type": "ListItem", "position": 3, "name": "11th Class (1st Year / HSSC Part 1) notes and past papers"},
+            {"@type": "ListItem", "position": 4, "name": "12th Class (2nd Year / HSSC Part 2) notes and past papers"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://young-scholars-pk.vercel.app/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Where can I get free 9th and 10th class notes in Pakistan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Young Scholars Pk provides free chapter-wise notes for 9th and 10th class (SSC Part 1 and Part 2) in Physics, Chemistry, Mathematics, Computer Science, Biology, English, Urdu and Islamiat. Every chapter lists its book topics along with solved exercises, MCQs, short questions and a glossary of definitions. No sign-up or payment is required and the app works offline after the first visit."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are past papers available for all Pakistani boards?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Young Scholars Pk generates board-format papers covering the last five years (2021 to 2026) for Punjab boards including BISE Lahore, Gujranwala, Multan, Faisalabad, Rawalpindi, Sargodha, Bahawalpur, Sahiwal and DG Khan, as well as FBISE Federal, Sindh, KPK, Balochistan and AJK. Papers sync to your saved class, group and board, and both Morning and Evening variants are available."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the paper scheme for 9th and 10th class science subjects?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The scheme used in the app is 18 MCQs of 1 mark each (attempt all), 24 short questions arranged as Q.2, Q.3 and Q.4 in three sections of 8 questions each where you attempt any 6 per section for 2 marks each, and 3 long questions (Q.5 to Q.7) each with parts (a) and (b) where you attempt any 2. For science subjects two of the three long questions include a numerical. The total is 74 marks."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I get solved exercises and numericals with full steps?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Numericals are solved in the format boards expect: Given values, the formula used, intermediate working steps, and the final answer with correct SI units. Mathematics also includes theorems presented as To Prove, Construction, Proof and Conclusion. Each solved exercise sits inside its own chapter in the Chapter Study section."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Young Scholars Pk free and does it work without internet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Young Scholars Pk is completely free with no registration required. It is a Progressive Web App, so after your first visit the study material is cached on your phone and you can revise without an internet connection. This is useful for students on limited or slow mobile data."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there an Android app for Young Scholars Pk?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Young Scholars Pk runs both as a website and as an Android app. You can install it directly from the browser using the Install option, which adds it to your home screen and lets it run full screen and offline like a normal app."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How is the passing marks and grading calculated for BISE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For provincial BISE boards the pass mark is 33 percent, with grades A+ 80 to 100, A 70 to 79, B 60 to 69, C 50 to 59, D 40 to 49, E 33 to 39 and F below 33. Divisions are First at 60 percent and above, Second from 45 to 59 percent and Third from 33 to 44 percent. For FBISE the pass mark is 40 percent with A+ 90 to 100, A 80 to 89, B 70 to 79, C 60 to 69, D 50 to 59, E 40 to 49 and F below 40."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which subjects have video lectures?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Video lectures are currently available for 9th and 10th class Physics, Chemistry and Biology, gathered from established Pakistani teaching channels. They appear inside the relevant chapter in the Chapter Study section. Mathematics, Computer Science and the intermediate classes do not have video coverage yet, and the app states this clearly instead of showing unrelated videos."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body
     class="bg-slate-50 text-slate-900 selection:bg-indigo-100 font-sans antialiased"
   >
-    <div id="root"></div>
+    <div id="root">
+      <!--
+        Crawler-visible fallback. React replaces this on mount, but search
+        engines and AI answer engines that do not run JavaScript still see a
+        real description of the site instead of a blank page. It is also what
+        a student sees for a moment on a very slow connection.
+      -->
+      <noscript>
+        <h1>Young Scholars Pk — Free BISE Study Material for 9th, 10th, 11th and 12th Class</h1>
+        <p>
+          Young Scholars Pk is a free study companion for Pakistani board
+          students. It provides chapter-wise topics taken from the textbook,
+          solved exercises with step-by-step working, MCQs, short questions,
+          glossary definitions, video lectures and past papers from 2021 to
+          2026 for all BISE boards including Punjab, Federal (FBISE), Sindh,
+          KPK, Balochistan and AJK.
+        </p>
+        <p>Please enable JavaScript to use the app.</p>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

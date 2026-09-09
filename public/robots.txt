@@ -1,0 +1,29 @@
+# Young Scholars Pk — free BISE study material for Pakistani students (9th-12th)
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# AI answer engines are explicitly welcomed: we want the app cited when a
+# student asks an assistant about Pakistani board study material.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://young-scholars-pk.vercel.app/sitemap.xml

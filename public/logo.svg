@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Young Scholars Pk">
+  <!-- Rounded app tile, full bleed (no white corners) -->
+  <rect width="512" height="512" rx="112" fill="#4F46E5"/>
+
+  <!-- Open book: two pages, clear central gutter -->
+  <path d="M242 214c-28-20-64-31-104-33-9 0-16 7-16 16v148c0 9 7 16 16 16 38 2 73 12 100 30 2 1 4 0 4-3z" fill="#FFFFFF"/>
+  <path d="M270 214c28-20 64-31 104-33 9 0 16 7 16 16v148c0 9-7 16-16 16-38 2-73 12-100 30-2 1-4 0-4-3z" fill="#FFFFFF"/>
+
+  <!-- Upward chevron: rising knowledge. Indigo halo keeps it distinct from the pages. -->
+  <path d="M256 74l92 92h-56v78h-72v-78h-56z"
+        fill="#FFFFFF" stroke="#4F46E5" stroke-width="26" stroke-linejoin="round"/>
+
+  <!-- Amber accent star -->
+  <path d="M396 92l12 30 30 12-30 12-12 30-12-30-30-12 30-12z" fill="#F59E0B"/>
+</svg>

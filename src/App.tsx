@@ -56,6 +56,7 @@ import BoardExamCenter from "./components/BoardExamCenter";
 import { CHAPTER_LISTS } from "./syllabusData";
 import MobileTabBar, { MobileMoreSheet } from "./components/MobileTabBar";
 import InstallPrompt from "./components/InstallPrompt";
+import StudyFaq from "./components/StudyFaq";
 
 enum OperationType {
   CREATE = 'create',
@@ -3238,8 +3239,15 @@ export default function App() {
         <div className="flex items-center space-x-3 lg:space-x-8 min-w-0">
           {/* Logo with clean structural branding */}
           <div className="flex items-center space-x-2.5 cursor-pointer shrink-0" onClick={() => setActiveTab("dashboard")}>
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-display font-bold text-sm tracking-wide shadow-sm hover:bg-indigo-700 transition-colors">
-              S
+            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-sm hover:bg-indigo-700 transition-colors">
+              {/* Inline brand mark: open book + rising chevron. Inline SVG so it
+                  renders instantly and works offline / in sandboxed previews. */}
+              <svg viewBox="0 0 512 512" className="w-5 h-5" aria-hidden="true" focusable="false">
+                <path d="M242 214c-28-20-64-31-104-33-9 0-16 7-16 16v148c0 9 7 16 16 16 38 2 73 12 100 30 2 1 4 0 4-3z" fill="#FFFFFF" />
+                <path d="M270 214c28-20 64-31 104-33 9 0 16 7 16 16v148c0 9-7 16-16 16-38 2-73 12-100 30-2 1-4 0-4-3z" fill="#FFFFFF" />
+                <path d="M256 74l92 92h-56v78h-72v-78h-56z" fill="#FFFFFF" stroke="#4F46E5" strokeWidth="26" strokeLinejoin="round" />
+                <path d="M396 92l12 30 30 12-30 12-12 30-12-30-30-12 30-12z" fill="#F59E0B" />
+              </svg>
             </div>
             <span className="font-display font-bold text-lg tracking-tight text-slate-800 hidden min-[380px]:inline">Young Scholars Pk</span>
           </div>
@@ -4055,6 +4063,12 @@ export default function App() {
 
             </aside>
 
+
+            {/* On-page FAQ: real answers to what students search for.
+                Mirrors the FAQPage JSON-LD in index.html — keep both in sync. */}
+            <div className="col-span-1 lg:col-span-12">
+              <StudyFaq />
+            </div>
           </div>
         )}
 
