@@ -2192,14 +2192,26 @@ export default function App() {
   // --- DYNAMIC SUBJECT CLASSIFICATION EFFECT ---
   useEffect(() => {
     // Keep studentGroup synchronized with classLevel categories
+    // Groups arrive from several places (sign-up form, saved profile, Firestore)
+    // and are not always written with the exact canonical label. Match on the
+    // meaningful keyword instead of on string equality, otherwise a perfectly
+    // valid group such as "ICom" is not recognised and gets silently replaced
+    // by the default - which made commerce students see the ICS syllabus.
+    const g = (studentGroup || "").toLowerCase();
     if (studentClass === "9th" || studentClass === "10th") {
-      if (studentGroup !== "Biology" && studentGroup !== "Computer" && studentGroup !== "Arts") {
-        setStudentGroup("Biology");
-      }
+      const matricOk =
+        g.includes("bio") || g.includes("computer") || g.includes("ics") || g.includes("art");
+      if (!matricOk) setStudentGroup("Biology");
     } else {
-      if (studentGroup !== "Pre-Engineering" && studentGroup !== "Pre-Medical" && studentGroup !== "Computer Science / ICS" && studentGroup !== "Arts / Humanities" && studentGroup !== "Commerce / ICom") {
-        setStudentGroup("Computer Science / ICS");
-      }
+      const interOk =
+        g.includes("engineering") ||
+        g.includes("medical") ||
+        g.includes("computer") ||
+        g.includes("ics") ||
+        g.includes("commerce") ||
+        g.includes("icom") ||
+        g.includes("art");
+      if (!interOk) setStudentGroup("Computer Science / ICS");
     }
   }, [studentClass, studentGroup]);
 
