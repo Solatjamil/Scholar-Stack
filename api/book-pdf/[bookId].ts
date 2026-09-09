@@ -1,17 +1,15 @@
+import type { IncomingMessage, ServerResponse } from "node:http";
+
 /**
  * Vercel serverless function: stream a scanned textbook PDF.
  *
- * Runs on the Node runtime, not edge: the edge runtime's fetch re-encoded the
- * "%20" in these filenames and archive.org answered 400/404 (it 404s on the
- * "+" form). Node's fetch preserves the URL byte-for-byte.
- *
- * The Express app in server.ts only runs during local development - Vercel
- * deploys the Vite build as static files, so anything under /api must exist as
- * its own function here or it 404s in production.
- *
  * archive.org sends no Access-Control-Allow-Origin header, so the browser
- * cannot fetch these directly; we proxy them and forward Range headers so
- * PDF.js / the native viewer can stream pages instead of the whole file.
+ * cannot fetch these directly; we proxy them and forward Range headers so the
+ * PDF viewer can stream pages instead of pulling the whole file.
+ *
+ * Node runtime with the classic (req, res) signature. The edge runtime failed
+ * two ways: its fetch re-encoded the "%20" in these filenames (archive.org
+ * 404s on the "+" form) and DecompressionStream fought the CDN's own gzip.
  */
 
 export const config = { runtime: "nodejs" };
@@ -24,44 +22,51 @@ const BOOK_SOURCES: Record<string, { archiveId: string; pdfFile: string }> = {
   "chem-10-fbise": { archiveId: "pakbooks-seed-0002", pdfFile: "CHEMISTRY 10TH FBISE.pdf" },
 };
 
-export default async function handler(req: Request): Promise<Response> {
-  const bookId = new URL(req.url).pathname.split("/").pop() || "";
+const UA = "Mozilla/5.0 (compatible; ScholarStack/1.0)";
+
+export default async function handler(
+  req: IncomingMessage & { query?: Record<string, string | string[]> },
+  res: ServerResponse
+) {
+  const raw = req.query?.bookId;
+  const bookId = Array.isArray(raw) ? raw[0] : raw || "";
   const src = BOOK_SOURCES[bookId];
+
   if (!src) {
-    return new Response(JSON.stringify({ error: "Unknown book id" }), {
-      status: 404,
-      headers: { "Content-Type": "application/json" },
-    });
+    res.statusCode = 404;
+    res.setHeader("Content-Type", "application/json");
+    return res.end(JSON.stringify({ error: "Unknown book id" }));
   }
 
-  const range = req.headers.get("range");
-  const headersOut: Record<string, string> = {
-    // archive.org's CDN is picky about default client hints; a plain desktop UA
-    // is what we verified working.
-    "User-Agent": "Mozilla/5.0 (compatible; ScholarStack/1.0)",
-  };
-  if (range) headersOut.Range = range;
-  const upstream = await fetch(
-    `https://archive.org/download/${src.archiveId}/${encodeURIComponent(src.pdfFile)}`,
-    { headers: headersOut, redirect: "follow" }
-  );
+  try {
+    const headers: Record<string, string> = { "User-Agent": UA };
+    const range = req.headers.range;
+    if (range) headers.Range = range;
 
-  if (!upstream.ok && upstream.status !== 206) {
-    return new Response(JSON.stringify({ error: `Upstream returned ${upstream.status}` }), {
-      status: 502,
-      headers: { "Content-Type": "application/json" },
-    });
+    const upstream = await fetch(
+      `https://archive.org/download/${src.archiveId}/${encodeURIComponent(src.pdfFile)}`,
+      { headers, redirect: "follow" }
+    );
+
+    if (!upstream.ok && upstream.status !== 206) {
+      res.statusCode = 502;
+      res.setHeader("Content-Type", "application/json");
+      return res.end(JSON.stringify({ error: `Upstream returned ${upstream.status}` }));
+    }
+
+    res.statusCode = upstream.status === 206 ? 206 : 200;
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Accept-Ranges", "bytes");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    const cr = upstream.headers.get("content-range");
+    if (cr) res.setHeader("Content-Range", cr);
+
+    const buf = Buffer.from(await upstream.arrayBuffer());
+    res.setHeader("Content-Length", String(buf.length));
+    return res.end(buf);
+  } catch (err: any) {
+    res.statusCode = 500;
+    res.setHeader("Content-Type", "application/json");
+    return res.end(JSON.stringify({ error: err?.message || "Failed to fetch book" }));
   }
-
-  const headers = new Headers({
-    "Content-Type": "application/pdf",
-    "Accept-Ranges": "bytes",
-    "Cache-Control": "public, max-age=86400",
-  });
-  const cr = upstream.headers.get("content-range");
-  if (cr) headers.set("Content-Range", cr);
-  const cl = upstream.headers.get("content-length");
-  if (cl) headers.set("Content-Length", cl);
-
-  return new Response(upstream.body, { status: upstream.status === 206 ? 206 : 200, headers });
 }

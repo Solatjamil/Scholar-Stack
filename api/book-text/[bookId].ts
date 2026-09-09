@@ -1,3 +1,6 @@
+import type { IncomingMessage, ServerResponse } from "node:http";
+import zlib from "node:zlib";
+
 /**
  * Vercel serverless function: full-text search inside a scanned textbook.
  *
@@ -6,15 +9,8 @@
  *   <base>_hocr_searchtext.txt.gz   - the OCR text
  *   <base>_hocr_pageindex.json.gz   - one [startChar, endChar, ...] per page
  * Binary-searching a match offset against those start offsets yields the true
- * printed page (spot-checked: "Mitosis" -> p.109 in the Biology 9 scan).
- *
- * Runs on the Node runtime: the edge runtime re-encoded the "%20" in these
- * filenames (archive.org 400s/404s on that) and its DecompressionStream fought
- * with the CDN's own gzip transfer encoding. Node + zlib.gunzipSync is
- * deterministic here.
+ * printed page (verified live: "mitosis" -> page 109 of 278 in Biology 9).
  */
-
-import zlib from "node:zlib";
 
 export const config = { runtime: "nodejs" };
 
@@ -26,31 +22,19 @@ const BOOK_SOURCES: Record<string, { archiveId: string; base: string }> = {
   "chem-10-fbise": { archiveId: "pakbooks-seed-0002", base: "CHEMISTRY 10TH FBISE" },
 };
 
-const json = (body: unknown, status = 200) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" },
-  });
+const UA = "Mozilla/5.0 (compatible; ScholarStack/1.0)";
 
 /**
- * Fetch a .gz sidecar and inflate it. "Accept-Encoding: identity" stops the CDN
- * from gzipping the already-gzipped file, so what arrives is exactly the .gz
- * bytes we then gunzip ourselves.
+ * "Accept-Encoding: identity" stops the CDN gzipping an already-gzipped file,
+ * so what arrives is exactly the .gz bytes we then gunzip ourselves.
  */
 async function fetchGz(archiveId: string, file: string): Promise<string> {
-  const res = await fetch(
+  const r = await fetch(
     `https://archive.org/download/${archiveId}/${encodeURIComponent(file)}`,
-    {
-      redirect: "follow",
-      headers: {
-        "Accept-Encoding": "identity",
-        "User-Agent": "Mozilla/5.0 (compatible; ScholarStack/1.0)",
-      },
-    }
+    { redirect: "follow", headers: { "Accept-Encoding": "identity", "User-Agent": UA } }
   );
-  if (!res.ok) throw new Error(`Upstream ${res.status} for ${file}`);
-  const buf = Buffer.from(await res.arrayBuffer());
-  return zlib.gunzipSync(buf).toString("utf8");
+  if (!r.ok) throw new Error(`Upstream ${r.status} for ${file}`);
+  return zlib.gunzipSync(Buffer.from(await r.arrayBuffer())).toString("utf8");
 }
 
 function pageForOffset(starts: number[], pos: number): number {
@@ -64,34 +48,49 @@ function pageForOffset(starts: number[], pos: number): number {
   return Math.max(1, lo);
 }
 
-export default async function handler(req: Request): Promise<Response> {
-  const url = new URL(req.url);
-  const bookId = url.pathname.split("/").pop() || "";
-  const src = BOOK_SOURCES[bookId];
-  if (!src) return json({ error: "Unknown book id" }, 404);
+/** Inflated books are cached per warm lambda so repeat searches are instant. */
+const cache = new Map<string, { text: string; starts: number[] }>();
 
-  const q = (url.searchParams.get("q") || "").trim();
-  if (q.length < 2) return json({ query: q, results: [] });
+export default async function handler(
+  req: IncomingMessage & { query?: Record<string, string | string[]> },
+  res: ServerResponse
+) {
+  const pick = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v || "");
+  const bookId = pick(req.query?.bookId);
+  const q = pick(req.query?.q).trim();
+
+  res.setHeader("Content-Type", "application/json");
+
+  const src = BOOK_SOURCES[bookId];
+  if (!src) {
+    res.statusCode = 404;
+    return res.end(JSON.stringify({ error: "Unknown book id" }));
+  }
+  if (q.length < 2) return res.end(JSON.stringify({ query: q, results: [] }));
 
   try {
-    const [text, idxRaw] = await Promise.all([
-      fetchGz(src.archiveId, `${src.base}_hocr_searchtext.txt.gz`),
-      fetchGz(src.archiveId, `${src.base}_hocr_pageindex.json.gz`),
-    ]);
-    const starts = (JSON.parse(idxRaw) as number[][]).map((e) => e[0]);
+    let entry = cache.get(bookId);
+    if (!entry) {
+      const [text, idxRaw] = await Promise.all([
+        fetchGz(src.archiveId, `${src.base}_hocr_searchtext.txt.gz`),
+        fetchGz(src.archiveId, `${src.base}_hocr_pageindex.json.gz`),
+      ]);
+      entry = { text, starts: (JSON.parse(idxRaw) as number[][]).map((e) => e[0]) };
+      cache.set(bookId, entry);
+    }
 
-    const hay = text.toLowerCase();
+    const hay = entry.text.toLowerCase();
     const needle = q.toLowerCase();
     const results: { page: number; snippet: string }[] = [];
     const seen = new Set<number>();
     let at = hay.indexOf(needle);
     while (at !== -1 && results.length < 60) {
-      const page = pageForOffset(starts, at);
+      const page = pageForOffset(entry.starts, at);
       if (!seen.has(page)) {
         seen.add(page);
         results.push({
           page,
-          snippet: text
+          snippet: entry.text
             .slice(Math.max(0, at - 70), at + needle.length + 90)
             .replace(/\s+/g, " ")
             .trim(),
@@ -99,8 +98,13 @@ export default async function handler(req: Request): Promise<Response> {
       }
       at = hay.indexOf(needle, at + needle.length);
     }
-    return json({ query: q, totalPages: starts.length, results });
+
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    return res.end(
+      JSON.stringify({ query: q, totalPages: entry.starts.length, results })
+    );
   } catch (err: any) {
-    return json({ error: err?.message || "Search failed" }, 502);
+    res.statusCode = 502;
+    return res.end(JSON.stringify({ error: err?.message || "Search failed" }));
   }
 }
