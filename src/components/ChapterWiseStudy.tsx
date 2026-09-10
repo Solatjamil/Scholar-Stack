@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import PairingSchemePanel from "./PairingSchemePanel";
 import { lookupTopics, youtubeSearchUrl, SABAQ_SITE } from "../topicData";
 import { EXAM_BANK } from "../examBank";
-import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_NUMERICALS } from "../bankSupplement";
+import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_LONGS, EXTRA_NUMERICALS } from "../bankSupplement";
 import { QUESTION_BANK } from "../questionBank";
 import ChapterResources, { cleanChapter } from "./ChapterResources";
 import {
@@ -492,6 +492,7 @@ export default function ChapterWiseStudy({
     const bankLongs = [
       ...(eb ? eb.longs.filter(keep) : []),
       ...(qb ? qb.longs.map((q) => ({ ...q, level: "both" as const, topic: "Core" })) : []),
+      ...((EXTRA_LONGS[bankKey] ?? []).filter(keep)),
     ];
     const bankNums = [
       ...(eb ? eb.numericals.filter(keep) : []),

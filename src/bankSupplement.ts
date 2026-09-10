@@ -7,13 +7,14 @@
  * those thresholds. Merged in by examScheme.ts.
  */
 
-import type { BankMCQ2, BankShort2, BankNumerical, Level } from "./examBank";
+import type { BankMCQ2, BankShort2, BankLong2, BankNumerical, Level } from "./examBank";
 
 const B: Level = "both";
 const I: Level = "inter";
 
 export const EXTRA_MCQS: Record<string, BankMCQ2[]> = {
   cs: [
+    { question: "The brain of the computer that executes instructions is the:", options: ["CPU", "RAM", "Hard disk", "Monitor"], correctIndex: 0, explanation: "The CPU contains the ALU and the control unit.", level: B, topic: "Computer Architecture and Components" },
     { question: "A step-by-step procedure to solve a problem is called an:", options: ["Algorithm", "Interpreter", "Operating system", "Array"], correctIndex: 0, explanation: "A flowchart is its pictorial representation.", level: B, topic: "Problem Solving" },
     { question: "A network confined to a single building is a:", options: ["LAN", "WAN", "MAN", "Internet"], correctIndex: 0, explanation: "WAN spans countries; MAN spans a city.", level: B, topic: "Networks" },
     { question: "The language used to structure a web page is:", options: ["HTML", "Python", "SQL", "C++"], correctIndex: 0, explanation: "HTML is a markup language, not a programming language.", level: B, topic: "Designing Websites" },
@@ -32,6 +33,9 @@ export const EXTRA_MCQS: Record<string, BankMCQ2[]> = {
     { question: "The protocol used to transfer web pages is:", options: ["HTTP", "SMTP", "FTP", "TCP only"], correctIndex: 0, explanation: "HTTPS is its secure, encrypted form.", level: B, topic: "Web Development and Publishing" },
   ],
   biology: [
+    { question: "Natural selection as the mechanism of evolution was proposed by:", options: ["Charles Darwin", "Lamarck", "Mendel", "Linnaeus"], correctIndex: 0, explanation: "Lamarck proposed inheritance of acquired characteristics.", level: B, topic: "Evolution" },
+    { question: "The flow of energy in an ecosystem is:", options: ["Unidirectional", "Cyclic", "Bidirectional", "Random"], correctIndex: 0, explanation: "Nutrients cycle, but energy flows one way and is lost as heat.", level: B, topic: "Ecosystem" },
+    { question: "The site of photosynthesis in a plant cell is the:", options: ["Chloroplast", "Mitochondrion", "Nucleus", "Ribosome"], correctIndex: 0, explanation: "Mitochondria are the site of respiration.", level: B, topic: "Bioenergetics" },
     { question: "The branch of biology dealing with the study of tissues is:", options: ["Histology", "Cytology", "Anatomy", "Physiology"], correctIndex: 0, explanation: "Cytology studies cells; histology studies tissues.", level: B, topic: "Introduction to Biology" },
     { question: "In the biological method, a tentative explanation is called a:", options: ["Hypothesis", "Theory", "Law", "Deduction"], correctIndex: 0, explanation: "A hypothesis is tested; a well-tested one becomes a theory.", level: B, topic: "Solving a Biological Problem" },
     { question: "The scientific naming system of two words is called:", options: ["Binomial nomenclature", "Taxonomy", "Classification", "Phylogeny"], correctIndex: 0, explanation: "Introduced by Carolus Linnaeus.", level: B, topic: "Biodiversity" },
@@ -58,6 +62,17 @@ export const EXTRA_MCQS: Record<string, BankMCQ2[]> = {
     { question: "Animals with a notochord belong to the phylum:", options: ["Chordata", "Arthropoda", "Mollusca", "Annelida"], correctIndex: 0, explanation: "Chordates also have a dorsal nerve cord and gill slits.", level: B, topic: "Kingdom Animalia" },
   ],
   physics: [
+    { question: "The moment of a force is the product of the force and the:", options: ["Perpendicular distance from the pivot", "Total distance", "Mass", "Time"], correctIndex: 0, explanation: "The distance must be perpendicular to the line of action.", level: B, topic: "Turning Effect of Forces" },
+    { question: "Heat transfer in a vacuum can occur only by:", options: ["Radiation", "Conduction", "Convection", "All three"], correctIndex: 0, explanation: "Conduction and convection both require a material medium.", level: B, topic: "Transfer of Heat" },
+    { question: "Total internal reflection occurs when light travels from:", options: ["A denser to a rarer medium above the critical angle", "A rarer to a denser medium", "Any medium at any angle", "A vacuum only"], correctIndex: 0, explanation: "BOTH conditions must be satisfied.", level: B, topic: "Geometrical Optics" },
+    { question: "The output of a NAND gate is 0 only when:", options: ["All inputs are 1", "All inputs are 0", "Any input is 1", "Any input is 0"], correctIndex: 0, explanation: "NAND is the inverse of AND.", level: B, topic: "Basic Electronics" },
+    { question: "Light travels along an optical fibre by:", options: ["Total internal reflection", "Refraction only", "Diffraction", "Absorption"], correctIndex: 0, explanation: "The dense core and rarer cladding make this possible.", level: B, topic: "Information and Communication Technology" },
+    { question: "After 3 half lives, the fraction of a radioactive sample remaining is:", options: ["1/8", "1/6", "1/3", "1/2"], correctIndex: 0, explanation: "(1/2)^3 = 1/8, not 1/6.", level: B, topic: "Radioactivity" },
+    { question: "In Young's experiment, a bright fringe forms where the path difference is:", options: ["An integral multiple of the wavelength", "A half-integral multiple", "Zero only", "Always one wavelength"], correctIndex: 0, explanation: "Dark fringes occur at half-integral multiples.", level: B, topic: "Physical Optics" },
+    { question: "The magnification of a compound microscope is the:", options: ["Product of objective and eyepiece magnifications", "Sum of the two", "Difference of the two", "Ratio of the two"], correctIndex: 0, explanation: "M = M(objective) x M(eyepiece).", level: B, topic: "Optical Instruments" },
+    { question: "A transformer cannot operate on direct current because:", options: ["The magnetic flux does not change", "The voltage is too low", "The current is too high", "The core melts"], correctIndex: 0, explanation: "No changing flux means no induced emf.", level: B, topic: "Electromagnetic Induction" },
+    { question: "In an NPN transistor, the base region is:", options: ["Thin and lightly doped", "Thick and heavily doped", "Thin and heavily doped", "Absent"], correctIndex: 0, explanation: "This lets most carriers reach the collector.", level: B, topic: "Electronics" },
+    { question: "The Balmer series of hydrogen lies in the:", options: ["Visible region", "Ultraviolet region", "Infrared region", "X-ray region"], correctIndex: 0, explanation: "Lyman is UV and Paschen is infrared.", level: B, topic: "Atomic Spectra" },
     { question: "The SI unit of frequency is the:", options: ["Hertz", "Second", "Metre", "Newton"], correctIndex: 0, explanation: "1 Hz = 1 cycle per second.", level: B, topic: "Waves" },
     { question: "A body moving with uniform velocity has an acceleration of:", options: ["Zero", "9.8 m/s^2", "Constant non-zero", "Infinite"], correctIndex: 0, explanation: "Uniform velocity means no change in speed or direction, so a = 0.", level: B, topic: "Kinematics" },
     { question: "The density of water at 4 C is:", options: ["1000 kg/m^3", "100 kg/m^3", "1 kg/m^3", "10000 kg/m^3"], correctIndex: 0, explanation: "Water has its maximum density of 1000 kg m^-3 (1 g/cm^3) at 4 C.", level: B, topic: "Matter" },
@@ -68,6 +83,20 @@ export const EXTRA_MCQS: Record<string, BankMCQ2[]> = {
     { question: "The unit of magnetic flux density is the:", options: ["Tesla", "Weber", "Henry", "Farad"], correctIndex: 0, explanation: "1 T = 1 Wb m^-2.", level: I, topic: "Electromagnetism" },
   ],
   chemistry: [
+    { question: "At constant pressure, the volume of a gas is directly proportional to its:", options: ["Absolute temperature", "Pressure", "Mass", "Density"], correctIndex: 0, explanation: "Charles' law: V/T = constant. Temperature MUST be in kelvin.", level: B, topic: "Physical States of Matter" },
+    { question: "The number of moles of solute per cubic decimetre of solution is called:", options: ["Molarity", "Molality", "Normality", "Mole fraction"], correctIndex: 0, explanation: "Molality is per kilogram of SOLVENT, not per litre of solution.", level: B, topic: "Solutions" },
+    { question: "The general formula of alkanes is:", options: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnHn"], correctIndex: 0, explanation: "Alkenes are CnH2n and alkynes CnH2n-2.", level: B, topic: "Hydrocarbons" },
+    { question: "The monomer unit of proteins is:", options: ["Amino acid", "Glucose", "Nucleotide", "Glycerol"], correctIndex: 0, explanation: "Amino acids are joined by peptide bonds.", level: B, topic: "Biochemistry" },
+    { question: "Temporary hardness of water is caused by:", options: ["Bicarbonates of Ca and Mg", "Sulphates of Ca and Mg", "Chlorides of Na", "Nitrates"], correctIndex: 0, explanation: "Only bicarbonate hardness can be removed by boiling.", level: B, topic: "Water" },
+    { question: "The number of particles in one mole of a substance is:", options: ["6.02 x 10^23", "3.01 x 10^23", "1.00 x 10^23", "12 x 10^23"], correctIndex: 0, explanation: "This is Avogadro's number.", level: B, topic: "Basic Concepts" },
+    { question: "A reaction that releases heat to the surroundings is:", options: ["Exothermic", "Endothermic", "Isothermal", "Adiabatic"], correctIndex: 0, explanation: "Exothermic reactions have a negative enthalpy change.", level: B, topic: "Thermochemistry" },
+    { question: "Which of the following is an alkaline earth metal?", options: ["Calcium", "Sodium", "Potassium", "Lithium"], correctIndex: 0, explanation: "Group 2 are the alkaline earth metals; Group 1 are alkali metals.", level: B, topic: "s-Block Elements" },
+    { question: "Transition elements are defined by having a partially filled:", options: ["d-subshell", "s-subshell", "p-subshell", "f-subshell"], correctIndex: 0, explanation: "A partially filled f-subshell defines inner transition elements.", level: B, topic: "Transition Elements" },
+    { question: "Alkenes typically undergo which type of reaction?", options: ["Addition", "Substitution", "Elimination only", "No reaction"], correctIndex: 0, explanation: "The exposed pi bond attracts electrophiles.", level: B, topic: "Aliphatic Hydrocarbons" },
+    { question: "Benzene prefers substitution over addition because:", options: ["Addition would destroy its resonance stability", "It is saturated", "It has no pi electrons", "It is a gas"], correctIndex: 0, explanation: "Delocalisation gives about 150 kJ/mol of resonance energy.", level: B, topic: "Aromatic Hydrocarbons" },
+    { question: "An SN2 reaction results in:", options: ["Inversion of configuration", "Racemisation", "Retention of configuration", "No stereochemical change"], correctIndex: 0, explanation: "Back-side attack causes Walden inversion.", level: B, topic: "Alkyl Halides" },
+    { question: "Which reagent gives a silver mirror with aldehydes but not ketones?", options: ["Tollens' reagent", "Bromine water", "Sodium chloride", "Litmus"], correctIndex: 0, explanation: "Aldehydes are easily oxidised; ketones resist oxidation.", level: B, topic: "Aldehydes and Ketones" },
+    { question: "Polythene is formed by which type of polymerisation?", options: ["Addition", "Condensation", "Substitution", "Neutralisation"], correctIndex: 0, explanation: "No small molecule is eliminated in addition polymerisation.", level: B, topic: "Macromolecules" },
     { question: "The formula of sulphuric acid is:", options: ["H2SO4", "HNO3", "HCl", "H2CO3"], correctIndex: 0, explanation: "Sulphuric acid is a dibasic strong mineral acid.", level: B, topic: "Acids and Bases" },
     { question: "The most abundant gas in the Earth's atmosphere is:", options: ["Nitrogen", "Oxygen", "Carbon dioxide", "Argon"], correctIndex: 0, explanation: "Nitrogen makes up about 78% of air by volume.", level: B, topic: "Environmental Chemistry" },
     { question: "One mole of any gas at STP occupies a volume of:", options: ["22.4 dm^3", "11.2 dm^3", "24 dm^3", "1 dm^3"], correctIndex: 0, explanation: "This is the molar volume of an ideal gas at 273 K and 1 atm.", level: B, topic: "Gases" },
@@ -165,6 +194,8 @@ export const EXTRA_MCQS: Record<string, BankMCQ2[]> = {
 
 export const EXTRA_SHORTS: Record<string, BankShort2[]> = {
   biology: [
+    { question: "Differentiate between breathing and respiration.", modelAnswer: "Breathing is the physical movement of air in and out of the lungs. Respiration is the biochemical release of energy from food inside cells.", level: B, topic: "Gaseous Exchange" },
+    { question: "State Darwin's theory of natural selection in one sentence.", modelAnswer: "Individuals with variations best suited to their environment survive and reproduce, passing those favourable traits to the next generation.", level: B, topic: "Evolution" },
     { question: "Define histology and cytology.", modelAnswer: "Histology is the study of tissues; cytology is the study of cells and their structure.", level: B, topic: "Introduction to Biology" },
     { question: "Define hypothesis.", modelAnswer: "A hypothesis is a tentative, testable explanation proposed for an observation, which is then verified by experiment.", level: B, topic: "Solving a Biological Problem" },
     { question: "What is binomial nomenclature?", modelAnswer: "A two-word naming system by Linnaeus: the genus name is capitalised and the species name is in lower case, both italicised, e.g. Homo sapiens.", level: B, topic: "Biodiversity" },
@@ -205,6 +236,7 @@ export const EXTRA_SHORTS: Record<string, BankShort2[]> = {
     { question: "Differentiate between prokaryotic and eukaryotic cells.", modelAnswer: "A prokaryotic cell has no true nucleus and lacks membrane-bound organelles; its DNA lies free in the cytoplasm, as in bacteria. A eukaryotic cell has a true nucleus enclosed by a nuclear membrane and contains mitochondria, ER and Golgi bodies, as in plants and animals.", level: B, topic: "Cell" },
   ],
   cs: [
+    { question: "Differentiate between the Internet and the World Wide Web.", modelAnswer: "The Internet is the global network of interconnected computers. The World Wide Web is one service running on it, consisting of linked pages accessed over HTTP.", level: B, topic: "Internet, Web and Emerging Technologies" },
     { question: "Differentiate between an algorithm and a flowchart.", modelAnswer: "An algorithm is a finite set of ordered steps written in words. A flowchart is the same logic shown pictorially using standard symbols.", level: B, topic: "Problem Solving" },
     { question: "Differentiate between LAN and WAN.", modelAnswer: "A LAN covers a small area such as one building. A WAN spans cities or countries and often uses leased telecommunication lines.", level: B, topic: "Networks" },
     { question: "Why is HTML called a markup language rather than a programming language?", modelAnswer: "Because it only describes the structure and content of a page using tags; it has no logic, variables or loops.", level: B, topic: "Designing Websites" },
@@ -237,6 +269,17 @@ export const EXTRA_SHORTS: Record<string, BankShort2[]> = {
     { question: "What is meant by an IP address?", modelAnswer: "An IP address is a unique numerical label assigned to every device on a network so that data can be sent to the correct destination. IPv4 uses 32 bits written as four numbers from 0 to 255 separated by dots, for example 192.168.1.1.", level: I, topic: "Networks" },
   ],
   physics: [
+    { question: "State Newton's law of gravitation.", modelAnswer: "Every body attracts every other body with a force directly proportional to the product of their masses and inversely proportional to the square of the distance between their centres.", level: B, topic: "Gravitation" },
+    { question: "State the two conditions for total internal reflection.", modelAnswer: "Light must travel from a denser to a rarer medium, and the angle of incidence must exceed the critical angle.", level: B, topic: "Geometrical Optics" },
+    { question: "Define thermionic emission.", modelAnswer: "The emission of electrons from the surface of a metal when it is heated sufficiently for electrons to overcome the work function.", level: B, topic: "Basic Electronics" },
+    { question: "State two advantages of optical fibre over copper wire.", modelAnswer: "Much greater bandwidth with very low signal loss, and complete immunity to electrical interference.", level: B, topic: "Information and Communication Technology" },
+    { question: "Define half life.", modelAnswer: "The time in which half of the atoms of a radioactive sample decay.", level: B, topic: "Radioactivity" },
+    { question: "Define least count and give its value for a vernier calliper.", modelAnswer: "The smallest measurement an instrument can take accurately. For a vernier calliper it is 0.01 cm.", level: B, topic: "Measurements" },
+    { question: "State the conditions for sustained interference.", modelAnswer: "The two sources must be coherent with a constant phase difference, of the same frequency and of nearly equal amplitude.", level: B, topic: "Physical Optics" },
+    { question: "Define resolving power.", modelAnswer: "The ability of an optical instrument to show two closely placed objects as separate and distinct.", level: B, topic: "Optical Instruments" },
+    { question: "State Lenz's law and its basis.", modelAnswer: "The induced current always opposes the change producing it. It follows from the law of conservation of energy.", level: B, topic: "Electromagnetic Induction" },
+    { question: "Differentiate between forward and reverse bias in a PN junction.", modelAnswer: "In forward bias the depletion region narrows and current flows. In reverse bias it widens and only a negligible leakage current flows.", level: B, topic: "Electronics" },
+    { question: "Why does hydrogen give a line spectrum rather than a continuous one?", modelAnswer: "Because its energy levels are quantised, so only certain discrete energy differences and hence certain frequencies are possible.", level: B, topic: "Atomic Spectra" },
     { question: "Define pressure and give its SI unit.", modelAnswer: "Pressure is the force acting normally per unit area, P = F/A. Its SI unit is the pascal (Pa), where 1 Pa = 1 N m^-2. Pressure in a liquid increases with depth according to P = rho g h and acts equally in all directions.", level: B, topic: "Pressure" },
     { question: "State the principle of conservation of energy.", modelAnswer: "Energy can neither be created nor destroyed but only converted from one form into another; the total energy of an isolated system remains constant. For example, in a falling body potential energy is steadily converted into kinetic energy while the sum of the two stays the same.", level: B, topic: "Work and Energy" },
     { question: "What is meant by the specific heat capacity of a substance?", modelAnswer: "Specific heat capacity is the amount of heat required to raise the temperature of one kilogram of a substance through one kelvin, c = Q/(m dT). Its SI unit is J kg^-1 K^-1. Water has a high value of 4200 J kg^-1 K^-1, which is why it is used as a coolant.", level: B, topic: "Heat" },
@@ -254,6 +297,20 @@ export const EXTRA_SHORTS: Record<string, BankShort2[]> = {
     { question: "What is an echo? State one condition for hearing it.", modelAnswer: "An echo is the repetition of sound produced by the reflection of sound waves from a hard surface such as a cliff or wall. To hear a distinct echo the reflecting surface must be at least 17 m away, because the human ear retains a sound sensation for 0.1 s and sound travels about 34 m (there and back) in that time at 340 m s^-1.", level: B, topic: "Sound" },
   ],
   chemistry: [
+    { question: "Differentiate between saturated and unsaturated hydrocarbons.", modelAnswer: "Saturated hydrocarbons contain only single C-C bonds (alkanes). Unsaturated hydrocarbons contain a double or triple bond (alkenes, alkynes) and decolourise bromine water.", level: B, topic: "Hydrocarbons" },
+    { question: "How do proteins differ from carbohydrates in composition?", modelAnswer: "Proteins contain nitrogen in addition to carbon, hydrogen and oxygen, whereas carbohydrates contain only carbon, hydrogen and oxygen.", level: B, topic: "Biochemistry" },
+    { question: "What is acid rain and what causes it?", modelAnswer: "Rain with a pH below 5.6, caused by oxides of sulphur and nitrogen dissolving in atmospheric moisture to form sulphuric and nitric acids.", level: B, topic: "The Atmosphere" },
+    { question: "Why does water have an unusually high boiling point?", modelAnswer: "Because extensive hydrogen bonding between water molecules requires a large amount of energy to break.", level: B, topic: "Liquids and Solids" },
+    { question: "Why does the reactivity of alkali metals increase down the group?", modelAnswer: "Atomic size increases and shielding grows, so ionisation energy falls and the outer electron is lost more easily.", level: B, topic: "s-Block Elements" },
+    { question: "What is meant by the inert pair effect?", modelAnswer: "The reluctance of the outermost s-electrons to take part in bonding, which makes lower oxidation states more stable down the group.", level: B, topic: "Group IIIA and Group IVA Elements" },
+    { question: "Why is nitrogen relatively unreactive at room temperature?", modelAnswer: "Because the triple bond in the N2 molecule has a very high bond dissociation energy.", level: B, topic: "Group VA and Group VIA Elements" },
+    { question: "Why do transition metals form coloured compounds?", modelAnswer: "Because d-d electronic transitions absorb part of the visible spectrum and the complementary colour is transmitted.", level: B, topic: "Transition Elements" },
+    { question: "Give a chemical test to distinguish an alkane from an alkene.", modelAnswer: "Add bromine water: an alkene decolourises it immediately, whereas an alkane does not.", level: B, topic: "Aliphatic Hydrocarbons" },
+    { question: "Why is benzene unusually stable?", modelAnswer: "Because its six pi electrons are delocalised over the whole ring, giving a resonance energy of about 150 kJ/mol.", level: B, topic: "Aromatic Hydrocarbons" },
+    { question: "Differentiate between SN1 and SN2 mechanisms.", modelAnswer: "SN1 is two-step, first order and favours tertiary halides giving racemisation. SN2 is one-step, second order and favours primary halides giving inversion.", level: B, topic: "Alkyl Halides" },
+    { question: "Give a test to distinguish phenol from ethanol.", modelAnswer: "Neutral FeCl3 gives a violet colouration with phenol but no change with ethanol.", level: B, topic: "Alcohols, Phenols and Ethers" },
+    { question: "Why are aldehydes more reactive than ketones?", modelAnswer: "Ketones have two electron-donating alkyl groups that reduce the positive charge on the carbonyl carbon and sterically hinder attack.", level: B, topic: "Aldehydes and Ketones" },
+    { question: "Differentiate between thermoplastic and thermosetting polymers.", modelAnswer: "Thermoplastics have linear chains, soften on heating and can be remoulded. Thermosets are cross-linked, set permanently and char instead of softening.", level: B, topic: "Macromolecules" },
     { question: "Define an isotope and give one example.", modelAnswer: "Isotopes are atoms of the same element that have the same atomic number but different mass numbers, because their nuclei contain different numbers of neutrons. They show identical chemical properties but differ physically. Carbon has three isotopes: C-12, C-13 and C-14.", level: B, topic: "Atomic Structure" },
     { question: "What is a catalyst? State two of its characteristics.", modelAnswer: "A catalyst is a substance that alters the rate of a chemical reaction without being permanently consumed in it. It works by providing an alternative path of lower activation energy. It is needed only in a small amount and does not change the position of the equilibrium.", level: B, topic: "Kinetics" },
     { question: "Differentiate between an element, a compound and a mixture.", modelAnswer: "An element consists of only one kind of atom and cannot be broken down chemically, for example oxygen. A compound is formed when two or more elements combine chemically in a fixed ratio and has properties different from its constituents, for example water. A mixture contains substances physically mixed in any ratio and can be separated by physical means.", level: B, topic: "Fundamentals" },
@@ -271,6 +328,9 @@ export const EXTRA_SHORTS: Record<string, BankShort2[]> = {
     { question: "What are the harmful effects of acid rain?", modelAnswer: "Acid rain forms when oxides of sulphur and nitrogen from burning fossil fuels dissolve in rainwater to form sulphuric and nitric acids, lowering the pH below 5.6. It damages the leaves and roots of plants, lowers crop yield, acidifies lakes and kills fish and aquatic life, leaches essential minerals from soil, corrodes metal structures, and erodes marble buildings such as monuments.", level: B, topic: "Environmental Chemistry" },
   ],
   math: [
+    { question: "If x + 1/x = k, how do you find x^2 + 1/x^2?", modelAnswer: "Square both sides: (x + 1/x)^2 = x^2 + 1/x^2 + 2, so x^2 + 1/x^2 = k^2 - 2.", level: B, topic: "Algebraic Expressions and Algebraic Formulas" },
+    { question: "State the relation between HCF, LCM and the product of two polynomials.", modelAnswer: "HCF x LCM = the product of the two polynomials.", level: B, topic: "Algebraic Manipulation" },
+    { question: "Write the formula for (a - b)^2 and a^3 + b^3.", modelAnswer: "(a - b)^2 = a^2 - 2ab + b^2 and a^3 + b^3 = (a + b)(a^2 - ab + b^2).", level: B, topic: "Algebraic Formulas and Applications" },
     { question: "Differentiate between Zakat and Ushr.", modelAnswer: "Zakat is charged at 2.5% per annum on savings and wealth held above nisab for one lunar year. Ushr is charged on agricultural produce at 10% for naturally irrigated land and 5% for artificially irrigated land.", level: B, topic: "Zakat, Ushr and Inheritance" },
     { question: "On which price is profit percentage always calculated?", modelAnswer: "Profit percentage is always calculated on the COST price, not the selling price. Profit% = (Profit / C.P.) x 100.", level: B, topic: "Business Mathematics" },
     { question: "Define discount and markup.", modelAnswer: "Discount is a reduction allowed on the marked price. Markup is the amount added to the cost price to arrive at the selling price.", level: B, topic: "Consumer Mathematics" },
@@ -391,5 +451,158 @@ export const EXTRA_NUMERICALS: Record<string, BankNumerical[]> = {
   ],
   math: [
     { question: "Solve the simultaneous equations by the method of substitution: x + y = 10 and 2x - y = 5.", formula: "Substitution method", solution: "GIVEN:\nx + y = 10 ..... (i)\n2x - y = 5 ..... (ii)\n\nWORKING:\nFrom (i): y = 10 - x\n\nSubstituting into (ii):\n2x - (10 - x) = 5\n2x - 10 + x = 5\n3x = 15\nx = 5\n\nSubstituting x = 5 back into (i):\n5 + y = 10\ny = 5\n\nCHECK: 2(5) - 5 = 10 - 5 = 5 (correct)\n\nRESULT: x = 5 and y = 5, solution set {(5, 5)}", marks: 5, level: B, topic: "Linear Equations" },
+  ],
+};
+
+/**
+ * Long questions, chapter-tagged.
+ *
+ * EXAM_BANK and QUESTION_BANK together held only 30 long questions across all
+ * five science subjects, so almost every chapter fell back to a generic pool.
+ * Each entry follows the board's two-part shape: (a) a theory/derivation part
+ * and (b) an applied or numerical part, exactly as Q.5-Q.7 are set.
+ */
+export const EXTRA_LONGS: Record<string, BankLong2[]> = {
+  physics: [
+    {
+      a: { question: "Define uniform acceleration and derive the equation S = v_i t + (1/2) a t^2.", modelAnswer: "Uniform acceleration is a constant rate of change of velocity. Derivation: average velocity = (v_i + v_f)/2, and S = average velocity x t. Substituting v_f = v_i + at gives S = [(v_i + v_i + at)/2] t = v_i t + (1/2) a t^2." },
+      b: { question: "A car starting from rest reaches 30 m/s in 10 s. Find its acceleration and the distance covered.", modelAnswer: "a = (v_f - v_i)/t = 30/10 = 3 m/s^2. S = v_i t + (1/2)at^2 = 0 + (1/2)(3)(100) = 150 m." },
+      level: B,
+      topic: "Kinematics",
+    },
+    {
+      a: { question: "State Newton's three laws of motion and explain why action and reaction do not cancel out.", modelAnswer: "First law: a body remains at rest or in uniform motion unless acted on by a net external force. Second law: F = ma. Third law: to every action there is an equal and opposite reaction. Action and reaction do not cancel because they act on DIFFERENT bodies, and only forces on the same body can cancel." },
+      b: { question: "A force of 20 N acts on a 4 kg mass. Find the acceleration and the distance travelled in 3 s from rest.", modelAnswer: "a = F/m = 20/4 = 5 m/s^2. S = (1/2)at^2 = (1/2)(5)(9) = 22.5 m." },
+      level: B,
+      topic: "Dynamics",
+    },
+    {
+      a: { question: "Define torque and state the principle of moments with one application.", modelAnswer: "Torque is the turning effect of a force, equal to force times the perpendicular distance from the pivot, measured in N m. Principle of moments: for a body in equilibrium, the sum of clockwise moments about a point equals the sum of anticlockwise moments. Application: a see-saw or a steelyard balance." },
+      b: { question: "A 30 N force acts 0.4 m from a pivot. What force at 0.6 m on the other side balances it?", modelAnswer: "Clockwise = anticlockwise: 30 x 0.4 = F x 0.6, so 12 = 0.6F and F = 20 N." },
+      level: B,
+      topic: "Turning Effect of Forces",
+    },
+    {
+      a: { question: "Explain conduction, convection and radiation, and state which can occur in a vacuum.", modelAnswer: "Conduction transfers heat through a solid by vibration of particles and free electrons, with no bulk movement of matter. Convection transfers heat in fluids by the actual movement of heated particles, since warm fluid rises and cool fluid sinks. Radiation transfers heat as electromagnetic waves and needs NO medium, so it alone can occur in a vacuum, which is how the Sun's heat reaches Earth." },
+      b: { question: "How much heat is needed to raise 3 kg of water from 25 C to 75 C? (c = 4200 J/kg/K)", modelAnswer: "Q = mc(delta T) = 3 x 4200 x 50 = 630,000 J = 630 kJ." },
+      level: B,
+      topic: "Transfer of Heat",
+    },
+    {
+      a: { question: "State the laws of refraction and explain total internal reflection with two applications.", modelAnswer: "Laws of refraction: the incident ray, refracted ray and normal lie in the same plane, and n1 sin i = n2 sin r (Snell's law). Total internal reflection occurs when light passes from a denser to a rarer medium AND the angle of incidence exceeds the critical angle; the light is then reflected entirely back into the denser medium. Applications: optical fibres for communication and endoscopes in medicine." },
+      b: { question: "The refractive index of glass is 1.5. Calculate its critical angle.", modelAnswer: "sin C = 1/n = 1/1.5 = 0.667, so C = 41.8 degrees." },
+      level: B,
+      topic: "Geometrical Optics",
+    },
+    {
+      a: { question: "Compare alpha, beta and gamma radiation and explain the concept of half life.", modelAnswer: "Alpha is a helium nucleus with charge +2, the strongest ioniser but stopped by paper. Beta is a fast electron with charge -1, stopped by a few mm of aluminium. Gamma is uncharged electromagnetic radiation, the weakest ioniser but the most penetrating, needing thick lead. Ionising and penetrating power are inversely related. Half life is the time in which half the atoms of a sample decay; it is constant for a given isotope and unaffected by temperature or pressure." },
+      b: { question: "A sample has a half life of 5 days. What fraction remains after 20 days?", modelAnswer: "Number of half lives n = 20/5 = 4, so the fraction remaining = (1/2)^4 = 1/16." },
+      level: B,
+      topic: "Radioactivity",
+    },
+    {
+      a: { question: "State Faraday's and Lenz's laws and explain the working of a transformer.", modelAnswer: "Faraday's law: the induced emf equals the rate of change of magnetic flux linkage. Lenz's law: the induced current opposes the change producing it, which follows from conservation of energy. A transformer works by mutual induction: alternating current in the primary creates a changing flux in the soft-iron core, which induces an alternating emf in the secondary. Vs/Vp = Ns/Np. It cannot work on D.C. because a constant current gives no changing flux and therefore no induced emf." },
+      b: { question: "A transformer has 200 primary turns and 1000 secondary turns. If the primary voltage is 220 V, find the secondary voltage.", modelAnswer: "Vs = Vp x Ns/Np = 220 x 1000/200 = 1100 V (a step-up transformer)." },
+      level: B,
+      topic: "Electromagnetic Induction",
+    },
+    {
+      a: { question: "Explain Bohr's postulates and how they account for the hydrogen line spectrum.", modelAnswer: "Bohr postulated that electrons revolve in certain permitted orbits without radiating energy, that angular momentum is quantised in multiples of h/2pi, and that energy is emitted or absorbed only when an electron jumps between orbits, with hf equal to the energy difference. Because only discrete energy differences are possible, only certain frequencies are emitted, producing a LINE spectrum rather than a continuous one. Transitions to n=1 give the Lyman series (UV), to n=2 the Balmer series (visible) and to n=3 the Paschen series (infrared)." },
+      b: { question: "Calculate the energy of the n = 2 level of hydrogen.", modelAnswer: "En = -13.6/n^2 eV = -13.6/4 = -3.4 eV." },
+      level: B,
+      topic: "Atomic Spectra",
+    },
+  ],
+  chemistry: [
+    {
+      a: { question: "Explain the trends in atomic radius, ionisation energy and electronegativity across a period and down a group.", modelAnswer: "Across a period the nuclear charge rises while the number of shells stays the same, so electrons are pulled closer: atomic radius decreases while ionisation energy and electronegativity increase. Down a group a new shell is added at each step and shielding increases, so the outer electrons are further from and less strongly held by the nucleus: atomic radius increases while ionisation energy and electronegativity decrease." },
+      b: { question: "Arrange Na, Mg and Al in order of increasing atomic radius and justify.", modelAnswer: "Al < Mg < Na. All are in period 3 with the same number of shells, but nuclear charge rises from Na to Al, pulling the shells inward and reducing the radius." },
+      level: B,
+      topic: "Periodic Table and Periodicity of Properties",
+    },
+    {
+      a: { question: "Define molarity and molality, and explain how a standard solution is prepared.", modelAnswer: "Molarity is the number of moles of solute per cubic decimetre of SOLUTION. Molality is the number of moles of solute per kilogram of SOLVENT; unlike molarity it does not change with temperature because it involves no volume. A standard solution is prepared by weighing the exact mass of solute, dissolving it in a little solvent, transferring it quantitatively to a volumetric flask, and making up to the graduation mark." },
+      b: { question: "Calculate the mass of NaOH needed to prepare 500 cm3 of a 0.2 M solution. (M = 40 g/mol)", modelAnswer: "Moles = M x V = 0.2 x 0.5 = 0.1 mol. Mass = 0.1 x 40 = 4 g." },
+      level: B,
+      topic: "Solutions",
+    },
+    {
+      a: { question: "Explain the causes of temporary and permanent hardness and the methods used to remove each.", modelAnswer: "Temporary hardness is caused by dissolved bicarbonates of calcium and magnesium and is removed by boiling, which decomposes the bicarbonate into an insoluble carbonate, or by Clark's method using calculated slaked lime. Permanent hardness is caused by dissolved sulphates and chlorides of calcium and magnesium; boiling has no effect, so washing soda or ion exchange is used. Hard water wastes soap, forms scum and produces boiler scale that wastes fuel." },
+      b: { question: "Write the equation for the removal of temporary hardness by boiling.", modelAnswer: "Ca(HCO3)2 -> CaCO3 (precipitate) + H2O + CO2." },
+      level: B,
+      topic: "Water",
+    },
+    {
+      a: { question: "Compare the reactivity of alkanes, alkenes and alkynes and give a test for unsaturation.", modelAnswer: "Alkanes are saturated with only strong sigma bonds and no region of high electron density, so they are unreactive and undergo only free-radical substitution in UV light. Alkenes and alkynes contain exposed pi bonds forming electron-rich regions that attract electrophiles, so they readily undergo addition reactions and are far more reactive. Test for unsaturation: bromine water is rapidly decolourised by alkenes and alkynes but is unaffected by alkanes." },
+      b: { question: "Write the equation for the reaction of ethene with bromine.", modelAnswer: "CH2=CH2 + Br2 -> CH2Br-CH2Br (1,2-dibromoethane), which decolourises the bromine water." },
+      level: B,
+      topic: "Aliphatic Hydrocarbons",
+    },
+  ],
+  biology: [
+    {
+      a: { question: "Compare the structure of plant and animal cells and describe the functions of any four organelles.", modelAnswer: "Plant cells possess a rigid cellulose cell wall, a large central vacuole and chloroplasts, all absent from animal cells; animal cells contain centrioles, which most plant cells lack. Functions: the nucleus controls all cell activities and stores genetic information; mitochondria are the site of aerobic respiration and produce ATP; ribosomes synthesise proteins; and the Golgi apparatus modifies, packages and secretes those proteins." },
+      b: { question: "Why are mitochondria called the powerhouse of the cell?", modelAnswer: "Because aerobic respiration takes place in them, releasing energy from glucose and storing it as ATP for cellular work." },
+      level: B,
+      topic: "Cells and Tissues",
+    },
+    {
+      a: { question: "Compare photosynthesis and respiration and write the overall equation for each.", modelAnswer: "Photosynthesis occurs in chloroplasts in the presence of light, uses carbon dioxide and water, releases oxygen and STORES energy in glucose, increasing the dry mass of the plant. Respiration occurs in mitochondria at all times, uses glucose and oxygen, releases carbon dioxide and water and RELEASES energy as ATP. The two processes are essentially the reverse of one another and together maintain atmospheric gas balance." },
+      b: { question: "Write the balanced equations for photosynthesis and aerobic respiration.", modelAnswer: "Photosynthesis: 6CO2 + 6H2O -> C6H12O6 + 6O2 (light, chlorophyll). Respiration: C6H12O6 + 6O2 -> 6CO2 + 6H2O + energy." },
+      level: B,
+      topic: "Bioenergetics",
+    },
+    {
+      a: { question: "State Mendel's law of segregation and work through a monohybrid cross.", modelAnswer: "Mendel's law of segregation states that the two alleles of a gene separate during gamete formation so that each gamete receives only one allele of each pair. In a monohybrid cross between two heterozygous tall plants (Tt x Tt), the gametes are T and t from each parent. The Punnett square gives TT, Tt, Tt and tt, a genotypic ratio of 1:2:1 and a phenotypic ratio of 3 tall to 1 short." },
+      b: { question: "What is a test cross and why is it used?", modelAnswer: "Crossing an individual of dominant phenotype with a homozygous recessive. If any offspring are recessive, the parent was heterozygous; if all are dominant, it was homozygous." },
+      level: B,
+      topic: "Inheritance",
+    },
+    {
+      a: { question: "Compare nervous and hormonal coordination and describe the structure of a neuron.", modelAnswer: "Nervous coordination uses electrical impulses along neurons, is very fast, precisely targeted and short-lived. Hormonal coordination uses chemical messengers carried in the blood, is slower, more widespread and longer-lasting. A neuron consists of a cell body containing the nucleus, dendrites that receive impulses, and a long axon, often myelinated, that carries the impulse away to the next cell across a synapse." },
+      b: { question: "Define reflex action and give one example.", modelAnswer: "A rapid, automatic, involuntary response to a stimulus that does not involve the brain, such as withdrawing the hand from a hot object." },
+      level: B,
+      topic: "Coordination and Control",
+    },
+  ],
+  math: [
+    {
+      a: { question: "Derive the quadratic formula by completing the square.", modelAnswer: "Starting from ax^2 + bx + c = 0, divide by a to get x^2 + (b/a)x + c/a = 0. Move the constant: x^2 + (b/a)x = -c/a. Add (b/2a)^2 to both sides to complete the square: (x + b/2a)^2 = b^2/4a^2 - c/a = (b^2 - 4ac)/4a^2. Taking the square root gives x + b/2a = plus or minus sqrt(b^2 - 4ac)/2a, hence x = [-b plus or minus sqrt(b^2 - 4ac)]/2a." },
+      b: { question: "Solve x^2 - 5x + 6 = 0 using the formula.", modelAnswer: "a=1, b=-5, c=6. Discriminant = 25 - 24 = 1. x = (5 plus or minus 1)/2, so x = 3 or x = 2." },
+      level: B,
+      topic: "Quadratic Equations",
+    },
+    {
+      a: { question: "Explain how to solve a system of linear equations by Cramer's rule and state when it fails.", modelAnswer: "Write the system in matrix form and compute the coefficient determinant D. Replace the x-column with the constants to get Dx and the y-column to get Dy. Then x = Dx/D and y = Dy/D. The method fails when D = 0, because division by zero is undefined; in that case the system either has no solution or infinitely many, and the matrix is called singular." },
+      b: { question: "Solve x + y = 5 and x - y = 1 by Cramer's rule.", modelAnswer: "D = (1)(-1) - (1)(1) = -2. Dx = (5)(-1) - (1)(1) = -6. Dy = (1)(1) - (5)(1) = -4. So x = 3 and y = 2." },
+      level: B,
+      topic: "Matrices and Determinants",
+    },
+    {
+      a: { question: "Define the measures of central tendency and explain which is most appropriate for skewed data.", modelAnswer: "The mean is the sum of all values divided by their number and uses every observation. The median is the middle value of ordered data. The mode is the most frequent value. For skewed data or data containing outliers the MEDIAN is most appropriate, because the mean is pulled towards extreme values while the median is not affected by them." },
+      b: { question: "Find the mean and median of 4, 8, 6, 10, 12.", modelAnswer: "Mean = 40/5 = 8. Ordered: 4, 6, 8, 10, 12, so the median is the 3rd value = 8." },
+      level: B,
+      topic: "Basic Statistics",
+    },
+  ],
+  cs: [
+    {
+      a: { question: "Explain the steps of problem solving in programming and compare an algorithm with a flowchart.", modelAnswer: "The steps are: define the problem, analyse it and identify inputs and outputs, design a solution as an algorithm, code it in a programming language, test and debug it, and finally document and maintain it. An algorithm expresses the solution as a finite ordered sequence of unambiguous steps in words, whereas a flowchart shows the same logic pictorially using standard symbols such as an oval for start and stop, a parallelogram for input and output, a rectangle for a process and a diamond for a decision." },
+      b: { question: "Write an algorithm to find the largest of three numbers.", modelAnswer: "1. Start. 2. Input A, B, C. 3. If A > B and A > C then largest = A. 4. Else if B > C then largest = B. 5. Else largest = C. 6. Output largest. 7. Stop." },
+      level: B,
+      topic: "Problem Solving",
+    },
+    {
+      a: { question: "Classify computer networks by size and explain the client-server model.", modelAnswer: "By size, a LAN covers a single building or campus, a MAN covers a city and a WAN spans countries using leased telecommunication lines. In the client-server model a powerful central computer, the server, stores data and provides services, while client machines request those services over the network. It centralises security, backup and administration, but the whole network depends on the server, so its failure disrupts all clients." },
+      b: { question: "Differentiate between a hub and a switch.", modelAnswer: "A hub broadcasts incoming data to every connected port, wasting bandwidth. A switch reads the destination MAC address and forwards the data only to the intended port, which is faster and more secure." },
+      level: B,
+      topic: "Networks",
+    },
+    {
+      a: { question: "Explain the advantages of a database over a traditional file system and define key terms.", modelAnswer: "A database reduces data redundancy because information is stored once rather than duplicated across files, and this in turn maintains data consistency. It enforces data integrity through validation rules, provides controlled security through user privileges, and allows multiple users to share data concurrently. Key terms: a field is a single attribute, a record is a complete set of fields for one entity, a table is a collection of records, a primary key uniquely identifies each record, and a foreign key references the primary key of another table." },
+      b: { question: "What is data redundancy and why is it undesirable?", modelAnswer: "Data redundancy is the unnecessary duplication of the same data in several places. It wastes storage and risks inconsistency, since updating one copy and not the others leaves conflicting values." },
+      level: B,
+      topic: "Databases and Data Management",
+    },
   ],
 };

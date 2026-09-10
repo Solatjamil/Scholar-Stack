@@ -13,7 +13,7 @@
 import { CHAPTER_LISTS } from "../src/syllabusData.ts";
 import { EXAM_BANK } from "../src/examBank.ts";
 import { QUESTION_BANK } from "../src/questionBank.ts";
-import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_NUMERICALS } from "../src/bankSupplement.ts";
+import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_LONGS, EXTRA_NUMERICALS } from "../src/bankSupplement.ts";
 import { lookupTopics } from "../src/topicData.ts";
 
 const KEY_SUBJECT = {
@@ -60,7 +60,7 @@ for (const [key, chapters] of Object.entries(CHAPTER_LISTS)) {
     const shortPool = [
       ...(eb ? eb.shorts : []), ...(qb ? qb.shorts : []), ...(EXTRA_SHORTS[bankKey] ?? []),
     ];
-    const longPool = [...(eb ? eb.longs : []), ...(qb ? qb.longs : [])];
+    const longPool = [...(eb ? eb.longs : []), ...(qb ? qb.longs : []), ...(EXTRA_LONGS[bankKey] ?? [])];
     const numPool = [...(eb ? eb.numericals : []), ...(EXTRA_NUMERICALS[bankKey] ?? [])];
 
     const mcqHit = mcqPool.filter(q => matchesChapter(q, chapter)).length;
