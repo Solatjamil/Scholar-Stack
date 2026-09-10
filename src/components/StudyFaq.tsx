@@ -72,6 +72,10 @@ const FAQS: Faq[] = [
     a: "Yes. It is a Progressive Web App, so after your first visit the study material is stored on your phone and you can revise with no connection. Useful on limited or slow mobile data.",
   },
   {
+    q: "Can I install it on an iPhone or iPad?",
+    a: "Yes. Open the site in Safari, tap Share, then Add to Home Screen. It installs as a real full-screen app with its own icon and works offline, exactly like an App Store app. It must be Safari — Chrome, Edge and Firefox on iOS cannot add apps to the home screen. Apple does not permit installing app files directly from a website in Pakistan, so this is the official route.",
+  },
+  {
     q: "Is there an Android app?",
     a: "Yes — it runs as both a website and an Android app. Use the Install option in your browser to add it to your home screen; it then opens full screen and works offline like a normal app.",
   },
