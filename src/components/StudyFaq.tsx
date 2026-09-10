@@ -44,6 +44,18 @@ const FAQS: Faq[] = [
     a: "All four classes (9th, 10th, 11th and 12th) across Physics, Chemistry, Biology, Mathematics and Computer Science, plus the I.Com commerce subjects — Principles of Accounting, Principles of Commerce, Principles of Economics, Principles of Banking and Commercial Geography. That is 1,278 lectures across 323 topics from 566 Pakistani teaching channels. Every link is verified automatically, so you will not hit a dead video.",
   },
   {
+    q: "What is the pairing scheme / paper scheme for 2026?",
+    a: "Every paper is built to the official BISE pattern: 18 MCQs of 1 mark (attempt all); 24 short questions as Q.2, Q.3 and Q.4 — three sections of 8, attempt any 6 per section, 2 marks each; then 3 long questions (Q.5–Q.7) with parts (a) and (b), attempt any 2. Two of the three long questions carry a numerical in science subjects. Total 74 marks. Papers generate live for your saved class, group and board instead of being a fixed PDF.",
+  },
+  {
+    q: "Do you have guess papers and important questions?",
+    a: "Yes — but computed, not copied. The app analyses six years of papers (2021–2026) for your board and subject and ranks every topic by how often it actually appeared, as a percentage. A topic present in all six years shows 100%. You can then generate a full predicted paper in board format with Morning and Evening variants. It is a recurrence score from real past papers, not a promise about what will be asked.",
+  },
+  {
+    q: "Are 1st Year and 2nd Year (FSc, ICS, I.Com) notes available?",
+    a: "Yes. Intermediate is covered for FSc Pre-Medical, FSc Pre-Engineering, ICS and I.Com, across both 1st Year (HSSC Part 1) and 2nd Year (HSSC Part 2) — textbook topics, solved exercises, MCQs, short and long questions, glossary definitions and video lectures. Matric 9th and 10th are covered the same way.",
+  },
+  {
     q: "Do you cover I.Com (Commerce) subjects?",
     a: "Yes, both years in full. I.Com Part 1 has Principles of Accounting, Business Mathematics, Principles of Commerce and Principles of Economics. Part 2 has Principles of Accounting, Business Statistics, Principles of Banking and Commercial Geography. Each carries its real board chapter list, Urdu video lectures and a glossary of examinable definitions.",
   },
@@ -71,20 +83,20 @@ export default function StudyFaq() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="mt-10 rounded-2xl border border-slate-200 bg-white p-5 sm:p-7"
+      className="mt-10 mx-auto w-full max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 text-center"
     >
       <h2
         id="faq-heading"
-        className="font-display text-lg sm:text-xl font-bold text-slate-900"
+        className="font-display text-xl sm:text-2xl font-bold text-slate-900"
       >
         Frequently Asked Questions
       </h2>
-      <p className="mt-1 text-sm text-slate-500">
+      <p className="mt-1 text-sm text-slate-500 mx-auto max-w-xl">
         Common questions from Pakistani board students about notes, past papers
         and paper scheme.
       </p>
 
-      <dl className="mt-5 divide-y divide-slate-200">
+      <dl className="mt-5 divide-y divide-slate-200 text-left">
         {FAQS.map((f, i) => {
           const isOpen = open === i;
           return (
