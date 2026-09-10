@@ -45,6 +45,424 @@ type SubjectTopics = Record<string, TopicSeed[]>;
 
 /* =============================== PHYSICS =============================== */
 const physics: SubjectTopics = {
+  "physical optics": [
+    {
+      name: "Interference, Young's Double Slit and Coherence",
+      romanUrdu:
+        "Interference ke liye do coherent sources chahiye - yani unka phase difference constant rahe. Do alag bulbs kabhi coherent nahi hote, isi liye unse fringes nahi bante.",
+      content:
+        "Conditions: coherent sources, same frequency, nearly equal amplitude.\n\nConstructive: path difference = n(lambda) -> BRIGHT fringe\nDestructive: path difference = (n + 1/2)(lambda) -> DARK fringe\nFringe spacing y = (lambda) L / d",
+      search: "physical optics interference young double slit 1st year urdu",
+      diagramType: "math-graph",
+    },
+    {
+      name: "Diffraction, Diffraction Grating and Polarisation",
+      romanUrdu:
+        "Diffraction me roshni rukawat ke kinaron par mud jati hai. Polarisation sirf TRANSVERSE waves me hoti hai - isi liye yeh sabit karta hai ke roshni transverse wave hai.",
+      content:
+        "Diffraction grating: d sin(theta) = n (lambda)\nBragg's law (X-ray diffraction): 2 d sin(theta) = n (lambda)\n\nPolarisation occurs only in transverse waves, proving light is transverse.\nSound cannot be polarised because it is longitudinal.",
+      search: "diffraction grating polarisation 1st year physics urdu",
+      diagramType: "math-graph",
+    },
+  ],
+  "optical instruments": [
+    {
+      name: "Magnifying Power of Microscopes and Telescopes",
+      romanUrdu:
+        "Compound microscope me dono magnifications ZARB hoti hain, jama nahi. Isi liye woh simple microscope se kaheen zyada magnification deta hai.",
+      content:
+        "Simple microscope: M = 1 + d/f   (d = 25 cm, least distance of distinct vision)\nCompound microscope: M = M(objective) x M(eyepiece)\nAstronomical telescope: M = f(objective) / f(eyepiece)\n\nObjective of a microscope has a SHORT focal length;\nobjective of a telescope has a LONG focal length.",
+      search: "optical instruments microscope telescope 1st year physics urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Resolving Power and the Least Distance of Distinct Vision",
+      romanUrdu:
+        "Resolving power do qareebi cheezon ko alag dikhane ki salahiyat hai. Chhoti wavelength behtar resolution deti hai - isi liye electron microscope light microscope se behtar hai.",
+      content:
+        "Resolving power = ability to show two close objects as distinct.\nLimit of resolution (Rayleigh): sin(theta) = 1.22 (lambda) / D\n\nSmaller wavelength or larger aperture gives better resolution.\nLeast distance of distinct vision d = 25 cm for a normal eye.",
+      search: "resolving power optical instruments 1st year physics urdu",
+      diagramType: "physics-ohms",
+    },
+  ],
+  "measurement": [
+    {
+      name: "Base and Derived Units",
+      romanUrdu:
+        "SI ke saat base units yaad karein: metre, kilogram, second, kelvin, ampere, mole aur candela. Baaqi sab derived hain jaise newton = kg m s^-2. Numerical me units ko hamesha SI me convert karein warna jawab ghalat aayega.",
+      content:
+        "Base quantities: length (m), mass (kg), time (s), temperature (K),\ncurrent (A), amount of substance (mol), luminous intensity (cd)\n\nDerived: force N = kg m s^-2 | energy J = N m | power W = J s^-1\npressure Pa = N m^-2 | charge C = A s",
+      search: "sabaq foundation physical quantities and units class 9",
+      diagramType: "generic-mindmap",
+    },
+    {
+      name: "Least Count, Vernier Callipers and Screw Gauge",
+      romanUrdu:
+        "Vernier calliper ka least count 0.01 cm aur screw gauge ka 0.001 cm hota hai. Reading = main scale + (vernier division x least count). Zero error ko apne sign ke saath GHATANA hota hai.",
+      content:
+        "Least count of vernier = smallest main division / number of vernier divisions\nVernier LC = 0.1 cm / 10 = 0.01 cm\nScrew gauge LC = pitch / number of circular divisions = 0.5/50 = 0.01 mm\n\nTotal reading = main scale reading + (division coinciding x LC)\nCorrected reading = observed reading - zero error (with sign)",
+      search: "vernier calliper screw gauge least count urdu physics",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Significant Figures and Scientific Notation",
+      romanUrdu:
+        "Significant figures wo hindse hain jo yaqeeni hon aur ek mashkook. Zero shuru me kabhi significant nahi hota. Bara ya chhota number ho to scientific notation a x 10^n me likhein jahan 1 <= a < 10.",
+      content:
+        "Rules: non-zero digits always count; zeros between digits count;\nleading zeros never count; trailing zeros count only after a decimal point.\n\n0.00405 -> 3 s.f.   |   1.230 -> 4 s.f.   |   6400 -> 2 s.f.\nScientific notation: 6.4 x 10^3",
+      search: "significant figures scientific notation physics class 9 urdu",
+      diagramType: "generic-mindmap",
+    },
+  ],
+  "dynamics": [
+    {
+      name: "Newton's Three Laws of Motion",
+      romanUrdu:
+        "Pehla qanoon inertia ka hai, doosra F = ma deta hai aur teesra action-reaction ka jora batata hai. Yaad rakhein: action aur reaction hamesha ALAG jismon par lagte hain, isi liye woh ek doosre ko cancel nahi karte.",
+      content:
+        "1st law: a body stays at rest or in uniform motion unless a net external force acts.\n2nd law: F = m a   (net force = mass x acceleration)\n3rd law: to every action there is an equal and opposite reaction.\n\nWeight W = m g   |   Momentum p = m v   |   Impulse = F t = change in p",
+      search: "newton laws of motion class 9 physics urdu sabaq",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Friction and Its Types",
+      romanUrdu:
+        "Friction do satahon ke darmiyan harkat ki mukhalifat karta hai. Static friction limiting value tak barhta hai, phir kinetic friction lagta hai jo hamesha static se KAM hota hai.",
+      content:
+        "f = mu R  where mu = coefficient of friction, R = normal reaction\nStatic friction > kinetic friction\n\nAdvantages: walking, braking, gripping.\nDisadvantages: wear and tear, heat, energy loss.\nReduced by: lubricants, ball bearings, streamlining.",
+      search: "friction types class 9 physics urdu medium",
+      diagramType: "physics-ohms",
+    },
+  ],
+  "turning effect": [
+    {
+      name: "Torque, Couple and the Principle of Moments",
+      romanUrdu:
+        "Torque = force x amoodi faasla. Balance ki halat me clockwise moments = anticlockwise moments. Faasla hamesha AMOODI (perpendicular) lena hai, tirchha nahi.",
+      content:
+        "Torque (moment) = F x L (perpendicular distance)\nUnit: N m\n\nPrinciple of moments: sum of clockwise moments = sum of anticlockwise moments\nCouple = two equal, opposite, parallel forces; couple moment = F x d",
+      search: "torque principle of moments class 9 physics urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Centre of Mass, Centre of Gravity and Stability",
+      romanUrdu:
+        "Centre of gravity wo nuqta hai jahan poore jism ka wazan lagta hai. Jism zyada mustahkam hota hai jab base chaura ho aur centre of gravity neecha ho - isi liye racing cars neechi hoti hain.",
+      content:
+        "Centre of gravity: the point where the entire weight of a body appears to act.\n\nStable equilibrium: CG rises when displaced (low CG, wide base).\nUnstable: CG falls when displaced.\nNeutral: CG stays at the same height (e.g. a rolling ball).",
+      search: "centre of gravity stability class 9 physics urdu",
+      diagramType: "generic-mindmap",
+    },
+  ],
+  "properties of matter": [
+    {
+      name: "Density, Pressure and Pascal's Law",
+      romanUrdu:
+        "Density = kamiyat / hajm. Pressure = quwwat / raqba. Pascal ke qanoon ke tehat band maye par lagaya gaya dabao har taraf barabar muntaqil hota hai - yahi hydraulic brake aur lift ka usool hai.",
+      content:
+        "Density d = m / V   (kg m^-3)\nPressure P = F / A   (Pa = N m^-2)\nLiquid pressure P = d g h\n\nPascal's law: pressure applied to an enclosed fluid is transmitted\nundiminished to every part of the fluid.\nApplication: hydraulic press, hydraulic brakes.",
+      search: "pressure pascal law class 9 physics urdu sabaq",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Archimedes' Principle and Floatation",
+      romanUrdu:
+        "Maye me doobe jism par upthrust lagti hai jo hataye gaye maye ke wazan ke barabar hoti hai. Jism tairta hai jab uski density maye se KAM ho.",
+      content:
+        "Upthrust = weight of fluid displaced = d(fluid) x g x V(displaced)\n\nFloats if density of object < density of fluid\nSinks if density of object > density of fluid\n\nApparent weight = actual weight - upthrust",
+      search: "archimedes principle floatation class 9 physics urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Elasticity and Hooke's Law",
+      romanUrdu:
+        "Elastic limit ke andar khinchao lagai gayi quwwat ke raast mutanasib hota hai. Elastic limit ke baad jism apni asli shakal me wapas nahi aata.",
+      content:
+        "Hooke's law: F = k x   (within the elastic limit)\nStress = F / A     Strain = change in length / original length\nYoung's modulus Y = stress / strain",
+      search: "hookes law elasticity class 9 physics urdu",
+      diagramType: "math-graph",
+    },
+  ],
+  "thermal properties": [
+    {
+      name: "Temperature, Heat and Thermal Expansion",
+      romanUrdu:
+        "Heat tawanai hai jo garam se thande ki taraf behti hai; temperature garmi ka darja batata hai. Yeh dono ALAG cheezein hain - yeh sawal har saal aata hai.",
+      content:
+        "Heat: energy transferred due to a temperature difference (joules).\nTemperature: the degree of hotness, measured in K or C.\n\nLinear expansion: L = Lo (1 + a dT)\nVolume expansion: V = Vo (1 + b dT), where b = 3a",
+      search: "heat and temperature difference class 9 physics urdu",
+      diagramType: "generic-mindmap",
+    },
+    {
+      name: "Specific Heat Capacity and Latent Heat",
+      romanUrdu:
+        "Q = m c dT sirf tab lagta hai jab temperature badal raha ho. Jab shai pighal ya ubal rahi ho to temperature THEHRA rehta hai aur Q = m L lagta hai.",
+      content:
+        "Q = m c dT      (temperature changing)\nQ = m L          (state changing, temperature constant)\n\nLatent heat of fusion of ice = 3.36 x 10^5 J/kg\nLatent heat of vaporisation of water = 2.26 x 10^6 J/kg\nSpecific heat of water = 4200 J/kg/K",
+      search: "specific heat capacity latent heat class 9 urdu",
+      diagramType: "math-graph",
+    },
+  ],
+  "sound": [
+    {
+      name: "Nature, Speed and Characteristics of Sound",
+      romanUrdu:
+        "Sound ek longitudinal mechanical wave hai jise chalne ke liye medium chahiye - vacuum me sound nahi chalti. v = f x lambda har wave par lagta hai.",
+      content:
+        "v = f (lambda)\nSpeed in air ~ 343 m/s at 20 C; faster in liquids, fastest in solids.\n\nLoudness depends on amplitude.\nPitch depends on frequency.\nQuality (timbre) depends on the waveform.",
+      search: "sound waves class 10 physics urdu sabaq foundation",
+      diagramType: "math-graph",
+    },
+    {
+      name: "Echo, Reverberation and Audible Range",
+      romanUrdu:
+        "Echo sunne ke liye rukawat kam az kam 17 metre door honi chahiye. Audible range 20 Hz se 20,000 Hz tak hai; is se upar ultrasound hai jo medical imaging me kaam aati hai.",
+      content:
+        "Echo: reflected sound heard distinctly, needs at least 0.1 s gap\nMinimum distance = v x t / 2 = 343 x 0.1 / 2 ~ 17 m\n\nAudible range: 20 Hz to 20 kHz\nInfrasound < 20 Hz | Ultrasound > 20 kHz (SONAR, medical scans)",
+      search: "echo reverberation ultrasound class 10 physics urdu",
+      diagramType: "generic-mindmap",
+    },
+  ],
+  "geometrical optics": [
+    {
+      name: "Reflection, Mirrors and Image Formation",
+      romanUrdu:
+        "Reflection ke do qawaneen: zaawiya-e-wurood = zaawiya-e-inikas, aur teeno (incident ray, reflected ray, normal) ek hi plane me hote hain. Mirror formula me signs ka khayal rakhein.",
+      content:
+        "Laws: angle of incidence = angle of reflection; all rays lie in one plane.\n\nMirror formula: 1/f = 1/v + 1/u\nMagnification m = -v/u = image height / object height\nFor a concave mirror f is positive; for convex, negative (real-is-positive convention).",
+      search: "reflection spherical mirrors class 10 physics urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Refraction, Lenses and Total Internal Reflection",
+      romanUrdu:
+        "Refraction me roshni mud jati hai kyunke speed badalti hai. Total internal reflection tab hoti hai jab roshni ghane se patle medium me jaye AUR zaawiya critical angle se bara ho - dono sharten zaroori hain.",
+      content:
+        "Snell's law: n1 sin(i) = n2 sin(r)\nRefractive index n = c / v = sin i / sin r\nLens formula: 1/f = 1/v - 1/u    Power P = 1/f (dioptres)\n\nCritical angle: sin C = 1/n\nTIR conditions: denser -> rarer AND i > C",
+      search: "refraction lenses total internal reflection class 10 urdu",
+      diagramType: "physics-ohms",
+    },
+  ],
+  "basic electronics": [
+    {
+      name: "Thermionic Emission and the Cathode Ray Oscilloscope",
+      romanUrdu:
+        "Garam dhaat se electrons nikalne ko thermionic emission kehte hain. CRO me electron gun beam banati hai, plates usay mordti hain aur screen par waveform nazar aati hai.",
+      content:
+        "Thermionic emission: electrons escape a heated metal surface once they\novercome the work function.\n\nCRO parts: electron gun -> deflecting plates (X and Y) -> fluorescent screen\nUses: displaying waveforms, measuring voltage, frequency and phase.",
+      search: "thermionic emission cathode ray oscilloscope class 10 urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Logic Gates and Digital Electronics",
+      romanUrdu:
+        "AND, OR aur NOT banyadi gates hain. NAND aur NOR inke ULTE hain. n inputs wale circuit ki truth table me 2^n rows hoti hain.",
+      content:
+        "AND: output 1 only if all inputs are 1\nOR: output 1 if any input is 1\nNOT: inverts the input\nNAND = NOT(AND)   NOR = NOT(OR)\n\nA circuit with n inputs has 2^n rows in its truth table.",
+      search: "logic gates truth table class 10 physics urdu",
+      diagramType: "cs-spa",
+    },
+  ],
+  "information and communication": [
+    {
+      name: "Transmission of Information: Fibre Optics",
+      romanUrdu:
+        "Optical fibre me roshni total internal reflection se safar karti hai. Copper wire ke muqable me zyada bandwidth, kam signal loss aur electrical interference se mahfooz hoti hai.",
+      content:
+        "Structure: dense core surrounded by less dense cladding.\nLight travels by repeated total internal reflection.\n\nAdvantages over copper: higher bandwidth, very low loss,\nimmune to electrical interference, lighter, harder to tap.",
+      search: "fibre optics transmission of information class 10 urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Storage Devices and Basic Communication Systems",
+      romanUrdu:
+        "Data byte me naapa jata hai: 1 KB = 1024 bytes. Communication system ke teen hisse hain: transmitter, channel aur receiver.",
+      content:
+        "1 byte = 8 bits | 1 KB = 1024 B | 1 MB = 1024 KB | 1 GB = 1024 MB\n\nStorage: magnetic (hard disk), optical (CD/DVD), solid state (flash).\nCommunication system: transmitter -> channel (medium) -> receiver.",
+      search: "information storage devices class 10 physics urdu",
+      diagramType: "cs-spa",
+    },
+  ],
+  "radioactivity": [
+    {
+      name: "Alpha, Beta and Gamma Radiations",
+      romanUrdu:
+        "Alpha sab se zyada ionise karta hai magar sab se kam penetrate. Gamma iska ulta hai. Yeh ULTA taluq yaad rakhein - is se poora sawal hal ho jata hai.",
+      content:
+        "Alpha: helium nucleus, charge +2, stopped by paper, strongest ioniser.\nBeta: fast electron, charge -1, stopped by a few mm of aluminium.\nGamma: EM radiation, no charge, needs thick lead, weakest ioniser.\n\nIonising power and penetrating power are inversely related.",
+      search: "alpha beta gamma radiation class 10 physics urdu",
+      diagramType: "generic-mindmap",
+    },
+    {
+      name: "Half Life, Fission and Fusion",
+      romanUrdu:
+        "Half life wo waqt hai jisme aadhe atoms toot jayen. Har half life ke baad aadha bacha hai: 3 half lives ke baad 1/8, na ke 1/6.",
+      content:
+        "Remaining fraction after n half lives = (1/2)^n\n\nFission: a heavy nucleus splits into lighter nuclei, releasing energy (reactors).\nFusion: light nuclei combine to form a heavier one (the Sun).\nBackground radiation comes from rocks, cosmic rays and medical sources.",
+      search: "half life nuclear fission fusion class 10 physics urdu",
+      diagramType: "math-graph",
+    },
+  ],
+  "motion and force": [
+    {
+      name: "Projectile Motion and Momentum",
+      romanUrdu:
+        "Projectile me horizontal aur vertical motion ALAG ALAG hal karein. Horizontal velocity constant rehti hai, vertical par g lagta hai. Maximum range 45 darje par milti hai.",
+      content:
+        "Horizontal: x = v cos(theta) t\nVertical: y = v sin(theta) t - (1/2) g t^2\nTime of flight T = 2 v sin(theta) / g\nMax height H = v^2 sin^2(theta) / 2g\nRange R = v^2 sin(2 theta) / g   (maximum at theta = 45 degrees)",
+      search: "projectile motion 1st year physics urdu",
+      diagramType: "math-graph",
+    },
+    {
+      name: "Conservation of Linear Momentum and Collisions",
+      romanUrdu:
+        "Momentum hamesha conserve hota hai. Elastic collision me kinetic energy bhi conserve hoti hai, inelastic me nahi - yeh farq zaroor likhein.",
+      content:
+        "Total momentum before = total momentum after\nm1u1 + m2u2 = m1v1 + m2v2\n\nElastic: both momentum and KE conserved.\nInelastic: momentum conserved, KE not.\nImpulse = F t = change in momentum",
+      search: "conservation of momentum collisions 1st year physics urdu",
+      diagramType: "physics-ohms",
+    },
+  ],
+  "circular motion": [
+    {
+      name: "Angular Quantities and Centripetal Force",
+      romanUrdu:
+        "Circular motion me jism ki speed constant ho sakti hai magar velocity nahi, kyunke direction badalti rehti hai - isi liye acceleration hoti hai jo markaz ki taraf hoti hai.",
+      content:
+        "Angular displacement theta (rad), angular velocity w = theta/t\nv = r w      a(centripetal) = v^2 / r = r w^2\nF(centripetal) = m v^2 / r\n\n1 revolution = 2 pi radians. Centripetal force acts TOWARDS the centre.",
+      search: "circular motion centripetal force 1st year physics urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Moment of Inertia and Angular Momentum",
+      romanUrdu:
+        "Moment of inertia rotation me mass ka kirdar ada karta hai. Angular momentum conserve hota hai - isi liye skater haath samet kar tez ghoomta hai.",
+      content:
+        "Moment of inertia I = sum(m r^2)\nAngular momentum L = I w\nRotational KE = (1/2) I w^2\nTorque = I x angular acceleration\n\nConservation: I1 w1 = I2 w2",
+      search: "moment of inertia angular momentum 1st year physics urdu",
+      diagramType: "physics-ohms",
+    },
+  ],
+  "fluid dynamics": [
+    {
+      name: "Equation of Continuity and Bernoulli's Principle",
+      romanUrdu:
+        "Continuity equation kehti hai A1v1 = A2v2 - patli jagah par speed barhti hai. Bernoulli ke mutabiq jahan speed zyada wahan pressure kam - yahi aeroplane ke lift ka sabab hai.",
+      content:
+        "Equation of continuity: A1 v1 = A2 v2\nBernoulli: P + (1/2) d v^2 + d g h = constant\n\nApplications: aerofoil lift, carburettor, spin on a ball (Magnus effect),\nventuri meter.",
+      search: "bernoulli equation continuity 1st year physics urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Viscosity, Terminal Velocity and Stokes' Law",
+      romanUrdu:
+        "Terminal velocity tab milti hai jab weight, upthrust aur drag barabar ho jayen - phir acceleration sifar aur speed constant ho jati hai.",
+      content:
+        "Stokes' law: F = 6 pi (eta) r v\nTerminal velocity vt = 2 r^2 g (d - d0) / 9 (eta)\n\nAt terminal velocity: weight = upthrust + viscous drag, so a = 0.\nViscosity of liquids decreases with temperature; of gases, increases.",
+      search: "viscosity terminal velocity stokes law 1st year physics urdu",
+      diagramType: "math-graph",
+    },
+  ],
+  "electromagnetic induction": [
+    {
+      name: "Faraday's Law, Lenz's Law and Induced EMF",
+      romanUrdu:
+        "Faraday emf ki MIQDAR batata hai aur Lenz uska RUKH. Lenz ka qanoon dar-asal conservation of energy ka nateeja hai.",
+      content:
+        "Faraday: induced emf = -N (change in flux / change in time)\nLenz: the induced current opposes the change producing it.\n\nMotional emf = B L v\nGenerator: mechanical -> electrical (right-hand rule)\nMotor: electrical -> mechanical (left-hand rule)",
+      search: "faraday law lenz law electromagnetic induction 2nd year urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Self and Mutual Inductance, Transformers",
+      romanUrdu:
+        "Transformer sirf A.C. par kaam karta hai kyunke D.C. me flux tabdeel nahi hota. Voltage barhane par current utni hi kam hoti hai (power conserve).",
+      content:
+        "Self inductance: emf = -L (dI/dt)\nEnergy stored = (1/2) L I^2\nTransformer: Vs/Vp = Ns/Np\nIdeal transformer: Vp Ip = Vs Is\n\nA transformer cannot work on D.C. - no changing flux, no induced emf.",
+      search: "transformer mutual induction 2nd year physics urdu",
+      diagramType: "physics-ohms",
+    },
+  ],
+  "alternating current": [
+    {
+      name: "AC Quantities, RMS Values and Reactance",
+      romanUrdu:
+        "RMS value peak ka 0.707 guna hoti hai. Ghar me 220 V likha hota hai wo RMS hai, peak lagbhag 311 V hoti hai.",
+      content:
+        "I(rms) = Io / sqrt(2) = 0.707 Io      V(rms) = Vo / sqrt(2)\nCapacitive reactance Xc = 1 / (2 pi f C)\nInductive reactance XL = 2 pi f L\nImpedance Z = sqrt(R^2 + (XL - Xc)^2)",
+      search: "alternating current rms value reactance 2nd year physics urdu",
+      diagramType: "math-graph",
+    },
+    {
+      name: "Resonance in an RLC Circuit",
+      romanUrdu:
+        "Resonance par XL = Xc ho jata hai, impedance sab se kam aur current sab se zyada hoti hai. Yahi usool radio tuning me kaam aata hai.",
+      content:
+        "At resonance: XL = Xc, so Z = R (minimum) and current is maximum.\nResonant frequency f = 1 / (2 pi sqrt(LC))\n\nApplication: tuning circuits in radio and television receivers.",
+      search: "resonance rlc circuit 2nd year physics urdu",
+      diagramType: "math-graph",
+    },
+  ],
+  "physics of solids": [
+    {
+      name: "Classification of Solids and Energy Bands",
+      romanUrdu:
+        "Conductor me valence aur conduction band overlap karte hain, insulator me bara gap hota hai aur semiconductor me chhota gap - isi liye garam karne par semiconductor behtar conduct karta hai.",
+      content:
+        "Crystalline: regular lattice, sharp melting point (NaCl, diamond).\nAmorphous: no long-range order, melts over a range (glass).\nPolymeric: long chain molecules (rubber, plastic).\n\nBand gap: conductor ~ 0, semiconductor ~ 1 eV, insulator > 5 eV.",
+      search: "energy bands solids classification 2nd year physics urdu",
+      diagramType: "chemistry-structure",
+    },
+    {
+      name: "Mechanical Properties and Superconductors",
+      romanUrdu:
+        "Stress lagane par strain paida hoti hai. Superconductor me critical temperature se neeche resistance BILKUL sifar ho jati hai.",
+      content:
+        "Stress = F/A     Strain = dL/L      Young's modulus Y = stress/strain\nElastic limit: beyond it the deformation becomes permanent.\n\nSuperconductivity: zero resistance below the critical temperature Tc.\nUses: MRI magnets, maglev trains, powerful electromagnets.",
+      search: "mechanical properties solids superconductors 2nd year urdu",
+      diagramType: "math-graph",
+    },
+  ],
+  "electronics": [
+    {
+      name: "PN Junction, Diodes and Rectification",
+      romanUrdu:
+        "PN junction forward bias me current chalne deta hai aur reverse bias me rok deta hai. Half-wave rectifier ek diode aur full-wave char diode (bridge) istemal karta hai.",
+      content:
+        "P-type: doped with trivalent impurity (holes are majority carriers).\nN-type: doped with pentavalent impurity (electrons are majority).\n\nForward bias: conducts. Reverse bias: blocks.\nHalf-wave rectifier: 1 diode. Full-wave bridge: 4 diodes.",
+      search: "pn junction diode rectification 2nd year physics urdu",
+      diagramType: "physics-ohms",
+    },
+    {
+      name: "Transistors and Operational Amplifiers",
+      romanUrdu:
+        "Transistor ke teen hisse hain: emitter, base aur collector. Base bohat patli aur halki doped hoti hai. Op-amp ka gain bohat zyada hota hai.",
+      content:
+        "Transistor types: NPN and PNP; terminals: emitter, base, collector.\nCurrent gain beta = Ic / Ib\nUses: amplification and switching.\n\nOp-amp: very high open-loop gain, high input impedance,\nlow output impedance; used as inverting/non-inverting amplifier and comparator.",
+      search: "transistor operational amplifier 2nd year physics urdu",
+      diagramType: "physics-ohms",
+    },
+  ],
+  "atomic spectra": [
+    {
+      name: "Bohr's Model and Hydrogen Spectral Series",
+      romanUrdu:
+        "Bohr ke mutabiq electrons sirf muqarrara orbits me ghoomte hain. Line spectrum isi liye banta hai kyunke sirf khaas energy differences mumkin hain.",
+      content:
+        "Angular momentum L = n h / 2 pi   (quantised)\nEnergy of level n: En = -13.6 / n^2  eV\nPhoton energy: hf = E(high) - E(low)\n\nLyman (n=1, UV) | Balmer (n=2, visible) | Paschen (n=3, IR)",
+      search: "bohr model hydrogen spectrum 2nd year physics urdu",
+      diagramType: "chemistry-structure",
+    },
+    {
+      name: "X-rays, Lasers and Their Uses",
+      romanUrdu:
+        "X-rays high energy electromagnetic waves hain jo dhaat ke target par tez electrons takraane se banti hain. Laser ki roshni monochromatic, coherent aur highly directional hoti hai.",
+      content:
+        "X-rays: produced when fast electrons strike a metal target.\nHard X-rays: short wavelength, high penetration (industrial).\nSoft X-rays: longer wavelength (medical imaging).\n\nLaser: Light Amplification by Stimulated Emission of Radiation.\nProperties: monochromatic, coherent, highly directional, intense.",
+      search: "x rays laser production uses 2nd year physics urdu",
+      diagramType: "physics-ohms",
+    },
+  ],
   "kinematics": [
     {
       name: "Equations of Uniformly Accelerated Motion",
@@ -1126,6 +1544,110 @@ const math: SubjectTopics = {
 
 /* =============================== BIOLOGY =============================== */
 const biology: SubjectTopics = {
+  "biological molecules": [
+    {
+      name: "Carbohydrates, Proteins, Lipids and Nucleic Acids",
+      romanUrdu:
+        "Char bare biomolecules hain. Proteins me NITROGEN hota hai jabke carbohydrates aur lipids me nahi - yeh sab se aasan pehchaan hai.",
+      content:
+        "Carbohydrates: (CH2O)n - mono, oligo and polysaccharides; main energy source.\nProteins: polymers of amino acids joined by peptide bonds; contain N.\nLipids: esters of fatty acids and glycerol; energy storage, insulation.\nNucleic acids: DNA and RNA, polymers of nucleotides.",
+      search: "biological molecules 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+    {
+      name: "Water, Enzymes and Their Importance",
+      romanUrdu:
+        "Enzyme ek biological catalyst hai jo activation energy kam karta hai. Har enzyme ka ek optimum pH aur temperature hota hai; is se hut kar wo denature ho jata hai.",
+      content:
+        "Water: high specific heat, universal solvent, high surface tension.\n\nEnzymes: lower activation energy; specific (lock-and-key model).\nAffected by temperature, pH and substrate concentration.\nDenaturation destroys the active site permanently.",
+      search: "enzymes biological molecules 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+  ],
+  "variety of life": [
+    {
+      name: "Classification and the Five Kingdom System",
+      romanUrdu:
+        "Taxonomy ki tarteeb yaad karein: Kingdom, Phylum, Class, Order, Family, Genus, Species. Binomial nomenclature me genus bara harf aur species chhota harf se likha jata hai.",
+      content:
+        "Hierarchy: Kingdom > Phylum > Class > Order > Family > Genus > Species\n\nFive kingdoms (Whittaker): Monera, Protista, Fungi, Plantae, Animalia.\nBinomial nomenclature: Homo sapiens (genus capitalised, species lower case, italicised).",
+      search: "classification five kingdom system 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+    {
+      name: "Viruses: Structure and Diseases",
+      romanUrdu:
+        "Virus na poori tarah zinda hai na murda - host ke bahar crystal ki tarah rehta hai. Isi liye ise 'obligate intracellular parasite' kehte hain.",
+      content:
+        "Structure: nucleic acid (DNA or RNA) enclosed in a protein capsid.\nAcellular: no cytoplasm, no organelles, no metabolism of their own.\n\nDiseases: polio, hepatitis, influenza, HIV/AIDS, measles.\nBacteriophage: a virus that infects bacteria.",
+      search: "viruses structure diseases 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+  ],
+  "prokaryotae": [
+    {
+      name: "Bacteria: Structure, Shapes and Importance",
+      romanUrdu:
+        "Bacteria prokaryotic hain - unme nucleus aur membrane-bound organelles NAHI hote. Cell wall peptidoglycan (murein) ki bani hoti hai.",
+      content:
+        "Prokaryotic: no true nucleus, no membrane-bound organelles.\nCell wall of peptidoglycan; 70S ribosomes; circular DNA.\n\nShapes: cocci (spherical), bacilli (rod), spirilla (spiral), vibrio (comma).\nGram positive retain crystal violet; gram negative do not.",
+      search: "bacteria structure kingdom monera 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+    {
+      name: "Uses and Control of Bacteria",
+      romanUrdu:
+        "Bacteria sirf nuqsan deh nahi - yeh dahi banane, nitrogen fixation aur medicine me kaam aate hain. Antibiotics sirf bacteria par asar karte hain, viruses par nahi.",
+      content:
+        "Beneficial: nitrogen fixation, decomposition, curd and cheese,\nantibiotic and insulin production, sewage treatment.\nHarmful: tuberculosis, cholera, typhoid, tetanus.\n\nControl: sterilisation, pasteurisation, antiseptics, antibiotics.\nAntibiotics do NOT work against viruses.",
+      search: "importance control of bacteria 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+  ],
+  "protista": [
+    {
+      name: "Kingdom Protista: Characteristics and Groups",
+      romanUrdu:
+        "Protista eukaryotic hain magar plants, animals ya fungi me fit nahi hote. Inhein teen groups me baanta jata hai: algae, protozoa aur slime moulds.",
+      content:
+        "Eukaryotic, mostly unicellular, aquatic or in moist habitats.\n\nAlgae (plant-like): Chlamydomonas, Spirogyra - photosynthetic.\nProtozoa (animal-like): Amoeba, Paramecium, Plasmodium.\nSlime moulds (fungus-like): absorb nutrients.\n\nPlasmodium causes malaria, transmitted by female Anopheles mosquito.",
+      search: "kingdom protista algae protozoa 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+  ],
+  "fungi": [
+    {
+      name: "Kingdom Fungi: Structure, Nutrition and Importance",
+      romanUrdu:
+        "Fungi ki cell wall CHITIN ki hoti hai (plants me cellulose). Yeh heterotrophic hain aur khurak absorb kar ke lete hain, banate nahi.",
+      content:
+        "Eukaryotic, cell wall of chitin, non-photosynthetic (heterotrophic).\nBody: mycelium made of hyphae (septate or aseptate).\nNutrition: saprophytic, parasitic or symbiotic (lichens, mycorrhizae).\n\nUses: yeast in baking and brewing, penicillin from Penicillium.\nHarm: ringworm, athlete's foot, crop rusts and smuts.",
+      search: "kingdom fungi structure nutrition 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+  ],
+  "kingdom plantae": [
+    {
+      name: "Bryophytes, Pteridophytes, Gymnosperms and Angiosperms",
+      romanUrdu:
+        "Plant kingdom ki tarteeb simple se complex ki taraf hai. Bryophytes me vascular tissue nahi hota, isi liye woh chhote aur nam jagah tak mehdood hain.",
+      content:
+        "Bryophytes (mosses): no vascular tissue, need water for fertilisation.\nPteridophytes (ferns): vascular tissue present, reproduce by spores.\nGymnosperms (pines): naked seeds, no fruit.\nAngiosperms: seeds enclosed in fruit; monocots and dicots.\n\nAlternation of generations: sporophyte and gametophyte stages.",
+      search: "kingdom plantae bryophytes angiosperms 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+  ],
+  "kingdom animalia": [
+    {
+      name: "Animal Phyla and Their Distinguishing Features",
+      romanUrdu:
+        "Animals ko symmetry, coelom aur germ layers ki bina par baanta jata hai. Chordata me notochord, dorsal nerve cord aur gill slits hote hain.",
+      content:
+        "Porifera: pores, no true tissues (sponges).\nCnidaria: radial symmetry, stinging cells (Hydra, jellyfish).\nPlatyhelminthes: flatworms, acoelomate.\nNematoda: roundworms, pseudocoelomate.\nAnnelida: segmented worms. Arthropoda: jointed legs, exoskeleton.\nMollusca: soft body, often shelled. Echinodermata: spiny skin.\nChordata: notochord, dorsal nerve cord, pharyngeal gill slits.",
+      search: "kingdom animalia phyla classification 1st year biology urdu",
+      diagramType: "biology-cell",
+    },
+  ],
   'nature of science': [
     {
       name: 'The Nature of Science',
