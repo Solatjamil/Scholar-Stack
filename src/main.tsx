@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import {initNative} from './native';
+import { registerServiceWorker } from "./swUpdate";
 
 // Android/Capacitor niceties (status bar, splash, hardware back button).
 // No-ops in the browser.
@@ -13,3 +14,5 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 );
+
+registerServiceWorker();

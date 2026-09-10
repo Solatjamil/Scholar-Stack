@@ -11,6 +11,10 @@ export default defineConfig(() => {
       tailwindcss(),
       VitePWA({
         registerType: 'autoUpdate',
+        // We inject our own registration (see src/swUpdate.ts) so the app can
+        // poll for a new build while it is open. The default script registers
+        // once at load and never checks again.
+        injectRegister: null,
         includeAssets: ['favicon.svg', 'icons/apple-touch-icon.png'],
         manifest: {
           id: '/',
@@ -43,6 +47,12 @@ export default defineConfig(() => {
           maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
           navigateFallback: '/index.html',
           navigateFallbackDenylist: [/^\/api\//],
+          // Without these two, an installed PWA keeps serving the previously
+          // cached shell until every tab is closed. A student who installed the
+          // app before a fix would keep seeing the old broken build for days.
+          skipWaiting: true,
+          clientsClaim: true,
+          cleanupOutdatedCaches: true,
           runtimeCaching: [
             {
               urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
@@ -54,13 +64,15 @@ export default defineConfig(() => {
               },
             },
             {
+              // Board notices only. cacheableResponse is limited to 200 so a
+              // transient 404/502 is never persisted and replayed at a student.
               urlPattern: /\/api\/.*/i,
               handler: 'NetworkFirst',
               options: {
-                cacheName: 'scholarstack-api',
+                cacheName: 'ysp-api-v2',
                 networkTimeoutSeconds: 12,
-                expiration: {maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 7},
-                cacheableResponse: {statuses: [0, 200]},
+                expiration: {maxEntries: 40, maxAgeSeconds: 60 * 60 * 6},
+                cacheableResponse: {statuses: [200]},
               },
             },
           ],
