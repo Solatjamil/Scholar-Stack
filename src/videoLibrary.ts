@@ -3580,6 +3580,20 @@ export const VIDEO_LIBRARY: VideoTopic[] = [
     ],
   },
 
+
+  // Final gap-fill: last chapter without any video.
+  {
+    classLevel: "9th",
+    subject: "math",
+    topic: "Business Mathematics",
+    videos: [
+      { id: "2vdEVcuGbeg", title: "Exercise 3.1 Business Mathematics | Profit Loss Profit Percent Loss Percent | Class 9th General Math", channel: "Smart Learning" },
+      { id: "ivGyJ6QalWM", title: "Exercise 3.4 Business Mathematics | Profit Loss Distribution | Class 9th General Math", channel: "Smart Learning" },
+      { id: "KWNSoKWm2q0", title: "Class 11 I.Com Business Maths | Profit & Loss + Break Even Point | Complete Lecture 2026", channel: "Online Smart Study" },
+      { id: "VK1uEpJsS-0", title: "Calculation of Profit, Loss, Cost Price and Selling Price in Business Maths in Urdu", channel: "ASIF KHAN" },
+    ],
+  },
+
 ];
 
 /** All videos for a class+subject, flattened. */

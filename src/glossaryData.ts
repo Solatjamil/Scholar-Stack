@@ -1709,7 +1709,7 @@ export const GLOSSARY: GlossaryGroup[] = [
   {
     subject: "accounting",
     chapterLabel: "Partnership, Company Accounts & Non-Trading Concerns",
-    keywords: ["partnership", "company accounts", "issue of shares", "debenture", "non-trading", "single entry", "incomplete records", "cash flow", "analysis of financial"],
+    keywords: ["partnership", "company accounts", "issue of shares", "debenture", "non-trading", "single entry", "incomplete records", "cash flow", "analysis of financial", "financial statements of a company"],
     terms: [
       {
         term: "Partnership",

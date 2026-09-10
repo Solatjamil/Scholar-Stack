@@ -57,6 +57,7 @@ import { CHAPTER_LISTS } from "./syllabusData";
 import MobileTabBar, { MobileMoreSheet } from "./components/MobileTabBar";
 import InstallPrompt from "./components/InstallPrompt";
 import StudyFaq from "./components/StudyFaq";
+import { getBiseDatesheet } from "./biseDatesheet";
 
 enum OperationType {
   CREATE = 'create',
@@ -2216,21 +2217,18 @@ export default function App() {
   }, [studentClass, studentGroup]);
 
   // Load the indicative exam schedule when board or class changes
-  const fetchBiseDatesheet = async (selectedBoard: string, selectedClass: string) => {
+  // Computed in the browser, not fetched. The old POST /api/bise-datesheet
+  // route only ever ran this same local calculation, and it does not exist on
+  // a static Vercel deploy - so every page load 404'd and showed an error
+  // banner. Doing it here also keeps the countdown working offline.
+  const fetchBiseDatesheet = (selectedBoard: string, selectedClass: string) => {
     setIsFetchingBise(true);
     setBiseFetchError(null);
     try {
-      const res = await fetch("/api/bise-datesheet", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ board: selectedBoard, classLevel: selectedClass })
-      });
-      if (!res.ok) throw new Error("Could not load the estimated exam schedule.");
-      const data = await res.json();
-      setBiseDatesheet(data);
+      setBiseDatesheet(getBiseDatesheet(selectedBoard, selectedClass));
     } catch (err: any) {
-      console.error("BISE datesheet fetch error:", err);
-      setBiseFetchError(err?.message || "Could not retrieve live schedule details.");
+      console.error("BISE datesheet error:", err);
+      setBiseFetchError("Could not work out the estimated exam schedule.");
     } finally {
       setIsFetchingBise(false);
     }

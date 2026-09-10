@@ -22,3 +22,4 @@ key.properties
 # PWA generated
 dev-dist/
 firebase-applet-config.json
+tools/__pycache__/
