@@ -26,4 +26,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://young-scholars-pk.vercel.app/sitemap.xml
+Sitemap: https://youngscholarspk.goshbuzz.com/sitemap.xml

@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "pk.scholarstack.app"
+    namespace "com.goshbuzz.youngscholarspk"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "pk.scholarstack.app"
+        applicationId "com.goshbuzz.youngscholarspk"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -19,9 +19,9 @@ android {
     signingConfigs {
         release {
             // Create android/key.properties (gitignored) with:
-            //   storeFile=../scholarstack.jks
+            //   storeFile=../young-scholars-pk.jks
             //   storePassword=...
-            //   keyAlias=scholarstack
+            //   keyAlias=young-scholars-pk
             //   keyPassword=...
             def propsFile = rootProject.file("key.properties")
             if (propsFile.exists()) {

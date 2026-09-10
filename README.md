@@ -69,9 +69,9 @@ npm run android:bundle   # signed release .aab for Google Play
 Create `android/key.properties` (already gitignored):
 
 ```properties
-storeFile=../scholarstack.jks
+storeFile=../young-scholars-pk.jks
 storePassword=YOUR_STORE_PASSWORD
-keyAlias=scholarstack
+keyAlias=young-scholars-pk
 keyPassword=YOUR_KEY_PASSWORD
 ```
 
@@ -82,7 +82,7 @@ Without the file, debug builds still work.
 
 | Item | Value |
 | --- | --- |
-| Application ID | `pk.scholarstack.app` |
+| Application ID | `com.goshbuzz.youngscholarspk` |
 | Min SDK | 23 (Android 6.0) |
 | Target SDK | 35 (Android 15) |
 | Version | 1.0.0 |

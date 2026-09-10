@@ -1,4 +1,4 @@
-package pk.scholarstack.app;
+package com.goshbuzz.youngscholarspk;
 
 import com.getcapacitor.BridgeActivity;
 
