@@ -3309,20 +3309,20 @@ export default function App() {
           <div className="hidden lg:flex space-x-1 sm:space-x-4 text-xs sm:text-sm font-medium text-slate-500">
             <button
               onClick={() => setActiveTab("dashboard")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all duration-200 active:scale-95 ${
                 activeTab === "dashboard"
-                  ? "text-indigo-600 bg-indigo-50 font-semibold"
-                  : "hover:text-slate-800 hover:bg-slate-100/80"
+                  ? "text-indigo-600 bg-indigo-50 font-semibold shadow-xs"
+                  : "hover:text-indigo-600 hover:bg-indigo-50/60 hover:-translate-y-0.5"
               }`}
             >
               Dashboard
             </button>
             <button
               onClick={() => setActiveTab("chapterstudy")}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1 ${
+              className={`px-3 py-1.5 rounded-lg transition-all duration-200 active:scale-95 flex items-center space-x-1 ${
                 activeTab === "chapterstudy"
                   ? "text-indigo-600 bg-indigo-50 font-semibold shadow-xs"
-                  : "hover:text-violet-600 hover:bg-violet-50/50"
+                  : "hover:text-violet-600 hover:bg-violet-50/60 hover:-translate-y-0.5"
               }`}
             >
               <BookOpen size={14} className="text-violet-500" />

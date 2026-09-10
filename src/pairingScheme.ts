@@ -116,18 +116,48 @@ export const PAIRING_SCHEMES: Record<string, PairingScheme> = {
     classLevel: "9th",
     session: "2026",
     totalMarks: 60,
-    mcqs: { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 2, 10: 2 },
+    // This textbook edition has 9 units; published tables that cite a ch.10/11
+    // follow a different edition, so those references are intentionally absent.
+    mcqs: { 1: 2, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 2, 9: 2 },
     mcqTotal: 12,
     shortGroups: [
       { question: "Q.2", chapters: [1, 2, 3], attempt: "any 5 of 8" },
-      { question: "Q.3", chapters: [4, 5, 6, 10], attempt: "any 5 of 8" },
+      { question: "Q.3", chapters: [4, 5, 6], attempt: "any 5 of 8" },
       { question: "Q.4", chapters: [7, 8, 9], attempt: "any 5 of 8" },
     ],
     shortNote: "15 short questions × 2 marks = 30 marks",
     longPairs: [
       { question: "Q.5", chapters: [2, 3] },
       { question: "Q.6", chapters: [6, 7] },
-      { question: "Q.7", chapters: [9, 10] },
+      { question: "Q.7", chapters: [8, 9] },
+    ],
+    longNote: "Attempt any 2 of 3 · each 9 marks (part a = 5, part b = 4) = 18 marks",
+    sourceNote: SRC_2026,
+  },
+
+  /**
+   * 9th Chemistry. Published tables list 11 chapters; the edition this app
+   * ships has 8 units (Fundamentals -> Chemical Reactivity), so the scheme is
+   * expressed over those 8 only. Chapters beyond the book are never referenced
+   * - tools/checkSchemes.mjs enforces that.
+   */
+  "9th-chemistry": {
+    subjectId: "chemistry",
+    classLevel: "9th",
+    session: "2026",
+    totalMarks: 60,
+    mcqs: { 1: 2, 2: 2, 3: 1, 4: 2, 5: 1, 6: 1, 7: 2, 8: 1 },
+    mcqTotal: 12,
+    shortGroups: [
+      { question: "Q.2", chapters: [1, 2, 3], attempt: "any 5 of 8" },
+      { question: "Q.3", chapters: [4, 5, 6], attempt: "any 5 of 8" },
+      { question: "Q.4", chapters: [7, 8], attempt: "any 5 of 8" },
+    ],
+    shortNote: "15 short questions × 2 marks = 30 marks",
+    longPairs: [
+      { question: "Q.5", chapters: [1, 2] },
+      { question: "Q.6", chapters: [3, 4] },
+      { question: "Q.7", chapters: [7, 8] },
     ],
     longNote: "Attempt any 2 of 3 · each 9 marks (part a = 5, part b = 4) = 18 marks",
     sourceNote: SRC_2026,

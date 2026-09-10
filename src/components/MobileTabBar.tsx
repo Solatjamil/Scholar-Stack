@@ -58,14 +58,22 @@ export default function MobileTabBar({ activeTab, setActiveTab, onMore }: Props)
               key={it.id}
               onClick={() => setActiveTab(it.id)}
               aria-current={active ? "page" : undefined}
-              className={`relative flex-1 flex flex-col items-center justify-center gap-0.5 py-2 min-h-[56px] transition-colors active:bg-slate-100 ${
-                active ? "text-indigo-600" : "text-slate-400"
+              className={`relative flex-1 flex flex-col items-center justify-center gap-0.5 py-2 min-h-[56px] transition-all duration-200 active:scale-90 ${
+                active ? "text-indigo-600" : "text-slate-400 hover:text-slate-600"
               }`}
             >
               {active && (
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 h-0.5 w-8 bg-indigo-600 rounded-full" />
+                <>
+                  {/* sliding top bar + soft glow behind the active icon */}
+                  <span className="absolute top-0 left-1/2 -translate-x-1/2 h-1 w-9 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full shadow-sm shadow-indigo-500/40" />
+                  <span className="absolute top-1.5 left-1/2 -translate-x-1/2 h-9 w-9 rounded-full bg-indigo-100/70 blur-[2px]" />
+                </>
               )}
-              <span className={active ? "scale-110 transition-transform" : "transition-transform"}>
+              <span
+                className={`relative transition-transform duration-300 ${
+                  active ? "scale-115 -translate-y-0.5" : "scale-100"
+                }`}
+              >
                 {it.icon}
               </span>
               <span className={`text-[10px] leading-none ${active ? "font-bold" : "font-medium"}`}>
