@@ -21,7 +21,7 @@ type Faq = { q: string; a: string };
 const FAQS: Faq[] = [
   {
     q: "Where can I get free 9th and 10th class notes in Pakistan?",
-    a: "Open Chapter Study, pick your class and subject, and every chapter lists its textbook topics along with solved exercises, MCQs, short questions and a glossary of definitions. Physics, Chemistry, Mathematics, Computer Science, Biology, English, Urdu and Islamiat are covered. No sign-up and no payment.",
+    a: "Open Chapter Study, pick your class and subject, and every chapter lists its textbook topics along with solved exercises, MCQs, short questions and a glossary of definitions. Physics, Chemistry, Mathematics, Computer Science, Biology, English, Urdu and Islamiat are covered for matric, and FSc Pre-Medical, Pre-Engineering, ICS and I.Com for intermediate. No sign-up and no payment.",
   },
   {
     q: "Are past papers available for all Pakistani boards?",
@@ -41,7 +41,19 @@ const FAQS: Faq[] = [
   },
   {
     q: "Which subjects have video lectures?",
-    a: "Video lectures currently cover 9th and 10th class Physics, Chemistry and Biology, from established Pakistani teaching channels, and they appear inside the relevant chapter. Mathematics, Computer Science and the intermediate classes have no video coverage yet — the app says so plainly rather than showing unrelated videos.",
+    a: "All four classes (9th, 10th, 11th and 12th) across Physics, Chemistry, Biology, Mathematics and Computer Science, plus the I.Com commerce subjects — Principles of Accounting, Principles of Commerce, Principles of Economics, Principles of Banking and Commercial Geography. That is 1,278 lectures across 323 topics from 566 Pakistani teaching channels. Every link is verified automatically, so you will not hit a dead video.",
+  },
+  {
+    q: "Do you cover I.Com (Commerce) subjects?",
+    a: "Yes, both years in full. I.Com Part 1 has Principles of Accounting, Business Mathematics, Principles of Commerce and Principles of Economics. Part 2 has Principles of Accounting, Business Statistics, Principles of Banking and Commercial Geography. Each carries its real board chapter list, Urdu video lectures and a glossary of examinable definitions.",
+  },
+  {
+    q: "Are there solved accounting questions for I.Com?",
+    a: "Yes. Principles of Accounting has fully worked problems for both years — accounting equation, journal and ledger, cash book and imprest petty cash, bank reconciliation, rectification of errors, adjusting entries, final accounts, depreciation, partnership admission, retirement and dissolution, share and debenture issues, cash flow, non-trading concerns and single entry. Each shows the given data, formula, every step and the answer in rupees.",
+  },
+  {
+    q: "Is Business Statistics covered for I.Com Part 2?",
+    a: "Yes, as a full I.Com Part 2 subject with its board chapters. The statistics material covers mean, median and mode, measures of dispersion, index numbers, correlation and regression, and sampling — each with worked examples and definitions written in the wording examiners expect.",
   },
   {
     q: "Does it work without internet?",
