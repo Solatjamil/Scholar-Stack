@@ -58,6 +58,7 @@ import MobileTabBar, { MobileMoreSheet } from "./components/MobileTabBar";
 import InstallPrompt from "./components/InstallPrompt";
 import StudyFaq from "./components/StudyFaq";
 import { getBiseDatesheet } from "./biseDatesheet";
+import BoardNotices from "./components/BoardNotices";
 
 enum OperationType {
   CREATE = 'create',
@@ -3285,18 +3286,23 @@ export default function App() {
       <nav id="top_navbar" className="h-16 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between shrink-0 sticky top-0 z-40 shadow-xs">
         <div className="flex items-center space-x-3 lg:space-x-8 min-w-0">
           {/* Logo with clean structural branding */}
-          <div className="flex items-center space-x-2.5 cursor-pointer shrink-0" onClick={() => setActiveTab("dashboard")}>
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-sm hover:bg-indigo-700 transition-colors">
+          <div className="group flex items-center space-x-2.5 cursor-pointer shrink-0" onClick={() => setActiveTab("dashboard")}>
+            {/* Bigger mark (44px) so the brand actually reads on a phone, and it
+                doubles as the 44px minimum touch target the rest of the mobile
+                UI follows. Gradient + hover lift give it some personality. */}
+            <div className="w-11 h-11 bg-gradient-to-br from-indigo-500 via-indigo-600 to-violet-600 rounded-xl flex items-center justify-center shadow-md shadow-indigo-500/25 ring-1 ring-white/20 transition-all duration-300 group-hover:scale-105 group-hover:-rotate-3 group-hover:shadow-lg group-hover:shadow-indigo-500/40 group-active:scale-95">
               {/* Inline brand mark: open book + rising chevron. Inline SVG so it
                   renders instantly and works offline / in sandboxed previews. */}
-              <svg viewBox="0 0 512 512" className="w-5 h-5" aria-hidden="true" focusable="false">
+              <svg viewBox="0 0 512 512" className="w-7 h-7 drop-shadow-sm" aria-hidden="true" focusable="false">
                 <path d="M242 214c-28-20-64-31-104-33-9 0-16 7-16 16v148c0 9 7 16 16 16 38 2 73 12 100 30 2 1 4 0 4-3z" fill="#FFFFFF" />
                 <path d="M270 214c28-20 64-31 104-33 9 0 16 7 16 16v148c0 9-7 16-16 16-38 2-73 12-100 30-2 1-4 0-4-3z" fill="#FFFFFF" />
                 <path d="M256 74l92 92h-56v78h-72v-78h-56z" fill="#FFFFFF" stroke="#4F46E5" strokeWidth="26" strokeLinejoin="round" />
-                <path d="M396 92l12 30 30 12-30 12-12 30-12-30-30-12 30-12z" fill="#F59E0B" />
+                <path d="M396 92l12 30 30 12-30 12-12 30-12-30-30-12 30-12z" fill="#FBBF24" className="origin-center transition-transform duration-500 group-hover:scale-125 group-hover:rotate-45" />
               </svg>
             </div>
-            <span className="font-display font-bold text-lg tracking-tight text-slate-800 hidden min-[380px]:inline">Young Scholars Pk</span>
+            <span className="font-display font-extrabold text-xl tracking-tight hidden min-[380px]:inline bg-gradient-to-r from-indigo-700 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
+              Young Scholars Pk
+            </span>
           </div>
 
           {/* Navigation Links with Active States */}
@@ -3722,6 +3728,13 @@ export default function App() {
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Live announcements straight from the student's own board site.
+                Complements the indicative countdown above: that is a projection,
+                this is what the board actually published. */}
+            <div className="mt-6">
+              <BoardNotices board={boardSelection} studentClass={studentClass} />
             </div>
 
             {/* Left Column: Academic Progress & Syllabus list (span-4) */}

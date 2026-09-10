@@ -1716,6 +1716,21 @@ app.get("/api/book-text/:bookId", async (req, res) => {
 });
 
 
+// Dev-server shim for the Vercel function in api/board-notices.ts so the
+// live-updates panel works with `npx tsx server.ts` too. Production uses the
+// serverless function; this just re-uses the same handler.
+app.get("/api/board-notices", async (req, res) => {
+  try {
+    const mod = await import("./api/board-notices.js").catch(
+      () => import("./api/board-notices.ts" as string)
+    );
+    const url = "/api/board-notices?" + new URLSearchParams(req.query as any).toString();
+    return (mod as any).default({ url } as any, res as any);
+  } catch (e: any) {
+    res.status(500).json({ error: e?.message || "board notices unavailable" });
+  }
+});
+
 // Configure Vite or Static Asset delivery
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
