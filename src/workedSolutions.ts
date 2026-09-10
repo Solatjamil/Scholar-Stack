@@ -2128,7 +2128,7 @@ const gapFill: WorkedProblem[] = [
       "r ko square karna mat bhoolein. Yeh inverse SQUARE law hai, simple inverse nahi.",
   },
   {
-    id: "p9-heat-1",
+    id: "p9-transfer-heat-1",
     classLevel: "9th",
     subject: "physics",
     chapter: "Transfer of Heat",
@@ -2429,7 +2429,7 @@ const gapFill: WorkedProblem[] = [
       "NAND aur NOR hamesha AND/OR ka ULTA hote hain. Truth table banane ki aadat daalein.",
   },
   {
-    id: "p12-nuc-1",
+    id: "p12-nuc-half-1",
     classLevel: "12th",
     subject: "physics",
     chapter: "Nuclear Physics",
@@ -2477,7 +2477,7 @@ const gapFill: WorkedProblem[] = [
       "c ka sign dhyan se lein: -(-11) = +11. Yahan sign ki ghalti se radius ghalat aata hai.",
   },
   {
-    id: "m12-vec-1",
+    id: "m12-vec-dot-1",
     classLevel: "12th",
     subject: "math",
     chapter: "Vectors",
@@ -3216,7 +3216,7 @@ const mathGapFill: WorkedProblem[] = [
       "Committee mein tarteeb ki ahmiyat nahi, is liye COMBINATION (nCr) lagta hai, permutation nahi.",
   },
   {
-    id: "m11-trig-1",
+    id: "m11-trigid-1",
     classLevel: "11th",
     subject: "math",
     chapter: "Trigonometric Identities",
@@ -3601,6 +3601,611 @@ const mathGapFill: WorkedProblem[] = [
   },
 ];
 
+/* ====== THEORY-CHAPTER CONCEPT ANSWERS (kind: "concept") ==============
+ * These chapters carry no numericals - inventing "Given/Formula/Answer" for
+ * them would be fabrication. Instead each is a board-style long question
+ * answered in the structure examiners reward: definition, mechanism/reason,
+ * comparison, then the conclusion, with the classic trap called out.
+ */
+const conceptGapFill: WorkedProblem[] = [
+  {
+    id: "c9-pt-1",
+    classLevel: "9th",
+    subject: "chemistry",
+    chapter: "Periodic Table and Periodicity of Properties",
+    kind: "concept",
+    question:
+      "Explain why atomic radius decreases across a period but increases down a group.",
+    romanUrdu:
+      "Batayein ke period mein atomic radius kam aur group mein zyada kyun hota hai.",
+    steps: [
+      { label: "Across a period", value: "the number of shells stays the same while protons are added to the nucleus" },
+      { label: "Effect of nuclear charge", value: "the greater positive charge pulls the same electron shells inward more strongly" },
+      { label: "Result across a period", value: "atomic radius decreases from left to right" },
+      { label: "Down a group", value: "a completely new shell is added at each step" },
+      { label: "Shielding effect", value: "inner shells screen the outer electrons from the nuclear pull" },
+      { label: "Result down a group", value: "the outermost electrons sit further out, so atomic radius increases" },
+    ],
+    answer: "Radius decreases across a period (rising nuclear charge, same shells) and increases down a group (new shells plus shielding).",
+    examTip:
+      "Do wajuhat likhna zaroori hai: nuclear charge AUR shielding. Sirf ek likhne par aadhe marks milte hain.",
+  },
+  {
+    id: "c9-echem-1",
+    classLevel: "9th",
+    subject: "chemistry",
+    chapter: "Electrochemistry",
+    kind: "concept",
+    question:
+      "Differentiate between electrolytic and galvanic (voltaic) cells with one example of each.",
+    romanUrdu:
+      "Electrolytic aur galvanic cell ka farq misalon ke sath likhein.",
+    steps: [
+      { label: "Energy conversion", value: "Electrolytic: electrical energy is converted into chemical energy. Galvanic: chemical energy is converted into electrical energy." },
+      { label: "Nature of reaction", value: "Electrolytic: the reaction is non-spontaneous and needs an external supply. Galvanic: the reaction is spontaneous." },
+      { label: "Anode sign", value: "Electrolytic: anode is positive. Galvanic: anode is negative." },
+      { label: "Cathode sign", value: "Electrolytic: cathode is negative. Galvanic: cathode is positive." },
+      { label: "Electrode placement", value: "Electrolytic: both electrodes sit in the same electrolyte. Galvanic: each electrode sits in its own half-cell joined by a salt bridge." },
+      { label: "Examples", value: "Electrolytic: electrolysis of molten NaCl (Down's cell). Galvanic: the Daniell cell (Zn/Cu)." },
+      { label: "Common ground", value: "in BOTH cells oxidation occurs at the anode and reduction at the cathode" },
+    ],
+    answer: "Electrolytic cells consume electricity to drive a non-spontaneous reaction; galvanic cells produce electricity from a spontaneous one.",
+    examTip:
+      "Anode/cathode ke SIGNS dono cells mein ulte hote hain, magar oxidation hamesha anode par hi hoti hai. Yeh trap har saal aata hai.",
+  },
+  {
+    id: "c9-react-1",
+    classLevel: "9th",
+    subject: "chemistry",
+    chapter: "Chemical Reactivity",
+    kind: "concept",
+    question:
+      "Why are alkali metals highly reactive, and why does reactivity increase down Group I? Support with the reaction of sodium with water.",
+    romanUrdu:
+      "Alkali metals ki reactivity ki wajah aur group mein barhne ka sabab likhein.",
+    formula: "2Na + 2H2O -> 2NaOH + H2",
+    steps: [
+      { label: "Electronic configuration", value: "alkali metals have a single electron in their outermost shell" },
+      { label: "Ease of loss", value: "losing that one electron gives a stable noble-gas configuration, so it is lost readily" },
+      { label: "Low ionisation energy", value: "little energy is required to remove the outer electron, making them very reactive" },
+      { label: "Down the group", value: "atomic size increases and the outer electron sits further from the nucleus" },
+      { label: "Weaker attraction", value: "the nuclear pull on that electron weakens and shielding increases" },
+      { label: "Result", value: "ionisation energy falls down the group, so reactivity increases: Li < Na < K < Rb < Cs" },
+      { label: "Reaction with water", value: "2Na + 2H2O -> 2NaOH + H2, which is vigorous and exothermic" },
+    ],
+    answer: "One loosely held outer electron makes alkali metals reactive; down the group larger size and shielding lower the ionisation energy, so reactivity increases.",
+    examTip:
+      "Reactivity ki wajah hamesha IONISATION ENERGY se joarein - sirf 'ek electron hai' likhna adhoora jawab hai.",
+  },
+  {
+    id: "p10-em-1",
+    classLevel: "10th",
+    subject: "physics",
+    chapter: "Electromagnetism",
+    kind: "concept",
+    question:
+      "State Faraday's law of electromagnetic induction and Lenz's law, and explain how a D.C. motor works.",
+    romanUrdu:
+      "Faraday aur Lenz ke qawaneen bayan karein aur D.C. motor ka amal samjhayein.",
+    formula: "emf = -N (change in flux / change in time)",
+    steps: [
+      { label: "Faraday's law", value: "the emf induced in a coil is directly proportional to the rate of change of magnetic flux through it" },
+      { label: "Lenz's law", value: "the induced current always flows in a direction that opposes the change producing it" },
+      { label: "Why Lenz's law holds", value: "it is a consequence of the conservation of energy; if the current aided the change, energy would be created from nothing" },
+      { label: "Motor principle", value: "a current-carrying coil placed in a magnetic field experiences a force (motor effect)" },
+      { label: "Force direction", value: "given by Fleming's left-hand rule: first finger = field, second finger = current, thumb = motion" },
+      { label: "Couple", value: "the forces on the two opposite sides of the coil act in opposite directions and form a couple, rotating the coil" },
+      { label: "Role of the split ring", value: "the commutator reverses the current every half turn so rotation continues in one direction" },
+    ],
+    answer: "Faraday's law gives the size of the induced emf, Lenz's law its direction; a D.C. motor converts electrical energy into mechanical energy using the motor effect and a split-ring commutator.",
+    examTip:
+      "Motor mein LEFT-hand rule aur generator mein RIGHT-hand rule lagta hai. Yeh ulta karna sab se aam ghalti hai.",
+  },
+  {
+    id: "p10-basicelec-1",
+    classLevel: "10th",
+    subject: "physics",
+    chapter: "Basic Electronics",
+    kind: "concept",
+    question:
+      "Explain thermionic emission and describe the function of a cathode ray oscilloscope (CRO).",
+    romanUrdu:
+      "Thermionic emission aur CRO ka kaam samjhayein.",
+    steps: [
+      { label: "Thermionic emission", value: "the emission of electrons from the surface of a metal when it is heated to a high temperature" },
+      { label: "Mechanism", value: "heating gives the free electrons enough kinetic energy to overcome the metal's work function" },
+      { label: "Electron gun", value: "the heated cathode emits electrons which are accelerated by anodes into a fine beam" },
+      { label: "Deflecting system", value: "two pairs of plates deflect the beam: X-plates horizontally and Y-plates vertically" },
+      { label: "Fluorescent screen", value: "the beam strikes the screen and produces a visible spot of light" },
+      { label: "Uses", value: "displaying waveforms, measuring voltage, frequency and phase, and in medical equipment (ECG)" },
+    ],
+    answer: "Thermionic emission supplies the electron beam; the CRO accelerates and deflects it onto a fluorescent screen to display waveforms.",
+    examTip:
+      "Electron gun, deflecting plates aur screen - teeno hisson ka zikr karein. Sirf definition likhne par poore marks nahi milte.",
+  },
+  {
+    id: "p10-ict-1",
+    classLevel: "10th",
+    subject: "physics",
+    chapter: "Information and Communication Technology",
+    kind: "concept",
+    question:
+      "Explain how optical fibre transmits information and state its advantages over copper wire.",
+    romanUrdu:
+      "Optical fibre kaise maloomat bhejta hai aur uske faide kya hain.",
+    steps: [
+      { label: "Structure", value: "a fibre has a dense inner core surrounded by a less dense cladding" },
+      { label: "Principle", value: "light travels along the core by repeated total internal reflection at the core-cladding boundary" },
+      { label: "Condition 1", value: "light must pass from a denser to a rarer medium (core to cladding)" },
+      { label: "Condition 2", value: "the angle of incidence must exceed the critical angle" },
+      { label: "Signal form", value: "information is converted into pulses of light (digital signals) and reconverted to electrical signals at the far end" },
+      { label: "Advantages", value: "much greater bandwidth, very low signal loss over distance, immune to electrical interference, lighter and thinner, more secure against tapping" },
+    ],
+    answer: "Optical fibre carries information as light pulses guided by total internal reflection, giving higher bandwidth and lower loss than copper.",
+    examTip:
+      "Total internal reflection ki DONO sharten likhna zaroori hai. Sirf 'roshni andar reflect hoti hai' likhna adhoora hai.",
+  },
+  {
+    id: "p10-radio-1",
+    classLevel: "10th",
+    subject: "physics",
+    chapter: "Radioactivity",
+    kind: "concept",
+    question:
+      "Compare alpha, beta and gamma radiations in terms of nature, charge, penetrating power and ionising power.",
+    romanUrdu:
+      "Alpha, beta aur gamma radiation ka moazna karein.",
+    steps: [
+      { label: "Alpha - nature", value: "a helium nucleus, 2 protons + 2 neutrons, charge +2, relatively heavy" },
+      { label: "Beta - nature", value: "a fast-moving electron, charge -1, very light" },
+      { label: "Gamma - nature", value: "high-energy electromagnetic radiation, no charge, no mass" },
+      { label: "Penetrating power", value: "alpha is stopped by paper; beta by a few mm of aluminium; gamma needs thick lead or concrete" },
+      { label: "Ionising power", value: "alpha is the strongest ioniser, beta moderate, gamma the weakest" },
+      { label: "The inverse relationship", value: "the more strongly a radiation ionises, the faster it loses energy, so the less it penetrates" },
+      { label: "Deflection in a field", value: "alpha and beta are deflected in opposite directions by electric and magnetic fields; gamma is not deflected at all" },
+    ],
+    answer: "Alpha: highest ionising, lowest penetrating. Gamma: lowest ionising, highest penetrating. Beta lies between the two.",
+    examTip:
+      "Ionising aur penetrating power hamesha ULTE hote hain. Yeh relationship yaad rakhein - is se poora sawal hal ho jata hai.",
+  },
+  {
+    id: "c10-bio-1",
+    classLevel: "10th",
+    subject: "chemistry",
+    chapter: "Biochemistry",
+    kind: "concept",
+    question:
+      "Classify carbohydrates with examples and explain the difference between proteins and lipids.",
+    romanUrdu:
+      "Carbohydrates ki iqsaam aur proteins/lipids ka farq likhein.",
+    steps: [
+      { label: "Definition", value: "carbohydrates are polyhydroxy aldehydes or ketones, or compounds yielding them on hydrolysis" },
+      { label: "Monosaccharides", value: "the simplest sugars, cannot be hydrolysed further: glucose, fructose, galactose" },
+      { label: "Oligosaccharides", value: "yield 2 to 10 monosaccharide units: sucrose, maltose, lactose" },
+      { label: "Polysaccharides", value: "yield many units on hydrolysis: starch, cellulose, glycogen" },
+      { label: "Proteins", value: "polymers of alpha-amino acids joined by peptide bonds, containing C, H, O and nitrogen" },
+      { label: "Lipids", value: "esters of fatty acids and glycerol, containing only C, H and O and insoluble in water" },
+      { label: "Key distinction", value: "proteins always contain nitrogen while lipids do not; proteins build tissue while lipids store energy" },
+    ],
+    answer: "Carbohydrates are mono-, oligo- or polysaccharides; proteins are nitrogen-containing amino-acid polymers, lipids are nitrogen-free fatty acid esters.",
+    examTip:
+      "Proteins mein NITROGEN hota hai, lipids mein nahi - yeh sab se aasan farq hai jo examiner poochta hai.",
+  },
+  {
+    id: "c10-atm-1",
+    classLevel: "10th",
+    subject: "chemistry",
+    chapter: "The Atmosphere",
+    kind: "concept",
+    question:
+      "Explain the causes and effects of acid rain, and how the ozone layer is depleted.",
+    romanUrdu:
+      "Acid rain aur ozone depletion ke asbaab aur nataij likhein.",
+    formula: "SO2 + H2O -> H2SO3 ; 2H2SO3 + O2 -> 2H2SO4",
+    steps: [
+      { label: "Acid rain definition", value: "rain with pH below 5.6, caused by oxides of sulphur and nitrogen dissolving in atmospheric moisture" },
+      { label: "Sources", value: "burning fossil fuels releases SO2 and NO2 from power stations, factories and vehicles" },
+      { label: "Formation", value: "SO2 + H2O -> H2SO3, then oxidised to H2SO4; NO2 forms HNO3" },
+      { label: "Effects", value: "damages buildings and marble monuments, acidifies lakes killing aquatic life, harms crops and leaches soil nutrients" },
+      { label: "Ozone layer", value: "a stratospheric layer that absorbs harmful ultraviolet radiation" },
+      { label: "Depletion cause", value: "chlorofluorocarbons (CFCs) release chlorine atoms in UV light, and each Cl atom destroys many ozone molecules catalytically" },
+      { label: "Consequences", value: "more UV reaching the surface causes skin cancer, cataracts and reduced crop yields" },
+    ],
+    answer: "Acid rain comes from SO2 and NO2 forming sulphuric and nitric acids; ozone depletion is driven catalytically by chlorine from CFCs.",
+    examTip:
+      "Acid rain ka pH 5.6 se KAM hota hai (normal barish khud 5.6 hoti hai CO2 ki wajah se), 7 se nahi. Yeh number aksar galat likha jata hai.",
+  },
+  {
+    id: "c10-water-1",
+    classLevel: "10th",
+    subject: "chemistry",
+    chapter: "Water",
+    kind: "concept",
+    question:
+      "Distinguish between temporary and permanent hardness of water and describe how each is removed.",
+    romanUrdu:
+      "Aarzi aur mustaqil sakhti ka farq aur unko door karne ke tareeqe likhein.",
+    formula: "Ca(HCO3)2 -> CaCO3 (precipitate) + H2O + CO2",
+    steps: [
+      { label: "Hard water", value: "water that does not readily lather with soap because it contains dissolved calcium and magnesium salts" },
+      { label: "Temporary hardness", value: "caused by dissolved bicarbonates of calcium and magnesium, Ca(HCO3)2 and Mg(HCO3)2" },
+      { label: "Removal by boiling", value: "heating decomposes the bicarbonate into insoluble carbonate which precipitates out" },
+      { label: "Clark's method", value: "adding calculated slaked lime, Ca(OH)2, precipitates the carbonate" },
+      { label: "Permanent hardness", value: "caused by dissolved sulphates and chlorides of calcium and magnesium, which boiling cannot remove" },
+      { label: "Washing soda method", value: "Na2CO3 precipitates Ca and Mg as insoluble carbonates" },
+      { label: "Ion exchange", value: "passing water through a resin exchanges Ca2+ and Mg2+ for Na+, removing both types of hardness" },
+      { label: "Disadvantages of hard water", value: "wastes soap, forms scum, and produces boiler scale that wastes fuel and can cause explosions" },
+    ],
+    answer: "Temporary hardness is due to bicarbonates and is removed by boiling or Clark's method; permanent hardness is due to sulphates/chlorides and needs washing soda or ion exchange.",
+    examTip:
+      "Boiling sirf AARZI sakhti door karta hai. Mustaqil sakhti par boiling ka koi asar nahi - yeh sab se aam ghalti hai.",
+  },
+  {
+    id: "p11-physopt-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Physical Optics",
+    kind: "concept",
+    question:
+      "State the conditions for sustained interference and explain Young's double slit experiment.",
+    romanUrdu:
+      "Interference ki sharten aur Young ka tajurba samjhayein.",
+    formula: "Fringe spacing: y = (lambda) L / d",
+    steps: [
+      { label: "Coherence", value: "the two sources must be coherent, i.e. maintain a constant phase difference" },
+      { label: "Same frequency", value: "the two waves must have the same frequency and nearly equal amplitude" },
+      { label: "Narrow separation", value: "the two slits must be very close together and the screen reasonably far away" },
+      { label: "Young's setup", value: "monochromatic light passes through a single slit, then through two narrow slits S1 and S2" },
+      { label: "Superposition", value: "the two emerging wavefronts overlap and superpose on the screen" },
+      { label: "Constructive interference", value: "where path difference = n(lambda), crests meet crests and a BRIGHT fringe forms" },
+      { label: "Destructive interference", value: "where path difference = (n + 1/2)(lambda), crest meets trough and a DARK fringe forms" },
+      { label: "Fringe spacing", value: "the fringes are equally spaced, with spacing given by the formula below" },
+    ],
+    answer: "Sustained interference needs coherent sources of the same frequency; Young's experiment produces equally spaced bright and dark fringes by superposition.",
+    examTip:
+      "Coherent ka matlab constant PHASE DIFFERENCE hai, na ke 'ek jaisi roshni'. Do alag bulbs kabhi coherent nahi hote.",
+  },
+  {
+    id: "p11-optinst-1",
+    classLevel: "11th",
+    subject: "physics",
+    chapter: "Optical Instruments",
+    kind: "concept",
+    question:
+      "Define resolving power and magnifying power, and explain why a compound microscope gives greater magnification than a simple one.",
+    romanUrdu:
+      "Resolving aur magnifying power ki tareef aur compound microscope ki barteri.",
+    formula: "M = M_o x M_e",
+    steps: [
+      { label: "Magnifying power", value: "the ratio of the angle subtended by the image to the angle subtended by the object at the unaided eye" },
+      { label: "Resolving power", value: "the ability of an instrument to show two closely spaced objects as separate and distinct" },
+      { label: "Limit of resolution", value: "the smallest angular separation at which two points can still be distinguished; smaller means better resolution" },
+      { label: "Simple microscope", value: "a single convex lens of short focal length, giving limited magnification" },
+      { label: "Compound microscope", value: "uses two convex lenses, an objective of very short focal length and an eyepiece" },
+      { label: "Two-stage magnification", value: "the objective forms a real, inverted, magnified image which the eyepiece then magnifies again" },
+      { label: "Result", value: "total magnification is the PRODUCT of the two, so it far exceeds a single lens" },
+    ],
+    answer: "Magnifying power compares angular sizes; resolving power distinguishes close objects. A compound microscope multiplies two magnifications, so it greatly exceeds a simple one.",
+    examTip:
+      "Compound microscope mein dono magnifications ZARB hoti hain, jama nahi. M = M_objective x M_eyepiece.",
+  },
+  {
+    id: "c11-liq-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "Liquids and Solids",
+    kind: "concept",
+    question:
+      "Explain hydrogen bonding and its effect on the boiling point of water, and distinguish crystalline from amorphous solids.",
+    romanUrdu:
+      "Hydrogen bonding ka asar aur crystalline/amorphous ka farq likhein.",
+    steps: [
+      { label: "Hydrogen bond", value: "an electrostatic attraction between a hydrogen atom bonded to a highly electronegative atom (F, O or N) and a lone pair on another such atom" },
+      { label: "In water", value: "each molecule can form up to four hydrogen bonds through its two H atoms and two lone pairs" },
+      { label: "Effect on boiling point", value: "extra energy is needed to break this extensive network, so water boils at 100 C" },
+      { label: "Comparison", value: "H2S has no hydrogen bonding and boils at about -60 C despite a larger molar mass" },
+      { label: "Crystalline solids", value: "particles arranged in a regular repeating three-dimensional lattice; sharp melting point; anisotropic" },
+      { label: "Amorphous solids", value: "no long-range order; melt over a range of temperature; isotropic" },
+      { label: "Examples", value: "crystalline: NaCl, diamond, quartz. Amorphous: glass, rubber, plastic" },
+    ],
+    answer: "Hydrogen bonding raises water's boiling point far above expectation; crystalline solids have ordered lattices and sharp melting points, amorphous solids do not.",
+    examTip:
+      "Hydrogen bond sirf F, O aur N ke sath banta hai. Cl ke sath nahi banta chahe woh electronegative ho - yeh trap aksar aata hai.",
+  },
+  {
+    id: "c11-echem-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "Electrochemistry",
+    kind: "concept",
+    question:
+      "Explain the electrochemical series and use it to predict whether zinc can displace copper from copper sulphate solution.",
+    romanUrdu:
+      "Electrochemical series se pesheengoi karein ke zinc copper ko displace karega ya nahi.",
+    formula: "E_cell = E_cathode - E_anode",
+    steps: [
+      { label: "Electrochemical series", value: "an arrangement of elements in order of their standard reduction potentials" },
+      { label: "Interpretation", value: "a more negative reduction potential means a stronger tendency to be oxidised, i.e. a more reactive metal" },
+      { label: "Standard potentials", value: "Zn2+/Zn = -0.76 V and Cu2+/Cu = +0.34 V" },
+      { label: "Comparison", value: "zinc is more negative, so zinc is more reactive and is oxidised in preference to copper" },
+      { label: "Prediction", value: "zinc will displace copper from copper sulphate solution" },
+      { label: "Reaction", value: "Zn + CuSO4 -> ZnSO4 + Cu, with reddish-brown copper depositing and the blue colour fading" },
+      { label: "Cell emf", value: "E_cell = E_cathode - E_anode = 0.34 - (-0.76) = +1.10 V, and a positive value confirms spontaneity" },
+    ],
+    answer: "Zinc lies above copper in the series, so the displacement occurs spontaneously with a cell emf of +1.10 V.",
+    examTip:
+      "E_cell MUSBAT ho to reaction khud ba khud hoti hai. Manfi aaye to nahi hoti - yeh check hamesha likhein.",
+  },
+  {
+    id: "c11-kin-1",
+    classLevel: "11th",
+    subject: "chemistry",
+    chapter: "Reaction Kinetics",
+    kind: "concept",
+    question:
+      "State the factors affecting the rate of a chemical reaction and explain the role of a catalyst using activation energy.",
+    romanUrdu:
+      "Reaction rate ke asraat aur catalyst ka kirdar samjhayein.",
+    steps: [
+      { label: "Concentration", value: "increasing concentration increases the frequency of collisions, so the rate rises" },
+      { label: "Temperature", value: "raising temperature increases both collision frequency and the fraction of molecules with sufficient energy; roughly the rate doubles per 10 C rise" },
+      { label: "Surface area", value: "a finely divided solid exposes more surface, so reaction is faster" },
+      { label: "Nature of reactants", value: "ionic reactions are generally fast; covalent bond breaking is slower" },
+      { label: "Catalyst definition", value: "a substance that alters the rate of reaction without being consumed itself" },
+      { label: "How it works", value: "the catalyst provides an alternative reaction pathway with a LOWER activation energy" },
+      { label: "Consequence", value: "more molecules possess the reduced activation energy, so more collisions are effective and the rate increases" },
+      { label: "Important limit", value: "a catalyst does NOT change the position of equilibrium or the enthalpy change; it only speeds up attainment of equilibrium" },
+    ],
+    answer: "Rate depends on concentration, temperature, surface area and reactant nature; a catalyst lowers activation energy without shifting the equilibrium.",
+    examTip:
+      "Catalyst equilibrium ki JAGAH nahi badalta, sirf woh jaldi aati hai. Yeh sab se aam ghalat fehmi hai.",
+  },
+  {
+    id: "m11-ratio-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Ratio, Proportion and Percentage",
+    kind: "concept",
+    question:
+      "Divide Rs. 91,000 among A, B and C in the ratio 3 : 5 : 6, then express each share as a percentage of the total.",
+    romanUrdu:
+      "Raqam ko diye gaye ratio mein taqseem karein aur fisad nikalein.",
+    steps: [
+      { label: "Total ratio parts", value: "3 + 5 + 6 = 14" },
+      { label: "Value of one part", value: "91,000 / 14 = Rs. 6,500" },
+      { label: "A's share", value: "3 x 6,500 = Rs. 19,500" },
+      { label: "B's share", value: "5 x 6,500 = Rs. 32,500" },
+      { label: "C's share", value: "6 x 6,500 = Rs. 39,000" },
+      { label: "Verify the total", value: "19,500 + 32,500 + 39,000 = Rs. 91,000, correct" },
+      { label: "A as a percentage", value: "(19,500 / 91,000) x 100 = 21.43%" },
+      { label: "B as a percentage", value: "(32,500 / 91,000) x 100 = 35.71%" },
+      { label: "C as a percentage", value: "(39,000 / 91,000) x 100 = 42.86%" },
+    ],
+    answer: "A = Rs. 19,500 (21.43%), B = Rs. 32,500 (35.71%), C = Rs. 39,000 (42.86%).",
+    examTip:
+      "Hisse jama kar ke total se milayein - yeh check ghalti foran pakad leta hai. Fisad ka jama bhi 100 aana chahiye.",
+  },
+  {
+    id: "p12-em-1",
+    classLevel: "12th",
+    subject: "physics",
+    chapter: "Electromagnetism",
+    kind: "concept",
+    question:
+      "State Ampere's law and explain the working principle of a transformer, including why it cannot work on D.C.",
+    romanUrdu:
+      "Ampere ka qanoon aur transformer ka usool bayan karein.",
+    formula: "Vs / Vp = Ns / Np",
+    steps: [
+      { label: "Ampere's law", value: "the line integral of the magnetic field around a closed loop equals mu-zero times the current enclosed" },
+      { label: "Transformer principle", value: "it works on mutual induction between two coils wound on a common soft-iron core" },
+      { label: "Action", value: "alternating current in the primary produces a continuously changing magnetic flux in the core" },
+      { label: "Induction", value: "this changing flux links the secondary coil and induces an alternating emf in it" },
+      { label: "Turns ratio", value: "the voltage ratio equals the turns ratio, as in the formula below" },
+      { label: "Step-up and step-down", value: "more secondary turns steps voltage up; fewer steps it down" },
+      { label: "Why D.C. fails", value: "direct current produces a CONSTANT flux; with no rate of change of flux, no emf is induced in the secondary" },
+      { label: "Energy conservation", value: "stepping voltage up reduces current proportionally, since power in equals power out for an ideal transformer" },
+    ],
+    answer: "A transformer relies on mutual induction from a changing flux, so it only works on A.C.; with D.C. the flux is constant and no emf is induced.",
+    examTip:
+      "Transformer D.C. par kaam NAHI karta - yeh sawal har saal aata hai. Wajah: flux tabdeel nahi hota to emf nahi banti.",
+  },
+  {
+    id: "p12-spectra-1",
+    classLevel: "12th",
+    subject: "physics",
+    chapter: "Atomic Spectra",
+    kind: "concept",
+    question:
+      "Explain Bohr's postulates and how they account for the line spectrum of hydrogen.",
+    romanUrdu:
+      "Bohr ke usool aur hydrogen ke line spectrum ki tawzeeh dein.",
+    formula: "hf = E_n2 - E_n1",
+    steps: [
+      { label: "Postulate 1", value: "electrons revolve only in certain permitted circular orbits without radiating energy" },
+      { label: "Postulate 2", value: "the angular momentum of an electron is quantised in multiples of h/2pi" },
+      { label: "Postulate 3", value: "energy is emitted or absorbed only when an electron jumps between orbits" },
+      { label: "Photon energy", value: "the emitted photon carries energy equal to the difference between the two levels: hf = E_high - E_low" },
+      { label: "Why lines, not a continuum", value: "only certain energy differences are possible, so only certain frequencies appear" },
+      { label: "Lyman series", value: "transitions ending at n = 1, appearing in the ultraviolet" },
+      { label: "Balmer series", value: "transitions ending at n = 2, appearing in the visible region" },
+      { label: "Paschen series", value: "transitions ending at n = 3, appearing in the infrared" },
+    ],
+    answer: "Quantised orbits mean only discrete energy jumps are allowed, so hydrogen emits a line spectrum rather than a continuous one.",
+    examTip:
+      "Line spectrum ka sabab QUANTISED energy levels hain. 'Electron gir gaya' likhna kaafi nahi - energy difference ka zikr zaroori hai.",
+  },
+  {
+    id: "c12-alip-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Aliphatic Hydrocarbons",
+    kind: "concept",
+    question:
+      "Compare the reactivity of alkanes, alkenes and alkynes, and explain why alkanes undergo substitution while alkenes undergo addition.",
+    romanUrdu:
+      "Alkanes, alkenes aur alkynes ki reactivity ka moazna karein.",
+    formula: "CH2=CH2 + Br2 -> CH2Br-CH2Br (decolourises bromine water)",
+    steps: [
+      { label: "Alkanes", value: "saturated, containing only single C-C sigma bonds, general formula CnH(2n+2)" },
+      { label: "Why alkanes substitute", value: "sigma bonds are strong and there is no site of high electron density, so alkanes are unreactive and react only by free-radical substitution in UV light" },
+      { label: "Alkenes", value: "unsaturated, containing a C=C double bond, formula CnH(2n)" },
+      { label: "Why alkenes add", value: "the pi bond is weak and exposed, forming an electron-rich region that attracts electrophiles, giving addition reactions" },
+      { label: "Alkynes", value: "unsaturated with a C triple-bond C, formula CnH(2n-2), and also undergo addition" },
+      { label: "Reactivity order", value: "alkynes and alkenes are far more reactive than alkanes" },
+      { label: "Test for unsaturation", value: "bromine water is decolourised by alkenes and alkynes but not by alkanes" },
+    ],
+    answer: "Alkanes are saturated and substitute; alkenes and alkynes have exposed pi bonds and add. Bromine water distinguishes them.",
+    examTip:
+      "Alkane = SUBSTITUTION, alkene/alkyne = ADDITION. Yeh ek line poora sawal hal kar deti hai.",
+  },
+  {
+    id: "c12-arom-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Aromatic Hydrocarbons",
+    kind: "concept",
+    question:
+      "Explain the structure of benzene and why it prefers substitution over addition despite being unsaturated.",
+    romanUrdu:
+      "Benzene kiساخت aur substitution ki tarjeeh ki wajah likhein.",
+    steps: [
+      { label: "Molecular formula", value: "C6H6, a planar hexagonal ring with all bond angles 120 degrees" },
+      { label: "Hybridisation", value: "each carbon is sp2 hybridised, leaving one unhybridised p orbital" },
+      { label: "Delocalisation", value: "the six p orbitals overlap sideways to form a delocalised pi electron cloud above and below the ring" },
+      { label: "Equal bond lengths", value: "all six C-C bonds are identical at 139 pm, between a single (154 pm) and a double bond (134 pm)" },
+      { label: "Resonance stability", value: "delocalisation lowers the energy by about 150 kJ/mol, called resonance energy" },
+      { label: "Why substitution", value: "addition would destroy the delocalised system and its stability, so benzene instead undergoes electrophilic substitution which preserves the ring" },
+      { label: "Typical reactions", value: "nitration, halogenation, sulphonation and Friedel-Crafts alkylation" },
+    ],
+    answer: "Benzene's delocalised pi system makes it unusually stable, so it undergoes electrophilic substitution rather than addition.",
+    examTip:
+      "Wajah hamesha RESONANCE/DELOCALISATION likhein. Sirf 'benzene stable hai' likhna adhoora jawab hai.",
+  },
+  {
+    id: "c12-alkyl-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Alkyl Halides",
+    kind: "concept",
+    question:
+      "Distinguish between SN1 and SN2 mechanisms of nucleophilic substitution in alkyl halides.",
+    romanUrdu:
+      "SN1 aur SN2 mechanism ka farq likhein.",
+    steps: [
+      { label: "SN1 steps", value: "two steps: the C-X bond breaks first to give a carbocation, which the nucleophile then attacks" },
+      { label: "SN1 kinetics", value: "rate depends only on the substrate concentration, so it is first order: rate = k[RX]" },
+      { label: "SN1 substrate", value: "favoured by tertiary halides, because tertiary carbocations are the most stable" },
+      { label: "SN1 stereochemistry", value: "the planar carbocation is attacked from both faces, giving a racemic mixture" },
+      { label: "SN2 steps", value: "one concerted step: the nucleophile attacks as the leaving group departs" },
+      { label: "SN2 kinetics", value: "rate depends on both concentrations, so it is second order: rate = k[RX][Nu]" },
+      { label: "SN2 substrate", value: "favoured by primary halides, because there is least steric hindrance to back-side attack" },
+      { label: "SN2 stereochemistry", value: "back-side attack causes inversion of configuration (Walden inversion)" },
+    ],
+    answer: "SN1 is two-step, first order, favours tertiary halides and gives racemisation; SN2 is one-step, second order, favours primary halides and gives inversion.",
+    examTip:
+      "SN1 mein '1' ka matlab rate ek cheez par munhasir hai, SN2 mein do par. Tertiary = SN1, primary = SN2.",
+  },
+  {
+    id: "c12-alc-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Alcohols, Phenols and Ethers",
+    kind: "concept",
+    question:
+      "Explain why phenol is more acidic than ethanol, and give a chemical test to distinguish them.",
+    romanUrdu:
+      "Phenol ke ethanol se zyada tezabi hone ki wajah aur imtihani test likhein.",
+    steps: [
+      { label: "Both contain -OH", value: "yet phenol is markedly more acidic than ethanol" },
+      { label: "Phenol ionisation", value: "phenol loses a proton to give the phenoxide ion" },
+      { label: "Stabilisation", value: "the negative charge on phenoxide is delocalised into the benzene ring by resonance, spreading the charge" },
+      { label: "Consequence", value: "the stabilised anion makes proton loss easier, so phenol is more acidic" },
+      { label: "Ethanol", value: "the ethoxide ion has no resonance stabilisation, and the alkyl group is electron-donating, which intensifies the negative charge" },
+      { label: "Result", value: "ethoxide is less stable, so ethanol is a much weaker acid (pKa about 16 versus phenol's 10)" },
+      { label: "Distinguishing test", value: "neutral FeCl3 gives a violet colouration with phenol but no change with ethanol" },
+      { label: "Second test", value: "phenol reacts with NaOH to form a salt, ethanol does not" },
+    ],
+    answer: "Resonance stabilisation of the phenoxide ion makes phenol far more acidic than ethanol; neutral FeCl3 gives a violet colour with phenol only.",
+    examTip:
+      "Wajah RESONANCE hai. Test FeCl3 hai (violet colour). Dono cheezein likhne par hi poore marks milte hain.",
+  },
+  {
+    id: "c12-ald-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Aldehydes and Ketones",
+    kind: "concept",
+    question:
+      "Explain why aldehydes are more reactive than ketones towards nucleophilic addition, and give two tests that distinguish them.",
+    romanUrdu:
+      "Aldehydes ke zyada reactive hone ki wajah aur do tests likhein.",
+    steps: [
+      { label: "Common feature", value: "both contain the carbonyl group C=O, which is polar with a partially positive carbon" },
+      { label: "Electronic reason", value: "ketones have two electron-donating alkyl groups which reduce the positive charge on the carbonyl carbon" },
+      { label: "Effect", value: "aldehydes have only one such group, so their carbonyl carbon is more electron-deficient and more open to nucleophilic attack" },
+      { label: "Steric reason", value: "the two bulky alkyl groups in ketones hinder the approach of the nucleophile" },
+      { label: "Conclusion", value: "aldehydes are more reactive than ketones towards nucleophilic addition" },
+      { label: "Tollens' test", value: "aldehydes reduce ammoniacal silver nitrate to give a silver mirror; ketones give no reaction" },
+      { label: "Fehling's test", value: "aldehydes give a brick-red precipitate of Cu2O; ketones give none" },
+      { label: "Reason for the tests", value: "aldehydes are easily oxidised to carboxylic acids, whereas ketones resist oxidation" },
+    ],
+    answer: "Aldehydes are more reactive for both electronic and steric reasons; Tollens' (silver mirror) and Fehling's (brick-red) tests distinguish them from ketones.",
+    examTip:
+      "DONO wajuhat likhein - electronic aur steric. Aur tests ka nateeja (silver mirror, brick-red) zaroor likhein, sirf naam nahi.",
+  },
+  {
+    id: "c12-carbox-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Carboxylic Acids",
+    kind: "concept",
+    question:
+      "Explain why carboxylic acids are more acidic than alcohols and phenols, and describe the preparation of an ester.",
+    romanUrdu:
+      "Carboxylic acids ki tezabiyat aur ester banane ka tareeqa likhein.",
+    formula: "CH3COOH + C2H5OH <-> CH3COOC2H5 + H2O (conc. H2SO4)",
+    steps: [
+      { label: "Ionisation", value: "a carboxylic acid loses a proton to give the carboxylate ion, RCOO-" },
+      { label: "Resonance", value: "the negative charge is delocalised equally over BOTH oxygen atoms" },
+      { label: "Equivalent structures", value: "the two resonance structures are identical, giving maximum stabilisation" },
+      { label: "Comparison with phenol", value: "phenoxide delocalises charge onto less electronegative carbon atoms of the ring, so it is stabilised less" },
+      { label: "Comparison with alcohols", value: "alkoxide has no delocalisation at all" },
+      { label: "Acidity order", value: "carboxylic acid > phenol > water > alcohol" },
+      { label: "Esterification", value: "a carboxylic acid heated with an alcohol and concentrated H2SO4 gives an ester and water" },
+      { label: "Role of H2SO4", value: "it acts as a catalyst and a dehydrating agent, shifting the equilibrium towards the ester" },
+      { label: "Ester property", value: "esters have characteristically pleasant fruity smells and are used in perfumes and flavourings" },
+    ],
+    answer: "Equal delocalisation over two oxygens makes carboxylic acids the strongest of these; esters are made by acid-catalysed condensation with an alcohol.",
+    examTip:
+      "Acidity ki tarteeb yaad rakhein: carboxylic acid > phenol > water > alcohol. Yeh comparison ka sawal har saal aata hai.",
+  },
+  {
+    id: "c12-macro-1",
+    classLevel: "12th",
+    subject: "chemistry",
+    chapter: "Macromolecules",
+    kind: "concept",
+    question:
+      "Differentiate between addition and condensation polymerisation with examples, and explain the difference between thermoplastic and thermosetting polymers.",
+    romanUrdu:
+      "Polymerisation ki do iqsaam aur plastics ka farq likhein.",
+    steps: [
+      { label: "Polymer definition", value: "a very large molecule built from many repeating small units called monomers" },
+      { label: "Addition polymerisation", value: "unsaturated monomers add together without losing any atoms, so no by-product forms" },
+      { label: "Addition examples", value: "polythene from ethene, PVC from vinyl chloride, polystyrene from styrene" },
+      { label: "Condensation polymerisation", value: "monomers with two functional groups join and eliminate a small molecule, usually water" },
+      { label: "Condensation examples", value: "nylon 6,6 from a diamine and a diacid, and terylene (polyester) from a diol and a diacid" },
+      { label: "Thermoplastic", value: "linear or slightly branched chains held by weak forces; soften on heating and can be remoulded repeatedly; e.g. polythene, PVC" },
+      { label: "Thermosetting", value: "heavily cross-linked three-dimensional network; set permanently on first heating and char rather than soften; e.g. bakelite, melamine" },
+      { label: "Key structural reason", value: "the presence or absence of cross-linking decides whether the plastic can be remelted" },
+    ],
+    answer: "Addition polymerisation loses nothing; condensation eliminates a small molecule. Thermoplastics are linear and remouldable, thermosets are cross-linked and permanent.",
+    examTip:
+      "Thermoplastic bar bar pighal sakta hai, thermosetting nahi - wajah CROSS-LINKING hai. Yeh structural wajah likhna zaroori hai.",
+  },
+];
+
 export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...physics9,
   ...physics10,
@@ -3612,6 +4217,7 @@ export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...accounting,
   ...gapFill,
   ...mathGapFill,
+  ...conceptGapFill,
 ];
 
 /**
