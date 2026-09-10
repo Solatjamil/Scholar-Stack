@@ -20,6 +20,8 @@ const SYLLABUS_KEY = {
   "10th-physics": "syl-phy-10-sci",
   "10th-biology": "syl-bio-10-sci",
   "10th-math": "syl-math-10-sci",
+  "11th-physics": "syl-phy-11-fsc",
+  "11th-chemistry": "syl-ch-11-fsc",
 };
 
 let failures = 0;

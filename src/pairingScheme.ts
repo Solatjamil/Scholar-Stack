@@ -236,6 +236,64 @@ export const PAIRING_SCHEMES: Record<string, PairingScheme> = {
     longNote: "Attempt any 2 of 3 · each 9 marks = 18 marks",
     sourceNote: SRC_2026,
   },
+
+  /* ──────────────── 11th (HSSC Part I / 1st Year) ────────────────
+   * Intermediate papers use a different shape to matric: 17 MCQs, short
+   * questions in Q.2/Q.3/Q.4 (attempt 8 of 12, 8 of 12, 6 of 9) and FIVE long
+   * questions of which any THREE are attempted.
+   */
+  "11th-physics": {
+    subjectId: "physics",
+    classLevel: "11th",
+    session: "2026",
+    totalMarks: 85,
+    // Our edition has 11 chapters; published tables that cite a ch.12 follow a
+    // different edition, so that reference is intentionally absent and its MCQ
+    // is redistributed across the chapters this book actually contains.
+    mcqs: { 1: 1, 2: 2, 3: 2, 4: 1, 5: 2, 6: 1, 7: 2, 8: 1, 9: 2, 10: 2, 11: 1 },
+    mcqTotal: 17,
+    shortGroups: [
+      { question: "Q.2", chapters: [1, 2, 3], attempt: "any 8 of 12" },
+      { question: "Q.3", chapters: [4, 5, 6, 7, 8], attempt: "any 8 of 12" },
+      { question: "Q.4", chapters: [9, 10, 11], attempt: "any 6 of 9" },
+    ],
+    shortNote: "22 short questions × 2 marks = 44 marks",
+    longPairs: [
+      { question: "Q.5", chapters: [1, 2] },
+      { question: "Q.6", chapters: [3, 5] },
+      { question: "Q.7", chapters: [6, 7] },
+      { question: "Q.8", chapters: [8, 9] },
+      { question: "Q.9", chapters: [10, 11] },
+    ],
+    longNote: "Attempt any 3 of 5 · each 8 marks (a + b) = 24 marks",
+    sourceNote: SRC_2026,
+  },
+
+  "11th-chemistry": {
+    subjectId: "chemistry",
+    classLevel: "11th",
+    session: "2026",
+    totalMarks: 85,
+    // Our edition has 11 chapters; published tables citing ch.12-14 follow a
+    // different edition and are intentionally not referenced here.
+    mcqs: { 1: 2, 2: 1, 3: 2, 4: 1, 5: 2, 6: 2, 7: 1, 8: 2, 9: 1, 10: 2, 11: 1 },
+    mcqTotal: 17,
+    shortGroups: [
+      { question: "Q.2", chapters: [1, 2, 7, 8], attempt: "any 8 of 12" },
+      { question: "Q.3", chapters: [3, 5, 6, 9], attempt: "any 8 of 12" },
+      { question: "Q.4", chapters: [4, 10, 11], attempt: "any 6 of 9" },
+    ],
+    shortNote: "22 short questions × 2 marks = 44 marks",
+    longPairs: [
+      { question: "Q.5", chapters: [2, 5] },
+      { question: "Q.6", chapters: [3, 7] },
+      { question: "Q.7", chapters: [8, 9] },
+      { question: "Q.8", chapters: [10, 11] },
+      { question: "Q.9", chapters: [4, 6] },
+    ],
+    longNote: "Attempt any 3 of 5 · each 8 marks (a + b) = 24 marks",
+    sourceNote: SRC_2026,
+  },
 };
 
 /** Look up a scheme, or null when we do not hold a verified one. */
