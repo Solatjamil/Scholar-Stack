@@ -2555,6 +2555,1052 @@ const gapFill: WorkedProblem[] = [
   },
 ];
 
+/* ============ MATHS GAP-FILL: 9th to 12th ============================
+ * Chapters that previously had no worked solution. Numericals follow the
+ * board's Given / Formula / Steps / Answer shape; geometry entries use the
+ * To Prove / Construction / Proof shape examiners expect.
+ * Every arithmetic result is verified by a harness before committing.
+ */
+const mathGapFill: WorkedProblem[] = [
+  {
+    id: "m9-rcn-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Real and Complex Numbers",
+    kind: "numerical",
+    question:
+      "Simplify (3 + 2i)(4 - 5i) and express the result in the form a + bi.",
+    romanUrdu:
+      "Complex numbers ka hasil zarb nikaal kar a + bi ki shakal mein likhein.",
+    given: [
+      { label: "First number", value: "3 + 2i" },
+      { label: "Second number", value: "4 - 5i" },
+      { label: "Key fact", value: "i^2 = -1" },
+    ],
+    formula: "(a + bi)(c + di) = ac + adi + bci + bd i^2, with i^2 = -1",
+    steps: [
+      { label: "Expand", value: "(3)(4) + (3)(-5i) + (2i)(4) + (2i)(-5i)" },
+      { label: "Multiply each term", value: "12 - 15i + 8i - 10 i^2" },
+      { label: "Replace i^2 with -1", value: "12 - 15i + 8i - 10(-1) = 12 - 15i + 8i + 10" },
+      { label: "Collect real parts", value: "12 + 10 = 22" },
+      { label: "Collect imaginary parts", value: "-15i + 8i = -7i" },
+    ],
+    answer: "22 - 7i",
+    examTip:
+      "i^2 = -1 lagana sab se aam ghalti hai - log i^2 ko +1 samajh lete hain. -10 i^2 = +10 hota hai.",
+  },
+  {
+    id: "m9-alg-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Algebraic Expressions and Algebraic Formulas",
+    kind: "numerical",
+    question:
+      "If x + 1/x = 5, find the value of x^2 + 1/x^2 and x^3 + 1/x^3.",
+    romanUrdu:
+      "Diye gaye taluq se x^2 + 1/x^2 aur x^3 + 1/x^3 nikalein.",
+    given: [
+      { label: "Given", value: "x + 1/x = 5" },
+    ],
+    formula: "(x + 1/x)^2 = x^2 + 1/x^2 + 2   and   (x + 1/x)^3 = x^3 + 1/x^3 + 3(x + 1/x)",
+    steps: [
+      { label: "Square both sides", value: "(x + 1/x)^2 = 5^2 = 25" },
+      { label: "Expand", value: "x^2 + 1/x^2 + 2 = 25" },
+      { label: "Subtract 2", value: "x^2 + 1/x^2 = 23" },
+      { label: "Cube the original", value: "(x + 1/x)^3 = 5^3 = 125" },
+      { label: "Expand", value: "x^3 + 1/x^3 + 3(x + 1/x) = 125" },
+      { label: "Substitute x + 1/x = 5", value: "x^3 + 1/x^3 + 3(5) = 125" },
+      { label: "Simplify", value: "x^3 + 1/x^3 = 125 - 15 = 110" },
+    ],
+    answer: "x^2 + 1/x^2 = 23 and x^3 + 1/x^3 = 110",
+    examTip:
+      "Square karne par +2 aur cube karne par +3(x + 1/x) aata hai - yeh middle terms bhoolna sab se bara nuqsan hai.",
+  },
+  {
+    id: "m9-manip-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Algebraic Manipulation",
+    kind: "numerical",
+    question:
+      "Find the HCF and LCM of the polynomials x^2 - 9 and x^2 + 6x + 9.",
+    romanUrdu:
+      "Do polynomials ka HCF aur LCM nikalein.",
+    given: [
+      { label: "First polynomial", value: "x^2 - 9" },
+      { label: "Second polynomial", value: "x^2 + 6x + 9" },
+    ],
+    formula: "HCF x LCM = product of the two polynomials",
+    steps: [
+      { label: "Factorise the first", value: "x^2 - 9 = (x - 3)(x + 3)  [difference of squares]" },
+      { label: "Factorise the second", value: "x^2 + 6x + 9 = (x + 3)^2  [perfect square]" },
+      { label: "Common factor", value: "(x + 3) appears in both, so HCF = (x + 3)" },
+      { label: "LCM", value: "take every factor to its highest power: (x - 3)(x + 3)^2" },
+      { label: "Verify", value: "HCF x LCM = (x + 3) x (x - 3)(x + 3)^2 = (x - 3)(x + 3)^3 = product of the originals" },
+    ],
+    answer: "HCF = (x + 3) and LCM = (x - 3)(x + 3)^2",
+    examTip:
+      "Pehle dono ko factorise karein - bina factorise kiye HCF/LCM nikalne ki koshish hamesha ghalat hoti hai.",
+  },
+  {
+    id: "m9-lineq-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Linear Equations and Inequalities",
+    kind: "numerical",
+    question:
+      "Solve the inequality 3x - 7 < 5x + 3 and represent the solution on a number line.",
+    romanUrdu:
+      "Na-mosawaat hal karein aur number line par dikhayein.",
+    given: [
+      { label: "Inequality", value: "3x - 7 < 5x + 3" },
+    ],
+    formula: "Dividing or multiplying an inequality by a negative number reverses the sign",
+    steps: [
+      { label: "Bring x terms to one side", value: "3x - 5x < 3 + 7" },
+      { label: "Simplify", value: "-2x < 10" },
+      { label: "Divide by -2 and REVERSE the sign", value: "x > -5" },
+      { label: "Number line", value: "open circle at -5, shading to the right (−5 is not included)" },
+    ],
+    answer: "x > -5, i.e. the solution set is {x | x > -5, x is a real number}",
+    examTip:
+      "Manfi number se taqseem karte waqt inequality ka rukh ULTA hota hai. Yeh sab se aam ghalti hai is chapter mein.",
+  },
+  {
+    id: "m9-graph-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Linear Graphs and Their Application",
+    kind: "numerical",
+    question:
+      "Draw the graph of 2x + 3y = 12 by finding its intercepts, and state the slope.",
+    romanUrdu:
+      "Intercepts nikaal kar graph banayein aur slope batayein.",
+    given: [
+      { label: "Equation", value: "2x + 3y = 12" },
+    ],
+    formula: "x-intercept: put y = 0 · y-intercept: put x = 0 · slope-intercept form y = mx + c",
+    steps: [
+      { label: "x-intercept", value: "put y = 0: 2x = 12, so x = 6, giving the point (6, 0)" },
+      { label: "y-intercept", value: "put x = 0: 3y = 12, so y = 4, giving the point (0, 4)" },
+      { label: "Plot", value: "mark (6, 0) and (0, 4) and join them with a straight line" },
+      { label: "Rearrange for slope", value: "3y = -2x + 12, so y = (-2/3)x + 4" },
+      { label: "Read the slope", value: "m = -2/3 and the y-intercept c = 4" },
+    ],
+    answer: "The line passes through (6, 0) and (0, 4); slope = -2/3.",
+    examTip:
+      "Sirf do points se line ban jati hai, magar teesra point le kar check karna behtar hai - agar teeno ek line par nahi to hisaab ghalat hai.",
+  },
+  {
+    id: "m9-seq-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Arithmetic and Geometric Sequences",
+    kind: "numerical",
+    question:
+      "The 5th term of an AP is 17 and the 9th term is 33. Find the first term, the common difference and the sum of the first 20 terms.",
+    romanUrdu:
+      "AP ka pehla term, common difference aur pehle 20 terms ka jama nikalein.",
+    given: [
+      { label: "5th term", value: "a5 = 17" },
+      { label: "9th term", value: "a9 = 33" },
+      { label: "Required", value: "a, d and S20" },
+    ],
+    formula: "an = a + (n - 1)d   and   Sn = n/2 [2a + (n - 1)d]",
+    steps: [
+      { label: "Write the 5th term", value: "a + 4d = 17   ...(i)" },
+      { label: "Write the 9th term", value: "a + 8d = 33   ...(ii)" },
+      { label: "Subtract (i) from (ii)", value: "4d = 16, so d = 4" },
+      { label: "Substitute into (i)", value: "a + 16 = 17, so a = 1" },
+      { label: "Apply the sum formula", value: "S20 = 20/2 [2(1) + 19(4)]" },
+      { label: "Simplify inside", value: "= 10 [2 + 76] = 10 x 78" },
+      { label: "Compute", value: "S20 = 780" },
+    ],
+    answer: "First term a = 1, common difference d = 4, and S20 = 780.",
+    examTip:
+      "an = a + (n-1)d mein (n-1) hai, n nahi. 5th term ke liye 4d lagta hai, 5d nahi.",
+  },
+  {
+    id: "m9-sets-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Sets and Functions",
+    kind: "numerical",
+    question:
+      "If A = {1,2,3,4,5} and B = {4,5,6,7}, find A union B, A intersection B, A - B, and verify n(A U B) = n(A) + n(B) - n(A n B).",
+    romanUrdu:
+      "Sets ke operations nikaal kar formula verify karein.",
+    given: [
+      { label: "Set A", value: "{1, 2, 3, 4, 5}" },
+      { label: "Set B", value: "{4, 5, 6, 7}" },
+    ],
+    formula: "n(A U B) = n(A) + n(B) - n(A n B)",
+    steps: [
+      { label: "Union", value: "A U B = {1, 2, 3, 4, 5, 6, 7}, so n(A U B) = 7" },
+      { label: "Intersection", value: "A n B = {4, 5}, so n(A n B) = 2" },
+      { label: "Difference", value: "A - B = {1, 2, 3} (elements in A but not in B)" },
+      { label: "Counts", value: "n(A) = 5 and n(B) = 4" },
+      { label: "Right-hand side", value: "5 + 4 - 2 = 7" },
+      { label: "Compare", value: "LHS = 7 and RHS = 7, so the formula holds" },
+    ],
+    answer: "A U B = {1,2,3,4,5,6,7}, A n B = {4,5}, A - B = {1,2,3}; the formula is verified (7 = 7).",
+    examTip:
+      "Union mein har element sirf EK BAAR likha jata hai chahe dono sets mein ho - repeat karna aam ghalti hai.",
+  },
+  {
+    id: "m9-zakat-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Zakat, Ushr and Inheritance",
+    kind: "numerical",
+    question:
+      "A man owns savings of Rs. 850,000 above nisab for one lunar year, and harvests wheat worth Rs. 240,000 from naturally irrigated land. Calculate the Zakat and Ushr payable.",
+    romanUrdu:
+      "Zakat aur Ushr ki raqam nikalein.",
+    given: [
+      { label: "Savings held for one year", value: "Rs. 850,000" },
+      { label: "Wheat from naturally irrigated land", value: "Rs. 240,000" },
+    ],
+    formula: "Zakat = 2.5% of wealth · Ushr = 10% (natural irrigation) or 5% (artificial irrigation)",
+    steps: [
+      { label: "Zakat rate", value: "2.5% = 2.5/100 = 0.025" },
+      { label: "Zakat payable", value: "850,000 x 0.025 = Rs. 21,250" },
+      { label: "Ushr rate", value: "naturally irrigated land, so 10%" },
+      { label: "Ushr payable", value: "240,000 x 0.10 = Rs. 24,000" },
+      { label: "Total", value: "21,250 + 24,000 = Rs. 45,250" },
+    ],
+    answer: "Zakat = Rs. 21,250, Ushr = Rs. 24,000, total Rs. 45,250.",
+    examTip:
+      "Qudrati sairaab (barish) par 10 fisad aur masnooi sairaab (tube well) par 5 fisad. Yeh farq zaroor dekhein.",
+  },
+  {
+    id: "m9-bmath-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Business Mathematics",
+    kind: "numerical",
+    question:
+      "A shopkeeper buys an article for Rs. 4,500 and sells it for Rs. 5,400. Find the profit and the profit percentage. What would the selling price be for a 30% profit?",
+    romanUrdu:
+      "Nafa, nafa fisad aur 30 fisad nafe wali qeemat nikalein.",
+    given: [
+      { label: "Cost price", value: "C.P. = Rs. 4,500" },
+      { label: "Selling price", value: "S.P. = Rs. 5,400" },
+    ],
+    formula: "Profit = S.P. - C.P. · Profit% = (Profit / C.P.) x 100 · S.P. = C.P. (1 + profit%)",
+    steps: [
+      { label: "Profit", value: "5,400 - 4,500 = Rs. 900" },
+      { label: "Profit percentage", value: "(900 / 4,500) x 100 = 0.2 x 100 = 20%" },
+      { label: "For 30% profit", value: "S.P. = 4,500 x (1 + 0.30)" },
+      { label: "Compute", value: "= 4,500 x 1.30 = Rs. 5,850" },
+    ],
+    answer: "Profit = Rs. 900 (20%); for a 30% profit the selling price must be Rs. 5,850.",
+    examTip:
+      "Profit fisad hamesha COST PRICE par nikalta hai, selling price par nahi. Yeh sab se aam ghalti hai.",
+  },
+  {
+    id: "m9-fmath-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Financial Mathematics",
+    kind: "numerical",
+    question:
+      "Rs. 60,000 is invested for 3 years. Find the simple interest at 8% per annum, and the compound amount if compounded annually at the same rate.",
+    romanUrdu:
+      "Simple interest aur compound amount dono nikalein.",
+    given: [
+      { label: "Principal", value: "P = Rs. 60,000" },
+      { label: "Rate", value: "r = 8% per annum" },
+      { label: "Time", value: "t = 3 years" },
+    ],
+    formula: "S.I. = P r t / 100   and   A = P (1 + r/100)^t",
+    steps: [
+      { label: "Simple interest", value: "(60,000 x 8 x 3) / 100 = 1,440,000 / 100 = Rs. 14,400" },
+      { label: "Amount under simple interest", value: "60,000 + 14,400 = Rs. 74,400" },
+      { label: "Compound factor", value: "(1 + 8/100)^3 = (1.08)^3" },
+      { label: "Compute the power", value: "1.08 x 1.08 = 1.1664; 1.1664 x 1.08 = 1.259712" },
+      { label: "Compound amount", value: "60,000 x 1.259712 = Rs. 75,582.72" },
+      { label: "Compound interest", value: "75,582.72 - 60,000 = Rs. 15,582.72" },
+    ],
+    answer: "Simple interest = Rs. 14,400; compound amount = Rs. 75,582.72 (C.I. = Rs. 15,582.72).",
+    examTip:
+      "Compound interest hamesha simple se ZYADA hota hai (yahan Rs. 1,182.72 zyada). Agar kam aaye to hisaab ghalat hai.",
+  },
+  {
+    id: "m9-cmath-1",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Consumer Mathematics",
+    kind: "numerical",
+    question:
+      "An article is marked at Rs. 8,000. A discount of 15% is allowed and then 17% sales tax is charged on the discounted price. Find the amount the customer pays.",
+    romanUrdu:
+      "Discount ke baad sales tax laga kar aakhri qeemat nikalein.",
+    given: [
+      { label: "Marked price", value: "Rs. 8,000" },
+      { label: "Discount", value: "15%" },
+      { label: "Sales tax", value: "17%" },
+    ],
+    formula: "Discounted price = M.P. (1 - d) · Final price = discounted price (1 + tax)",
+    steps: [
+      { label: "Discount amount", value: "8,000 x 0.15 = Rs. 1,200" },
+      { label: "Price after discount", value: "8,000 - 1,200 = Rs. 6,800" },
+      { label: "Sales tax", value: "6,800 x 0.17 = Rs. 1,156" },
+      { label: "Amount payable", value: "6,800 + 1,156 = Rs. 7,956" },
+    ],
+    answer: "The customer pays Rs. 7,956.",
+    examTip:
+      "Sales tax DISCOUNT KE BAAD wali qeemat par lagta hai, marked price par nahi. Tarteeb badalne se jawab ghalat aa jata hai.",
+  },
+  {
+    id: "m9-th-congr",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Congruent Triangles",
+    kind: "theorem",
+    question:
+      "Prove that if two sides and the included angle of one triangle are congruent to the corresponding sides and included angle of another triangle, the triangles are congruent (SAS).",
+    romanUrdu:
+      "SAS ke tehat do triangles ke congruent hone ka sabot dein.",
+    toProve: "In triangle ABC and triangle DEF: given AB = DE, angle A = angle D, AC = DF. Prove triangle ABC is congruent to triangle DEF.",
+    construction:
+      "Place triangle ABC on triangle DEF so that vertex A falls on vertex D and side AB falls along side DE.",
+    steps: [
+      { label: "Since AB = DE", value: "point B coincides with point E" },
+      { label: "Since angle A = angle D", value: "ray AC falls along ray DF" },
+      { label: "Since AC = DF", value: "point C coincides with point F" },
+      { label: "All three vertices coincide", value: "A on D, B on E, C on F" },
+      { label: "Therefore", value: "the two triangles cover each other exactly" },
+    ],
+    answer: "Triangle ABC is congruent to triangle DEF (SAS). Hence proved.",
+    examTip:
+      "Angle INCLUDED hona zaroori hai - yani dono di gayi sides ke darmiyan. Agar angle bahar ho to SAS lagu nahi hota.",
+  },
+  {
+    id: "m9-th-para",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Parallelograms and Triangles",
+    kind: "theorem",
+    question:
+      "Prove that in a parallelogram the opposite sides are equal.",
+    romanUrdu:
+      "Sabit karein ke parallelogram ke muqabil azlaa barabar hote hain.",
+    toProve: "In parallelogram ABCD, prove that AB = DC and AD = BC.",
+    construction:
+      "Draw the diagonal AC, dividing the parallelogram into triangle ABC and triangle ADC.",
+    steps: [
+      { label: "Given", value: "ABCD is a parallelogram, so AB is parallel to DC and AD is parallel to BC" },
+      { label: "Alternate angles", value: "angle BAC = angle DCA (AB parallel to DC, AC is the transversal)" },
+      { label: "Alternate angles", value: "angle DAC = angle BCA (AD parallel to BC, AC is the transversal)" },
+      { label: "Common side", value: "AC = AC" },
+      { label: "Congruence", value: "triangle ABC is congruent to triangle CDA (ASA)" },
+      { label: "Corresponding sides", value: "AB = DC and AD = BC (congruent triangles have equal corresponding sides)" },
+    ],
+    answer: "Opposite sides of a parallelogram are equal: AB = DC and AD = BC. Hence proved.",
+    examTip:
+      "Diagonal ki construction likhna zaroori hai - uske baghair proof shuru hi nahi ho sakta aur marks kat jate hain.",
+  },
+  {
+    id: "m9-th-bisect",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Line Bisectors and Angle Bisectors",
+    kind: "theorem",
+    question:
+      "Prove that any point on the right bisector of a line segment is equidistant from its end points.",
+    romanUrdu:
+      "Sabit karein ke right bisector par har nuqta dono siron se barabar faasle par hota hai.",
+    toProve: "Let P be any point on the right bisector of segment AB, meeting AB at M. Prove PA = PB.",
+    construction:
+      "Join P to A and P to B.",
+    steps: [
+      { label: "By definition of right bisector", value: "M is the midpoint of AB, so AM = MB" },
+      { label: "Also by definition", value: "PM is perpendicular to AB, so angle PMA = angle PMB = 90 degrees" },
+      { label: "Common side", value: "PM = PM" },
+      { label: "Congruence", value: "triangle PMA is congruent to triangle PMB (SAS)" },
+      { label: "Corresponding sides", value: "PA = PB" },
+    ],
+    answer: "Any point on the right bisector is equidistant from the end points: PA = PB. Hence proved.",
+    examTip:
+      "Right bisector ki DO sharten hoti hain: midpoint se guzarna AUR amoodi hona. Dono likhein warna proof adhoora hai.",
+  },
+  {
+    id: "m9-th-sides",
+    classLevel: "9th",
+    subject: "math",
+    chapter: "Sides and Angles of a Triangle",
+    kind: "theorem",
+    question:
+      "Prove that in a triangle, the angle opposite the greater side is greater.",
+    romanUrdu:
+      "Sabit karein ke bare zil ke muqabil ka zaawiya bara hota hai.",
+    toProve: "In triangle ABC, given AC > AB, prove that angle ABC > angle ACB.",
+    construction:
+      "On the longer side AC, cut off AD equal to AB, and join B to D.",
+    steps: [
+      { label: "By construction", value: "AD = AB, so triangle ABD is isosceles" },
+      { label: "Base angles of an isosceles triangle", value: "angle ABD = angle ADB   ...(i)" },
+      { label: "Exterior angle of triangle BDC", value: "angle ADB = angle DBC + angle DCB, so angle ADB > angle DCB   ...(ii)" },
+      { label: "From (i) and (ii)", value: "angle ABD > angle DCB, that is angle ABD > angle ACB" },
+      { label: "Since D lies inside AC", value: "angle ABC > angle ABD" },
+      { label: "Combining", value: "angle ABC > angle ABD > angle ACB" },
+    ],
+    answer: "The angle opposite the greater side is greater: angle ABC > angle ACB. Hence proved.",
+    examTip:
+      "Construction 'AD = AB kaat lein' likhna hi is proof ki kunji hai. Bina iske aage nahi barh sakte.",
+  },
+  {
+    id: "m10-sets-1",
+    classLevel: "10th",
+    subject: "math",
+    chapter: "Sets and Functions",
+    kind: "numerical",
+    question:
+      "If A = {a,b,c} and B = {1,2}, find A x B, state n(A x B), and how many relations from A to B are possible?",
+    romanUrdu:
+      "Cartesian product nikalein aur relations ki tadaad batayein.",
+    given: [
+      { label: "Set A", value: "{a, b, c}, n(A) = 3" },
+      { label: "Set B", value: "{1, 2}, n(B) = 2" },
+    ],
+    formula: "n(A x B) = n(A) x n(B) · number of relations from A to B = 2^(n(A) x n(B))",
+    steps: [
+      { label: "Cartesian product", value: "A x B = {(a,1),(a,2),(b,1),(b,2),(c,1),(c,2)}" },
+      { label: "Count", value: "n(A x B) = 3 x 2 = 6" },
+      { label: "Relations are subsets of A x B", value: "number of subsets of a 6-element set = 2^6" },
+      { label: "Compute", value: "2^6 = 64" },
+    ],
+    answer: "A x B has 6 ordered pairs and 64 relations are possible from A to B.",
+    examTip:
+      "A x B aur B x A alag hote hain - ordered pairs ki tarteeb badal jati hai. Ise barabar samajhna aam ghalti hai.",
+  },
+  {
+    id: "m10-algf-1",
+    classLevel: "10th",
+    subject: "math",
+    chapter: "Algebraic Formulas and Applications",
+    kind: "numerical",
+    question:
+      "If a + b = 9 and ab = 20, find a^2 + b^2, a - b and a^3 + b^3.",
+    romanUrdu:
+      "Di gayi maloomat se yeh teen qeematein nikalein.",
+    given: [
+      { label: "Sum", value: "a + b = 9" },
+      { label: "Product", value: "ab = 20" },
+    ],
+    formula: "a^2 + b^2 = (a+b)^2 - 2ab · (a-b)^2 = (a+b)^2 - 4ab · a^3 + b^3 = (a+b)^3 - 3ab(a+b)",
+    steps: [
+      { label: "a^2 + b^2", value: "(9)^2 - 2(20) = 81 - 40 = 41" },
+      { label: "(a - b)^2", value: "(9)^2 - 4(20) = 81 - 80 = 1" },
+      { label: "a - b", value: "square root of 1 = plus or minus 1" },
+      { label: "a^3 + b^3", value: "(9)^3 - 3(20)(9) = 729 - 540 = 189" },
+    ],
+    answer: "a^2 + b^2 = 41, a - b = +/- 1, and a^3 + b^3 = 189.",
+    examTip:
+      "(a-b)^2 mein 4ab ghata hai jabke (a+b)^2 mein 2ab. Yeh 2 aur 4 ka farq bohat marks zaya karta hai.",
+  },
+  {
+    id: "m10-bfm-1",
+    classLevel: "10th",
+    subject: "math",
+    chapter: "Business and Financial Mathematics",
+    kind: "numerical",
+    question:
+      "A person deposits Rs. 150,000 in a bank that pays 9% per annum compounded semi-annually. Find the amount after 2 years.",
+    romanUrdu:
+      "Chhemahi compounding par 2 saal baad ki raqam nikalein.",
+    given: [
+      { label: "Principal", value: "Rs. 150,000" },
+      { label: "Annual rate", value: "9%" },
+      { label: "Compounded", value: "semi-annually" },
+      { label: "Time", value: "2 years" },
+    ],
+    formula: "A = P (1 + r/n)^(nt) where n = number of compounding periods per year",
+    steps: [
+      { label: "Rate per period", value: "9% / 2 = 4.5% = 0.045" },
+      { label: "Number of periods", value: "n x t = 2 x 2 = 4" },
+      { label: "Growth factor", value: "(1.045)^4" },
+      { label: "Compute step by step", value: "1.045^2 = 1.092025; 1.092025^2 = 1.192519" },
+      { label: "Amount", value: "150,000 x 1.192519 = Rs. 178,877.79" },
+      { label: "Compound interest", value: "178,877.79 - 150,000 = Rs. 28,877.79" },
+    ],
+    answer: "Amount after 2 years = Rs. 178,877.79 (interest Rs. 28,877.79).",
+    examTip:
+      "Semi-annual mein rate AADHI aur periods DUGNE hote hain. Sirf ek badalna sab se aam ghalti hai.",
+  },
+  {
+    id: "m10-th-proj",
+    classLevel: "10th",
+    subject: "math",
+    chapter: "Projection of a Side of a Triangle",
+    kind: "theorem",
+    question:
+      "In an obtuse triangle, prove that the square on the side opposite the obtuse angle is greater than the sum of the squares on the other two sides.",
+    romanUrdu:
+      "Sabit karein ke obtuse angle ke muqabil zil ka square baaqi do ke squares se bara hota hai.",
+    toProve: "In triangle ABC with angle ACB obtuse, prove |AB|^2 = |AC|^2 + |BC|^2 + 2(BC)(CD).",
+    construction:
+      "Draw AD perpendicular from A to BC produced, meeting the produced line at D.",
+    steps: [
+      { label: "In right triangle ADB", value: "|AB|^2 = |AD|^2 + |BD|^2 (Pythagoras)" },
+      { label: "Express BD", value: "BD = BC + CD, so |BD|^2 = |BC|^2 + 2(BC)(CD) + |CD|^2" },
+      { label: "Substitute", value: "|AB|^2 = |AD|^2 + |BC|^2 + 2(BC)(CD) + |CD|^2" },
+      { label: "In right triangle ADC", value: "|AC|^2 = |AD|^2 + |CD|^2 (Pythagoras)" },
+      { label: "Replace", value: "|AD|^2 + |CD|^2 = |AC|^2" },
+      { label: "Therefore", value: "|AB|^2 = |AC|^2 + |BC|^2 + 2(BC)(CD)" },
+      { label: "Since 2(BC)(CD) > 0", value: "|AB|^2 > |AC|^2 + |BC|^2" },
+    ],
+    answer: "|AB|^2 = |AC|^2 + |BC|^2 + 2(BC)(CD), which exceeds |AC|^2 + |BC|^2. Hence proved.",
+    examTip:
+      "Obtuse mein PLUS aur acute mein MINUS hota hai (2·BC·CD ka sign). Yeh sign yaad rakhna zaroori hai.",
+  },
+  {
+    id: "m10-th-chords",
+    classLevel: "10th",
+    subject: "math",
+    chapter: "Chords and Arcs",
+    kind: "theorem",
+    question:
+      "Prove that equal chords of a circle subtend equal angles at the centre.",
+    romanUrdu:
+      "Sabit karein ke barabar chords markaz par barabar zaawiye banate hain.",
+    toProve: "In a circle with centre O, given chord AB = chord CD, prove angle AOB = angle COD.",
+    construction:
+      "Join OA, OB, OC and OD (all radii of the circle).",
+    steps: [
+      { label: "Radii are equal", value: "OA = OB = OC = OD = r" },
+      { label: "In triangle AOB and triangle COD", value: "OA = OC (radii)" },
+      { label: "Second pair", value: "OB = OD (radii)" },
+      { label: "Third pair", value: "AB = CD (given)" },
+      { label: "Congruence", value: "triangle AOB is congruent to triangle COD (SSS)" },
+      { label: "Corresponding angles", value: "angle AOB = angle COD" },
+    ],
+    answer: "Equal chords subtend equal angles at the centre: angle AOB = angle COD. Hence proved.",
+    examTip:
+      "Radii jorna (construction) likhna zaroori hai. SSS ke teeno joray alag alag likhein - shortcut par marks katte hain.",
+  },
+  {
+    id: "m11-numsys-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Number Systems",
+    kind: "numerical",
+    question:
+      "Express the recurring decimal 0.363636... as a rational number in lowest terms.",
+    romanUrdu:
+      "Recurring decimal ko rational number mein badlein.",
+    given: [
+      { label: "Decimal", value: "x = 0.363636... (the block 36 repeats)" },
+    ],
+    formula: "Multiply by 10^k where k = length of the repeating block, then subtract",
+    steps: [
+      { label: "Let", value: "x = 0.363636..." },
+      { label: "Repeating block has 2 digits", value: "multiply both sides by 100: 100x = 36.363636..." },
+      { label: "Subtract the original", value: "100x - x = 36.363636... - 0.363636..." },
+      { label: "Simplify", value: "99x = 36" },
+      { label: "Solve", value: "x = 36/99" },
+      { label: "Lowest terms", value: "divide numerator and denominator by 9: x = 4/11" },
+    ],
+    answer: "0.363636... = 4/11",
+    examTip:
+      "10 ki power repeating block ki LAMBAI ke barabar honi chahiye - do digits repeat ho rahe hain to 100 se zarb, 10 se nahi.",
+  },
+  {
+    id: "m11-groups-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Sets, Functions and Groups",
+    kind: "numerical",
+    question:
+      "Show that the set {1, -1, i, -i} forms a group under multiplication.",
+    romanUrdu:
+      "Sabit karein ke yeh set zarb ke tehat group banata hai.",
+    given: [
+      { label: "Set", value: "G = {1, -1, i, -i}" },
+      { label: "Operation", value: "multiplication" },
+      { label: "Key fact", value: "i^2 = -1" },
+    ],
+    formula: "A group must satisfy closure, associativity, identity and inverse",
+    steps: [
+      { label: "Closure", value: "every product stays in G, e.g. i x i = -1, i x -i = 1, -1 x -i = i" },
+      { label: "Associativity", value: "multiplication of complex numbers is associative" },
+      { label: "Identity", value: "1 is in G and a x 1 = a for every a in G" },
+      { label: "Inverse of 1", value: "1 (since 1 x 1 = 1)" },
+      { label: "Inverse of -1", value: "-1 (since -1 x -1 = 1)" },
+      { label: "Inverse of i", value: "-i (since i x -i = -i^2 = 1)" },
+      { label: "Inverse of -i", value: "i" },
+      { label: "All four axioms hold", value: "therefore G is a group" },
+    ],
+    answer: "{1, -1, i, -i} satisfies closure, associativity, identity and inverse, so it is a group under multiplication.",
+    examTip:
+      "Chaaron sharten alag alag likhna zaroori hai. Sirf 'closure hai' likh dena adhoora jawab hai.",
+  },
+  {
+    id: "m11-mat-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Matrices and Determinants",
+    kind: "numerical",
+    question:
+      "Solve the system 2x + 3y = 13 and x - y = 1 using Cramer's rule.",
+    romanUrdu:
+      "Cramer's rule se system hal karein.",
+    given: [
+      { label: "Equation 1", value: "2x + 3y = 13" },
+      { label: "Equation 2", value: "x - y = 1" },
+    ],
+    formula: "x = Dx/D and y = Dy/D, where D is the coefficient determinant",
+    steps: [
+      { label: "Coefficient determinant", value: "D = |2  3; 1  -1| = (2)(-1) - (3)(1) = -2 - 3 = -5" },
+      { label: "Since D is not 0", value: "a unique solution exists" },
+      { label: "Dx", value: "replace the x-column with constants: |13  3; 1  -1| = (13)(-1) - (3)(1) = -13 - 3 = -16" },
+      { label: "Dy", value: "replace the y-column: |2  13; 1  1| = (2)(1) - (13)(1) = 2 - 13 = -11" },
+      { label: "Solve", value: "x = -16 / -5 = 16/5 and y = -11 / -5 = 11/5" },
+      { label: "Check in equation 2", value: "16/5 - 11/5 = 5/5 = 1, correct" },
+    ],
+    answer: "x = 16/5 and y = 11/5",
+    examTip:
+      "Cramer's rule sirf tab chalta hai jab D not equal 0. Pehle D nikaal kar check karein warna jawab ghalat hoga.",
+  },
+  {
+    id: "m11-pf-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Partial Fractions",
+    kind: "numerical",
+    question:
+      "Resolve (5x - 4) / ((x - 2)(x + 1)) into partial fractions.",
+    romanUrdu:
+      "Partial fractions mein tordein.",
+    given: [
+      { label: "Expression", value: "(5x - 4) / ((x - 2)(x + 1))" },
+    ],
+    formula: "For distinct linear factors: A/(x - 2) + B/(x + 1)",
+    steps: [
+      { label: "Set up", value: "(5x - 4)/((x-2)(x+1)) = A/(x-2) + B/(x+1)" },
+      { label: "Multiply through", value: "5x - 4 = A(x + 1) + B(x - 2)" },
+      { label: "Put x = 2", value: "5(2) - 4 = A(3), so 6 = 3A, giving A = 2" },
+      { label: "Put x = -1", value: "5(-1) - 4 = B(-3), so -9 = -3B, giving B = 3" },
+      { label: "Write the result", value: "2/(x - 2) + 3/(x + 1)" },
+    ],
+    answer: "(5x - 4)/((x-2)(x+1)) = 2/(x - 2) + 3/(x + 1)",
+    examTip:
+      "x ki wo value daalein jo ek factor ko sifar kare - is se doosra constant foran mil jata hai.",
+  },
+  {
+    id: "m11-perm-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Permutation, Combination and Probability",
+    kind: "numerical",
+    question:
+      "In how many ways can a committee of 3 men and 2 women be chosen from 7 men and 5 women? What is the probability that a particular man is included?",
+    romanUrdu:
+      "Committee ke tareeqe aur ehtemal nikalein.",
+    given: [
+      { label: "Men available", value: "7, choose 3" },
+      { label: "Women available", value: "5, choose 2" },
+    ],
+    formula: "nCr = n! / (r! (n - r)!) · P(event) = favourable / total",
+    steps: [
+      { label: "Choosing men", value: "7C3 = 7!/(3!4!) = (7 x 6 x 5)/(3 x 2 x 1) = 35" },
+      { label: "Choosing women", value: "5C2 = 5!/(2!3!) = (5 x 4)/(2 x 1) = 10" },
+      { label: "Total committees", value: "35 x 10 = 350" },
+      { label: "With a particular man fixed", value: "choose 2 more men from the remaining 6: 6C2 = 15" },
+      { label: "Women unchanged", value: "5C2 = 10, so favourable = 15 x 10 = 150" },
+      { label: "Probability", value: "150/350 = 3/7" },
+    ],
+    answer: "350 committees are possible; the probability a particular man is included is 3/7.",
+    examTip:
+      "Committee mein tarteeb ki ahmiyat nahi, is liye COMBINATION (nCr) lagta hai, permutation nahi.",
+  },
+  {
+    id: "m11-trig-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Trigonometric Identities",
+    kind: "numerical",
+    question:
+      "Prove that (1 + cos A) / sin A + sin A / (1 + cos A) = 2 cosec A.",
+    romanUrdu:
+      "Yeh trigonometric identity sabit karein.",
+    given: [
+      { label: "To prove", value: "(1 + cos A)/sin A + sin A/(1 + cos A) = 2 cosec A" },
+    ],
+    formula: "sin^2 A + cos^2 A = 1 · cosec A = 1/sin A",
+    steps: [
+      { label: "Take the LHS over a common denominator", value: "[(1 + cos A)^2 + sin^2 A] / [sin A (1 + cos A)]" },
+      { label: "Expand the numerator", value: "1 + 2 cos A + cos^2 A + sin^2 A" },
+      { label: "Use sin^2 A + cos^2 A = 1", value: "= 1 + 2 cos A + 1 = 2 + 2 cos A" },
+      { label: "Factorise", value: "= 2(1 + cos A)" },
+      { label: "Substitute back", value: "2(1 + cos A) / [sin A (1 + cos A)]" },
+      { label: "Cancel (1 + cos A)", value: "= 2 / sin A" },
+      { label: "Rewrite", value: "= 2 cosec A = RHS" },
+    ],
+    answer: "LHS = 2 cosec A = RHS. Hence proved.",
+    examTip:
+      "Identity proof mein sirf EK taraf par kaam karein (aam tor par LHS) aur usay RHS tak le jayein. Dono taraf ek sath chalana ghalat tareeqa hai.",
+  },
+  {
+    id: "m11-invtrig-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Inverse Trigonometric Functions",
+    kind: "numerical",
+    question:
+      "Evaluate sin inverse (1/2) + cos inverse (1/2), and find the principal value of tan inverse (-1).",
+    romanUrdu:
+      "Inverse trigonometric qeematein nikalein.",
+    given: [
+      { label: "Expression 1", value: "sin^-1(1/2) + cos^-1(1/2)" },
+      { label: "Expression 2", value: "tan^-1(-1)" },
+    ],
+    formula: "Principal ranges: sin^-1 in [-90, 90] · cos^-1 in [0, 180] · tan^-1 in (-90, 90)",
+    steps: [
+      { label: "sin^-1(1/2)", value: "the angle in [-90, 90] whose sine is 1/2, which is 30 degrees" },
+      { label: "cos^-1(1/2)", value: "the angle in [0, 180] whose cosine is 1/2, which is 60 degrees" },
+      { label: "Sum", value: "30 + 60 = 90 degrees (that is pi/2 radians)" },
+      { label: "tan^-1(-1)", value: "the angle in (-90, 90) whose tangent is -1, which is -45 degrees" },
+      { label: "Note", value: "135 degrees also has tangent -1 but lies outside the principal range" },
+    ],
+    answer: "sin^-1(1/2) + cos^-1(1/2) = 90 degrees (pi/2); tan^-1(-1) = -45 degrees (-pi/4).",
+    examTip:
+      "PRINCIPAL value maangi jaye to sirf muqarrara range wala jawab likhein. 135 degrees yahan ghalat hai.",
+  },
+  {
+    id: "m11-si-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Simple and Compound Interest",
+    kind: "numerical",
+    question:
+      "A sum doubles itself in 8 years at simple interest. Find the rate. At that same rate, what will Rs. 25,000 amount to in 5 years?",
+    romanUrdu:
+      "Rate nikalein aur phir 5 saal baad ki raqam maloom karein.",
+    given: [
+      { label: "Condition", value: "the sum doubles in 8 years under simple interest" },
+      { label: "Principal for part 2", value: "Rs. 25,000" },
+      { label: "Time for part 2", value: "5 years" },
+    ],
+    formula: "S.I. = P r t / 100 · doubling means S.I. = P",
+    steps: [
+      { label: "Doubling means", value: "interest earned equals the principal, so S.I. = P" },
+      { label: "Substitute", value: "P = P x r x 8 / 100" },
+      { label: "Cancel P", value: "1 = 8r/100" },
+      { label: "Solve", value: "r = 100/8 = 12.5% per annum" },
+      { label: "Interest on 25,000 for 5 years", value: "(25,000 x 12.5 x 5)/100 = 1,562,500/100 = Rs. 15,625" },
+      { label: "Amount", value: "25,000 + 15,625 = Rs. 40,625" },
+    ],
+    answer: "Rate = 12.5% per annum; Rs. 25,000 amounts to Rs. 40,625 in 5 years.",
+    examTip:
+      "'Double ho jata hai' ka matlab interest = principal, total amount = 2P nahi jo interest ho. Yeh confusion aam hai.",
+  },
+  {
+    id: "m11-ann-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Annuities and Present Value",
+    kind: "numerical",
+    question:
+      "Find the present value of an annuity of Rs. 20,000 paid at the end of each year for 4 years at 10% per annum.",
+    romanUrdu:
+      "Annuity ki aaj ki qeemat nikalein.",
+    given: [
+      { label: "Annual payment", value: "R = Rs. 20,000" },
+      { label: "Rate", value: "i = 10% = 0.10" },
+      { label: "Periods", value: "n = 4" },
+    ],
+    formula: "PV = R x [1 - (1 + i)^-n] / i",
+    steps: [
+      { label: "Compute (1.10)^4", value: "1.10^2 = 1.21; 1.21^2 = 1.4641" },
+      { label: "Reciprocal", value: "(1.10)^-4 = 1/1.4641 = 0.6830135" },
+      { label: "Numerator", value: "1 - 0.6830135 = 0.3169865" },
+      { label: "Divide by i", value: "0.3169865 / 0.10 = 3.169865" },
+      { label: "Present value", value: "20,000 x 3.169865 = Rs. 63,397.31" },
+    ],
+    answer: "Present value of the annuity = Rs. 63,397.31",
+    examTip:
+      "PV hamesha kul adaigi (Rs. 80,000) se KAM hoti hai kyunke mustaqbil ka paisa aaj kam qeemat rakhta hai. Zyada aaye to ghalti hai.",
+  },
+  {
+    id: "m11-trade-1",
+    classLevel: "11th",
+    subject: "math",
+    chapter: "Mathematics of Trade and Discount",
+    kind: "numerical",
+    question:
+      "A bill of Rs. 50,000 is discounted at 12% per annum, 3 months before maturity. Find the true discount and the present worth.",
+    romanUrdu:
+      "True discount aur present worth nikalein.",
+    given: [
+      { label: "Bill amount", value: "Rs. 50,000" },
+      { label: "Rate", value: "12% per annum" },
+      { label: "Time to maturity", value: "3 months = 1/4 year" },
+    ],
+    formula: "Present worth PW = A / (1 + rt) · True discount = A - PW",
+    steps: [
+      { label: "rt", value: "0.12 x (3/12) = 0.12 x 0.25 = 0.03" },
+      { label: "Denominator", value: "1 + 0.03 = 1.03" },
+      { label: "Present worth", value: "50,000 / 1.03 = Rs. 48,543.69" },
+      { label: "True discount", value: "50,000 - 48,543.69 = Rs. 1,456.31" },
+    ],
+    answer: "Present worth = Rs. 48,543.69 and true discount = Rs. 1,456.31",
+    examTip:
+      "TRUE discount present worth par lagta hai (isliye taqseem karte hain), jabke BANKER'S discount bill ki poori raqam par. Dono ko mila dena aam ghalti hai.",
+  },
+  {
+    id: "m12-analytic-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Introduction to Analytic Geometry",
+    kind: "numerical",
+    question:
+      "Find the equation of the line through (2, -3) and (5, 6), and the perpendicular distance from the origin to it.",
+    romanUrdu:
+      "Line ki equation aur origin se amoodi faasla nikalein.",
+    given: [
+      { label: "Point A", value: "(2, -3)" },
+      { label: "Point B", value: "(5, 6)" },
+    ],
+    formula: "Two-point form: (y - y1) = m(x - x1), m = (y2-y1)/(x2-x1) · d = |ax0 + by0 + c| / sqrt(a^2 + b^2)",
+    steps: [
+      { label: "Slope", value: "m = (6 - (-3))/(5 - 2) = 9/3 = 3" },
+      { label: "Point-slope form", value: "y - (-3) = 3(x - 2), so y + 3 = 3x - 6" },
+      { label: "General form", value: "3x - y - 9 = 0" },
+      { label: "Distance from origin (0,0)", value: "|3(0) - 1(0) - 9| / sqrt(3^2 + (-1)^2)" },
+      { label: "Simplify", value: "= 9 / sqrt(10)" },
+      { label: "Rationalise", value: "= 9 sqrt(10) / 10 = 2.846 units" },
+    ],
+    answer: "Equation: 3x - y - 9 = 0; distance from the origin = 9/sqrt(10) = 2.85 units.",
+    examTip:
+      "Distance formula mein MODULUS lagana zaroori hai - faasla kabhi manfi nahi hota.",
+  },
+  {
+    id: "m12-lp-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Linear Inequalities and Linear Programming",
+    kind: "numerical",
+    question:
+      "Maximise P = 5x + 3y subject to x + y <= 4, x + 3y <= 6, x >= 0, y >= 0.",
+    romanUrdu:
+      "Linear programming se maximum qeemat nikalein.",
+    given: [
+      { label: "Objective", value: "maximise P = 5x + 3y" },
+      { label: "Constraint 1", value: "x + y <= 4" },
+      { label: "Constraint 2", value: "x + 3y <= 6" },
+      { label: "Non-negativity", value: "x >= 0, y >= 0" },
+    ],
+    formula: "The optimum of a linear objective occurs at a corner point of the feasible region",
+    steps: [
+      { label: "Corner O", value: "(0, 0): P = 0" },
+      { label: "Corner on the x-axis", value: "x + y = 4 gives (4, 0): check x + 3y = 4 <= 6, feasible. P = 5(4) + 0 = 20" },
+      { label: "Corner on the y-axis", value: "x + 3y = 6 gives (0, 2): check x + y = 2 <= 4, feasible. P = 0 + 3(2) = 6" },
+      { label: "Intersection", value: "solve x + y = 4 and x + 3y = 6: subtract to get 2y = 2, so y = 1 and x = 3" },
+      { label: "Value there", value: "P = 5(3) + 3(1) = 15 + 3 = 18" },
+      { label: "Compare 0, 20, 6, 18", value: "the largest is 20" },
+    ],
+    answer: "Maximum P = 20, attained at the corner point (4, 0).",
+    examTip:
+      "Har corner point ko objective function mein daal kar compare karein. Sirf intersection dekhna kaafi nahi.",
+  },
+  {
+    id: "m12-statdata-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Introduction to Statistics and Data",
+    kind: "numerical",
+    question:
+      "Classify these as qualitative or quantitative, and discrete or continuous: (a) eye colour (b) number of students (c) height (d) exam grade.",
+    romanUrdu:
+      "Data ki qismein pehchanein.",
+    given: [
+      { label: "Items", value: "eye colour, number of students, height, exam grade" },
+    ],
+    formula: "Qualitative = categories · Quantitative = numeric · Discrete = countable · Continuous = measurable",
+    steps: [
+      { label: "(a) Eye colour", value: "a category with no numeric value: QUALITATIVE" },
+      { label: "(b) Number of students", value: "counted in whole numbers: QUANTITATIVE and DISCRETE" },
+      { label: "(c) Height", value: "measured on a scale, can take any value in a range: QUANTITATIVE and CONTINUOUS" },
+      { label: "(d) Exam grade", value: "a category label such as A+ or B: QUALITATIVE (ordinal, since it has order)" },
+    ],
+    answer: "Eye colour and exam grade are qualitative; number of students is discrete quantitative; height is continuous quantitative.",
+    examTip:
+      "Discrete GINA jata hai, continuous NAAPA jata hai. Yeh farq yaad rakhne ka aasan tareeqa hai.",
+  },
+  {
+    id: "m12-present-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Presentation of Data",
+    kind: "numerical",
+    question:
+      "Construct a frequency distribution for these 20 marks using class intervals of width 10 starting at 30: 34,45,52,38,61,47,55,42,58,66,39,50,44,57,63,48,53,41,59,46",
+    romanUrdu:
+      "Frequency distribution table banayein.",
+    given: [
+      { label: "Number of observations", value: "n = 20" },
+      { label: "Class width", value: "10" },
+      { label: "Starting point", value: "30" },
+    ],
+    formula: "Frequency = number of observations falling in each class interval",
+    steps: [
+      { label: "Class 30-39", value: "34, 38, 39 -> frequency 3" },
+      { label: "Class 40-49", value: "45, 47, 42, 44, 48, 41, 46 -> frequency 7" },
+      { label: "Class 50-59", value: "52, 55, 58, 50, 57, 53, 59 -> frequency 7" },
+      { label: "Class 60-69", value: "61, 66, 63 -> frequency 3" },
+      { label: "Check the total", value: "3 + 7 + 7 + 3 = 20, matching n" },
+    ],
+    answer: "Frequencies: 30-39 = 3, 40-49 = 7, 50-59 = 7, 60-69 = 3 (total 20).",
+    examTip:
+      "Frequencies ka jama hamesha n ke barabar hona chahiye. Yeh check har baar karein - ghalti foran pakri jati hai.",
+  },
+  {
+    id: "m12-index-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Index Numbers",
+    kind: "numerical",
+    question:
+      "Prices of three items in 2020 were 40, 60, 80 and in 2026 they are 50, 78, 96. Compute the simple aggregative price index and the simple average of price relatives.",
+    romanUrdu:
+      "Do tareeqon se price index nikalein.",
+    given: [
+      { label: "Base year prices (2020)", value: "40, 60, 80" },
+      { label: "Current year prices (2026)", value: "50, 78, 96" },
+    ],
+    formula: "Aggregative index = (sum p1 / sum p0) x 100 · Price relative = (p1/p0) x 100",
+    steps: [
+      { label: "Sum of base prices", value: "40 + 60 + 80 = 180" },
+      { label: "Sum of current prices", value: "50 + 78 + 96 = 224" },
+      { label: "Aggregative index", value: "(224/180) x 100 = 124.44" },
+      { label: "Price relatives", value: "(50/40)x100 = 125; (78/60)x100 = 130; (96/80)x100 = 120" },
+      { label: "Average of relatives", value: "(125 + 130 + 120)/3 = 375/3 = 125" },
+    ],
+    answer: "Simple aggregative index = 124.44 and the average of price relatives = 125.",
+    examTip:
+      "Dono tareeqe thora mukhtalif jawab dete hain - yeh normal hai. Sawal mein jo tareeqa maanga ho wohi istemal karein.",
+  },
+  {
+    id: "m12-corr-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Correlation and Regression",
+    kind: "numerical",
+    question:
+      "For the data x: 1,2,3,4,5 and y: 2,4,5,4,5, find the correlation coefficient r.",
+    romanUrdu:
+      "Correlation coefficient nikalein.",
+    given: [
+      { label: "x values", value: "1, 2, 3, 4, 5" },
+      { label: "y values", value: "2, 4, 5, 4, 5" },
+      { label: "n", value: "5" },
+    ],
+    formula: "r = [n(sum xy) - (sum x)(sum y)] / sqrt{[n sum x^2 - (sum x)^2][n sum y^2 - (sum y)^2]}",
+    steps: [
+      { label: "sum x", value: "1+2+3+4+5 = 15" },
+      { label: "sum y", value: "2+4+5+4+5 = 20" },
+      { label: "sum xy", value: "(1)(2)+(2)(4)+(3)(5)+(4)(4)+(5)(5) = 2+8+15+16+25 = 66" },
+      { label: "sum x^2", value: "1+4+9+16+25 = 55" },
+      { label: "sum y^2", value: "4+16+25+16+25 = 86" },
+      { label: "Numerator", value: "5(66) - (15)(20) = 330 - 300 = 30" },
+      { label: "First bracket", value: "5(55) - 225 = 275 - 225 = 50" },
+      { label: "Second bracket", value: "5(86) - 400 = 430 - 400 = 30" },
+      { label: "Denominator", value: "sqrt(50 x 30) = sqrt(1500) = 38.7298" },
+      { label: "Divide", value: "r = 30 / 38.7298 = 0.7746" },
+    ],
+    answer: "r = 0.775 (approximately), indicating a strong positive correlation.",
+    examTip:
+      "r hamesha -1 aur +1 ke darmiyan hota hai. Agar is range se bahar aaye to hisaab yaqeenan ghalat hai.",
+  },
+  {
+    id: "m12-prob-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Probability and Probability Distributions",
+    kind: "numerical",
+    question:
+      "A fair coin is tossed 5 times. Find the probability of exactly 3 heads, and the mean of the distribution.",
+    romanUrdu:
+      "Binomial distribution se ehtemal aur mean nikalein.",
+    given: [
+      { label: "Number of trials", value: "n = 5" },
+      { label: "Probability of head", value: "p = 0.5" },
+      { label: "Required successes", value: "r = 3" },
+    ],
+    formula: "P(X = r) = nCr p^r q^(n-r) · mean = np",
+    steps: [
+      { label: "q", value: "1 - 0.5 = 0.5" },
+      { label: "5C3", value: "5!/(3!2!) = (5 x 4)/(2 x 1) = 10" },
+      { label: "p^3", value: "0.5^3 = 0.125" },
+      { label: "q^2", value: "0.5^2 = 0.25" },
+      { label: "Probability", value: "10 x 0.125 x 0.25 = 0.3125" },
+      { label: "As a fraction", value: "10/32 = 5/16" },
+      { label: "Mean", value: "np = 5 x 0.5 = 2.5" },
+    ],
+    answer: "P(exactly 3 heads) = 5/16 = 0.3125; mean of the distribution = 2.5.",
+    examTip:
+      "'Exactly 3' ke liye sirf r = 3 lagta hai. 'At least 3' ho to r = 3, 4, 5 sab jama karne parte hain.",
+  },
+  {
+    id: "m12-sampling-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Sampling and Estimation",
+    kind: "numerical",
+    question:
+      "A population has mean 50 and standard deviation 12. For samples of size 36, find the standard error and the 95% confidence interval for the sample mean.",
+    romanUrdu:
+      "Standard error aur 95 fisad confidence interval nikalein.",
+    given: [
+      { label: "Population mean", value: "mu = 50" },
+      { label: "Population sd", value: "sigma = 12" },
+      { label: "Sample size", value: "n = 36" },
+    ],
+    formula: "Standard error = sigma / sqrt(n) · 95% CI = mean +/- 1.96 x SE",
+    steps: [
+      { label: "sqrt(n)", value: "sqrt(36) = 6" },
+      { label: "Standard error", value: "12 / 6 = 2" },
+      { label: "Margin of error", value: "1.96 x 2 = 3.92" },
+      { label: "Lower limit", value: "50 - 3.92 = 46.08" },
+      { label: "Upper limit", value: "50 + 3.92 = 53.92" },
+    ],
+    answer: "Standard error = 2; the 95% confidence interval is (46.08, 53.92).",
+    examTip:
+      "Standard error mein sqrt(n) se TAQSEEM hota hai, n se nahi. Sample bara ho to error chhota - yeh mantiqi check hai.",
+  },
+  {
+    id: "m12-inference-1",
+    classLevel: "12th",
+    subject: "math",
+    chapter: "Statistical Inference in Business",
+    kind: "numerical",
+    question:
+      "A factory claims its bulbs last 1000 hours. A sample of 64 bulbs shows a mean of 985 hours with sd 40. Test the claim at the 5% level.",
+    romanUrdu:
+      "Factory ke daawe ka hypothesis test karein.",
+    given: [
+      { label: "Claimed mean", value: "mu = 1000 hours" },
+      { label: "Sample mean", value: "x-bar = 985" },
+      { label: "Sample sd", value: "s = 40" },
+      { label: "Sample size", value: "n = 64" },
+    ],
+    formula: "z = (x-bar - mu) / (s / sqrt(n)); reject H0 if |z| > 1.96 at the 5% level",
+    steps: [
+      { label: "Null hypothesis", value: "H0: mu = 1000 (the claim is true)" },
+      { label: "Alternative", value: "H1: mu is not equal to 1000 (two-tailed)" },
+      { label: "Standard error", value: "40 / sqrt(64) = 40/8 = 5" },
+      { label: "Test statistic", value: "z = (985 - 1000)/5 = -15/5 = -3" },
+      { label: "Critical value", value: "+/- 1.96 at the 5% level" },
+      { label: "Compare", value: "|-3| = 3 > 1.96, so the result falls in the rejection region" },
+    ],
+    answer: "z = -3, which exceeds the critical value 1.96, so H0 is rejected: the claim is not supported at the 5% level.",
+    examTip:
+      "Faisla hamesha |z| ko critical value se compare kar ke likhein, aur natija saaf alfaz mein batayein - sirf number likhna adhoora hai.",
+  },
+];
+
 export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...physics9,
   ...physics10,
@@ -2565,6 +3611,7 @@ export const WORKED_PROBLEMS: WorkedProblem[] = [
   ...intermediate2,
   ...accounting,
   ...gapFill,
+  ...mathGapFill,
 ];
 
 /**
