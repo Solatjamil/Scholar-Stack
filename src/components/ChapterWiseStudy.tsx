@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import PairingSchemePanel from "./PairingSchemePanel";
 import { lookupTopics, youtubeSearchUrl, SABAQ_SITE } from "../topicData";
 import { EXAM_BANK } from "../examBank";
 import { EXTRA_MCQS, EXTRA_SHORTS, EXTRA_NUMERICALS } from "../bankSupplement";
@@ -1051,6 +1052,15 @@ export default function ChapterWiseStudy({
                 );
               })}
             </div>
+
+            {/* Official-style paper scheme. Marks which chapters carry weight
+                and which do not - but never restricts access to any of them. */}
+            <PairingSchemePanel
+              classLevel={currentClass}
+              subjectId={selectedSubjectId}
+              board={currentBoard}
+              chapterNames={activeSyllabus.chapters.map((c) => c.name)}
+            />
 
             <div className="bg-indigo-50/50 border border-indigo-100 rounded-xl p-3 text-[11px] text-indigo-800 space-y-1">
               <span className="font-bold uppercase tracking-wider text-[9px] text-indigo-500 block">Syllabus Sync</span>
